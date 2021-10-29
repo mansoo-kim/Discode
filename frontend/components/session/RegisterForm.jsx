@@ -1,20 +1,20 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 
-const SessionForm = ({ registerNewUser }) => {
+const SessionForm = ({ errors, registerNewUser }) => {
   const [email, setEmail] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [month, setMonth] = useState(0);
-  const [day, setDay] = useState(0);
-  const [year, setYear] = useState(0);
+  const [day, setDay] = useState(1);
+  const [year, setYear] = useState(2021);
 
   const handleSubmit = () => {
     const user = {
       email,
       password,
       username,
-      dob: new Date(year, month, date)
+      dob: new Date(year, month, day)
     }
     registerNewUser(user)
   }
@@ -31,17 +31,17 @@ const SessionForm = ({ registerNewUser }) => {
     <div>
       <h1>Create an account</h1>
       <form onSubmit={handleSubmit}>
-        <label>EMAIL
+        <label>EMAIL {errors['email']}
           <input type="text" value={email} onChange={e => setEmail(e.target.value)} />
         </label>
 
-        <label>USERNAME
+        <label>USERNAME {errors['username']}
           <input type="text" value={username} onChange={e => setUsername(e.target.value)} />
         </label>
 
         { dobInput }
 
-        <label>PASSWORD
+        <label>PASSWORD {errors['password']}
           <input type="password" value={password} onChange={e => setPassword(e.target.value)} />
         </label>
 

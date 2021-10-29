@@ -12,10 +12,11 @@
 #  updated_at      :datetime         not null
 #
 class User < ApplicationRecord
-  validates :username, length: { in: 2..32 }, uniqueness: true
-  validates :email, :session_token, presence: true, uniqueness: true
+  validates :username, length: { in: 2..32, message: "Must be between 2 and 32 in length" }, uniqueness: true
+  validates :email, presence: { message: "This field is required" }
+  validates :session_token, presence: true, uniqueness: true
   validates :password_digest, presence: true
-  validates :password, length: { minimum: 6, allow_nil: true }
+  validates :password, length: { minimum: 6, allow_nil: true, message: "Must be 6 or more in length" }
 
   before_validation :ensure_session_token
 
