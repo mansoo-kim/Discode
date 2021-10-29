@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 const SessionForm = ({ registerNewUser }) => {
   const [email, setEmail] = useState("");
@@ -27,23 +28,28 @@ const SessionForm = ({ registerNewUser }) => {
   )
 
   return (
-    <form onSubmit={handleSubmit}>
-      <label>EMAIL
-        <input type="text" value={email} onChange={e => setEmail(e.target.value)} />
-      </label>
+    <div>
+      <h1>Create an account</h1>
+      <form onSubmit={handleSubmit}>
+        <label>EMAIL
+          <input type="text" value={email} onChange={e => setEmail(e.target.value)} />
+        </label>
 
-      <label>USERNAME
-        <input type="text" value={username} onChange={e => setUsername(e.target.value)} />
-      </label>
+        <label>USERNAME
+          <input type="text" value={username} onChange={e => setUsername(e.target.value)} />
+        </label>
 
-      { dobInput }
+        { dobInput }
 
-      <label>PASSWORD
-        <input type="password" value={password} onChange={e => setPassword(e.target.value)} />
-      </label>
+        <label>PASSWORD
+          <input type="password" value={password} onChange={e => setPassword(e.target.value)} />
+        </label>
 
-      <button>Continue</button>
-    </form>
+        <button>Continue</button>
+
+        <Link to='/login'>Already have an account?</Link>
+      </form>
+    </div>
   )
 }
 
