@@ -27,25 +27,22 @@ const LoginForm = ({ errors, type, processForm, resetSessionErrors, history }) =
     return () => resetSessionErrors();
   }, [])
 
+  const checkEmptyInputs = () => {
+    email ? setEmptyEmail(false) : setEmptyEmail(true)
+    username ? setEmptyUsername(false) : setEmptyUsername(true)
+    password ? setEmptyPassword(false) : setEmptyPassword(true)
+  }
+
   const handleSubmit = () => {
+    // resetSessionErrors();
     if ((type === 'login' && email && password) || (email && username && password)) {
       processForm(formUser).then(() => history.push('/@me'));
     }
-    // if (!email) {
-    //   setEmptyEmail(true);
-    // }
-    // if (!password) {
-    //   setEmptyPassword(true);
-    // }
-    // if (email) {
-    //   setEmptyEmail(false);
-    // }
-    // if (password) {
-    //   setEmptyPassword(false);
-    // }
+    checkEmptyInputs();
   }
 
-  const handleDemoLogin = () => {
+  const handleDemoLogin = (e) => {
+    e.preventDefault();
     const user = {
       email: "demo@gmail.com",
       password: "demopassword"
@@ -64,9 +61,18 @@ const LoginForm = ({ errors, type, processForm, resetSessionErrors, history }) =
   </div>
   )
 
+  // { emailError } { emptyEmail && "This field is required"}
+  const emailError = Array.isArray(errors) ? (errors.length ? errors : "") : errors['email'];
+  const usernameError = Array.isArray(errors) ? (errors.length ? errors : "") : errors['username'];
+  const passwordError = Array.isArray(errors) ? (errors.length ? errors : "") : errors['password'];
+
+  const emailMessage = emptyEmail ? "This field is required" : Array.isArray(errors) ? (errors.length ? errors : "") : errors['email']
+  const usernameMessage = emptyUsername ? "This field is required" : Array.isArray(errors) ? (errors.length ? errors : "") : errors['username']
+  const passwordMessage = emptyPassword ? "This field is required" : Array.isArray(errors) ? (errors.length ? errors : "") : errors['password']
+
   const usernameInput = type === 'register' ? (
-    <label>USERNAME {errors['username']}
-      <input type="text" value={username} onChange={e => setUsername(e.target.value)} className={`session-input ${ emptyUsername || errors.length ? 'empty-input' : '' }`} />
+    <label>USERNAME { usernameMessage }
+      <input type="text" value={username} onChange={e => setUsername(e.target.value)} className={`session-input ${ emptyUsername || usernameError ? 'empty-input' : '' }`} />
     </label>
   ) : null;
 
@@ -79,13 +85,13 @@ const LoginForm = ({ errors, type, processForm, resetSessionErrors, history }) =
   ) : null;
 
   const demoButton = type === 'login' ? (
-    <button onClick={handleDemoLogin}>Login as demo user</button>
+    <input type='button' onClick={handleDemoLogin} value='Login as demo user' />
   ) : null;
 
   const submitButton = type === 'register' ? (
-    <button onClick={handleSubmit}>Continue</button>
+    <button default onClick={handleSubmit}>Continue</button>
   ) : (
-    <button onClick={handleSubmit}>Login</button>
+    <button default onClick={handleSubmit}>Login</button>
   );
 
   const redirectLink = type === 'register' ? (
@@ -101,15 +107,15 @@ const LoginForm = ({ errors, type, processForm, resetSessionErrors, history }) =
 
       { header }
 
-      <form>
-        <label>EMAIL { errors } { emptyEmail && "This field is required"}
-          <input type="text" value={email} onChange={e => setEmail(e.target.value)} className={`session-input ${ emptyEmail || errors.length ? 'empty-input' : '' }`} />
+      <form className="session-form">
+        <label>EMAIL { emailMessage }
+          <input type="text" value={email} onChange={e => setEmail(e.target.value)} className={`session-input ${ emptyEmail || emailError ? 'empty-input' : '' }`} />
         </label>
 
         { usernameInput }
 
-        <label>PASSWORD { errors } { emptyPassword && "This field is required"}
-          <input type="password" value={password} onChange={e => setPassword(e.target.value)} className={`session-input ${ emptyPassword || errors.length ? 'empty-input' : '' }`} />
+        <label>PASSWORD { passwordMessage }
+          <input type="password" value={password} onChange={e => setPassword(e.target.value)} className={`session-input ${ emptyPassword || passwordError ? 'empty-input' : '' }`} />
         </label>
 
         { dobInput }
