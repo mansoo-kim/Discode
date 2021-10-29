@@ -1,11 +1,11 @@
 import { useState } from 'react';
 
-const LoginForm = ({ login }) => {
+const SessionForm = ({ processForm }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
   const handleSubmit = () => {
-    login({
+    processForm({
       email,
       password
     })
@@ -25,4 +25,4 @@ const LoginForm = ({ login }) => {
   )
 }
 
-export default LoginForm
+export default SessionForm
