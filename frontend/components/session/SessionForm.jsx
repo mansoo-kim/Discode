@@ -28,7 +28,9 @@ const LoginForm = ({ errors, type, processForm, resetSessionErrors, history }) =
   }, [])
 
   const handleSubmit = () => {
-    processForm(formUser).then(() => history.push('/@me'));
+    if ((type === 'login' && email && password) || (email && username && password)) {
+      processForm(formUser).then(() => history.push('/@me'));
+    }
     // if (!email) {
     //   setEmptyEmail(true);
     // }
@@ -48,7 +50,7 @@ const LoginForm = ({ errors, type, processForm, resetSessionErrors, history }) =
       email: "demo@gmail.com",
       password: "demopassword"
     };
-    login(user);
+    processForm(user).then(() => history.push('/@me'));
   }
 
   const header = type === 'login' ? (
