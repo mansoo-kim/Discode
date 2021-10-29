@@ -1,13 +1,15 @@
 import { connect } from 'react-redux';
-import { registerNewUser } from '../../actions/session_actions';
-import RegisterForm from './RegisterForm';
+import { registerNewUser, resetSessionErrors } from '../../actions/session_actions';
+import SessionForm from './SessionForm';
 
 const mSTP = (state) => ({
-  errors: state.errors.session
+  errors: state.errors.session,
+  type: 'register'
 })
 
 const mDTP = (dispatch) => ({
-  registerNewUser: (user) => dispatch(registerNewUser(user))
+  processForm: (user) => dispatch(registerNewUser(user)),
+  resetSessionErrors: () => dispatch(resetSessionErrors())
 });
 
-export default connect(mSTP, mDTP)(RegisterForm);
+export default connect(mSTP, mDTP)(SessionForm);
