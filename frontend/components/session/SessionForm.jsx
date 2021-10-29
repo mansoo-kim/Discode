@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
-const LoginForm = ({ errors, type, processForm, resetSessionErrors }) => {
+const LoginForm = ({ errors, type, processForm, resetSessionErrors, history }) => {
   const [email, setEmail] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -28,25 +28,19 @@ const LoginForm = ({ errors, type, processForm, resetSessionErrors }) => {
   }, [])
 
   const handleSubmit = () => {
-    if (email && password) {
-      const user = {
-        email,
-        password
-      };
-      processForm(user);
-    }
-    if (!email) {
-      setEmptyEmail(true);
-    }
-    if (!password) {
-      setEmptyPassword(true);
-    }
-    if (email) {
-      setEmptyEmail(false);
-    }
-    if (password) {
-      setEmptyPassword(false);
-    }
+    processForm(formUser).then(() => history.push('/@me'));
+    // if (!email) {
+    //   setEmptyEmail(true);
+    // }
+    // if (!password) {
+    //   setEmptyPassword(true);
+    // }
+    // if (email) {
+    //   setEmptyEmail(false);
+    // }
+    // if (password) {
+    //   setEmptyPassword(false);
+    // }
   }
 
   const handleDemoLogin = () => {
@@ -70,7 +64,7 @@ const LoginForm = ({ errors, type, processForm, resetSessionErrors }) => {
 
   const usernameInput = type === 'register' ? (
     <label>USERNAME {errors['username']}
-      <input type="text" value={username} onChange={e => setUsername(e.target.value)} />
+      <input type="text" value={username} onChange={e => setUsername(e.target.value)} className={`session-input ${ emptyUsername || errors.length ? 'empty-input' : '' }`} />
     </label>
   ) : null;
 
