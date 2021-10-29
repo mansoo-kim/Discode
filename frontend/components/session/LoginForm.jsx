@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 
-const LoginForm = ({ login }) => {
+const LoginForm = ({ errors, login }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -26,11 +26,11 @@ const LoginForm = ({ login }) => {
       <h1>Welcome back!</h1>
       <h2>We're so excited to see you again!</h2>
       <form>
-        <label>EMAIL
+        <label>EMAIL { errors }
           <input type="text" value={email} onChange={e => setEmail(e.target.value)} />
         </label>
 
-        <label>PASSWORD
+        <label>PASSWORD { errors }
           <input type="password" value={password} onChange={e => setPassword(e.target.value)} />
         </label>
 
