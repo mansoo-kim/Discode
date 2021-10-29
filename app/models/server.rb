@@ -12,7 +12,7 @@ class Server < ApplicationRecord
   validates :name, presence: true
 
   belongs_to :owner,
-    class: :User
+    class_name: :User
 
   has_many :channels, dependent: :destroy
 end
