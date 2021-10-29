@@ -1,16 +1,36 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
-const LoginForm = ({ errors, login }) => {
+const LoginForm = ({ errors, login, resetSessionErrors }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [emptyEmail, setEmptyEmail] = useState(false);
+  const [emptyPassword, setEmptyPassword] = useState(false);
+
+  useEffect(() => {
+    return () => resetSessionErrors();
+  }, [])
 
   const handleLogin = () => {
-    const user = {
-      email,
-      password
-    };
-    login(user);
+    if (email && password) {
+      const user = {
+        email,
+        password
+      };
+      login(user);
+    }
+    if (!email) {
+      setEmptyEmail(true);
+    }
+    if (!password) {
+      setEmptyPassword(true);
+    }
+    if (email) {
+      setEmptyEmail(false);
+    }
+    if (password) {
+      setEmptyPassword(false);
+    }
   }
 
   const handleDemoLogin = () => {
@@ -26,12 +46,12 @@ const LoginForm = ({ errors, login }) => {
       <h1>Welcome back!</h1>
       <h2>We're so excited to see you again!</h2>
       <form>
-        <label>EMAIL { errors }
-          <input type="text" value={email} onChange={e => setEmail(e.target.value)} />
+        <label>EMAIL { errors } { emptyEmail && "This field is required"}
+          <input type="text" value={email} onChange={e => setEmail(e.target.value)} className={`session-input ${ emptyEmail || errors.length ? 'empty-input' : '' }`} />
         </label>
 
-        <label>PASSWORD { errors }
-          <input type="password" value={password} onChange={e => setPassword(e.target.value)} />
+        <label>PASSWORD { errors } { emptyPassword && "This field is required"}
+          <input type="password" value={password} onChange={e => setPassword(e.target.value)} className={`session-input ${ emptyPassword || errors.length ? 'empty-input' : '' }`} />
         </label>
 
         <button onClick={handleDemoLogin}>Login as demo user</button>
