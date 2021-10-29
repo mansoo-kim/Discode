@@ -15,7 +15,7 @@ const SessionForm = ({ processForm, type }) => {
     }
 
     if (type === 'register') {
-      user["dob"] = `${month}-${day}-${year}`;
+      user["dob"] = `${year}-${month}-${day}`;
       user["username"] = username;
     }
 
