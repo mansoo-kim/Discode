@@ -7,7 +7,7 @@ const mSTP = (state) => ({
 })
 
 const mDTP = (dispatch) => ({
-  processForm: (user) => dispatch(registerNewUser(user))
+  registerNewUser: (user) => dispatch(registerNewUser(user))
 });
 
 export default connect(mSTP, mDTP)(RegisterForm);
