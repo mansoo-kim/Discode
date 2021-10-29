@@ -5,7 +5,15 @@ import { registerNewUser, login, logout } from './actions/session_actions';
 
 document.addEventListener("DOMContentLoaded", () => {
   const root = document.getElementById('root');
-  const store = configureStore();
+
+  const preloadedState = window.currentUser ? {
+    entities: {
+      users: { [window.currentUser.id]: window.currentUser }
+    },
+    session: { id: window.currentUser.id }
+  } : {}
+
+  const store = configureStore(preloadedState);
 
   window.store = store;
   window.registerNewUser = registerNewUser;
