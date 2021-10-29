@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-const SessionForm = ({ processForm, type }) => {
+const SessionForm = ({ registerNewUser }) => {
   const [email, setEmail] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -11,22 +11,12 @@ const SessionForm = ({ processForm, type }) => {
   const handleSubmit = () => {
     const user = {
       email,
-      password
+      password,
+      username,
+      dob: new Date(year, month, date)
     }
-
-    if (type === 'register') {
-      user["dob"] = new Date(year, month, date);
-      user["username"] = username;
-    }
-
-    processForm(user)
+    registerNewUser(user)
   }
-
-  const usernameInput = (
-    <label>USERNAME
-      <input type="text" value={username} onChange={e => setUsername(e.target.value)} />
-    </label>
-  )
 
   const dobInput = (
     <label>DATE OF BIRTH
@@ -41,13 +31,18 @@ const SessionForm = ({ processForm, type }) => {
       <label>EMAIL
         <input type="text" value={email} onChange={e => setEmail(e.target.value)} />
       </label>
-      { type === 'register' && usernameInput }
-      { type === 'register' && dobInput }
+
+      <label>USERNAME
+        <input type="text" value={username} onChange={e => setUsername(e.target.value)} />
+      </label>
+
+      { dobInput }
+
       <label>PASSWORD
         <input type="password" value={password} onChange={e => setPassword(e.target.value)} />
       </label>
 
-      <button>Login</button>
+      <button>Continue</button>
     </form>
   )
 }
