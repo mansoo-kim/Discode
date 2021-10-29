@@ -49,6 +49,8 @@ const SessionForm = ({ registerNewUser }) => {
 
         <Link to='/login'>Already have an account?</Link>
       </form>
+
+      <p>By registering, you agree to Discode's Terms of Service and Privacy Policy.</p>
     </div>
   )
 }
