@@ -21,6 +21,9 @@ class User < ApplicationRecord
 
   before_validation :ensure_session_token
 
+  has_many :servers,
+    foreign_key: :owner_id
+
   def self.find_by_credentials(email, password)
     user = User.find_by(email: email)
 
