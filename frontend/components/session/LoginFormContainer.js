@@ -3,7 +3,7 @@ import { login, resetSessionErrors } from '../../actions/session_actions';
 import SessionForm from './SessionForm';
 
 const mSTP = (state) => ({
-  errors: state.errors.session,
+  serverErrors: state.errors.session,
   type: 'login'
 })
 

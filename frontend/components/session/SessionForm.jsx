@@ -1,44 +1,45 @@
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
+import { useForm } from 'react-hook-form';
 import { Link } from 'react-router-dom';
 
-const LoginForm = ({ errors, type, processForm, resetSessionErrors, history }) => {
-  const [email, setEmail] = useState("");
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
-  const [month, setMonth] = useState(0);
-  const [day, setDay] = useState(1);
-  const [year, setYear] = useState(2021);
+const SessionForm = ({ type, serverErrors, processForm, resetSessionErrors, history }) => {
 
-  const formUser = type === 'login' ? {
-    email,
-    password
-  } : {
-    email,
-    username,
-    password,
-    dob: new Date(year, month, day)
+  const { register, formState: { errors }, handleSubmit, clearErrors } = useForm({
+    reValidateMode: 'onSubmit',
+    shouldFocusError: false
+  });
+
+  const processErrors = () => {
+    if (serverErrors['login']) {
+      errors['password'] ||= { message: serverErrors['login'] }
+      errors['email'] ||= { message: serverErrors['login'] }
+    }
+    if (serverErrors['password']) errors['password'] ||= { message: serverErrors['password'] }
+    if (serverErrors['email']) errors['email'] ||= { message: serverErrors['email'] }
+    if (serverErrors['username']) errors['username'] ||= { message: serverErrors['username'] }
   }
 
-  const [emptyEmail, setEmptyEmail] = useState(false);
-  const [emptyUsername, setEmptyUsername] = useState(false);
-  const [emptyPassword, setEmptyPassword] = useState(false);
+  processErrors();
+
+  console.log(errors);
 
   useEffect(() => {
+    clearErrors();
     return () => resetSessionErrors();
   }, [])
 
-  const checkEmptyInputs = () => {
-    email ? setEmptyEmail(false) : setEmptyEmail(true)
-    username ? setEmptyUsername(false) : setEmptyUsername(true)
-    password ? setEmptyPassword(false) : setEmptyPassword(true)
-  }
-
-  const handleSubmit = () => {
-    // resetSessionErrors();
-    if ((type === 'login' && email && password) || (email && username && password)) {
-      processForm(formUser).then(() => history.push('/@me'));
+  const onSubmit = (data) => {
+    const formUser = type === 'login' ? {
+      email: data.email,
+      password: data.password
+    } : {
+      email: data.email,
+      password: data.password,
+      username: data.username,
+      dob: new Date(data.year, data.month, data.day)
     }
-    checkEmptyInputs();
+    console.log(formUser);
+    processForm(formUser).then(() => history.push('/@me'));
   }
 
   const handleDemoLogin = (e) => {
@@ -61,26 +62,17 @@ const LoginForm = ({ errors, type, processForm, resetSessionErrors, history }) =
   </div>
   )
 
-  // { emailError } { emptyEmail && "This field is required"}
-  const emailError = Array.isArray(errors) ? (errors.length ? errors : "") : errors['email'];
-  const usernameError = Array.isArray(errors) ? (errors.length ? errors : "") : errors['username'];
-  const passwordError = Array.isArray(errors) ? (errors.length ? errors : "") : errors['password'];
-
-  const emailMessage = emptyEmail ? "This field is required" : Array.isArray(errors) ? (errors.length ? errors : "") : errors['email']
-  const usernameMessage = emptyUsername ? "This field is required" : Array.isArray(errors) ? (errors.length ? errors : "") : errors['username']
-  const passwordMessage = emptyPassword ? "This field is required" : Array.isArray(errors) ? (errors.length ? errors : "") : errors['password']
-
   const usernameInput = type === 'register' ? (
-    <label>USERNAME { usernameMessage }
-      <input type="text" value={username} onChange={e => setUsername(e.target.value)} className={`session-input ${ emptyUsername || usernameError ? 'empty-input' : '' }`} />
+    <label>USERNAME { errors.username && errors.username.message }
+      <input type="text" {...register("username", { required: "This field is required"})} className={ `session-input ${errors.username ? 'error-input' : ''}` } />
     </label>
   ) : null;
 
   const dobInput = type === 'register' ? (
     <label>DATE OF BIRTH
-      <input type="number" value={month} onChange={e => setMonth(e.target.value)} />
-      <input type="number" value={day} onChange={e => setDay(e.target.value)} />
-      <input type="number" value={year} onChange={e => setYear(e.target.value)} />
+      <input type="number" {...register("month") } />
+      <input type="number" {...register("day") } />
+      <input type="number" {...register("year") } />
     </label>
   ) : null;
 
@@ -89,9 +81,9 @@ const LoginForm = ({ errors, type, processForm, resetSessionErrors, history }) =
   ) : null;
 
   const submitButton = type === 'register' ? (
-    <button default onClick={handleSubmit}>Continue</button>
+    <button>Continue</button>
   ) : (
-    <button default onClick={handleSubmit}>Login</button>
+    <button>Login</button>
   );
 
   const redirectLink = type === 'register' ? (
@@ -107,15 +99,15 @@ const LoginForm = ({ errors, type, processForm, resetSessionErrors, history }) =
 
       { header }
 
-      <form className="session-form">
-        <label>EMAIL { emailMessage }
-          <input type="text" value={email} onChange={e => setEmail(e.target.value)} className={`session-input ${ emptyEmail || emailError ? 'empty-input' : '' }`} />
+      <form className="session-form" onSubmit={handleSubmit(onSubmit)}>
+        <label>EMAIL { errors.email && errors.email.message }
+          <input type="text" {...register("email", { required: "This field is required"})} className={ `session-input ${errors.email ? 'error-input' : ''}` } />
         </label>
 
         { usernameInput }
 
-        <label>PASSWORD { passwordMessage }
-          <input type="password" value={password} onChange={e => setPassword(e.target.value)} className={`session-input ${ emptyPassword || passwordError ? 'empty-input' : '' }`} />
+        <label>PASSWORD { errors.password && errors.password.message }
+          <input type="password" {...register("password", { required: "This field is required"})} className={ `session-input ${errors.password ? 'error-input' : ''}` } />
         </label>
 
         { dobInput }
@@ -132,4 +124,4 @@ const LoginForm = ({ errors, type, processForm, resetSessionErrors, history }) =
   )
 }
 
-export default LoginForm
+export default SessionForm
