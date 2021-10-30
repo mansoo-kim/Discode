@@ -10,16 +10,18 @@
 #  session_token   :string           not null
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
+#  tag             :integer          not null
 #
 class User < ApplicationRecord
-  validates :username, length: { in: 2..32, message: "Must be between 2 and 32 in length" }, uniqueness: { message: "Already taken"}
-  validates :email, presence: true, uniqueness: { message: "Already taken"}
+  validates :username, length: { in: 2..32, message: "Must be between 2 and 32 in length" }
+  validates :tag, uniqueness: { scope: :username }
+  validates :email, presence: true, uniqueness: { message: "Email is already registered"}
   validates :dob, presence: true
   validates :session_token, presence: true, uniqueness: true
   validates :password_digest, presence: true
   validates :password, length: { minimum: 6, allow_nil: true, message: "Must be 6 or more in length" }
 
-  before_validation :ensure_session_token
+  before_validation :ensure_session_token, :ensure_unique_tag
 
   has_many :owned_servers,
     class_name: :Server,
@@ -36,6 +38,16 @@ class User < ApplicationRecord
     through: :memberships,
     source: :joinable,
     source_type: :Conversation
+
+  def ensure_unique_tag
+    self.tag ||= self.generate_unique_tag
+  end
+
+  def generate_unique_tag
+    tag = rand(1000..9999)
+    tag = rand(1000..9999) while User.exists?(tag: tag, username: self.username)
+    tag
+  end
 
   def self.find_by_credentials(email, password)
     user = User.find_by(email: email)
