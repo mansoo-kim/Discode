@@ -1,7 +1,7 @@
-const ChannelIndexItem = () => {
+const ChannelIndexItem = ({ channel }) => {
   return (
     <li>
-
+      { channel.name }
     </li>
   )
 }

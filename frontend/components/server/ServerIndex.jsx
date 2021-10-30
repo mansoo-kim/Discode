@@ -2,8 +2,6 @@ import { useEffect } from 'react'
 import ServerIndexItem from './ServerIndexItem'
 
 const ServerIndex = ({ servers, requestServers }) => {
-  console.log(servers);
-
   useEffect(() => {
     requestServers();
   }, [])
