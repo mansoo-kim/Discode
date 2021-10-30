@@ -9,7 +9,6 @@ const Server = ({ server, channels, activeChannelId, requestServer, match }) => 
 
   return server ? (
     <div>
-
       showing server: { server.name }
       <ChannelIndex channels={ Object.values(channels) } />
       <Channel channel={channels[activeChannelId]} />
