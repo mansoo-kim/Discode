@@ -1,10 +1,10 @@
 import MemberIndexItem from "./MemberIndexItem"
 
-const MemberIndex = () => {
+const MemberIndex = ({ members }) => {
   return (
-    <div>
-
-    </div>
+    <ul>
+      {members.map(member => <MemberIndexItem key={member.id} member={member} />)}
+    </ul>
   )
 }
 

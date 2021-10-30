@@ -1,8 +1,8 @@
-const MemberIndexItem = () => {
+const MemberIndexItem = ({ member }) => {
   return (
-    <div>
-
-    </div>
+    <li>
+      { member.username }
+    </li>
   )
 }
 
