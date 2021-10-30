@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 const SessionForm = ({ type, serverErrors, processForm, resetSessionErrors, history }) => {
 
-  const { register, formState: { errors }, handleSubmit, clearErrors } = useForm({
+  const { register, formState: { errors }, handleSubmit, clearErrors, setValue } = useForm({
     reValidateMode: 'onSubmit',
     shouldFocusError: false
   });
@@ -44,11 +44,9 @@ const SessionForm = ({ type, serverErrors, processForm, resetSessionErrors, hist
 
   const handleDemoLogin = (e) => {
     e.preventDefault();
-    const user = {
-      email: "demo@gmail.com",
-      password: "demopassword"
-    };
-    processForm(user).then(() => history.push('/@me'));
+    setValue("email", "demo@gmail.com");
+    setValue("password", "demopassword");
+    setTimeout(() => handleSubmit(onSubmit)(), 500);
   }
 
   const header = type === 'login' ? (
@@ -59,7 +57,7 @@ const SessionForm = ({ type, serverErrors, processForm, resetSessionErrors, hist
   ) : (
     <div>
       <h1>Create an account</h1>
-  </div>
+    </div>
   )
 
   const usernameInput = type === 'register' ? (
