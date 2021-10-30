@@ -6,7 +6,6 @@ import { selectMembers } from '../../reducers/selectors';
 const mSTP = (state, ownProps) => ({
   server: state.entities.servers[ownProps.match.params.serverId],
   channels: state.entities.channels,
-  activeChannelId: ownProps.match.params.channelId,
   members: selectMembers(state, "servers", ownProps.match.params.serverId)
 })
 
