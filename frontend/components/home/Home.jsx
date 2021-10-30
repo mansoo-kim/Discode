@@ -1,10 +1,10 @@
-import ServersIndex from '../servers/ServersIndex'
+import ServerIndex from '../server/ServerIndex'
 
 const Home = () => {
   return (
     <div>
       this is home
-      <ServersIndex />
+      <ServerIndex />
     </div>
   )
 }
