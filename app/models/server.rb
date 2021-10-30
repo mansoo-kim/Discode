@@ -9,6 +9,8 @@
 #  updated_at :datetime         not null
 #
 class Server < ApplicationRecord
+  include Joinable
+
   validates :name, presence: true
 
   belongs_to :owner,

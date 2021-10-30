@@ -10,5 +10,6 @@
 #  updated_at    :datetime         not null
 #
 class Membership < ApplicationRecord
-
+  belongs_to :user
+  belongs_to :joinable, polymorphic: true
 end

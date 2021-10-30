@@ -8,5 +8,5 @@
 #  updated_at :datetime         not null
 #
 class Conversation < ApplicationRecord
-
+  include Joinable
 end
