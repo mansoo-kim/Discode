@@ -7,9 +7,11 @@ const ServerIndex = ({ servers, requestServers }) => {
   }, [])
 
   return (
-    <ul>
-      {servers.map(server => <ServerIndexItem key={server.id} server={server} />)}
-    </ul>
+    <div className="server-index">
+      <ul>
+        {servers.map(server => <ServerIndexItem key={server.id} server={server} />)}
+      </ul>
+    </div>
   )
 }
 

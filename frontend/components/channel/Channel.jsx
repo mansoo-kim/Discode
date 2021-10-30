@@ -1,6 +1,6 @@
 const Channel = ({ channel }) => {
   return channel ? (
-    <div>
+    <div className="channel-main">
       showing channel: { channel.name }
     </div>
   ) : null

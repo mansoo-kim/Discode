@@ -5,8 +5,7 @@ import ServerContainer from '../server/ServerContainer';
 
 const Home = () => {
   return (
-    <div>
-      this is home
+    <div className="home">
       <ServerIndexContainer />
       <Route path='/channels/:serverId/:channelId' component={ServerContainer} />
     </div>

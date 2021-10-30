@@ -9,9 +9,11 @@ const Server = ({ server, channels, members, requestServer, match }) => {
   }, [match.params.serverId])
 
   return server ? (
-    <div>
-      showing server: { server.name }
-      <ChannelIndex channels={ Object.values(channels) } />
+    <div className="server-main">
+      <div className="server-nav">
+        { server.name }
+        <ChannelIndex channels={ Object.values(channels) } />
+      </div>
       <Channel channel={channels[match.params.channelId]} />
       <MemberIndex members={members} />
     </div>

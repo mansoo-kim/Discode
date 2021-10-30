@@ -1,0 +1,14 @@
+.home {
+  display: flex;
+}
+
+.server-main {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+
+  .server-nav {
+    display: flex;
+    flex-direction: column;
+  }
+}
