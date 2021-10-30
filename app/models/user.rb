@@ -23,6 +23,9 @@ class User < ApplicationRecord
 
   before_validation :ensure_session_token, :ensure_unique_tag
 
+  has_many :messages,
+    foreign_key: :sender_id
+
   has_many :owned_servers,
     class_name: :Server,
     foreign_key: :owner_id

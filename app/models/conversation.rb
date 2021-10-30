@@ -9,4 +9,5 @@
 #
 class Conversation < ApplicationRecord
   include Joinable
+  include Messageable
 end

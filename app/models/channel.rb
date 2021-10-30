@@ -9,6 +9,8 @@
 #  updated_at :datetime         not null
 #
 class Channel < ApplicationRecord
+  include Messageable
+
   validates :name, presence: true
 
   belongs_to :server
