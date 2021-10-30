@@ -60,6 +60,11 @@ mc13 = Membership.create!(user_id: u3.id, joinable_id: co1.id, joinable_type: co
 mc14 = Membership.create!(user_id: u4.id, joinable_id: co1.id, joinable_type: co1.class.name)
 co1.update(name: "AAAA")
 
+m1 = Message.create!(sender_id: u1.id, messageable_id: co1.id, messageable_type: co1.class.name, body: "hi")
+m2 = Message.create!(sender_id: u2.id, messageable_id: co1.id, messageable_type: co1.class.name, body: "hello")
+m3 = Message.create!(sender_id: u3.id, messageable_id: co1.id, messageable_type: co1.class.name, body: "hullo")
+m4 = Message.create!(sender_id: u4.id, messageable_id: co1.id, messageable_type: co1.class.name, body: "bye")
+
 co2 = Conversation.create()
 mc21 = Membership.create!(user_id: u1.id, joinable_id: co2.id, joinable_type: co2.class.name)
 mc22 = Membership.create!(user_id: u2.id, joinable_id: co2.id, joinable_type: co2.class.name)
