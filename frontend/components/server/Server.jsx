@@ -1,8 +1,9 @@
 import { useEffect } from 'react';
 import ChannelIndex from '../channel/ChannelIndex';
 import Channel from '../channel/Channel'
+import MemberIndex from '../members/MemberIndex';
 
-const Server = ({ server, channels, activeChannelId, requestServer, match }) => {
+const Server = ({ server, channels, activeChannelId, members, requestServer, match }) => {
   useEffect(() => {
     requestServer(match.params.serverId);
   }, [])
@@ -12,6 +13,7 @@ const Server = ({ server, channels, activeChannelId, requestServer, match }) => 
       showing server: { server.name }
       <ChannelIndex channels={ Object.values(channels) } />
       <Channel channel={channels[activeChannelId]} />
+      <MemberIndex members={members} />
     </div>
   ) : null
 }
