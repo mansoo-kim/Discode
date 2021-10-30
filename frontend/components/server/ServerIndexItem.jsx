@@ -1,7 +1,7 @@
-const ServerIndexItem = () => {
+const ServerIndexItem = ({ server }) => {
   return (
     <li>
-
+      { server.name }
     </li>
   )
 }
