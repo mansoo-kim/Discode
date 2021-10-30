@@ -8,9 +8,9 @@ export const receiveServers = (servers) => ({
   servers
 });
 
-export const receiveServer = (server) => ({
+export const receiveServer = (res) => ({
   type: RECEIVE_SERVER,
-  server
+  res
 });
 
 export const requestServers = () => (dispatch) => (
@@ -23,6 +23,6 @@ export const requestServers = () => (dispatch) => (
 export const requestServer = (serverId) => (dispatch) => (
   ServerApiUtil.requestServer(serverId)
     .then(
-      (server) => dispatch(receiveServer(server))
+      (res) => dispatch(receiveServer(res))
     )
 )
