@@ -56,6 +56,7 @@ c31 = Channel.create!(name: "general", server_id: s3.id)
 # Conversations
 co1 = Conversation.create!()
 
+mc10 = Membership.create!(user_id: u0.id, joinable_id: co1.id, joinable_type: co1.class.name)
 mc11 = Membership.create!(user_id: u1.id, joinable_id: co1.id, joinable_type: co1.class.name)
 mc12 = Membership.create!(user_id: u2.id, joinable_id: co1.id, joinable_type: co1.class.name)
 mc13 = Membership.create!(user_id: u3.id, joinable_id: co1.id, joinable_type: co1.class.name)
@@ -68,6 +69,7 @@ m3 = Message.create!(sender_id: u3.id, messageable_id: co1.id, messageable_type:
 m4 = Message.create!(sender_id: u4.id, messageable_id: co1.id, messageable_type: co1.class.name, body: "bye")
 
 co2 = Conversation.create()
+mc20 = Membership.create!(user_id: u0.id, joinable_id: co2.id, joinable_type: co2.class.name)
 mc21 = Membership.create!(user_id: u1.id, joinable_id: co2.id, joinable_type: co2.class.name)
 mc22 = Membership.create!(user_id: u2.id, joinable_id: co2.id, joinable_type: co2.class.name)
 mc23 = Membership.create!(user_id: u5.id, joinable_id: co2.id, joinable_type: co2.class.name)
