@@ -7,8 +7,8 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 # Users
-u0 = User.create!(username: "demo", email: "demo@gmail.com", dob: "1999-09-09", password: "demopassword")
-u1 = User.create!(username: "sunshinenim", email: "mansoo@gmail.com", dob: "1993-06-09", password: "minnie")
+u0 = User.create!(username: "demo", email: "demo@gmail.com", dob: "1999-09-09", password: "demopassword", tag: 4171)
+u1 = User.create!(username: "sunshinenim", email: "mansoo@gmail.com", dob: "1993-06-09", password: "minnie", tag: 4171)
 u2 = User.create!(username: "emmay", email: "emmay@gmail.com", dob: "1998-01-01", password: "turtle")
 u3 = User.create!(username: "wood", email: "wood@gmail.com", dob: "1997-02-02", password: "shiroo")
 u4 = User.create!(username: "stelluhhh", email: "stelluhhh@gmail.com", dob: "1997-03-03", password: "dabiii")

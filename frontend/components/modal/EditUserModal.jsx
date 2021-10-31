@@ -1,10 +1,11 @@
 import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 
-const EditUserModal = ({ userErrors, currentUser, closeModal, updateUser, resetUserErrors }) => {
-  const { register, formState: { errors, isDirty }, handleSubmit } = useForm({
+const EditUserModal = ({ type, userErrors, currentUser, closeModal, updateUser, resetUserErrors }) => {
+  const { register, formState: { errors, isDirty }, handleSubmit, getValues } = useForm({
     shouldFocusError: false,
-    defaultValues: { username: currentUser.username, password: "" }
+    reValidateMode: 'onSubmit',
+    defaultValues: { username: currentUser.username, email: "", password: "" }
   });
 
   useEffect(() => {
@@ -12,7 +13,7 @@ const EditUserModal = ({ userErrors, currentUser, closeModal, updateUser, resetU
   }, [])
 
   const checkThenSubmit = (e) => {
-    if (!isDirty) {
+    if ((!isDirty && type ==='username') || (type === 'email' && getValues("email") === currentUser.email)) {
       e.preventDefault();
       closeModal();
     } else {
@@ -21,30 +22,47 @@ const EditUserModal = ({ userErrors, currentUser, closeModal, updateUser, resetU
   }
 
   const onSubmit = (data) => {
-    const user = {
+    const user = type === 'username' ? {
       username: data.username,
       password: data.password,
       email: currentUser.email
+    } : {
+      username: currentUser.username,
+      password: data.password,
+      email: data.email
     }
     updateUser(currentUser.id, user)
       .then(
         () => closeModal())
   }
 
+  const inputToChange = type === 'username' ? (
+    <div>
+      <label>USERNAME { errors.username?.message } { userErrors.username }</label>
+      <input type="text" {...register("username", { required: "- This field is requred" })} /> #{currentUser.tag}
+    </div>
+  ) : (
+    <div>
+      <label>EMAIL { errors.email?.message } { userErrors.email }</label>
+      <input type="text" {...register("email", { required: "- This field is requred" })} />
+    </div>
+  )
+
+
   return (
     <div className="modal">
       <button onClick={closeModal}>X</button>
 
       <form onSubmit={checkThenSubmit}>
-        <h2>Change your username</h2>
-        <p>Enter a new username and your existing password.</p>
+        { type === 'username' ? <h2>Change your username</h2> : <h2>Enter an email address</h2> }
+        <p>Enter a new {type === 'username' ? "username" : "email address"} and your existing password.</p>
 
-        <label>USERNAME { errors.username?.message } { userErrors.username }</label>
-        <input type="text" {...register("username", { required: "- This field is requred" })} /> #{currentUser.tag}
+        { inputToChange }
 
-        <label>CURRENT PASSWORD { userErrors.password }</label>
-        <input type="password" {...register("password")} />
-
+        <div>
+          <label>CURRENT PASSWORD { userErrors.password }</label>
+          <input type="password" {...register("password")} />
+        </div>
         <button>Done</button>
       </form>
     </div>

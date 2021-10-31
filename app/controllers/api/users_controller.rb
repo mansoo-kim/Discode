@@ -13,10 +13,10 @@ class Api::UsersController < ApplicationController
   def update
     @user = User.find_by(id: params[:id])
     if @user.is_password?(user_params[:password])
-      if @user.update(username: user_params[:username])
+      if @user.update(username: user_params[:username], email: user_params[:email])
         render 'api/users/show'
       else
-        render json: {username: ['- Too many users have this username, please try another.'] }, status: 422
+        render json: @user.errors, status: 422
       end
     else
       render json: {password: ['- Password does not match'] }, status: 401
