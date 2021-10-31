@@ -1,6 +1,6 @@
 class Api::ServersController < ApplicationController
   def index
-    @servers = current_user.servers
+    @servers = current_user.servers.includes(:channels)
     render 'api/servers/index'
   end
 
