@@ -1,7 +1,7 @@
 import UserSettings from './UserSettings';
 import { useState } from 'react';
 
-const CurrentUser = ({ currentUser, logout }) => {
+const CurrentUser = ({ currentUser, logout, openModal }) => {
   const [showSettings, setShowSettings] = useState(false);
 
   const toggleSettings = () => (setShowSettings(!showSettings));

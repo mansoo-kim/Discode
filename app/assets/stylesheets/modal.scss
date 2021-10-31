@@ -10,5 +10,10 @@
     left: 50%;
     transform : translate(-50%, -50%);
     background: white;
+
+    form {
+      display: flex;
+      flex-direction: column;
+    }
   }
 }
