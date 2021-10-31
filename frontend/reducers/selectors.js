@@ -1,6 +1,4 @@
 export const selectMembers = (state, type, id) => {
-  console.log(state);
-  console.log(type, id);
   if (state.entities[type][id]) {
     const memberIds = state.entities[type][id].members;
     if (memberIds) {

@@ -10,4 +10,9 @@
 class Conversation < ApplicationRecord
   include Joinable
   include Messageable
+
+  def display_name
+    return self.name if self.name
+    self.members.map(&:username).join(', ')
+  end
 end
