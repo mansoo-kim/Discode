@@ -1,6 +1,6 @@
 class Api::ChannelsController < ApplicationController
   def create
-    @channel = Server.new(channel_params)
+    @channel = Channel.new(channel_params)
     @channel.server_id = params[:server_id]
     if @channel.save
       render 'api/channels/show'

@@ -1,8 +1,8 @@
 import ChannelIndexItem from './ChannelIndexItem';
 
-const ChannelIndex = ({ channels, isOwner, openModal }) => {
+const ChannelIndex = ({ channels, isOwner, serverId, openModal }) => {
   const newChannelButton = <button onClick={() =>
-    openModal({type: "createChannel"})}>
+    openModal({type: "createChannel", serverId})}>
     New Channel
   </button>
 

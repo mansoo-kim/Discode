@@ -30,7 +30,7 @@ const CreateServerModal = ({ serverErrors, currentUser, closeModal, createServer
       <label>SERVER NAME { errors.serverName && errors.serverName.message } { serverErrors.name }
         <input type="text" {...register("serverName", { required: true })} />
       </label>
-      <p>By creating a servere, you agree to Discode's Community Guidelines.</p>
+      <p>By creating a server, you agree to Discode's Community Guidelines.</p>
 
       <button onClick={handleSubmit(onSubmit)} disabled={!!errors["serverName"]}>
         Create

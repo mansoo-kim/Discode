@@ -7,8 +7,8 @@ export const receiveChannel = (channel) => ({
   channel
 });
 
-export const createChannel = (channel) => (dispatch) => (
-  ChannelApiUtil.createChannel(channel)
+export const createChannel = (serverId, channel) => (dispatch) => (
+  ChannelApiUtil.createChannel(serverId, channel)
     .then(
       (channel) => dispatch(receiveChannel(channel))
     )

@@ -1,4 +1,5 @@
 import CreateServerModal from './CreateServerModal';
+import CreateChannelModal from './CreateChannelModal';
 
 const ModalManager = ({ modal }) => {
   if (!modal) return null;
@@ -8,6 +9,9 @@ const ModalManager = ({ modal }) => {
   switch (modal.type) {
     case "createServer":
       component = <CreateServerModal />
+      break;
+    case "createChannel":
+      component = <CreateChannelModal serverId={modal.serverId} />
       break;
     default:
       return null;
