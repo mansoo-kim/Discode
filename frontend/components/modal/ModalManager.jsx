@@ -1,7 +1,7 @@
 const ModalManager = ({ modal, openModal, closeModal }) => {
   return modal ? (
-    <div>
-
+    <div className="modal-container">
+      hellow world
     </div>
   ) : null
 }
