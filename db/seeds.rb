@@ -51,6 +51,8 @@ c21 = Channel.create!(name: "general", server_id: s2.id)
 c22 = Channel.create!(name: "homework-help", server_id: s2.id)
 c23 = Channel.create!(name: "resources", server_id: s2.id)
 
+c31 = Channel.create!(name: "general", server_id: s3.id)
+
 # Conversations
 co1 = Conversation.create!()
 

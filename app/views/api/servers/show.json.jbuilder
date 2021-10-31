@@ -1,6 +1,5 @@
 json.server do
   json.partial! 'api/servers/server', server: @server
-  json.channels @server.channels.map(&:id)
   json.members @server.members.map(&:id)
 end
 
