@@ -1,6 +1,9 @@
+import MemberIndex from '../members/MemberIndex';
+import ConversationIndex from '../conversation/ConversationIndex';
+
 const Home = () => {
   return (
-    <div>
+    <div classname="home-main">
 
     </div>
   )
