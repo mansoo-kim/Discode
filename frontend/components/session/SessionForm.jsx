@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { Link } from 'react-router-dom';
 
-const SessionForm = ({ type, serverErrors, processForm, resetSessionErrors, history }) => {
+const SessionForm = ({ type, sessionErrors, processForm, resetSessionErrors, history }) => {
 
   const { register, formState: { errors }, handleSubmit, clearErrors, setValue } = useForm({
     reValidateMode: 'onSubmit',
@@ -10,18 +10,16 @@ const SessionForm = ({ type, serverErrors, processForm, resetSessionErrors, hist
   });
 
   const processErrors = () => {
-    if (serverErrors['login']) {
-      errors['password'] ||= { message: serverErrors['login'] }
-      errors['email'] ||= { message: serverErrors['login'] }
+    if (sessionErrors['login']) {
+      errors['password'] ||= { message: sessionErrors['login'] }
+      errors['email'] ||= { message: sessionErrors['login'] }
     }
-    if (serverErrors['password']) errors['password'] ||= { message: serverErrors['password'] }
-    if (serverErrors['email']) errors['email'] ||= { message: serverErrors['email'] }
-    if (serverErrors['username']) errors['username'] ||= { message: serverErrors['username'] }
+    if (sessionErrors['password']) errors['password'] ||= { message: sessionErrors['password'] }
+    if (sessionErrors['email']) errors['email'] ||= { message: sessionErrors['email'] }
+    if (sessionErrors['username']) errors['username'] ||= { message: sessionErrors['username'] }
   }
 
   processErrors();
-
-  console.log(errors);
 
   useEffect(() => {
     clearErrors();
@@ -38,7 +36,6 @@ const SessionForm = ({ type, serverErrors, processForm, resetSessionErrors, hist
       username: data.username,
       dob: new Date(data.year, data.month, data.day)
     }
-    console.log(formUser);
     processForm(formUser).then(() => history.push('/@me'));
   }
 

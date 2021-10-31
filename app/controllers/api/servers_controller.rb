@@ -11,17 +11,18 @@ class Api::ServersController < ApplicationController
 
   def create
     @server = Server.new(server_params)
+    @server.owner_id = current_user.id
     if @server.save
       @server.channels.create(name: "general")
-      @server.memberships.create(user_id: server_params[:owner_id])
+      @server.memberships.create(user_id: current_user.id)
       render 'api/servers/show'
     else
-
+      render json: @server.errors, status: 422
     end
   end
 
   def server_params
-    params.require(:server).permit(:name, :owner_id)
+    params.require(:server).permit(:name)
   end
 
 end

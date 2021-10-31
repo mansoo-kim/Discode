@@ -12,6 +12,7 @@ class Server < ApplicationRecord
   include Joinable
 
   validates :name, presence: true
+  validates :name, length: { in: 2..100, message: "- Must be between 2 and 100 in length" }
 
   belongs_to :owner,
     class_name: :User

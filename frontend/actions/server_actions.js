@@ -2,6 +2,9 @@ import * as ServerApiUtil from "../utils/server_api_utils";
 
 export const RECEIVE_SERVERS = 'RECEIVE_SERVERS';
 export const RECEIVE_SERVER = 'RECEIVE_SERVER';
+export const RECEIVE_SERVER_ERRORS = 'RECEIVE_SERVER_ERRORS';
+export const RESET_SERVER_ERRORS = "RESET_SERVER_ERRORS"
+
 
 export const receiveServers = (servers) => ({
   type: RECEIVE_SERVERS,
@@ -12,6 +15,15 @@ export const receiveServer = (res) => ({
   type: RECEIVE_SERVER,
   res
 });
+
+export const receiveServerErrors = (errors) => ({
+  type: RECEIVE_SERVER_ERRORS,
+  errors
+})
+
+export const resetServerErrors = () => ({
+  type: RESET_SERVER_ERRORS
+})
 
 export const requestServers = () => (dispatch) => (
   ServerApiUtil.requestServers()
@@ -30,6 +42,7 @@ export const requestServer = (serverId) => (dispatch) => (
 export const createServer = (server) => (dispatch) => (
   ServerApiUtil.createServer(server)
     .then(
-      (res) => dispatch(receiveServer(res))
+      (server) => dispatch(receiveServer(server)),
+      (res) => dispatch(receiveServerErrors(res.responseJSON))
     )
 )
