@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import MemberIndexContainer from '../member/MemberIndexContainer';
+import MemberIndex from '../member/MemberIndex';
 
 const CCView = ({ cc, type, requestCC, match }) => {
   useEffect(() => {
@@ -12,7 +12,7 @@ const CCView = ({ cc, type, requestCC, match }) => {
         showing {type}: { cc.name }
       </div>
 
-      <MemberIndexContainer type={type === "conversation" ? "conversations" : "servers"} id={type === "conversation" ? match.params.ccId : match.params.serverId} />
+      <MemberIndex type={type === "conversation" ? "conversations" : "servers"} id={type === "conversation" ? match.params.ccId : match.params.serverId} />
     </div>
   ) : null
 }

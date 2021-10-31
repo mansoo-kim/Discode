@@ -1,5 +1,5 @@
 import { Route } from 'react-router-dom';
-import ConversationIndexContainer from '../conversation/ConversationIndexContainer';
+import ConversationIndex from '../conversation/ConversationIndex';
 import ConversationContainer from '../cc/ConversationContainer';
 import CurrentUser from '../user/CurrentUser';
 
@@ -9,7 +9,7 @@ const Home = () => {
       <div className="server-nav">
         <div>
           DIRECT MESSAGES
-          <ConversationIndexContainer />
+          <ConversationIndex />
         </div>
         <CurrentUser />
       </div>

@@ -15,4 +15,15 @@ const ConversationIndex = ({ conversations, requestConversations }) => {
   )
 }
 
-export default ConversationIndex
+import { connect } from 'react-redux';
+import { requestConversations } from '../../actions/conversation_actions';
+
+const mSTP = (state) => ({
+  conversations: Object.values(state.entities.conversations)
+});
+
+const mDTP = (dispatch) => ({
+  requestConversations: () => dispatch(requestConversations())
+});
+
+export default connect(mSTP, mDTP)(ConversationIndex);

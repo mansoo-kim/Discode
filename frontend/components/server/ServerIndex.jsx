@@ -19,4 +19,15 @@ const ServerIndex = ({ servers, requestServers }) => {
   )
 }
 
-export default ServerIndex
+import { connect } from 'react-redux';
+import { requestServers } from '../../actions/server_actions';
+
+const mSTP = (state) => ({
+  servers: Object.values(state.entities.servers)
+});
+
+const mDTP = (dispatch) => ({
+  requestServers: () => dispatch(requestServers())
+});
+
+export default connect(mSTP, mDTP)(ServerIndex);

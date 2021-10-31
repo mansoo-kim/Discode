@@ -1,14 +1,14 @@
 import { Route } from 'react-router-dom';
-import ServerIndexContainer from '../server/ServerIndexContainer';
-import ServerContainer from '../server/ServerContainer';
+import ServerIndex from '../server/ServerIndex';
+import Server from '../server/Server';
 import Home from '../home/Home';
 
 const Main = () => {
   return (
     <div className="main">
-      <ServerIndexContainer />
+      <ServerIndex />
       <Route path='/@me' component={Home} />
-      <Route path='/channels/:serverId/:channelId' component={ServerContainer} />
+      <Route path='/channels/:serverId/:channelId' component={Server} />
     </div>
   )
 }
