@@ -8,4 +8,8 @@ class Api::ServersController < ApplicationController
     @server = Server.includes(:channels).includes(:members).find_by(id: params[:id])
     render 'api/servers/show'
   end
+
+  def create
+
+  end
 end

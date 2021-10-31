@@ -26,3 +26,10 @@ export const requestServer = (serverId) => (dispatch) => (
       (res) => dispatch(receiveServer(res))
     )
 )
+
+export const createServer = (server) => (dispatch) => (
+  ServerApiUtil.createServer(server)
+    .then(
+      (res) => dispatch(receiveServer(res))
+    )
+)
