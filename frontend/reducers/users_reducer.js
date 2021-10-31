@@ -1,6 +1,7 @@
 import { RECEIVE_CURRENT_USER } from "../actions/session_actions";
 import { RECEIVE_SERVER } from "../actions/server_actions";
 import { RECEIVE_CONVERSATION } from "../actions/conversation_actions";
+import { RECEIVE_USER } from "../actions/user_actions";
 
 const receiveMembers = (state, action) => {
   const newState = Object.assign({}, state);
@@ -19,6 +20,8 @@ const UsersReducer = (state={}, action) => {
       return receiveMembers(state, action);
     case RECEIVE_CONVERSATION:
       return receiveMembers(state, action);
+    case RECEIVE_USER:
+      return Object.assign({}, state, { [action.user.id]: action.user })
     default:
       return state;
   }
