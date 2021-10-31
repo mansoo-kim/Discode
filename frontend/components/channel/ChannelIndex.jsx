@@ -1,13 +1,14 @@
 import ChannelIndexItem from './ChannelIndexItem';
 
-const ChannelIndex = ({ channels, openModal }) => {
+const ChannelIndex = ({ channels, isOwner, openModal }) => {
+  const newChannelButton = <button onClick={() =>
+    openModal({type: "createChannel"})}>
+    New Channel
+  </button>
+
   return (
     <div className="channel-index">
-      <button onClick={() => openModal({
-        type: "createChannel"
-      })}>
-        New Channel
-      </button>
+      { isOwner && newChannelButton }
       <ul>
         {channels.map(channel => <ChannelIndexItem key={channel.id} channel={channel} />)}
       </ul>

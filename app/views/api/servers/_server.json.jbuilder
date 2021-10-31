@@ -1,2 +1,2 @@
-json.extract! server, :id, :name
+json.extract! server, :id, :name, :owner_id
 json.channels server.channels.map(&:id)

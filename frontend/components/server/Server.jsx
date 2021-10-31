@@ -4,7 +4,7 @@ import ChannelIndex from '../channel/ChannelIndex';
 import ChannelContainer from '../cc/ChannelContainer';
 import CurrentUser from '../user/CurrentUser';
 
-const Server = ({ server, channels, requestServer, match }) => {
+const Server = ({ server, channels, isOwner, requestServer, match }) => {
   useEffect(() => {
     requestServer(match.params.serverId);
   }, [match.params.serverId])
@@ -14,7 +14,7 @@ const Server = ({ server, channels, requestServer, match }) => {
       <div className="server-nav">
         <div>
           { server.name }
-          <ChannelIndex channels={ Object.values(channels) } />
+          <ChannelIndex channels={ Object.values(channels) } isOwner={isOwner} />
         </div>
         <CurrentUser />
       </div>
@@ -29,7 +29,8 @@ import { requestServer } from '../../actions/server_actions';
 
 const mSTP = (state, ownProps) => ({
   server: state.entities.servers[ownProps.match.params.serverId],
-  channels: state.entities.channels
+  channels: state.entities.channels,
+  isOwner: state.session.id === state.entities.servers[ownProps.match.params.serverId]?.ownerId
 });
 
 const mDTP = (dispatch) => ({
