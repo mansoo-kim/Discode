@@ -24,10 +24,9 @@ const EditUserModal = ({ userErrors, currentUser, closeModal, updateUser, resetU
     const user = {
       username: data.username,
       password: data.password,
-      id: currentUser.id,
       email: currentUser.email
     }
-    updateUser(user)
+    updateUser(currentUser.id, user)
       .then(
         () => closeModal())
   }
@@ -63,7 +62,7 @@ const mSTP = (state) => ({
 
 const mDTP = (dispatch) => ({
   closeModal: () => dispatch(closeModal()),
-  updateUser: (user) => dispatch(updateUser(user)),
+  updateUser: (userId, user) => dispatch(updateUser(userId, user)),
   resetUserErrors: () => dispatch(resetUserErrors())
 });
 
