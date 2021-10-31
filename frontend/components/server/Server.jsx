@@ -14,8 +14,10 @@ const Server = ({ server, channels, members, requestServer, match }) => {
         { server.name }
         <ChannelIndex channels={ Object.values(channels) } />
       </div>
-      <Channel channel={channels[match.params.channelId]} />
-      <MemberIndex members={members} />
+      <div className="channel-main">
+        <Channel channel={channels[match.params.channelId]} />
+        <MemberIndex members={members} />
+      </div>
     </div>
   ) : null
 }

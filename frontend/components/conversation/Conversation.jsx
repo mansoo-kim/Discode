@@ -6,8 +6,10 @@ const Conversation = ({ conversation, members, requestConversation, match }) => 
     requestConversation(match.params.conversationId);
   }, [match.params.conversationId])
   return conversation ? (
-    <div className="conversation-main">
-      <div>{conversation.name}</div>
+    <div className="channel-main">
+      <div>
+        showing conversation: { conversation.name }
+      </div>
       <MemberIndex members={members} />
     </div>
   ) : null
