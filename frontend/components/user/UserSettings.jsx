@@ -1,4 +1,4 @@
-const UserSettings = ({ currentUser, toggleSettings, logout }) => {
+const UserSettings = ({ currentUser, toggleSettings, logout, openModal }) => {
   return (
     <div className="settings-container">
       <div className="settings-left">
@@ -25,14 +25,20 @@ const UserSettings = ({ currentUser, toggleSettings, logout }) => {
                 <div>USERNAME</div>
                 <div>{ currentUser.username }#{ currentUser.tag }</div>
               </div>
-              <button>Edit</button>
+              <button onClick={() =>
+                openModal({type: "editUser", property: "username"})}>
+                  Edit
+              </button>
             </li>
             <li>
               <div>
                 <div>EMAIL</div>
                 <div>{ currentUser.email }</div>
               </div>
-              <button>Edit</button>
+              <button onClick={() =>
+                openModal({type: "editUser", property: "email"})}>
+                  Edit
+              </button>
             </li>
           </ul>
 

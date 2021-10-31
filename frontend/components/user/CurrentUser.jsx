@@ -14,20 +14,22 @@ const CurrentUser = ({ currentUser, logout }) => {
       </div>
       <button onClick={toggleSettings}>Settings</button>
 
-      { showSettings && <UserSettings currentUser={currentUser} toggleSettings={toggleSettings} logout={logout} />}
+      { showSettings && <UserSettings currentUser={currentUser} toggleSettings={toggleSettings} logout={logout} openModal={openModal} />}
     </div>
   )
 }
 
 import { connect } from 'react-redux';
 import { logout } from '../../actions/session_actions';
+import { openModal } from '../../actions/modal_actions';
 
 const mSTP = (state) => ({
   currentUser: state.entities.users[state.session.id]
 })
 
 const mDTP = (dispatch) => ({
-  logout: () => dispatch(logout())
+  logout: () => dispatch(logout()),
+  openModal: (modal) => dispatch(openModal(modal))
 })
 
 export default connect(mSTP, mDTP)(CurrentUser);
