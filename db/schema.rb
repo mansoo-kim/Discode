@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_10_30_175816) do
+ActiveRecord::Schema.define(version: 2021_10_31_033344) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -35,7 +35,7 @@ ActiveRecord::Schema.define(version: 2021_10_30_175816) do
     t.string "joinable_type", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["joinable_type", "joinable_id"], name: "index_memberships_on_joinable_type_and_joinable_id"
+    t.index ["joinable_type", "joinable_id", "user_id"], name: "index_memberships_on_joinable_type_and_joinable_id_and_user_id"
     t.index ["user_id", "joinable_type"], name: "index_memberships_on_user_id_and_joinable_type"
   end
 
