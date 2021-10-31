@@ -19,25 +19,25 @@ export const receiveServer = (res) => ({
 export const receiveServerErrors = (errors) => ({
   type: RECEIVE_SERVER_ERRORS,
   errors
-})
+});
 
 export const resetServerErrors = () => ({
   type: RESET_SERVER_ERRORS
-})
+});
 
 export const requestServers = () => (dispatch) => (
   ServerApiUtil.requestServers()
     .then(
       (servers) => dispatch(receiveServers(servers))
     )
-)
+);
 
 export const requestServer = (serverId) => (dispatch) => (
   ServerApiUtil.requestServer(serverId)
     .then(
       (res) => dispatch(receiveServer(res))
     )
-)
+);
 
 export const createServer = (server) => (dispatch) => (
   ServerApiUtil.createServer(server)
@@ -45,4 +45,4 @@ export const createServer = (server) => (dispatch) => (
       (server) => dispatch(receiveServer(server)),
       (res) => dispatch(receiveServerErrors(res.responseJSON))
     )
-)
+);

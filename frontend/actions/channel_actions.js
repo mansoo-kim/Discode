@@ -1,4 +1,4 @@
-import * as ChannelApiUtil from "../utils/channel_api_utils";
+import * as ChannelApiUtil from '../utils/channel_api_utils';
 
 export const RECEIVE_CHANNEL = 'RECEIVE_CHANNEL';
 
