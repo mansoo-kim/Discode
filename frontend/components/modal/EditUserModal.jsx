@@ -1,26 +1,37 @@
-import { useEffect} from 'react';
+import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 
 const EditUserModal = ({ userErrors, currentUser, closeModal, updateUser, resetUserErrors }) => {
-  const { register, formState: { errors }, handleSubmit } = useForm({
+  const { register, formState: { errors, isDirty }, handleSubmit } = useForm({
     shouldFocusError: false,
-    defaultValues: { username: currentUser.username }
+    defaultValues: { username: currentUser.username, password: "" }
   });
-
-  const onSubmit = (data) => {
-    updateUser(data)
-      .then(
-        () => closeModal())
-  }
 
   useEffect(() => {
     return () => resetUserErrors();
   }, [])
 
+  const checkThenSubmit = (e) => {
+    if (!isDirty) {
+      e.preventDefault();
+      closeModal();
+    } else {
+      handleSubmit(onSubmit)(e);
+    }
+  }
+
+  const onSubmit = (data) => {
+    console.log(data);
+    updateUser(data)
+      .then(
+        () => closeModal())
+  }
+
   return (
     <div className="modal">
       <button onClick={closeModal}>X</button>
-      <form>
+
+      <form onSubmit={checkThenSubmit}>
         <h2>Change your username</h2>
         <p>Enter a new username and your existing password.</p>
 
@@ -28,11 +39,9 @@ const EditUserModal = ({ userErrors, currentUser, closeModal, updateUser, resetU
         <input type="text" {...register("username", { required: "- This field is requred" })} /> #{currentUser.tag}
 
         <label>CURRENT PASSWORD { userErrors.password }</label>
-        <input type="password" {...register("password", { required: true })} />
+        <input type="password" {...register("password")} />
 
-        <button onClick={handleSubmit(onSubmit)} disabled={!!errors["serverName"]}>
-          Done
-        </button>
+        <button>Done</button>
       </form>
     </div>
   )

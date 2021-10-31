@@ -22,8 +22,6 @@ const ModalManager = ({ modal, closeModal }) => {
   }
 
   const handleClick = (e) => {
-    e.preventDefault();
-    e.stopPropagation();
     if (e.target === e.currentTarget) {
       closeModal();
     }
