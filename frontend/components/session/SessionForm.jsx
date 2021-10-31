@@ -43,7 +43,7 @@ const SessionForm = ({ type, sessionErrors, processForm, resetSessionErrors, his
     e.preventDefault();
     setValue("email", "demo@gmail.com");
     setValue("password", "demopassword");
-    setTimeout(() => handleSubmit(onSubmit)(), 500);
+    setTimeout(() => handleSubmit(onSubmit)(), 300);
   }
 
   const header = type === 'login' ? (

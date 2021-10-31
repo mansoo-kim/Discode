@@ -1,4 +1,4 @@
-const UserSettings = ({ logout }) => {
+const UserSettings = ({ toggleSettings, logout }) => {
   return (
     <div className="settings-container">
       <div className="settings-left">
@@ -15,9 +15,17 @@ const UserSettings = ({ logout }) => {
         </div>
       </div>
       <div className="settings-right">
+        <div className="settings-pane">
+          Main Account
+        </div>
+        <div className="close-settings">
+          <button onClick={toggleSettings}>X</button>
+        </div>
       </div>
     </div>
   )
 }
 
 export default UserSettings
+1251
+740

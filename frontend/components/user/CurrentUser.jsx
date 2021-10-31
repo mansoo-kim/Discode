@@ -14,7 +14,7 @@ const CurrentUser = ({ currentUser, logout }) => {
       </div>
       <button onClick={toggleSettings}>Settings</button>
 
-      { showSettings && <UserSettings logout={logout} />}
+      { showSettings && <UserSettings toggleSettings={toggleSettings} logout={logout} />}
     </div>
   )
 }
