@@ -10,6 +10,18 @@ class Api::ServersController < ApplicationController
   end
 
   def create
+    @server = Server.new(server_params)
+    if @server.save
+      @server.channels.create(name: "general")
+      @server.memberships.create(user_id: server_params[:owner_id])
+      render 'api/servers/show'
+    else
 
+    end
   end
+
+  def server_params
+    params.require(:server).permit(:name, :owner_id)
+  end
+
 end

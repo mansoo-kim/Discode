@@ -1,4 +1,4 @@
-import CreateServerModal from '../server/CreateServerModal';
+import CreateServerModal from './CreateServerModal';
 
 const ModalManager = ({ modal }) => {
   if (!modal) return null;

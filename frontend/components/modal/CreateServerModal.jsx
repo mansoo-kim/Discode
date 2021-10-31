@@ -1,7 +1,16 @@
 import { useState } from 'react';
 
-const CreateServerModal = ({ currentUser, closeModal}) => {
+const CreateServerModal = ({ currentUser, closeModal, createServer }) => {
   const [serverName, setServerName] = useState(`${currentUser.username}'s server`)
+
+  const handleSubmit = () => {
+    const server = {
+      name: serverName,
+      owner_id: currentUser.id
+    };
+    createServer(server);
+  }
+
   return (
     <div className="modal">
       <button onClick={closeModal}>X</button>
@@ -11,20 +20,22 @@ const CreateServerModal = ({ currentUser, closeModal}) => {
         <input type="text" value={serverName} onChange={(e) => setServerName(e.target.value)} />
       </label>
       <p>By creating a servere, you agree to Discode's Community Guidelines.</p>
-      <button>Create</button>
+      <button onClick={handleSubmit}>Create</button>
     </div>
   )
 }
 
 import { connect } from 'react-redux';
 import { closeModal } from '../../actions/modal_actions';
+import { createServer } from '../../actions/server_actions';
 
 const mSTP = (state) => ({
   currentUser: state.entities.users[state.session.id]
 });
 
 const mDTP = (dispatch) => ({
-  closeModal: () => dispatch(closeModal())
+  closeModal: () => dispatch(closeModal()),
+  createServer: (server) => dispatch(createServer(server))
 });
 
 export default connect(mSTP, mDTP)(CreateServerModal);
