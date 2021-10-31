@@ -10,6 +10,18 @@ class Api::UsersController < ApplicationController
     end
   end
 
+  def update
+
+  end
+
+  def username_params
+    params.require(:user).permit(:username, :password)
+  end
+
+  def email_params
+    params.require(:user).permit(:password, :email)
+  end
+
   def user_params
     params.require(:user).permit(:username, :password, :email, :dob)
   end

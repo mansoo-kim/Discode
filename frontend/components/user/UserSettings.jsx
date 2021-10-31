@@ -1,4 +1,4 @@
-const UserSettings = ({ toggleSettings, logout }) => {
+const UserSettings = ({ currentUser, toggleSettings, logout }) => {
   return (
     <div className="settings-container">
       <div className="settings-left">
@@ -16,7 +16,26 @@ const UserSettings = ({ toggleSettings, logout }) => {
       </div>
       <div className="settings-right">
         <div className="settings-pane">
-          Main Account
+          <h2>My Account</h2>
+          { currentUser.username }#{ currentUser.tag }
+
+          <ul>
+            <li>
+              <div>
+                <div>USERNAME</div>
+                <div>{ currentUser.username }#{ currentUser.tag }</div>
+              </div>
+              <button>Edit</button>
+            </li>
+            <li>
+              <div>
+                <div>EMAIL</div>
+                <div>{ currentUser.email }</div>
+              </div>
+              <button>Edit</button>
+            </li>
+          </ul>
+
         </div>
         <div className="close-settings">
           <button onClick={toggleSettings}>X</button>
@@ -27,5 +46,3 @@ const UserSettings = ({ toggleSettings, logout }) => {
 }
 
 export default UserSettings
-1251
-740

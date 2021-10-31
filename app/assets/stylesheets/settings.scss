@@ -23,6 +23,15 @@
 
     .settings-pane {
       width: 59%;
+
+      ul > li {
+        display: flex;
+
+        > div {
+          display: flex;
+          flex-direction: column;
+        }
+      }
     }
 
     .close-settings {
