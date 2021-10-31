@@ -1,7 +1,7 @@
 import CreateServerModal from './CreateServerModal';
 import CreateChannelModal from './CreateChannelModal';
 
-const ModalManager = ({ modal }) => {
+const ModalManager = ({ modal, closeModal }) => {
   if (!modal) return null;
 
   let component;
@@ -17,17 +17,30 @@ const ModalManager = ({ modal }) => {
       return null;
   }
 
+  const handleClick = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    if (e.target === e.currentTarget) {
+      closeModal();
+    }
+  }
+
   return (
-    <div className="modal-container">
+    <div className="modal-container" onClick={handleClick}>
       { component }
     </div>
   )
 }
 
 import { connect } from 'react-redux';
+import { closeModal } from '../../actions/modal_actions';
 
 const mSTP = (state) => ({
   modal: state.ui.modal
 });
 
-export default connect(mSTP)(ModalManager);
+const mDTP = (dispatch) => ({
+  closeModal: () => dispatch(closeModal())
+});
+
+export default connect(mSTP, mDTP)(ModalManager);
