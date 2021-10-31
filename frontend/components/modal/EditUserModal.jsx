@@ -21,8 +21,13 @@ const EditUserModal = ({ userErrors, currentUser, closeModal, updateUser, resetU
   }
 
   const onSubmit = (data) => {
-    console.log(data);
-    updateUser(data)
+    const user = {
+      username: data.username,
+      password: data.password,
+      id: currentUser.id,
+      email: currentUser.email
+    }
+    updateUser(user)
       .then(
         () => closeModal())
   }
