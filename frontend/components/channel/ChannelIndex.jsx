@@ -1,4 +1,4 @@
-import ChannelIndexItem from './ChannelIndexItem'
+import ChannelIndexItem from './ChannelIndexItem';
 
 const ChannelIndex = ({ channels }) => {
   return (

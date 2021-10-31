@@ -3,7 +3,7 @@ import { AuthRoute, ProtectedRoute } from '../utils/route_utils';
 import Splash from './splash/Splash';
 import LoginFormContainer from './session/LoginFormContainer';
 import RegisterFormContainer from './session/RegisterFormContainer';
-import Home from './home/Home';
+import Main from './main/Main';
 
 const App = () => {
   return (
@@ -11,7 +11,7 @@ const App = () => {
       <Route exact path='/' component={Splash} />
       <AuthRoute path='/register' component={RegisterFormContainer} />
       <AuthRoute path='/login' component={LoginFormContainer} />
-      <ProtectedRoute component={Home} />
+      <ProtectedRoute component={Main} />
     </Switch>
   )
 }

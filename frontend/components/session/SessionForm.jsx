@@ -39,7 +39,7 @@ const SessionForm = ({ type, serverErrors, processForm, resetSessionErrors, hist
       dob: new Date(data.year, data.month, data.day)
     }
     console.log(formUser);
-    processForm(formUser).then(() => history.push('/channels/1/1')); // temporarily go to channels view instead of /@me
+    processForm(formUser).then(() => history.push('/@me'));
   }
 
   const handleDemoLogin = (e) => {

@@ -1,4 +1,4 @@
-import MemberIndexItem from "./MemberIndexItem"
+import MemberIndexItem from "./MemberIndexItem";
 
 const MemberIndex = ({ members }) => {
   return (
