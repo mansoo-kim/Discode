@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import MemberIndexContainer from '../members/MemberIndexContainer';
+import MemberIndexContainer from '../member/MemberIndexContainer';
 
 const CCView = ({ cc, type, requestCC, match }) => {
   useEffect(() => {

@@ -1,4 +1,14 @@
+html, body {
+  height: 100%;
+  overflow: hidden;
+}
+
+#root {
+  height: 100%;
+}
+
 .main {
+  height: 100%;
   display: flex;
 }
 
@@ -10,6 +20,7 @@
   .server-nav {
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
   }
 
   .cc-view {
