@@ -1,6 +1,6 @@
 import { Route } from 'react-router-dom';
 import ConversationIndexContainer from '../conversation/ConversationIndexContainer';
-import ConversationContainer from '../conversation/ConversationContainer';
+import ConversationContainer from '../cc/ConversationContainer';
 
 const Home = () => {
   return (
@@ -10,7 +10,7 @@ const Home = () => {
         <ConversationIndexContainer />
       </div>
 
-      <Route path='/@me/:conversationId' component={ConversationContainer} />
+      <Route path='/@me/:ccId' component={ConversationContainer} />
     </div>
   )
 }

@@ -3,7 +3,6 @@ import ServerIndexContainer from '../server/ServerIndexContainer';
 import ServerContainer from '../server/ServerContainer';
 import Home from '../home/Home';
 
-
 const Main = () => {
   return (
     <div className="main">
