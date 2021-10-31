@@ -1,10 +1,17 @@
+import { useEffect } from 'react';
 import ConvesrationIndexItem from "./ConvesrationIndexItem";
 
-const ConversationIndex = ({ conversations }) => {
+const ConversationIndex = ({ conversations, requestConversations }) => {
+  useEffect(() => {
+    requestConversations();
+  }, [])
+
   return (
-    <ul>
-        {conversations.map(conversation => <ConvesrationIndexItem key={conversation.id} conversation={conversation} />)}
-    </ul>
+    <div className="conversations-index">
+      <ul>
+          {conversations.map(conversation => <ConvesrationIndexItem key={conversation.id} conversation={conversation} />)}
+      </ul>
+    </div>
   )
 }
 

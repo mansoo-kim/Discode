@@ -1,10 +1,10 @@
 import MemberIndex from '../members/MemberIndex';
-import ConversationIndex from '../conversation/ConversationIndex';
+import ConversationIndexContainer from '../conversation/ConversationIndexContainer';
 
 const Home = () => {
   return (
-    <div classname="home-main">
-
+    <div className="home-main">
+      <ConversationIndexContainer />
     </div>
   )
 }
