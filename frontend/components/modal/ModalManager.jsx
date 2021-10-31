@@ -1,21 +1,29 @@
-const ModalManager = ({ modal, openModal, closeModal }) => {
-  return modal ? (
+import CreateServerModal from '../server/CreateServerModal';
+
+const ModalManager = ({ modal }) => {
+  if (!modal) return null;
+
+  let component;
+
+  switch (modal.type) {
+    case "createServer":
+      component = <CreateServerModal />
+      break;
+    default:
+      return null;
+  }
+
+  return (
     <div className="modal-container">
-      hellow world
+      { component }
     </div>
-  ) : null
+  )
 }
 
 import { connect } from 'react-redux';
-import { openModal, closeModal } from '../../actions/modal_actions';
 
 const mSTP = (state) => ({
   modal: state.ui.modal
 });
 
-const mDTP = (dispatch) => ({
-  openModal: (modal) => dispatch(openModal(modal)),
-  closeModal: () => dispatch(closeModal())
-});
-
-export default connect(mSTP, mDTP)(ModalManager);
+export default connect(mSTP)(ModalManager);
