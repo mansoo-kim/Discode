@@ -48,7 +48,6 @@ const EditUserModal = ({ type, userErrors, currentUser, closeModal, updateUser, 
     </div>
   )
 
-
   return (
     <div className="modal">
       <button onClick={closeModal}>X</button>

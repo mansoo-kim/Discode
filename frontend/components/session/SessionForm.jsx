@@ -60,9 +60,37 @@ const SessionForm = ({ type, sessionErrors, processForm, resetSessionErrors, his
   const usernameInput = type === 'register' ? (
     <div>
       <label>USERNAME { errors.username && errors.username.message }</label>
-      <input type="text" {...register("username", { required: "This field is required"})} className={ `session-input ${errors.username ? 'error-input' : ''}` } />
+      <input type="text" {...register("username", {
+        required: "This field is required",
+        minLength: {
+          value: 2,
+          message: "Must be between 2 and 32 in length"
+        },
+        maxLength: {
+          value: 32,
+          message: "Must be between 2 and 32 in length"
+        }
+      })}
+        className={ `session-input ${errors.username ? 'error-input' : ''}` } />
     </div>
   ) : null;
+
+  const passwordInput = type === 'register' ? (
+    <div>
+      <label>PASSWORD { errors.password && errors.password.message }</label>
+      <input type="password" {...register("password", {
+        required: "This field is required",
+        minLength: {
+          value: 6,
+          message: "Must be 6 or more in length"
+        }
+      })} className={ `session-input ${errors.password ? 'error-input' : ''}` } />
+    </div>
+  ) : (<div>
+    <label>PASSWORD { errors.password && errors.password.message }</label>
+      <input type="password" {...register("password", { required: "This field is required"})} className={ `session-input ${errors.password ? 'error-input' : ''}` } />
+    </div>
+  )
 
   const dobInput = type === 'register' ? (
     <label>DATE OF BIRTH
@@ -104,10 +132,7 @@ const SessionForm = ({ type, sessionErrors, processForm, resetSessionErrors, his
 
         { usernameInput }
 
-        <div>
-          <label>PASSWORD { errors.password && errors.password.message }</label>
-          <input type="password" {...register("password", { required: "This field is required"})} className={ `session-input ${errors.password ? 'error-input' : ''}` } />
-        </div>
+        { passwordInput }
 
         { dobInput }
 
