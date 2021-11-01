@@ -12,4 +12,11 @@ export const createChannel = (serverId, channel) => (dispatch) => (
     .then(
       (channel) => dispatch(receiveChannel(channel))
     )
-)
+);
+
+export const updateChannel = (channelId, channel) => (dispatch) => (
+  ChannelApiUtil.updateChannel(channelId, channel)
+    .then(
+      (channel) => dispatch(receiveChannel(channel))
+    )
+);
