@@ -9,6 +9,16 @@ class Api::ChannelsController < ApplicationController
     end
   end
 
+  def update
+    @channel = Channel.find_by(id: params[:id])
+
+    if @channel.update(channel_params)
+      render 'api/channels/show'
+    else
+      render json: @channel.errors, status: 422
+    end
+  end
+
   def channel_params
     params.require(:channel).permit(:name)
   end

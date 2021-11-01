@@ -1,9 +1,10 @@
 import { useForm } from 'react-hook-form';
 
 const ChannelSettings = ({ toggleSettings, channel }) => {
-  const { register, formState: { errors }, handleSubmit } = useForm({
+  const { register, formState: { errors, dirtyFields }, handleSubmit } = useForm({
     mode: 'onChange',
-    shouldFocusError: false
+    shouldFocusError: false,
+    defaultValues: { channelName: channel.name }
   });
 
   return (

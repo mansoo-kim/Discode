@@ -10,6 +10,7 @@ Rails.application.routes.draw do
     resources :servers, only: [:index, :show, :create] do
       resources :channels, only: [:create]
     end
+    resources :channels, only: [:update]
     resources :conversations, only: [:index, :show]
   end
 end
