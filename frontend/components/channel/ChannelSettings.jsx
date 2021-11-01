@@ -1,7 +1,7 @@
 import { useForm } from 'react-hook-form';
 
 const ChannelSettings = ({ toggleSettings, channel, updateChannel }) => {
-  const { register, formState: { errors, isDirty }, watch, handleSubmit } = useForm({
+  const { register, formState: { errors, isDirty }, watch, reset, handleSubmit } = useForm({
     mode: 'onChange',
     shouldFocusError: false,
     defaultValues: { channelName: channel.name }
@@ -14,11 +14,14 @@ const ChannelSettings = ({ toggleSettings, channel, updateChannel }) => {
   const watchName = watch("channelName");
 
   console.log(isDirty);
+  console.log(watchName);
 
   const prompt = (
     <div className="save-prompt">
       Careful - you have unsaved changes!
-      <button>Reset</button>
+      <button onClick={() => reset()}>
+        Reset
+      </button>
       <button>Save Changes</button>
     </div>
   )
