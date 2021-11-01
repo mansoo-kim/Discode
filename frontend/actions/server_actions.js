@@ -46,3 +46,11 @@ export const createServer = (server) => (dispatch) => (
       (res) => dispatch(receiveServerErrors(res.responseJSON))
     )
 );
+
+export const updateServer = (serverId, server) => (dispatch) => (
+  ServerApiUtil.updateServer(serverId, server)
+    .then(
+      (server) => dispatch(receiveServer(server)),
+      (res) => dispatch(receiveServerErrors(res.responseJSON))
+    )
+);

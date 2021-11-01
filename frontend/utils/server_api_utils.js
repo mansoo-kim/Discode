@@ -19,3 +19,11 @@ export const createServer = (server) => (
     data: { server }
   })
 );
+
+export const updateServer = (serverId, server) => (
+  $.ajax({
+    url: `/api/servers/${serverId}`,
+    method: 'PATCH',
+    data: { server }
+  })
+);
