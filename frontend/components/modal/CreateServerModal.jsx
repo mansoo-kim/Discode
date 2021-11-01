@@ -25,16 +25,20 @@ const CreateServerModal = ({ serverErrors, currentUser, closeModal, createServer
     <div className="modal">
       <button onClick={closeModal}>X</button>
 
-      <h2>Customize your server</h2>
-      <p>Give your new server a personality with a name and an icon. You can always change it later.</p>
-      <label>SERVER NAME { serverErrors.name }
-        <input type="text" {...register("serverName", { required: true })} />
-      </label>
-      <p>By creating a server, you agree to Discode's Community Guidelines.</p>
+      <form onSubmit={handleSubmit(onSubmit)}>
+        <h2>Customize your server</h2>
+        <p>Give your new server a personality with a name and an icon. You can always change it later.</p>
 
-      <button onClick={handleSubmit(onSubmit)} disabled={!!errors["serverName"]}>
-        Create
-      </button>
+        <label>SERVER NAME { serverErrors.name }
+          <input type="text" {...register("serverName", { required: true })} />
+        </label>
+
+        <p>By creating a server, you agree to Discode's Community Guidelines.</p>
+
+        <button disabled={!!errors["serverName"]}>
+          Create
+        </button>
+      </form>
     </div>
   )
 }
