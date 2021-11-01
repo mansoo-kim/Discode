@@ -10,6 +10,12 @@ class Api::UsersController < ApplicationController
     end
   end
 
+  def show
+    @user = User.find_by(id: params[:id])
+
+    render 'api/users/show'
+  end
+
   def update
     @user = User.find_by(id: params[:id])
     if @user.is_password?(user_params[:password])

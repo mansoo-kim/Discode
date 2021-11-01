@@ -1,7 +1,7 @@
 import UserSettings from './UserSettings';
 import { useState } from 'react';
 
-const CurrentUser = ({ currentUser, logout, openModal }) => {
+const CurrentUser = ({ currentUser }) => {
   const [showSettings, setShowSettings] = useState(false);
 
   const toggleSettings = () => (setShowSettings(!showSettings));
@@ -14,22 +14,15 @@ const CurrentUser = ({ currentUser, logout, openModal }) => {
       </div>
       <button onClick={toggleSettings}>Settings</button>
 
-      { showSettings && <UserSettings currentUser={currentUser} toggleSettings={toggleSettings} logout={logout} openModal={openModal} />}
+      { showSettings && <UserSettings currentUser={currentUser} toggleSettings={toggleSettings} />}
     </div>
   )
 }
 
 import { connect } from 'react-redux';
-import { logout } from '../../actions/session_actions';
-import { openModal } from '../../actions/modal_actions';
 
 const mSTP = (state) => ({
   currentUser: state.entities.users[state.session.id]
 })
 
-const mDTP = (dispatch) => ({
-  logout: () => dispatch(logout()),
-  openModal: (modal) => dispatch(openModal(modal))
-})
-
-export default connect(mSTP, mDTP)(CurrentUser);
+export default connect(mSTP)(CurrentUser);

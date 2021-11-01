@@ -18,6 +18,13 @@ export const resetUserErrors = () => ({
   type: RESET_USER_ERRORS
 });
 
+export const requestUser = (userId) => (dispatch) => (
+  UserApiUtil.requestUser(userId)
+    .then(
+      (user) => dispatch(receiveUser(user))
+    )
+);
+
 export const updateUser = (userId, user) => (dispatch) => (
   UserApiUtil.updateUser(userId, user)
     .then(
