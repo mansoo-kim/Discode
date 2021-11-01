@@ -13,7 +13,7 @@ const CreateServerModal = ({ serverErrors, currentUser, closeModal, createServer
       name: data.serverName
     };
     createServer(server)
-      .then(({ res })=> history.push(`/channels/${res.server.id}/${res.server.channels[0]}`))
+      .then(({ res: { server } })=> history.push(`/channels/${server.id}/${server.channels[0]}`))
       .then(() => closeModal())
   }
 
