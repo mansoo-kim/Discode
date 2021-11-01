@@ -7,14 +7,15 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 # Users
-u0 = User.create!(username: "demo", email: "demo@gmail.com", dob: "1999-09-09", password: "demopassword", tag: 4171)
-u1 = User.create!(username: "sunshinenim", email: "mansoo@gmail.com", dob: "1993-06-09", password: "minnie", tag: 4171)
-u2 = User.create!(username: "emmay", email: "emmay@gmail.com", dob: "1998-01-01", password: "turtle")
+u0 = User.create!(username: "demo", email: "demo@gmail.com", dob: "1999-09-09", password: "password", tag: 4171)
+u1 = User.create!(username: "mansoo", email: "mansoo@gmail.com", dob: "1993-06-09", password: "minnie", tag: 4171)
+u2 = User.create!(username: "semmay", email: "emmay@gmail.com", dob: "1998-01-01", password: "turtle")
 u3 = User.create!(username: "wood", email: "wood@gmail.com", dob: "1997-02-02", password: "shiroo")
 u4 = User.create!(username: "stelluhhh", email: "stelluhhh@gmail.com", dob: "1997-03-03", password: "dabiii")
 u5 = User.create!(username: "subo baggins", email: "subo@gmail.com", dob: "1996-04-04", password: "mickey")
 u6 = User.create!(username: "suzinator", email: "suzi@gmail.com", dob: "1994-05-05", password: "porotyg")
-u7 = User.create!(username: "the beef", email: "beefy@gmail.com", dob: "1996-06-06", password: "immortal")
+u7 = User.create!(username: "soheep", email: "soh@gmail.com", dob: "1991-06-06", password: "cometony")
+u8 = User.create!(username: "the beef", email: "beefy@gmail.com", dob: "1996-07-07", password: "immortal")
 
 # Servers
 s1 = Server.create!(name: "True Study Buddies Come to FL", owner_id: u1.id)
@@ -25,6 +26,7 @@ ms13 = Membership.create!(user_id: u3.id, joinable_id: s1.id, joinable_type: s1.
 ms14 = Membership.create!(user_id: u4.id, joinable_id: s1.id, joinable_type: s1.class.name)
 ms15 = Membership.create!(user_id: u5.id, joinable_id: s1.id, joinable_type: s1.class.name)
 ms16 = Membership.create!(user_id: u6.id, joinable_id: s1.id, joinable_type: s1.class.name)
+ms17 = Membership.create!(user_id: u7.id, joinable_id: s1.id, joinable_type: s1.class.name)
 
 s2 = Server.create!(name: "One Brain One Cohort", owner_id: u3.id)
 ms20 = Membership.create!(user_id: u0.id, joinable_id: s2.id, joinable_type: s2.class.name)
@@ -34,13 +36,15 @@ ms23 = Membership.create!(user_id: u3.id, joinable_id: s2.id, joinable_type: s2.
 ms24 = Membership.create!(user_id: u4.id, joinable_id: s2.id, joinable_type: s2.class.name)
 ms25 = Membership.create!(user_id: u5.id, joinable_id: s2.id, joinable_type: s2.class.name)
 ms26 = Membership.create!(user_id: u6.id, joinable_id: s2.id, joinable_type: s2.class.name)
+ms27 = Membership.create!(user_id: u7.id, joinable_id: s2.id, joinable_type: s2.class.name)
 
-s3 = Server.create!(name: "Lunch Time Playtime", owner_id: u5.id)
+s3 = Server.create!(name: "LLC Lunch League Crew", owner_id: u5.id)
 ms30 = Membership.create!(user_id: u0.id, joinable_id: s3.id, joinable_type: s3.class.name)
 ms31 = Membership.create!(user_id: u1.id, joinable_id: s3.id, joinable_type: s3.class.name)
 ms32 = Membership.create!(user_id: u2.id, joinable_id: s3.id, joinable_type: s3.class.name)
-ms33 = Membership.create!(user_id: u6.id, joinable_id: s3.id, joinable_type: s3.class.name)
-ms34 = Membership.create!(user_id: u7.id, joinable_id: s3.id, joinable_type: s3.class.name)
+ms33 = Membership.create!(user_id: u5.id, joinable_id: s3.id, joinable_type: s3.class.name)
+ms34 = Membership.create!(user_id: u6.id, joinable_id: s3.id, joinable_type: s3.class.name)
+ms35 = Membership.create!(user_id: u8.id, joinable_id: s3.id, joinable_type: s3.class.name)
 
 # Channels
 c11 = Channel.create!(name: "general", server_id: s1.id)
@@ -74,3 +78,12 @@ mc21 = Membership.create!(user_id: u1.id, joinable_id: co2.id, joinable_type: co
 mc22 = Membership.create!(user_id: u2.id, joinable_id: co2.id, joinable_type: co2.class.name)
 mc23 = Membership.create!(user_id: u5.id, joinable_id: co2.id, joinable_type: co2.class.name)
 mc24 = Membership.create!(user_id: u6.id, joinable_id: co2.id, joinable_type: co2.class.name)
+
+co3 = Conversation.create()
+mc30 = Membership.create!(user_id: u0.id, joinable_id: co3.id, joinable_type: co3.class.name)
+mc31 = Membership.create!(user_id: u4.id, joinable_id: co3.id, joinable_type: co3.class.name)
+mc32 = Membership.create!(user_id: u5.id, joinable_id: co3.id, joinable_type: co3.class.name)
+mc33 = Membership.create!(user_id: u6.id, joinable_id: co3.id, joinable_type: co3.class.name)
+mc34 = Membership.create!(user_id: u7.id, joinable_id: co3.id, joinable_type: co3.class.name)
+mc35 = Membership.create!(user_id: u2.id, joinable_id: co3.id, joinable_type: co3.class.name)
+co3.update(name: "4s")

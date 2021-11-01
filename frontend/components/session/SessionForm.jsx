@@ -42,7 +42,7 @@ const SessionForm = ({ type, sessionErrors, processForm, resetSessionErrors, his
   const handleDemoLogin = (e) => {
     e.preventDefault();
     setValue("email", "demo@gmail.com");
-    setValue("password", "demopassword");
+    setValue("password", "password");
     setTimeout(() => handleSubmit(onSubmit)(), 300);
   }
 
