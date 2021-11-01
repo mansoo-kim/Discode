@@ -1,9 +1,8 @@
-import UserSettings from './UserSettings';
 import { useState } from 'react';
+import UserSettings from './UserSettings';
 
 const CurrentUser = ({ currentUser }) => {
   const [showSettings, setShowSettings] = useState(false);
-
   const toggleSettings = () => (setShowSettings(!showSettings));
 
   return (
