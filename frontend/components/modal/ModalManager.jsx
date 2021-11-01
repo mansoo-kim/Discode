@@ -2,17 +2,17 @@ import CreateServerModal from './CreateServerModal';
 import CreateChannelModal from './CreateChannelModal';
 import EditUserModal from './EditUserModal';
 
-const ModalManager = ({ modal, closeModal }) => {
+const ModalManager = ({ modal, closeModal, history }) => {
   if (!modal) return null;
 
   let component;
 
   switch (modal.type) {
     case "createServer":
-      component = <CreateServerModal />
+      component = <CreateServerModal history={history} />
       break;
     case "createChannel":
-      component = <CreateChannelModal serverId={modal.serverId} />
+      component = <CreateChannelModal serverId={modal.serverId} history={history} />
       break;
     case "editUser":
       component = <EditUserModal type={modal.property} />
@@ -35,6 +35,7 @@ const ModalManager = ({ modal, closeModal }) => {
 }
 
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 import { closeModal } from '../../actions/modal_actions';
 
 const mSTP = (state) => ({
@@ -45,4 +46,4 @@ const mDTP = (dispatch) => ({
   closeModal: () => dispatch(closeModal())
 });
 
-export default connect(mSTP, mDTP)(ModalManager);
+export default withRouter(connect(mSTP, mDTP)(ModalManager));

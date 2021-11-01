@@ -1,6 +1,6 @@
 import { useForm } from 'react-hook-form';
 
-const CreateChannelModal = ({ closeModal, createChannel }) => {
+const CreateChannelModal = ({ closeModal, createChannel, history }) => {
   const { register, formState: { errors }, handleSubmit } = useForm({
     mode: 'onChange',
     shouldFocusError: false
@@ -11,8 +11,8 @@ const CreateChannelModal = ({ closeModal, createChannel }) => {
       name: data.channelName
     };
     createChannel(channel)
-      .then(
-        () => closeModal())
+      .then(({ channel })=> history.push(`/channels/${channel.serverId}/${channel.id}`))
+      .then(() => closeModal())
   }
 
   return (

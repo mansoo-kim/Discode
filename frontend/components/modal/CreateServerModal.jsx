@@ -40,7 +40,6 @@ const CreateServerModal = ({ serverErrors, currentUser, closeModal, createServer
 }
 
 import { connect } from 'react-redux';
-import { withRouter } from 'react-router-dom';
 import { closeModal } from '../../actions/modal_actions';
 import { createServer, resetServerErrors } from '../../actions/server_actions';
 
@@ -55,4 +54,4 @@ const mDTP = (dispatch) => ({
   resetServerErrors: () => dispatch(resetServerErrors())
 });
 
-export default withRouter(connect(mSTP, mDTP)(CreateServerModal));
+export default connect(mSTP, mDTP)(CreateServerModal);
