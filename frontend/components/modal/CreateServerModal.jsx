@@ -1,7 +1,7 @@
 import { useEffect} from 'react';
 import { useForm } from 'react-hook-form';
 
-const CreateServerModal = ({ serverErrors, currentUser, closeModal, createServer, resetServerErrors }) => {
+const CreateServerModal = ({ serverErrors, currentUser, closeModal, createServer, resetServerErrors, history }) => {
   const { register, formState: { errors }, handleSubmit } = useForm({
     mode: 'onChange',
     shouldFocusError: false,
@@ -13,8 +13,8 @@ const CreateServerModal = ({ serverErrors, currentUser, closeModal, createServer
       name: data.serverName
     };
     createServer(server)
-      .then(
-        () => closeModal())
+      .then(({ res })=> history.push(`/channels/${res.server.id}/${res.server.channels[0]}`))
+      .then(() => closeModal())
   }
 
   useEffect(() => {
@@ -40,6 +40,7 @@ const CreateServerModal = ({ serverErrors, currentUser, closeModal, createServer
 }
 
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 import { closeModal } from '../../actions/modal_actions';
 import { createServer, resetServerErrors } from '../../actions/server_actions';
 
@@ -54,4 +55,4 @@ const mDTP = (dispatch) => ({
   resetServerErrors: () => dispatch(resetServerErrors())
 });
 
-export default connect(mSTP, mDTP)(CreateServerModal);
+export default withRouter(connect(mSTP, mDTP)(CreateServerModal));

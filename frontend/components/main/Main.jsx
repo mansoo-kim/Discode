@@ -9,7 +9,7 @@ const Main = () => {
     <div className="main">
       <ServerIndex />
       <Route path='/@me' component={Home} />
-      <Route path='/channels/:serverId/:channelId' component={Server} />
+      <Route path='/channels/:serverId' component={Server} />
       <ModalManager />
     </div>
   )
