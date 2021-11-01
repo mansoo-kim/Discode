@@ -58,9 +58,10 @@ const SessionForm = ({ type, sessionErrors, processForm, resetSessionErrors, his
   )
 
   const usernameInput = type === 'register' ? (
-    <label>USERNAME { errors.username && errors.username.message }
+    <div>
+      <label>USERNAME { errors.username && errors.username.message }</label>
       <input type="text" {...register("username", { required: "This field is required"})} className={ `session-input ${errors.username ? 'error-input' : ''}` } />
-    </label>
+    </div>
   ) : null;
 
   const dobInput = type === 'register' ? (
@@ -95,15 +96,18 @@ const SessionForm = ({ type, sessionErrors, processForm, resetSessionErrors, his
       { header }
 
       <form className="session-form" onSubmit={handleSubmit(onSubmit)}>
-        <label>EMAIL { errors.email && errors.email.message }
+
+        <div>
+          <label>EMAIL { errors.email && errors.email.message }</label>
           <input type="text" {...register("email", { required: "This field is required"})} className={ `session-input ${errors.email ? 'error-input' : ''}` } />
-        </label>
+        </div>
 
         { usernameInput }
 
-        <label>PASSWORD { errors.password && errors.password.message }
+        <div>
+          <label>PASSWORD { errors.password && errors.password.message }</label>
           <input type="password" {...register("password", { required: "This field is required"})} className={ `session-input ${errors.password ? 'error-input' : ''}` } />
-        </label>
+        </div>
 
         { dobInput }
 
@@ -112,6 +116,7 @@ const SessionForm = ({ type, sessionErrors, processForm, resetSessionErrors, his
         { submitButton }
 
         { redirectLink }
+
       </form>
 
       { type === 'register' && <p>By registering, you agree to Discode's Terms of Service and Privacy Policy.</p> }

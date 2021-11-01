@@ -22,9 +22,10 @@ const CreateChannelModal = ({ closeModal, createChannel, history }) => {
       <form onSubmit={handleSubmit(onSubmit)} >
         <h2>Create Text Channel</h2>
 
-        <label>CHANNEL NAME
+        <div>
+          <label>CHANNEL NAME </label>
           <input type="text" placeholder="new-channel" {...register("channelName", { required: true })} />
-        </label>
+        </div>
 
         <button disabled={!!errors["channelName"]}>
           Create Channel

@@ -1,9 +1,16 @@
+import { useForm } from 'react-hook-form';
+
 const ChannelSettings = ({ toggleSettings, channel }) => {
+  const { register, formState: { errors }, handleSubmit } = useForm({
+    mode: 'onChange',
+    shouldFocusError: false
+  });
+
   return (
     <div className="settings-container">
       <div className="settings-left">
         <div>
-          Channel Settings
+          # {channel.name}
           <ul>
             <li>
               Overview
@@ -18,28 +25,14 @@ const ChannelSettings = ({ toggleSettings, channel }) => {
         <div className="settings-pane">
           <h2>OVERVIEW</h2>
 
-          {/* <ul>
-            <li>
-              <div>
-                <div>USERNAME</div>
-                <div>{ currentUser.username }#{ currentUser.tag }</div>
-              </div>
-              <button onClick={() =>
-                openModal({type: "editUser", property: "username"})}>
-                  Edit
-              </button>
-            </li>
-            <li>
-              <div>
-                <div>EMAIL</div>
-                <div>{ currentUser.email }</div>
-              </div>
-              <button onClick={() =>
-                openModal({type: "editUser", property: "email"})}>
-                  Edit
-              </button>
-            </li>
-          </ul> */}
+          <form>
+
+            <div>
+              <label>CHANNEL NAME</label>
+              <input type="text" placeholder={channel.name} {...register("channelName", { required: true })} />
+            </div>
+
+          </form>
 
         </div>
         <div className="close-settings">

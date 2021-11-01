@@ -14,7 +14,7 @@ const Server = ({ server, channels, isOwner, requestServer, match }) => {
       <div className="server-nav">
         <div>
           { server.name }
-          <ChannelIndex channels={ Object.values(channels) } isOwner={isOwner} serverId={server.id} />
+          <ChannelIndex channels={channels} isOwner={isOwner} serverId={server.id} />
         </div>
         <CurrentUser />
       </div>
