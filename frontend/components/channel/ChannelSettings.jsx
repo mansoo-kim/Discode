@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 
 const ChannelSettings = ({ toggleSettings, channel, updateChannel }) => {
@@ -7,19 +8,32 @@ const ChannelSettings = ({ toggleSettings, channel, updateChannel }) => {
     defaultValues: { channelName: channel.name }
   });
 
-  const onSubmit = (data) => (
-    updateChannel(channel.id, { name: data.channelName})
-  );
-
+  const [showRed, setShowRed] = useState(false);
   const watchName = watch("channelName");
 
-  console.log(isDirty);
-  console.log(watchName);
+  const checkThenExit = () => {
+    if (isDirty) {
+      setShowRed(true);
+    } else {
+      toggleSettings(null);
+    }
+  }
+
+  const onSubmit = (data) => (
+    updateChannel(channel.id, { name: data.channelName})
+      .then(() => {
+        setShowRed(false);
+        reset({ channelName: watchName});
+      })
+  );
 
   const prompt = (
-    <div className="save-prompt">
+    <div className={`save-prompt ${ showRed ? 'error-input' : ''}`}>
       Careful - you have unsaved changes!
-      <button onClick={() => reset()}>
+      <button onClick={() => {
+        setShowRed(false);
+        reset();
+      }}>
         Reset
       </button>
       <button>Save Changes</button>
@@ -52,13 +66,12 @@ const ChannelSettings = ({ toggleSettings, channel, updateChannel }) => {
               <input type="text" placeholder={channel.name} {...register("channelName", { required: "This field is required" })} />
             </div>
 
-          </form>
-
           { isDirty && prompt }
+          </form>
 
         </div>
         <div className="close-settings">
-          <button onClick={toggleSettings}>X</button>
+          <button onClick={checkThenExit}>X</button>
         </div>
       </div>
     </div>
@@ -68,8 +81,12 @@ const ChannelSettings = ({ toggleSettings, channel, updateChannel }) => {
 import { connect } from 'react-redux';
 import { updateChannel } from '../../actions/channel_actions';
 
-const mDTP = (dispatch) => ({
-  updateChannel: (channelId, channel) => dispatch(updateChannel(channelId, channel))
+const mSTP = (state, ownProps) => ({
+  channel: state.entities.channels[ownProps.channelId]
 })
 
-export default connect(null, mDTP)(ChannelSettings);
+const mDTP = (dispatch) => ({
+  updateChannel: (channelId, channel) => dispatch(updateChannel(channelId, channel))
+});
+
+export default connect(mSTP, mDTP)(ChannelSettings);

@@ -4,7 +4,7 @@ import ChannelSettings from './ChannelSettings';
 
 const ChannelIndex = ({ channels, isOwner, serverId, openModal }) => {
   const [showSettings, setShowSettings] = useState(false);
-  const [settingsId, setSettingsId] = useState(0);
+  const [settingsId, setSettingsId] = useState(null);
   const toggleSettings = (id) => {
     setSettingsId(id);
     setShowSettings(!showSettings);
@@ -19,10 +19,10 @@ const ChannelIndex = ({ channels, isOwner, serverId, openModal }) => {
     <div className="channel-index">
       { isOwner && newChannelButton }
       <ul>
-        {Object.values(channels).map(channel => <ChannelIndexItem key={channel.id} channel={channel} isOwner={isOwner} toggleSettings={toggleSettings} />)}
+        {channels.map(channel => <ChannelIndexItem key={channel.id} channel={channel} isOwner={isOwner} toggleSettings={toggleSettings} />)}
       </ul>
 
-      { showSettings && <ChannelSettings toggleSettings={toggleSettings} channel={channels[settingsId]} />}
+      { showSettings && <ChannelSettings toggleSettings={toggleSettings} channelId={settingsId} />}
     </div>
   )
 }

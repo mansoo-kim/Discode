@@ -29,7 +29,7 @@ import { requestServer } from '../../actions/server_actions';
 
 const mSTP = (state, ownProps) => ({
   server: state.entities.servers[ownProps.match.params.serverId],
-  channels: state.entities.channels,
+  channels: Object.values(state.entities.channels),
   isOwner: state.session.id === state.entities.servers[ownProps.match.params.serverId]?.ownerId
 });
 
