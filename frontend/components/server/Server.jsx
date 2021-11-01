@@ -19,7 +19,7 @@ const Server = ({ server, channels, isOwner, requestServer, match }) => {
         <CurrentUser />
       </div>
 
-      <Route path={`/channels/:serverId/:ccId`} component={ChannelContainer} />
+      <Route path={`/channels/:serverId/:ccId?`} component={ChannelContainer} />
     </div>
   ) : null
 }
