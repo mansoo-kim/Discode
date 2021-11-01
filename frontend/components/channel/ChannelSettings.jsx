@@ -1,7 +1,7 @@
 import { useForm } from 'react-hook-form';
 
 const ChannelSettings = ({ toggleSettings, channel, updateChannel }) => {
-  const { register, formState: { errors, dirtyFields }, handleSubmit } = useForm({
+  const { register, formState: { errors, isDirty, dirtyFields }, handleSubmit } = useForm({
     mode: 'onChange',
     shouldFocusError: false,
     defaultValues: { channelName: channel.name }
@@ -10,6 +10,16 @@ const ChannelSettings = ({ toggleSettings, channel, updateChannel }) => {
   const onSubmit = (data) => (
     updateChannel(channel.id, { name: data.channelName})
   );
+
+  console.log(isDirty);
+
+  const prompt = (
+    <div className="save-prompt">
+      Careful - you have unsaved changes!
+      <button>Reset</button>
+      <button>Save Changes</button>
+    </div>
+  )
 
   return (
     <div className="settings-container">
@@ -33,11 +43,13 @@ const ChannelSettings = ({ toggleSettings, channel, updateChannel }) => {
           <form onSubmit={handleSubmit(onSubmit)}>
 
             <div>
-              <label>CHANNEL NAME</label>
-              <input type="text" placeholder={channel.name} {...register("channelName", { required: true })} />
+              <label>CHANNEL NAME { errors.channelName?.message }</label>
+              <input type="text" placeholder={channel.name} {...register("channelName", { required: "This field is required" })} />
             </div>
 
           </form>
+
+          { isDirty && prompt }
 
         </div>
         <div className="close-settings">
