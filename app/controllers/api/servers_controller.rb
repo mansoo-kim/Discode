@@ -21,6 +21,16 @@ class Api::ServersController < ApplicationController
     end
   end
 
+  def update
+    @server = Server.find_by(id: params[:id])
+
+    if @server.update(server_params)
+      render 'api/servers/show'
+    else
+      render json: @server.errors, status: 422
+    end
+  end
+
   def server_params
     params.require(:server).permit(:name)
   end
