@@ -1,7 +1,7 @@
 import { useForm } from 'react-hook-form';
 
 const ChannelSettings = ({ toggleSettings, channel, updateChannel }) => {
-  const { register, formState: { errors, isDirty, dirtyFields }, handleSubmit } = useForm({
+  const { register, formState: { errors, isDirty }, watch, handleSubmit } = useForm({
     mode: 'onChange',
     shouldFocusError: false,
     defaultValues: { channelName: channel.name }
@@ -10,6 +10,8 @@ const ChannelSettings = ({ toggleSettings, channel, updateChannel }) => {
   const onSubmit = (data) => (
     updateChannel(channel.id, { name: data.channelName})
   );
+
+  const watchName = watch("channelName");
 
   console.log(isDirty);
 
@@ -25,7 +27,7 @@ const ChannelSettings = ({ toggleSettings, channel, updateChannel }) => {
     <div className="settings-container">
       <div className="settings-left">
         <div>
-          # {channel.name}
+          # { watchName }
           <ul>
             <li>
               Overview
