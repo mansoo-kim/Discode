@@ -16,16 +16,19 @@ const ConnectedCCView = connect(mSTP, mDTP)(CCView);
 import { Route, Redirect } from 'react-router-dom';
 
 const mSTP2 = (state, ownProps) => ({
-  isMember: state.session.conversations.includes(parseFloat(ownProps.match.params.ccId))
+  isMember: state.session.conversations?.includes(parseFloat(ownProps.match.params.ccId))
 });
 
-const ProtectedConversation = ({ isMember, path }) => (
-  <Route
-    path={path}
-    render={props => (
-      isMember ? <ConnectedCCView {...props} /> : <Redirect to='/@me' />
-    )}
-  />
-);
+const ProtectedConversation = ({ isMember, path }) => {
+  if ( isMember === undefined ) return null;
+  return (
+    <Route
+      path={path}
+      render={props => (
+        isMember ? <ConnectedCCView {...props} /> : <Redirect to='/@me' />
+      )}
+    />
+  )
+};
 
 export default connect(mSTP2)(ProtectedConversation);

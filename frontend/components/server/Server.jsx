@@ -4,6 +4,7 @@ import ChannelIndex from '../channel/ChannelIndex';
 import ChannelContainer from '../cc/ChannelContainer';
 import ServerOptionsDD from './ServerOptionsDD';
 import ServerSettings from './ServerSettings';
+import CurrentUser from '../user/CurrentUser';
 
 const Server = ({ server, channels, isOwner, requestServer, match, history }) => {
   useEffect(() => {
@@ -31,6 +32,7 @@ const Server = ({ server, channels, isOwner, requestServer, match, history }) =>
           </div>
           <ChannelIndex channels={channels} isOwner={isOwner} serverId={server.id} />
         </div>
+        <CurrentUser />
       </div>
 
       { showSettings && <ServerSettings toggleSettings={toggleSettings} subject={server} />}

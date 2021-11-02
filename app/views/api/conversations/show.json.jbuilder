@@ -3,7 +3,7 @@ json.conversation do
   json.members @conversation.members.map(&:id)
 end
 
-json.users do
+json.members do
   @conversation.members.each do |member|
     json.set! member.id do
       json.partial! 'api/users/user', user: member
