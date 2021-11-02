@@ -1,19 +1,29 @@
-import { useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { Route } from 'react-router-dom';
 import ChannelIndex from '../channel/ChannelIndex';
 import ChannelContainer from '../cc/ChannelContainer';
 import CurrentUser from '../user/CurrentUser';
+import ServerOptionsDD from './ServerOptionsDD';
 
 const Server = ({ server, channels, isOwner, requestServer, match }) => {
   useEffect(() => {
     requestServer(match.params.serverId);
   }, [match.params.serverId])
 
+  const [ showDD, setShowDD] = useState(false);
+
+  const serverOptionsDD = showDD ? (
+    <ServerOptionsDD isOwner={isOwner} />
+  ) : null;
+
   return server ? (
     <div className="server-main">
       <div className="server-nav">
         <div>
-          { server.name }
+          <div className="server-name-container">
+            <div tabIndex="0" onClick={() => setShowDD(!showDD)} onBlur={() => setShowDD(false)}>{ server.name }</div>
+            { serverOptionsDD }
+          </div>
           <ChannelIndex channels={channels} isOwner={isOwner} serverId={server.id} />
         </div>
         <CurrentUser />
