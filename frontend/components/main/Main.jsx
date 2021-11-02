@@ -7,11 +7,10 @@ import ModalManager from '../modal/ModalManager';
 const Main = () => {
   return (
     <div className="main">
-      <ServerIndex />
-      <Route path='/@me' component={Home} />
-      <Route path='/channels/:serverId' component={ProtectedServer} />
-      {/* <ProtectedServer path='/channels/:serverId' /> */}
       <ModalManager />
+      <ServerIndex />
+      <Route path='/channels/:serverId' component={ProtectedServer} />
+      <Route path='/@me' component={Home} />
     </div>
   )
 }

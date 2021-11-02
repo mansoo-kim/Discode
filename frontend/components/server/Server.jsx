@@ -54,7 +54,7 @@ const mDTP = (dispatch) => ({
 const ConnectedServer = connect(mSTP, mDTP)(Server);
 
 const mSTP2 = (state, ownProps) => ({
-    isMember: state.entities.users[state.session.id].servers.includes(parseFloat(ownProps.match.params.serverId))
+    isMember: state.session.servers.includes(parseFloat(ownProps.match.params.serverId))
 });
 
 const ProtectedServer = ({ isMember, path }) => (

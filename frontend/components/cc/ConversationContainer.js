@@ -16,7 +16,7 @@ const ConnectedCCView = connect(mSTP, mDTP)(CCView);
 import { Route, Redirect } from 'react-router-dom';
 
 const mSTP2 = (state, ownProps) => ({
-  isMember: state.entities.users[state.session.id].conversations.includes(parseFloat(ownProps.match.params.ccId))
+  isMember: state.session.conversations.includes(parseFloat(ownProps.match.params.ccId))
 });
 
 const ProtectedConversation = ({ isMember, path }) => (

@@ -6,7 +6,7 @@ import { RECEIVE_USER } from "../actions/user_actions";
 const receiveMembers = (state, action) => {
   const newState = Object.assign({}, state);
   for (let [id, member] of Object.entries(action.res.users)) {
-    if (!state[id]?.email) newState[id] = member;
+    newState[id] = member;
   }
   return newState;
 }
@@ -15,13 +15,13 @@ const UsersReducer = (state={}, action) => {
   Object.freeze(state);
   switch (action.type) {
     case RECEIVE_CURRENT_USER:
-      return Object.assign({}, state, { [action.currentUser.id]: action.currentUser })
+      return Object.assign({}, state, { [action.currentUser.id]: action.currentUser });
     case RECEIVE_SERVER:
       return receiveMembers(state, action);
     case RECEIVE_CONVERSATION:
       return receiveMembers(state, action);
     case RECEIVE_USER:
-      return Object.assign({}, state, { [action.user.id]: action.user })
+      return Object.assign({}, state, { [action.user.id]: action.user });
     default:
       return state;
   }

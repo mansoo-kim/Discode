@@ -74,7 +74,7 @@ import { updateUser, resetUserErrors } from '../../actions/user_actions';
 
 const mSTP = (state) => ({
   userErrors: state.errors.user,
-  currentUser: state.entities.users[state.session.id]
+  currentUser: state.session
 });
 
 const mDTP = (dispatch) => ({

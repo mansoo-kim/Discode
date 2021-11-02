@@ -50,7 +50,7 @@ import { createServer, resetServerErrors } from '../../actions/server_actions';
 
 const mSTP = (state) => ({
   serverErrors: state.errors.server,
-  currentUser: state.entities.users[state.session.id]
+  currentUser: state.session
 });
 
 const mDTP = (dispatch) => ({

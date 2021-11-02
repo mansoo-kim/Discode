@@ -21,7 +21,7 @@ const CurrentUser = ({ currentUser }) => {
 import { connect } from 'react-redux';
 
 const mSTP = (state) => ({
-  currentUser: state.entities.users[state.session.id]
+  currentUser: state.session.id
 })
 
 export default connect(mSTP)(CurrentUser);
