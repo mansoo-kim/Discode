@@ -5,7 +5,6 @@ const SettingsPage = ({ toggleSettings, subject, type, updateSubject, deleteSubj
   if (!subject) return null;
 
   const { register, formState: { errors, isDirty }, watch, reset, handleSubmit } = useForm({
-    mode: 'onChange',
     shouldFocusError: false,
     defaultValues: { subjectName: subject.name }
   });
@@ -13,12 +12,14 @@ const SettingsPage = ({ toggleSettings, subject, type, updateSubject, deleteSubj
   const [showRed, setShowRed] = useState(false);
   const watchName = watch("subjectName");
 
+  const afterDeletePath = type === "Server" ? '/@me' : `/channels/${subject.serverId}`
+
   const handleDelete = () => {
-    deleteChannel(channel.id)
-    .then(() => {
-      if (history.location.pathname !== `/channels/${subject.serverId}`) history.push(`/channels/${channel.serverId}`)
-    })
-    .then(() => toggleSettings(null))
+    deleteSubject(subject.id)
+      .then(() => {
+        if (history.location.pathname !== afterDeletePath) history.push(afterDeletePath)
+      })
+      .then(() => toggleSettings(null));
   }
 
   const checkThenExit = () => {
@@ -34,7 +35,8 @@ const SettingsPage = ({ toggleSettings, subject, type, updateSubject, deleteSubj
       .then(() => {
         setShowRed(false);
         reset({ subjectName: watchName});
-      })
+      },
+      () => {})
   );
 
   const prompt = (
@@ -50,35 +52,65 @@ const SettingsPage = ({ toggleSettings, subject, type, updateSubject, deleteSubj
     </div>
   )
 
+  const subjectTitleDiv = type === "Server" ? (
+    <div>
+      { watchName }
+    </div>
+  ) : (
+    <div>
+      # { watchName } TEXT CHANNELS
+    </div>
+  )
+
+  const overviewText = type === "Server" ?
+    (<h2>Server Overview</h2>) : (<h2>OVERVIEW</h2>)
+
+  const formInner = type === "Server" ? (
+    <div>
+      <label>SERVER NAME</label>
+      <input type="text" placeholder={subject.name} {...register("subjectName", {
+        required: "This field is required",
+        minLength: {
+          value: 2,
+          message: "Must be between 2 and 100 in length"
+        },
+        maxLength: {
+          value: 100,
+          message: "Must be between 2 and 100 in length"
+        }
+      })} />
+      { errors.subjectName?.message }
+    </div>
+  ) : (
+    <div>
+      <label>CHANNEL NAME</label>
+      <input type="text" placeholder={subject.name} {...register("subjectName", { required: "This field is required" })} />
+      { errors.subjectName?.message }
+    </div>
+  )
+
   return (
     <div className="settings-container">
       <div className="settings-left">
         <div>
-          # { watchName }
+          { subjectTitleDiv }
           <ul>
             <li>
               Overview
             </li>
             <li onClick={handleDelete}>
-              Delete Channel
+              Delete { type }
             </li>
           </ul>
         </div>
       </div>
       <div className="settings-right">
         <div className="settings-pane">
-          <h2>OVERVIEW</h2>
-
+          { overviewText }
           <form onSubmit={handleSubmit(onSubmit)}>
-
-            <div>
-              <label>CHANNEL NAME { errors.subjectName?.message }</label>
-              <input type="text" placeholder={subject.name} {...register("subjectName", { required: "This field is required" })} />
-            </div>
-
-          { isDirty && prompt }
+            { formInner }
+            { isDirty && prompt }
           </form>
-
         </div>
       </div>
 

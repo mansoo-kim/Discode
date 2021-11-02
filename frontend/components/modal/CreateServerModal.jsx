@@ -2,7 +2,7 @@ import { useEffect} from 'react';
 import { useForm } from 'react-hook-form';
 
 const CreateServerModal = ({ serverErrors, currentUser, closeModal, createServer, resetServerErrors, history }) => {
-  const { register, formState: { errors }, handleSubmit } = useForm({
+  const { register, formState: { errors }, setValue, handleSubmit } = useForm({
     mode: 'onChange',
     shouldFocusError: false,
     defaultValues: { serverName: `${currentUser.username}'s server`}
@@ -14,7 +14,7 @@ const CreateServerModal = ({ serverErrors, currentUser, closeModal, createServer
     };
     createServer(server)
       .then(({ res: { server } })=> history.push(`/channels/${server.id}/${server.channels[0]}`))
-      .then(() => closeModal())
+      .then(() => closeModal());
   }
 
   useEffect(() => {

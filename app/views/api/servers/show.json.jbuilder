@@ -11,7 +11,7 @@ json.channels do
   end
 end
 
-json.users do
+json.members do
   @server.members.each do |member|
     json.set! member.id do
       json.partial! 'api/users/user', user: member

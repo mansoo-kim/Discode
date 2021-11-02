@@ -5,7 +5,7 @@ import SettingsPage from '../settings/SettingsPage';
 
 const mSTP = (state, ownProps) => ({
   subject: state.entities.channels[ownProps.channelId],
-  type: "channel"
+  type: "Channel"
 })
 
 const mDTP = (dispatch) => ({

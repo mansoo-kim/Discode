@@ -3,14 +3,13 @@ import { withRouter } from 'react-router-dom';
 import { updateServer, deleteServer } from '../../actions/server_actions';
 import SettingsPage from '../settings/SettingsPage';
 
-const mSTP = (state, ownProps) => ({
-  // channel: state.entities.channels[ownProps.channelId]
-  type: "server"
+const mSTP = () => ({
+  type: "Server"
 })
 
 const mDTP = (dispatch) => ({
-  updateServer: (serverId, server) => dispatch(updateServer(serverId, server)),
-  deleteServer: (serverId) => dispatch(deleteServer(serverId))
+  updateSubject: (serverId, server) => dispatch(updateServer(serverId, server)),
+  deleteSubject: (serverId) => dispatch(deleteServer(serverId))
 });
 
 export default withRouter(connect(mSTP, mDTP)(SettingsPage));
