@@ -1,10 +1,11 @@
-import { RECEIVE_SERVERS, RECEIVE_SERVER } from "../actions/server_actions";
+import { RECEIVE_SERVERS, RECEIVE_SERVER, REMOVE_SERVER } from "../actions/server_actions";
 import { RECEIVE_CHANNEL, REMOVE_CHANNEL } from "../actions/channel_actions";
 import { REMOVE_MEMBERSHIP } from "../actions/membership_actions";
 
 const ServersReducer = (state = {}, action) => {
   Object.freeze(state);
   let server;
+  let newState;
   switch (action.type) {
     case RECEIVE_SERVERS:
       return action.servers;
@@ -20,8 +21,12 @@ const ServersReducer = (state = {}, action) => {
       server.channels.slice(index, 1);
       return Object.assign({}, state, { [server.id]: server });
     case REMOVE_MEMBERSHIP:
-      const newState = Object.assign({}, state);
+      newState = Object.assign({}, state);
       delete newState[action.membership.joinableId]
+      return newState;
+    case REMOVE_SERVER:
+      newState = Object.assign({}, state);
+      delete newState[action.res.server.id];
       return newState;
     default:
       return state;

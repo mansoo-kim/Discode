@@ -26,9 +26,9 @@ export const resetServerErrors = () => ({
   type: RESET_SERVER_ERRORS
 });
 
-export const removeServer = (server) => ({
+export const removeServer = (res) => ({
   type: REMOVE_SERVER,
-  server
+  res
 });
 
 export const requestServers = () => (dispatch) => (
@@ -64,6 +64,6 @@ export const updateServer = (serverId, server) => (dispatch) => (
 export const deleteServer = (serverId) => (dispatch) => (
   ServerApiUtil.deleteServer(serverId)
     .then(
-      (server) => dispatch(receiveServer(server))
+      (server) => dispatch(removeServer(server))
     )
 );
