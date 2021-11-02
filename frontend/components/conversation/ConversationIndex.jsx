@@ -7,7 +7,7 @@ const ConversationIndex = ({ conversations, requestConversations }) => {
   }, [])
 
   return (
-    <div className="conversations-index">
+    <div className="cc-index">
       <ul>
           {conversations.map(conversation => <ConvesrationIndexItem key={conversation.id} conversation={conversation} />)}
       </ul>

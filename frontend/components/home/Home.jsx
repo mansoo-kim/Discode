@@ -5,14 +5,14 @@ import CurrentUser from '../user/CurrentUser';
 
 const Home = () => {
   return (
-    <div className="server-main">
-      <div className="server-nav">
+    <div className="main-view">
+      <div className="cc-index-container">
         <div>
           DIRECT MESSAGES
           <ConversationIndex />
         </div>
-        <CurrentUser />
 
+        <CurrentUser />
       </div>
 
       <Route path='/@me/:ccId' component={ConversationContainer} />

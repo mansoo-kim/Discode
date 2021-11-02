@@ -21,8 +21,8 @@ const Server = ({ server, channels, isOwner, requestServer, match, history }) =>
   ) : null;
 
   return server ? (
-    <div className="server-main">
-      <div className="server-nav">
+    <div className="main-view">
+      <div className="cc-index-container">
         <div>
           <div className="server-name-container">
             <div tabIndex="0" onClick={() => setShowDD(!showDD)} onBlur={() => setShowDD(false)}>
@@ -32,6 +32,7 @@ const Server = ({ server, channels, isOwner, requestServer, match, history }) =>
           </div>
           <ChannelIndex channels={channels} isOwner={isOwner} serverId={server.id} />
         </div>
+
         <CurrentUser />
       </div>
 

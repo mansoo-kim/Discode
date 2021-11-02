@@ -16,7 +16,7 @@ const ChannelIndex = ({ channels, isOwner, serverId, openModal }) => {
   </button>
 
   return (
-    <div className="channel-index">
+    <div className="cc-index">
       TEXT CHANNELS
       { isOwner && newChannelButton }
       <ul>

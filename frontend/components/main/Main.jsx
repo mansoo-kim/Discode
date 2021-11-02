@@ -25,10 +25,10 @@ import { requestUser } from '../../actions/user_actions';
 
 const mSTP = (state) => ({
   currentUser: state.session
-})
+});
 
 const mDTP = (dispatch) => ({
   requestUser: (id) => dispatch(requestUser(id))
-})
+});
 
 export default connect(mSTP, mDTP)(Main);

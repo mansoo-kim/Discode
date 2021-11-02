@@ -12,12 +12,12 @@ html, body {
   display: flex;
 }
 
-.server-main {
+.main-view {
   width: 100%;
   display: flex;
   justify-content: space-between;
 
-  .server-nav {
+  .cc-index-container {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
