@@ -9,13 +9,15 @@
 # Users
 u0 = User.create!(username: "demo", email: "demo@gmail.com", dob: "1999-09-09", password: "password", tag: 4171)
 u1 = User.create!(username: "mansoo", email: "mansoo@gmail.com", dob: "1993-06-09", password: "minnie", tag: 4171)
-u2 = User.create!(username: "semmay", email: "emmay@gmail.com", dob: "1998-01-01", password: "turtle")
-u3 = User.create!(username: "wood", email: "wood@gmail.com", dob: "1997-02-02", password: "shiroo")
-u4 = User.create!(username: "stelluhhh", email: "stelluhhh@gmail.com", dob: "1997-03-03", password: "dabiii")
-u5 = User.create!(username: "8eanie", email: "soybean@gmail.com", dob: "1996-04-04", password: "mickey")
-u6 = User.create!(username: "suzinator", email: "suzi@gmail.com", dob: "1994-05-05", password: "porotyg")
-u7 = User.create!(username: "soheep", email: "soh@gmail.com", dob: "1991-06-06", password: "cometony")
+u2 = User.create!(username: "semmay", email: "emmay@gmail.com", dob: "1998-02-26", password: "squirrel")
+u3 = User.create!(username: "wood", email: "wood@gmail.com", dob: "1997-03-04", password: "shiroo")
+u4 = User.create!(username: "stelluhhh", email: "stelluhhh@gmail.com", dob: "1997-09-13", password: "dabiii")
+u5 = User.create!(username: "8eanie", email: "soybean@gmail.com", dob: "1996-04-08", password: "mickey")
+u6 = User.create!(username: "suzinator", email: "suzi@gmail.com", dob: "1994-07-29", password: "porotyg")
+u7 = User.create!(username: "soheep", email: "soh@gmail.com", dob: "1991-01-14", password: "cometony")
 u8 = User.create!(username: "the beef", email: "beefy@gmail.com", dob: "1996-07-07", password: "immortal")
+u9 = User.create!(username: "arebiter", email: "arebiter@gmail.com", dob: "1996-09-14", password: "bellpedro")
+u10 = User.create!(username: "mothammer", email: "mothammer@gmail.com", dob: "1988-04-22", password: "kimmmm")
 
 # Servers
 s1 = Server.create!(name: "True Study Buddies Come to FL", owner_id: u1.id)
@@ -27,6 +29,8 @@ ms14 = Membership.create!(user_id: u4.id, joinable_id: s1.id, joinable_type: s1.
 ms15 = Membership.create!(user_id: u5.id, joinable_id: s1.id, joinable_type: s1.class.name)
 ms16 = Membership.create!(user_id: u6.id, joinable_id: s1.id, joinable_type: s1.class.name)
 ms17 = Membership.create!(user_id: u7.id, joinable_id: s1.id, joinable_type: s1.class.name)
+ms18 = Membership.create!(user_id: u9.id, joinable_id: s1.id, joinable_type: s1.class.name)
+ms19 = Membership.create!(user_id: u10.id, joinable_id: s1.id, joinable_type: s1.class.name)
 
 s2 = Server.create!(name: "One Brain One Cohort", owner_id: u3.id)
 ms20 = Membership.create!(user_id: u0.id, joinable_id: s2.id, joinable_type: s2.class.name)
@@ -37,6 +41,8 @@ ms24 = Membership.create!(user_id: u4.id, joinable_id: s2.id, joinable_type: s2.
 ms25 = Membership.create!(user_id: u5.id, joinable_id: s2.id, joinable_type: s2.class.name)
 ms26 = Membership.create!(user_id: u6.id, joinable_id: s2.id, joinable_type: s2.class.name)
 ms27 = Membership.create!(user_id: u7.id, joinable_id: s2.id, joinable_type: s2.class.name)
+ms28 = Membership.create!(user_id: u9.id, joinable_id: s2.id, joinable_type: s2.class.name)
+ms29 = Membership.create!(user_id: u10.id, joinable_id: s2.id, joinable_type: s2.class.name)
 
 s3 = Server.create!(name: "LLC Lunch League Crew", owner_id: u5.id)
 ms30 = Membership.create!(user_id: u0.id, joinable_id: s3.id, joinable_type: s3.class.name)

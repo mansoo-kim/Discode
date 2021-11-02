@@ -17,6 +17,7 @@ const ChannelIndex = ({ channels, isOwner, serverId, openModal }) => {
 
   return (
     <div className="channel-index">
+      TEXT CHANNELS
       { isOwner && newChannelButton }
       <ul>
         {channels.map(channel => <ChannelIndexItem key={channel.id} channel={channel} isOwner={isOwner} toggleSettings={toggleSettings} />)}
