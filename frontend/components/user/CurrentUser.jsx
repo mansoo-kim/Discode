@@ -1,12 +1,16 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import UserSettings from './UserSettings';
 
-const CurrentUser = ({ currentUser }) => {
+const CurrentUser = ({ currentUser, requestUser }) => {
   const [showSettings, setShowSettings] = useState(false);
   const toggleSettings = () => (setShowSettings(!showSettings));
 
+  useEffect(() => {
+    requestUser(currentUser.id);
+  }, [])
+
   return (
-    <div>
+    <div className="current-user">
       <div>
         { currentUser.username }
         #{ currentUser.tag }
@@ -19,9 +23,14 @@ const CurrentUser = ({ currentUser }) => {
 }
 
 import { connect } from 'react-redux';
+import { requestUser } from '../../actions/user_actions';
 
 const mSTP = (state) => ({
-  currentUser: state.session.id
+  currentUser: state.session
 })
 
-export default connect(mSTP)(CurrentUser);
+const mDTP = (dispatch) => ({
+  requestUser: (id) => dispatch(requestUser(id))
+})
+
+export default connect(mSTP, mDTP)(CurrentUser);

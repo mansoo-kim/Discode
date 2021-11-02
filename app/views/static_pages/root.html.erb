@@ -1,8 +1,6 @@
 <% if logged_in? %>
   <script>
-    window.currentUser = <%= render(
-      'api/users/user_detailed.json.jbuilder', user: current_user
-    ).html_safe %>
+    window.currentUser = { id: <%= current_user.id %> }
   </script>
 <% end %>
 

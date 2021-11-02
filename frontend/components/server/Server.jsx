@@ -2,7 +2,6 @@ import { useState, useEffect } from 'react';
 import { Route } from 'react-router-dom';
 import ChannelIndex from '../channel/ChannelIndex';
 import ChannelContainer from '../cc/ChannelContainer';
-import CurrentUser from '../user/CurrentUser';
 import ServerOptionsDD from './ServerOptionsDD';
 
 const Server = ({ server, channels, isOwner, requestServer, match }) => {
@@ -28,7 +27,6 @@ const Server = ({ server, channels, isOwner, requestServer, match }) => {
           </div>
           <ChannelIndex channels={channels} isOwner={isOwner} serverId={server.id} />
         </div>
-        <CurrentUser />
       </div>
 
       <Route path={`/channels/:serverId/:ccId?`} component={ChannelContainer} />
@@ -54,16 +52,19 @@ const mDTP = (dispatch) => ({
 const ConnectedServer = connect(mSTP, mDTP)(Server);
 
 const mSTP2 = (state, ownProps) => ({
-    isMember: state.session.servers.includes(parseFloat(ownProps.match.params.serverId))
+    isMember: state.session.servers?.includes(parseFloat(ownProps.match.params.serverId))
 });
 
-const ProtectedServer = ({ isMember, path }) => (
-  <Route
-    path={path}
-    render={props => (
-      isMember ? <ConnectedServer {...props} /> : <Redirect to='/@me' />
-    )}
-  />
-);
+const ProtectedServer = ({ isMember, path }) => {
+  if ( isMember === undefined ) return null;
+  return (
+    <Route
+      path={path}
+      render={props => (
+        isMember ? <ConnectedServer {...props} /> : <Redirect to='/@me' />
+      )}
+    />
+  )
+};
 
 export default connect(mSTP2)(ProtectedServer);
