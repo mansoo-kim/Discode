@@ -1,4 +1,4 @@
-const ServerOptionsDD = ({isOwner, serverId, openModal, setShowDD}) => {
+const ServerOptionsDD = ({isOwner, serverId, setShowDD, currentUserId, openModal, deleteMembership}) => {
 
   const serverSettingsOption = isOwner ? (
     <div>
@@ -21,7 +21,11 @@ const ServerOptionsDD = ({isOwner, serverId, openModal, setShowDD}) => {
   const leaveOption = isOwner ? null : (
     <div>
       <button onMouseDown={(e => e.preventDefault())}
-      onClick={() => null}>
+      onClick={() => deleteMembership({
+        user_id: currentUserId,
+        joinable_id: serverId,
+        joinable_type: "Server"
+      })}>
         Leave Server
       </button>
     </div>
@@ -38,9 +42,15 @@ const ServerOptionsDD = ({isOwner, serverId, openModal, setShowDD}) => {
 
 import { connect } from 'react-redux'
 import { openModal } from '../../actions/modal_actions';
+import { deleteMembership } from '../../actions/membership_actions';
 
-const mDTP = (dispatch) => ({
-  openModal: (modal) => dispatch(openModal(modal))
+const mSTP = (state) => ({
+  currentUserId: state.session.id
 });
 
-export default connect(null, mDTP)(ServerOptionsDD);
+const mDTP = (dispatch) => ({
+  openModal: (modal) => dispatch(openModal(modal)),
+  deleteMembership: (membership) => dispatch(deleteMembership(membership))
+});
+
+export default connect(mSTP, mDTP)(ServerOptionsDD);

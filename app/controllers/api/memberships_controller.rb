@@ -3,8 +3,8 @@ class Api::MembershipsController < ApplicationController
   def destroy
     @membership = Membership.find_by(membership_params)
 
-    if @memberships.destroy
-      render json: ["Succesfully deleted membership"]
+    if @membership.destroy
+      render 'api/memberships/show'
     else
       render json: @memberships.errors, status: 422
     end
