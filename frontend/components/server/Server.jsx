@@ -11,7 +11,6 @@ const Server = ({ server, channels, isOwner, requestServer, match }) => {
   }, [match.params.serverId])
 
   const [ showDD, setShowDD] = useState(false);
-  console.log(showDD);
 
   const serverOptionsDD = showDD ? (
     <ServerOptionsDD isOwner={isOwner} serverId={server.id} setShowDD={setShowDD}/>

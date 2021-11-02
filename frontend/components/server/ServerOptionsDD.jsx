@@ -1,5 +1,14 @@
 const ServerOptionsDD = ({isOwner, serverId, openModal, setShowDD}) => {
 
+  const serverSettingsOption = isOwner ? (
+    <div>
+      <button onMouseDown={(e => e.preventDefault())}
+      onClick={() => null}>
+        Server Settings
+      </button>
+    </div>
+  ) : null;
+
   const newChannelOption = isOwner ? (
     <div>
       <button onMouseDown={(e => e.preventDefault())}
@@ -9,9 +18,20 @@ const ServerOptionsDD = ({isOwner, serverId, openModal, setShowDD}) => {
     </div>
   ) : null;
 
+  const leaveOption = isOwner ? null : (
+    <div>
+      <button onMouseDown={(e => e.preventDefault())}
+      onClick={() => null}>
+        Leave Server
+      </button>
+    </div>
+  )
+
   return (
     <div className="server-options-dd" onClick={() => setShowDD(false)}>
+      { serverSettingsOption }
       { newChannelOption }
+      { leaveOption }
     </div>
   )
 }
