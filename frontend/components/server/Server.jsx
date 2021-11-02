@@ -4,7 +4,7 @@ import ChannelIndex from '../channel/ChannelIndex';
 import ChannelContainer from '../cc/ChannelContainer';
 import ServerOptionsDD from './ServerOptionsDD';
 
-const Server = ({ server, channels, isOwner, requestServer, match }) => {
+const Server = ({ server, channels, isOwner, requestServer, match, history }) => {
   useEffect(() => {
     requestServer(match.params.serverId);
   }, [match.params.serverId])
@@ -12,7 +12,7 @@ const Server = ({ server, channels, isOwner, requestServer, match }) => {
   const [ showDD, setShowDD] = useState(false);
 
   const serverOptionsDD = showDD ? (
-    <ServerOptionsDD isOwner={isOwner} serverId={server.id} setShowDD={setShowDD}/>
+    <ServerOptionsDD isOwner={isOwner} serverId={server.id} setShowDD={setShowDD} history={history} />
   ) : null;
 
   return server ? (

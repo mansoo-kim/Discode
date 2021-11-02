@@ -1,4 +1,4 @@
-const ServerOptionsDD = ({isOwner, serverId, setShowDD, currentUserId, openModal, deleteMembership}) => {
+const ServerOptionsDD = ({isOwner, serverId, setShowDD, currentUserId, openModal, deleteMembership, history}) => {
 
   const serverSettingsOption = isOwner ? (
     <div>
@@ -18,14 +18,19 @@ const ServerOptionsDD = ({isOwner, serverId, setShowDD, currentUserId, openModal
     </div>
   ) : null;
 
+  const handleLeaving = () => {
+    deleteMembership({
+      user_id: currentUserId,
+      joinable_id: serverId,
+      joinable_type: "Server"
+    })
+      .then(() => history.push('/@me'))
+  }
+
   const leaveOption = isOwner ? null : (
     <div>
       <button onMouseDown={(e => e.preventDefault())}
-      onClick={() => deleteMembership({
-        user_id: currentUserId,
-        joinable_id: serverId,
-        joinable_type: "Server"
-      })}>
+      onClick={handleLeaving}>
         Leave Server
       </button>
     </div>
