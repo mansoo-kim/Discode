@@ -82,9 +82,10 @@ const ChannelSettings = ({ toggleSettings, channel, updateChannel, deleteChannel
           </form>
 
         </div>
-        <div className="close-settings">
-          <button onClick={checkThenExit}>X</button>
-        </div>
+      </div>
+
+      <div className="close-settings">
+        <button onClick={checkThenExit}>X</button>
       </div>
     </div>
   )

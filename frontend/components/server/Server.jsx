@@ -13,8 +13,6 @@ const Server = ({ server, channels, isOwner, requestServer, match, history }) =>
   const [showSettings, setShowSettings] = useState(false);
   const toggleSettings = () => (setShowSettings(!showSettings));
 
-  console.log(showSettings);
-
   const [ showDD, setShowDD] = useState(false);
 
   const serverOptionsDD = showDD ? (
@@ -35,7 +33,7 @@ const Server = ({ server, channels, isOwner, requestServer, match, history }) =>
         </div>
       </div>
 
-      { showSettings && <ServerSettings toggleSettings={toggleSettings} />}
+      { showSettings && <ServerSettings toggleSettings={toggleSettings} server={server} />}
 
       <Route path={`/channels/:serverId/:ccId?`} component={ChannelContainer} />
     </div>

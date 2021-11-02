@@ -43,9 +43,10 @@ const UserSettings = ({ currentUser, toggleSettings, logout, openModal }) => {
           </ul>
 
         </div>
-        <div className="close-settings">
-          <button onClick={toggleSettings}>X</button>
-        </div>
+      </div>
+
+      <div className="close-settings">
+        <button onClick={toggleSettings}>X</button>
       </div>
     </div>
   )
