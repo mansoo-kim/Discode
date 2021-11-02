@@ -1,6 +1,6 @@
 import { Route } from 'react-router-dom';
 import ServerIndex from '../server/ServerIndex';
-import Server from '../server/Server';
+import ProtectedServer from '../server/Server';
 import Home from '../home/Home';
 import ModalManager from '../modal/ModalManager';
 
@@ -9,7 +9,8 @@ const Main = () => {
     <div className="main">
       <ServerIndex />
       <Route path='/@me' component={Home} />
-      <Route path='/channels/:serverId' component={Server} />
+      <Route path='/channels/:serverId' component={ProtectedServer} />
+      {/* <ProtectedServer path='/channels/:serverId' /> */}
       <ModalManager />
     </div>
   )

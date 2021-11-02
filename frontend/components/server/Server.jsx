@@ -37,6 +37,7 @@ const Server = ({ server, channels, isOwner, requestServer, match }) => {
 }
 
 import { connect } from 'react-redux';
+import { Redirect } from 'react-router-dom';
 import { requestServer } from '../../actions/server_actions';
 import { selectChannels } from '../../reducers/selectors';
 
@@ -50,4 +51,19 @@ const mDTP = (dispatch) => ({
   requestServer: (serverId) => dispatch(requestServer(serverId))
 });
 
-export default connect(mSTP, mDTP)(Server);
+const ConnectedServer = connect(mSTP, mDTP)(Server);
+
+const mSTP2 = (state, ownProps) => ({
+    isMember: state.entities.users[state.session.id].servers.includes(parseFloat(ownProps.match.params.serverId))
+});
+
+const ProtectedServer = ({ isMember, path }) => (
+  <Route
+    path={path}
+    render={props => (
+      isMember ? <ConnectedServer {...props} /> : <Redirect to='/channels' />
+    )}
+  />
+);
+
+export default connect(mSTP2)(ProtectedServer);

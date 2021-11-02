@@ -5,7 +5,7 @@ class Api::ServersController < ApplicationController
   end
 
   def show
-    @server = Server.includes(:channels).includes(:members).find_by(id: params[:id])
+    @server = current_user.servers.includes(:channels).includes(:members).find_by(id: params[:id])
     render 'api/servers/show'
   end
 
