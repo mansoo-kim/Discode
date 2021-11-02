@@ -11,9 +11,10 @@ const Server = ({ server, channels, isOwner, requestServer, match }) => {
   }, [match.params.serverId])
 
   const [ showDD, setShowDD] = useState(false);
+  console.log(showDD);
 
   const serverOptionsDD = showDD ? (
-    <ServerOptionsDD isOwner={isOwner} />
+    <ServerOptionsDD isOwner={isOwner} serverId={server.id} setShowDD={setShowDD}/>
   ) : null;
 
   return server ? (
@@ -21,7 +22,9 @@ const Server = ({ server, channels, isOwner, requestServer, match }) => {
       <div className="server-nav">
         <div>
           <div className="server-name-container">
-            <div tabIndex="0" onClick={() => setShowDD(!showDD)} onBlur={() => setShowDD(false)}>{ server.name }</div>
+            <div tabIndex="0" onClick={() => setShowDD(!showDD)} onBlur={() => setShowDD(false)}>
+              { server.name }
+            </div>
             { serverOptionsDD }
           </div>
           <ChannelIndex channels={channels} isOwner={isOwner} serverId={server.id} />

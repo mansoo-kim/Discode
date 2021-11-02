@@ -1,16 +1,16 @@
-const ServerOptionsDD = ({isOwner, openModal}) => {
+const ServerOptionsDD = ({isOwner, serverId, openModal, setShowDD}) => {
 
   const newChannelOption = isOwner ? (
     <div>
-      <button onClick={() =>
-        openModal({type: "createChannel", serverId})}>
+      <button onMouseDown={(e => e.preventDefault())}
+      onClick={() => openModal({type: "createChannel", serverId})}>
         Create Channel
       </button>
     </div>
   ) : null;
 
   return (
-    <div className="server-options-dd">
+    <div className="server-options-dd" onClick={() => setShowDD(false)}>
       { newChannelOption }
     </div>
   )
