@@ -16,10 +16,10 @@ const SettingsPage = ({ toggleSettings, subject, type, updateSubject, deleteSubj
 
   const handleDelete = () => {
     deleteSubject(subject.id)
+      .then(() => toggleSettings(null))
       .then(() => {
         if (history.location.pathname !== afterDeletePath) history.push(afterDeletePath)
-      })
-      .then(() => toggleSettings(null));
+      });
   }
 
   const checkThenExit = () => {
