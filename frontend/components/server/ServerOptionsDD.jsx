@@ -1,9 +1,8 @@
-const ServerOptionsDD = ({isOwner, serverId, setShowDD, currentUserId, openModal, deleteMembership, history}) => {
-
+const ServerOptionsDD = ({isOwner, serverId, setShowDD, currentUserId, openModal, deleteMembership, history, toggleSettings}) => {
   const serverSettingsOption = isOwner ? (
     <div>
       <button onMouseDown={(e => e.preventDefault())}
-      onClick={() => null}>
+      onClick={toggleSettings}>
         Server Settings
       </button>
     </div>

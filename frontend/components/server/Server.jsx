@@ -3,16 +3,22 @@ import { Route } from 'react-router-dom';
 import ChannelIndex from '../channel/ChannelIndex';
 import ChannelContainer from '../cc/ChannelContainer';
 import ServerOptionsDD from './ServerOptionsDD';
+import ServerSettings from './ServerSettings';
 
 const Server = ({ server, channels, isOwner, requestServer, match, history }) => {
   useEffect(() => {
     requestServer(match.params.serverId);
   }, [match.params.serverId])
 
+  const [showSettings, setShowSettings] = useState(false);
+  const toggleSettings = () => (setShowSettings(!showSettings));
+
+  console.log(showSettings);
+
   const [ showDD, setShowDD] = useState(false);
 
   const serverOptionsDD = showDD ? (
-    <ServerOptionsDD isOwner={isOwner} serverId={server.id} setShowDD={setShowDD} history={history} />
+    <ServerOptionsDD isOwner={isOwner} serverId={server.id} setShowDD={setShowDD} history={history} toggleSettings={toggleSettings} />
   ) : null;
 
   return server ? (
@@ -28,6 +34,8 @@ const Server = ({ server, channels, isOwner, requestServer, match, history }) =>
           <ChannelIndex channels={channels} isOwner={isOwner} serverId={server.id} />
         </div>
       </div>
+
+      { showSettings && <ServerSettings toggleSettings={toggleSettings} />}
 
       <Route path={`/channels/:serverId/:ccId?`} component={ChannelContainer} />
     </div>
