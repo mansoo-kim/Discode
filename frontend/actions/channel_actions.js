@@ -8,9 +8,9 @@ export const receiveChannel = (channel) => ({
   channel
 });
 
-export const removeChannel = (channelId) => ({
+export const removeChannel = (channel) => ({
   type: REMOVE_CHANNEL,
-  channelId
+  channel
 });
 
 export const createChannel = (serverId, channel) => (dispatch) => (
@@ -30,6 +30,6 @@ export const updateChannel = (channelId, channel) => (dispatch) => (
 export const deleteChannel = (channelId) => (dispatch) => (
   ChannelApiUtil.deleteChannel(channelId)
     .then(
-      (channel) => dispatch(removeChannel(channel.id))
+      (channel) => dispatch(removeChannel(channel))
     )
 );

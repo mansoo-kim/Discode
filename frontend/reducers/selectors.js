@@ -8,4 +8,16 @@ export const selectMembers = (state, type, id) => {
     return members;
   }
   return [];
+};
+
+export const selectChannels = (state, serverId) => {
+  const channelIds = state.entities.servers[serverId]?.channels;
+  if (channelIds) {
+    const channels = [];
+    for (let id of channelIds) {
+      if (state.entities.channels[id]) channels.push(state.entities.channels[id]);
+    }
+    return channels;
+  }
+  return [];
 }

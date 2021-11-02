@@ -38,10 +38,11 @@ const Server = ({ server, channels, isOwner, requestServer, match }) => {
 
 import { connect } from 'react-redux';
 import { requestServer } from '../../actions/server_actions';
+import { selectChannels } from '../../reducers/selectors';
 
 const mSTP = (state, ownProps) => ({
   server: state.entities.servers[ownProps.match.params.serverId],
-  channels: Object.values(state.entities.channels),
+  channels: selectChannels(state, ownProps.match.params.serverId),
   isOwner: state.session.id === state.entities.servers[ownProps.match.params.serverId]?.ownerId
 });
 

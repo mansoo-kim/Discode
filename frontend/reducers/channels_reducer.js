@@ -3,14 +3,19 @@ import { RECEIVE_CHANNEL, REMOVE_CHANNEL } from "../actions/channel_actions";
 
 const ChannelsReducer = (state = {}, action) => {
   Object.freeze(state);
+  let newState;
   switch (action.type) {
     case RECEIVE_SERVER:
-      return action.res.channels;
+      newState = Object.assign({}, state);
+      for (let [id, channel] of Object.entries(action.res.channels)) {
+        newState[id] = channel;
+      }
+      return newState;
     case RECEIVE_CHANNEL:
       return Object.assign({}, state, { [action.channel.id]: action.channel });
     case REMOVE_CHANNEL:
-      const newState = Object.assign({}, state);
-      delete newState[action.channelId];
+      newState = Object.assign({}, state);
+      delete newState[action.channel.id];
       return newState;
     default:
       return state;
