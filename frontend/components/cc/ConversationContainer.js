@@ -11,4 +11,21 @@ const mDTP = (dispatch) => ({
   requestCC: (conversationId) => dispatch(requestConversation(conversationId))
 });
 
-export default connect(mSTP, mDTP)(CCView);
+const ConnectedCCView = connect(mSTP, mDTP)(CCView);
+
+import { Route, Redirect } from 'react-router-dom';
+
+const mSTP2 = (state, ownProps) => ({
+  isMember: state.entities.users[state.session.id].conversations.includes(parseFloat(ownProps.match.params.ccId))
+});
+
+const ProtectedConversation = ({ isMember, path }) => (
+  <Route
+    path={path}
+    render={props => (
+      isMember ? <ConnectedCCView {...props} /> : <Redirect to='/@me' />
+    )}
+  />
+);
+
+export default connect(mSTP2)(ProtectedConversation);

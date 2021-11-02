@@ -61,7 +61,7 @@ const ProtectedServer = ({ isMember, path }) => (
   <Route
     path={path}
     render={props => (
-      isMember ? <ConnectedServer {...props} /> : <Redirect to='/channels' />
+      isMember ? <ConnectedServer {...props} /> : <Redirect to='/@me' />
     )}
   />
 );
