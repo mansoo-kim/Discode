@@ -1,7 +1,9 @@
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 
-const ChannelSettings = ({ toggleSettings, channel, updateChannel }) => {
+const ChannelSettings = ({ toggleSettings, channel, updateChannel, deleteChannel, history }) => {
+  if (!channel) return null;
+
   const { register, formState: { errors, isDirty }, watch, reset, handleSubmit } = useForm({
     mode: 'onChange',
     shouldFocusError: false,
@@ -10,6 +12,14 @@ const ChannelSettings = ({ toggleSettings, channel, updateChannel }) => {
 
   const [showRed, setShowRed] = useState(false);
   const watchName = watch("channelName");
+
+  const handleDelete = () => {
+    deleteChannel(channel.id)
+      .then(() => toggleSettings(null))
+      .then(() => {
+        history.push(`/channels/${channel.serverId}`)
+      })
+  }
 
   const checkThenExit = () => {
     if (isDirty) {
@@ -49,7 +59,7 @@ const ChannelSettings = ({ toggleSettings, channel, updateChannel }) => {
             <li>
               Overview
             </li>
-            <li>
+            <li onClick={handleDelete}>
               Delete Channel
             </li>
           </ul>
@@ -79,14 +89,16 @@ const ChannelSettings = ({ toggleSettings, channel, updateChannel }) => {
 }
 
 import { connect } from 'react-redux';
-import { updateChannel } from '../../actions/channel_actions';
+import { withRouter } from 'react-router-dom';
+import { updateChannel, deleteChannel } from '../../actions/channel_actions';
 
 const mSTP = (state, ownProps) => ({
   channel: state.entities.channels[ownProps.channelId]
 })
 
 const mDTP = (dispatch) => ({
-  updateChannel: (channelId, channel) => dispatch(updateChannel(channelId, channel))
+  updateChannel: (channelId, channel) => dispatch(updateChannel(channelId, channel)),
+  deleteChannel: (channelId) => dispatch(deleteChannel(channelId))
 });
 
-export default connect(mSTP, mDTP)(ChannelSettings);
+export default withRouter(connect(mSTP, mDTP)(ChannelSettings));
