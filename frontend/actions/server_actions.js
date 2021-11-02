@@ -3,7 +3,8 @@ import * as ServerApiUtil from "../utils/server_api_utils";
 export const RECEIVE_SERVERS = 'RECEIVE_SERVERS';
 export const RECEIVE_SERVER = 'RECEIVE_SERVER';
 export const RECEIVE_SERVER_ERRORS = 'RECEIVE_SERVER_ERRORS';
-export const RESET_SERVER_ERRORS = "RESET_SERVER_ERRORS"
+export const RESET_SERVER_ERRORS = 'RESET_SERVER_ERRORS';
+export const REMOVE_SERVER = 'REMOVE_SERVER';
 
 
 export const receiveServers = (servers) => ({
@@ -23,6 +24,11 @@ export const receiveServerErrors = (errors) => ({
 
 export const resetServerErrors = () => ({
   type: RESET_SERVER_ERRORS
+});
+
+export const removeServer = (server) => ({
+  type: REMOVE_SERVER,
+  server
 });
 
 export const requestServers = () => (dispatch) => (
@@ -52,5 +58,12 @@ export const updateServer = (serverId, server) => (dispatch) => (
     .then(
       (server) => dispatch(receiveServer(server)),
       (res) => dispatch(receiveServerErrors(res.responseJSON))
+    )
+);
+
+export const deleteServer = (serverId) => (dispatch) => (
+  ServerApiUtil.deleteServer(serverId)
+    .then(
+      (server) => dispatch(receiveServer(server))
     )
 );

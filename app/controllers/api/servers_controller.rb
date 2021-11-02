@@ -31,6 +31,16 @@ class Api::ServersController < ApplicationController
     end
   end
 
+  def destroy
+    @server = Server.find_by(id: params[:id])
+
+    if @server.destroy
+      render 'api/servers/show'
+    else
+      render json: @server.errors, status: 422
+    end
+  end
+
   def server_params
     params.require(:server).permit(:name)
   end

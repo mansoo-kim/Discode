@@ -17,10 +17,10 @@ const ChannelSettings = ({ toggleSettings, channel, updateChannel, deleteChannel
 
   const handleDelete = () => {
     deleteChannel(channel.id)
-      .then(() => toggleSettings(null))
-      .then(() => {
-        if (history.location.pathname !== `/channels/${channel.serverId}`) history.push(`/channels/${channel.serverId}`)
-      })
+    .then(() => {
+      if (history.location.pathname !== `/channels/${channel.serverId}`) history.push(`/channels/${channel.serverId}`)
+    })
+    .then(() => toggleSettings(null))
   }
 
   const checkThenExit = () => {
