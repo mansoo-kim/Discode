@@ -10,6 +10,8 @@ const ChannelSettings = ({ toggleSettings, channel, updateChannel, deleteChannel
     defaultValues: { channelName: channel.name }
   });
 
+  console.log(history);
+
   const [showRed, setShowRed] = useState(false);
   const watchName = watch("channelName");
 
@@ -17,7 +19,7 @@ const ChannelSettings = ({ toggleSettings, channel, updateChannel, deleteChannel
     deleteChannel(channel.id)
       .then(() => toggleSettings(null))
       .then(() => {
-        history.push(`/channels/${channel.serverId}`)
+        if (history.location.pathname !== `/channels/${channel.serverId}`) history.push(`/channels/${channel.serverId}`)
       })
   }
 
