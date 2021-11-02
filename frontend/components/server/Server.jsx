@@ -33,7 +33,7 @@ const Server = ({ server, channels, isOwner, requestServer, match, history }) =>
         </div>
       </div>
 
-      { showSettings && <ServerSettings toggleSettings={toggleSettings} server={server} />}
+      { showSettings && <ServerSettings toggleSettings={toggleSettings} subject={server} />}
 
       <Route path={`/channels/:serverId/:ccId?`} component={ChannelContainer} />
     </div>

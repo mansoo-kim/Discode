@@ -6,7 +6,6 @@ import { RECEIVE_USER } from "../actions/user_actions";
 const receiveMembers = (state, action) => {
   const newState = Object.assign({}, state);
   for (let [id, member] of Object.entries(action.res.users)) {
-    // if ()
     newState[id] = member;
   }
   return newState;
