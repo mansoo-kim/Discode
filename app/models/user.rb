@@ -23,7 +23,7 @@ class User < ApplicationRecord
 
   before_validation :ensure_session_token, :ensure_unique_tag
 
-  has_one_attached :icon
+  has_one_attached :pfp
 
   has_many :messages,
     foreign_key: :sender_id

@@ -54,6 +54,7 @@ end
 
 gem 'bcrypt'
 gem 'jquery-rails'
+gem "aws-sdk-s3"
 
 group :test do
   # Adds support for Capybara system testing and selenium driver
