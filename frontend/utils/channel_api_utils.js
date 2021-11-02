@@ -13,3 +13,10 @@ export const updateChannel = (channelId, channel) => (
     data: { channel }
   })
 );
+
+export const deleteChannel = (channelId) => (
+  $.ajax({
+    url: `/api/channels/${channelId}`,
+    method: 'DELETE'
+  })
+);

@@ -19,6 +19,16 @@ class Api::ChannelsController < ApplicationController
     end
   end
 
+  def destroy
+    @channel = Channel.find_by(id: params[:id])
+
+    if @channel.destroy
+      render 'api/channels/show'
+    else
+      render json: @channel.errors, status: 422
+    end
+  end
+
   def channel_params
     params.require(:channel).permit(:name)
   end
