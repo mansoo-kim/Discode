@@ -12,7 +12,7 @@ const ChatRoom = ({}) => {
         received: data => {
           switch(data.type) {
             case "message":
-              setMessages(messages.concat(data.message));
+              setMessages(old => [...old, data.message]);
               break;
             case "messages":
               setMessages(data.messages);
