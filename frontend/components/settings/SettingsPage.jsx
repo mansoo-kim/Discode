@@ -96,7 +96,7 @@ const SettingsPage = ({ toggleSettings, subject, type, updateSubject, deleteSubj
 
   const iconEditDiv = type === "Server" ? (
     <div>
-      <ServerIcon server={subject} />
+      <ServerIcon name={subject.name} iconUrl={imgSrc} />
       <input type="file" onChange={onFileChange} />
       { preview }
     </div>

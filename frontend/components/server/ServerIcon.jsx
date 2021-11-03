@@ -1,10 +1,10 @@
-const ServerIcon = ({ server }) => {
+const ServerIcon = ({ name, iconUrl }) => {
 
-  const abbreviation = server.name.split(" ").map(word => word[0]).join('');
-  const img = <img src={server.iconUrl} className="server-icon" />
+  const abbreviation = name.split(" ").map(word => word[0]).join('');
+  const img = <img src={iconUrl} className="server-icon" />
   return (
     <div className="default-server-icon">
-      { server.iconUrl ? img : abbreviation }
+      { iconUrl ? img : abbreviation }
     </div>
   )
 }
