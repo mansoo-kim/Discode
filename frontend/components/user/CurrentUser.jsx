@@ -5,10 +5,12 @@ const CurrentUser = ({ currentUser }) => {
   const [showSettings, setShowSettings] = useState(false);
   const toggleSettings = () => (setShowSettings(!showSettings));
 
+  const imgSrc = currentUser.pfpUrl || 'https://raw.githubusercontent.com/mansookim/Discode/main/app/assets/images/icon_clyde_white_RGB.png'
+
   return (
     <div className="current-user">
       <div>
-        <img src={currentUser.pfpUrl} className="pfp" />
+        <img src={imgSrc} className="pfp" />
         { currentUser.username }
         #{ currentUser.tag }
       </div>

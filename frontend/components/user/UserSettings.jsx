@@ -65,8 +65,8 @@ const UserSettings = ({ currentUser, toggleSettings, logout, openModal, updateUs
     }
   }
 
-  const imgSrc = removePfp ? "" : imgUrl || currentUser.pfpUrl
-  const preview = imgSrc ? <img src={imgSrc} className="server-icon" /> : null;
+  const imgSrc = removePfp ? "" : imgUrl || currentUser.pfpUrl || 'https://raw.githubusercontent.com/mansookim/Discode/main/app/assets/images/icon_clyde_white_RGB.png'
+  const preview = imgSrc ? <img src={imgSrc} className="pfp" /> : null;
 
   return (
     <div className="settings-container">
