@@ -22,16 +22,14 @@ const EditUserModal = ({ type, userErrors, currentUser, closeModal, updateUser, 
   }
 
   const onSubmit = (data) => {
-    const user = type === 'username' ? {
-      username: data.username,
-      password: data.password,
-      email: currentUser.email
-    } : {
-      username: currentUser.username,
-      password: data.password,
-      email: data.email
+    const formData = new FormData();
+    formData.append("user[password]", data.password);
+    if (type === "username" ) {
+      formData.append("user[username]", data.username);
+    } else {
+      formData.append("user[email]", data.email);
     }
-    updateUser(currentUser.id, {user})
+    updateUser(currentUser.id, formData)
       .then(
         () => closeModal())
   }
