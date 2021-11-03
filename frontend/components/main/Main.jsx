@@ -17,7 +17,7 @@ const Main = ({ currentUser, requestUser}) => {
       <Switch>
         <Route path='/channels/:serverId?' component={ProtectedServer} />
         <Route path='/@me' component={Home} />
-        <Redirect to='/' />
+        <Redirect to='/@me' />
       </Switch>
     </div>
   )

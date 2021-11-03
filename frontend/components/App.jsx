@@ -9,8 +9,8 @@ const App = () => {
   return (
     <Switch>
       <Route exact path='/' component={Splash} />
-      <AuthRoute path='/register' component={RegisterFormContainer} />
-      <AuthRoute path='/login' component={LoginFormContainer} />
+      <AuthRoute exact path='/register' component={RegisterFormContainer} />
+      <AuthRoute exact path='/login' component={LoginFormContainer} />
       <ProtectedRoute path='/' component={Main} />
     </Switch>
   )

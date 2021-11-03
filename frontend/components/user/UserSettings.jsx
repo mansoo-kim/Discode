@@ -15,7 +15,8 @@ const UserSettings = ({ currentUser, toggleSettings, logout, openModal, updateUs
     }
   }
 
-  const handleSubmit = () => {
+  const handleSubmit = (e) => {
+    e.preventDefault();
     const formData = new FormData();
     if (imgFile) formData.append("user[pfp]", imgFile);
     updateUser(currentUser.id, formData)
@@ -29,7 +30,7 @@ const UserSettings = ({ currentUser, toggleSettings, logout, openModal, updateUs
   const prompt = (
     <div className={`save-prompt ${ showRed ? 'error-input' : ''}`}>
       Careful - you have unsaved changes!
-      <button onClick={() => {
+      <button type="button" onClick={() => {
         setShowRed(false);
         setImgUrl("");
         fileRef.current.value = "";
@@ -78,7 +79,8 @@ const UserSettings = ({ currentUser, toggleSettings, logout, openModal, updateUs
           <form>
             <div>
               <input type="file" onChange={onFileChange} ref={fileRef} />
-              <button>Remove Avatar</button>
+              <button type="button">Remove Avatar</button>
+              { (imgUrl) && prompt }
             </div>
           </form>
           <ul>
@@ -86,7 +88,6 @@ const UserSettings = ({ currentUser, toggleSettings, logout, openModal, updateUs
               <div>
                 <div>USERNAME</div>
                 <div>{ currentUser.username }#{ currentUser.tag }</div>
-                { (imgUrl) && prompt }
               </div>
               <button onClick={() =>
                 openModal({type: "editUser", property: "username"})}>
