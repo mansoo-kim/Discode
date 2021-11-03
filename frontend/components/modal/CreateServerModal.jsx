@@ -1,25 +1,38 @@
-import { useEffect} from 'react';
+import { useState, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 
 const CreateServerModal = ({ serverErrors, currentUser, closeModal, createServer, resetServerErrors, history }) => {
-  const { register, formState: { errors }, setValue, handleSubmit } = useForm({
+  const { register, formState: { errors }, handleSubmit } = useForm({
     mode: 'onChange',
     shouldFocusError: false,
     defaultValues: { serverName: `${currentUser.username}'s server`}
   });
 
+  useEffect(() => {
+    return () => resetServerErrors();
+  }, [])
+
   const onSubmit = (data) => {
-    const server = {
-      name: data.serverName
-    };
-    createServer(server)
+    const formData = new FormData();
+    formData.append("server[name]", data.serverName);
+    if (data.iconFile) formData.append("server[icon]", data.iconFile[0]);
+    createServer(formData)
       .then(({ res: { server } })=> history.push(`/channels/${server.id}/${server.channels[0]}`))
       .then(() => closeModal());
   }
 
-  useEffect(() => {
-    return () => resetServerErrors();
-  }, [])
+  const [imgUrl, setImgUrl] = useState("");
+
+  const onFileChange = (e) => {
+    const file = e.currentTarget.files[0];
+    const fileReader = new FileReader();
+    fileReader.onloadend = () => setImgUrl(fileReader.result);
+    if (file) {
+      fileReader.readAsDataURL(file);
+    }
+  }
+
+  const preview = imgUrl ? <img src={imgUrl} className="server-icon" /> : null;
 
   return (
     <div className="modal">
@@ -28,6 +41,11 @@ const CreateServerModal = ({ serverErrors, currentUser, closeModal, createServer
       <form onSubmit={handleSubmit(onSubmit)}>
         <h2>Customize your server</h2>
         <p>Give your new server a personality with a name and an icon. You can always change it later.</p>
+
+        <div>
+          <input type="file" {...register("iconFile")} onChange={onFileChange} />
+          { preview }
+        </div>
 
         <div>
           <label>SERVER NAME { serverErrors.name }</label>
