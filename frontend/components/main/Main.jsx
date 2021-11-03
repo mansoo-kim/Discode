@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { Route } from 'react-router-dom';
+import { Route, Switch, Redirect } from 'react-router-dom';
 import ServerIndex from '../server/ServerIndex';
 import ProtectedServer from '../server/Server';
 import Home from '../home/Home';
@@ -14,8 +14,11 @@ const Main = ({ currentUser, requestUser}) => {
     <div className="main">
       <ModalManager />
       <ServerIndex />
-      <Route path='/channels/:serverId' component={ProtectedServer} />
-      <Route path='/@me' component={Home} />
+      <Switch>
+        <Route path='/channels/:serverId?' component={ProtectedServer} />
+        <Route path='/@me' component={Home} />
+        <Redirect to='/' />
+      </Switch>
     </div>
   )
 }
