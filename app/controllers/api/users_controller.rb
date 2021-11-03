@@ -22,8 +22,10 @@ class Api::UsersController < ApplicationController
 
   def update
     @user = User.find_by(id: params[:id])
-    if @user.is_password?(user_params[:password])
-      if @user.update(username: user_params[:username], email: user_params[:email])
+
+    if user_params[:pfp] || @user.is_password?(user_params[:password])
+      # if @user.update(username: user_params[:username], email: user_params[:email])
+      if @user.update(user_params)
         render 'api/users/show'
       else
         render json: @user.errors, status: 422
@@ -34,7 +36,7 @@ class Api::UsersController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit(:username, :password, :email, :dob)
+    params.require(:user).permit(:username, :password, :email, :dob, :pfp)
   end
 
 end

@@ -31,7 +31,7 @@ const EditUserModal = ({ type, userErrors, currentUser, closeModal, updateUser, 
       password: data.password,
       email: data.email
     }
-    updateUser(currentUser.id, user)
+    updateUser(currentUser.id, {user})
       .then(
         () => closeModal())
   }
