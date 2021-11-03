@@ -43,6 +43,8 @@ const SettingsPage = ({ toggleSettings, subject, type, updateSubject, deleteSubj
     updateSubject(subject.id, formData)
       .then(() => {
         setShowRed(false);
+        setImgUrl("");
+        setImgFile(null);
         reset({ subjectName: watchName});
       },
       () => {})
@@ -54,6 +56,7 @@ const SettingsPage = ({ toggleSettings, subject, type, updateSubject, deleteSubj
       <button onClick={() => {
         setShowRed(false);
         setImgUrl("");
+        setImgFile(null);
         reset();
       }}>
         Reset
