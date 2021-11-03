@@ -47,7 +47,7 @@ const ChatRoom = ({}) => {
     <div className="chatroom-container">
       <div>ChatRoom</div>
       <button className="load-button"
-        onClick={this.loadChat.bind(this)}>
+        onClick={loadChat}>
         Load Chat History
       </button>
       <div className="message-list">{messageList}</div>
