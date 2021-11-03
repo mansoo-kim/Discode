@@ -8,6 +8,7 @@ const CurrentUser = ({ currentUser }) => {
   return (
     <div className="current-user">
       <div>
+        <img src={currentUser.pfpUrl} className="pfp" />
         { currentUser.username }
         #{ currentUser.tag }
       </div>

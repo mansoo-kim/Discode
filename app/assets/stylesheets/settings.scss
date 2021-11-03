@@ -7,7 +7,7 @@
     top: 0;
     width: 35%;
     height: 100%;
-    background: white;
+    background: $black;
 
     display: flex;
     justify-content: flex-end;
@@ -19,7 +19,7 @@
     top: 0;
     width: 65%;
     height: 100%;
-    background: white;
+    background: $black;
 
     .settings-pane {
       width: 59%;
