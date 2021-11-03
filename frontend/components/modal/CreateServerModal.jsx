@@ -15,7 +15,7 @@ const CreateServerModal = ({ serverErrors, currentUser, closeModal, createServer
   const onSubmit = (data) => {
     const formData = new FormData();
     formData.append("server[name]", data.serverName);
-    if (data.iconFile) formData.append("server[icon]", data.iconFile[0]);
+    if (data.iconFile[0]) formData.append("server[icon]", data.iconFile[0]);
     createServer(formData)
       .then(({ res: { server } })=> history.push(`/channels/${server.id}/${server.channels[0]}`))
       .then(() => closeModal());
