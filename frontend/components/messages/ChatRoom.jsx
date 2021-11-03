@@ -1,44 +1,33 @@
 import { useState, useEffect, useRef } from 'react';
 import MessageForm from './MessageForm';
 
-const ChatRoom = ({}) => {
+const ChatRoom = ({type, cc}) => {
+  console.log(cc);
   const [messages, setMessages] = useState([]);
-  const bottomRef = useRef();
+  const [chat, setChat] = useState(null);
 
   useEffect(() => {
-    App.cable.subscriptions.create(
-      { channel: "ChatChannel" },
+    setChat(App.cable.subscriptions.create(
+      { channel: "ChatChannel", type: type, id: cc.id },
       {
-        received: data => {
-          switch(data.type) {
-            case "message":
-              setMessages(old => [...old, data.message]);
-              break;
-            case "messages":
-              setMessages(data.messages);
-              break;
-          }
-        },
-        speak: function(data) { return this.perform("speak", data) },
-        load: function() { return this.perform("load") }
-      },
-    );
-  }, []);
+        received: (data) => setMessages(oldMessages => [...oldMessages, data])
+      }
+    ))
+  }, [cc.id]);
 
   // useEffect(() => {
   //   bottomRef.current.scrollIntoView();
   // })
 
-  const loadChat = (e) => {
-    e.preventDefault();
-    App.cable.subscriptions.subscriptions[0].load();
-  }
+  // const loadChat = (e) => {
+  //   e.preventDefault();
+  //   App.cable.subscriptions.subscriptions[0].load();
+  // }
 
   const messageList = messages.map(message => {
     return (
       <li key={message.id}>
         {message.body}
-        <div ref={bottomRef} />
       </li>
     )
   });
@@ -46,12 +35,8 @@ const ChatRoom = ({}) => {
   return (
     <div className="chatroom-container">
       <div>ChatRoom</div>
-      <button className="load-button"
-        onClick={loadChat}>
-        Load Chat History
-      </button>
       <div className="message-list">{messageList}</div>
-      <MessageForm />
+      <MessageForm type={type} id={cc.id} chat={chat.current} />
     </div>
   )
 }

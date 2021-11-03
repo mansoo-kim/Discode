@@ -1,21 +1,26 @@
 class ChatChannel < ApplicationCable::Channel
   def subscribed
-    stream_for 'chat_channel'
+    if (params[:type] == "channel")
+      @chat = Channel.find_by(id: params[:id])
+    else
+      @chat = Conversation.find_by(id: params[:id])
+    end
+
+    stream_for @chat
   end
 
-  def speak(data)
-    message = Message.new(data["message"])
+  def receive(data)
+    message = Message.new(data)
     if message.save
-      socket = { message: message, type: 'message' }
-      ChatChannel.broadcast_to('chat_channel', socket)
+      ChatChannel.broadcast_to(@chat, message)
     end
   end
 
-  def load
-    messages = Message.all
-    socket = { messages: messages, type: 'messages' }
-    ChatChannel.broadcast_to('chat_channel', socket)
-  end
+  # def load
+  #   messages = Message.all
+  #   socket = { messages: messages, type: 'messages' }
+  #   ChatChannel.broadcast_to('chat_channel', socket)
+  # end
 
   def unsubscribed
   end

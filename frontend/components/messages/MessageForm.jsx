@@ -1,18 +1,18 @@
 import { useState } from 'react';
 
-const MessageForm = ({ currentUser }) => {
+const MessageForm = ({ currentUserId, type, id, chat }) => {
   const [body, setBody] = useState("");
 
   const update = (e) => setBody(e.currentTarget.value);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    App.cable.subscriptions.subscriptions[0].speak(
-      { message : {
+    chat.send(
+      {
         body: body,
-        sender_id: currentUser.id,
-        messageable_type: "Conversation",
-        messageable_id: 1 }
+        sender_id: currentUserId,
+        messageable_type: type,
+        messageable_id: id
       }
     );
     setBody("");
@@ -25,9 +25,9 @@ const MessageForm = ({ currentUser }) => {
           type="text"
           value={body}
           onChange={update}
-          placeholder="Type message here"
+          placeholder="Message"
         />
-        <input type="submit" />
+        <button>Submit</button>
       </form>
     </div>
   )
@@ -36,7 +36,7 @@ const MessageForm = ({ currentUser }) => {
 import { connect } from 'react-redux';
 
 const mSTP = (state) => ({
-  currentUser: state.session
+  currentUserId: state.session.id
 })
 
 export default connect(mSTP)(MessageForm);

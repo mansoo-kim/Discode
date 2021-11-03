@@ -4,7 +4,7 @@ import { requestConversation } from '../../actions/conversation_actions';
 
 const mSTP = (state, ownProps) => ({
   cc: state.entities.conversations[ownProps.match.params.ccId],
-  type: 'conversation'
+  type: 'Conversation'
 });
 
 const mDTP = (dispatch) => ({

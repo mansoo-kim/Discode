@@ -6,7 +6,7 @@ const mSTP = (state, ownProps) => {
 
   return {
     cc: state.entities.channels[channelId],
-    type: 'channel'
+    type: 'Channel'
   };
 };
 
