@@ -4,6 +4,7 @@ const UserSettings = ({ currentUser, toggleSettings, logout, openModal, updateUs
   const [showRed, setShowRed] = useState(false);
   const [imgUrl, setImgUrl] = useState("");
   const [imgFile, setImgFile] = useState(null);
+  const [removePfp, setRemovePfp] = useState(false);
 
   const fileRef = useRef();
 
@@ -15,14 +16,23 @@ const UserSettings = ({ currentUser, toggleSettings, logout, openModal, updateUs
     }
   }
 
+  const handleRemove = () => {
+    setRemovePfp(true);
+    setImgUrl("");
+    setImgFile(null);
+  }
+
   const handleSubmit = (e) => {
     e.preventDefault();
     const formData = new FormData();
     if (imgFile) formData.append("user[pfp]", imgFile);
+    if (removePfp) formData.append("user[remove_pfp]", removePfp);
     updateUser(currentUser.id, formData)
       .then(() => {
         setShowRed(false);
+        setRemovePfp(false);
         setImgUrl("");
+        setImgFile(null);
         fileRef.current.value = "";
       });
   }
@@ -32,7 +42,9 @@ const UserSettings = ({ currentUser, toggleSettings, logout, openModal, updateUs
       Careful - you have unsaved changes!
       <button type="button" onClick={() => {
         setShowRed(false);
+        setRemovePfp(false);
         setImgUrl("");
+        setImgFile(null);
         fileRef.current.value = "";
       }}>
         Reset
@@ -53,7 +65,7 @@ const UserSettings = ({ currentUser, toggleSettings, logout, openModal, updateUs
     }
   }
 
-  const imgSrc = imgUrl || currentUser.pfpUrl
+  const imgSrc = removePfp ? "" : imgUrl || currentUser.pfpUrl
   const preview = imgSrc ? <img src={imgSrc} className="server-icon" /> : null;
 
   return (
@@ -79,8 +91,8 @@ const UserSettings = ({ currentUser, toggleSettings, logout, openModal, updateUs
           <form>
             <div>
               <input type="file" onChange={onFileChange} ref={fileRef} />
-              <button type="button">Remove Avatar</button>
-              { (imgUrl) && prompt }
+              <button type="button" onClick={handleRemove}>Remove Avatar</button>
+              { (imgUrl || removePfp)  && prompt }
             </div>
           </form>
           <ul>

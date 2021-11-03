@@ -23,9 +23,13 @@ class Api::UsersController < ApplicationController
   def update
     @user = User.find_by(id: params[:id])
 
-    if user_params[:pfp] || @user.is_password?(user_params[:password])
+    if user_params[:pfp] || user_params[:remove_pfp] || @user.is_password?(user_params[:password])
       # if @user.update(username: user_params[:username], email: user_params[:email])
-      if @user.update(user_params)
+      if user_params[:remove_pfp]
+        pfp = open('https://discode-seeds.s3.us-east-2.amazonaws.com/icon_clyde_white_RGB.png')
+        @user.pfp.attach(io: pfp, filename: "icon_clyde_white_RGB.png")
+        render 'api/users/show'
+      elsif @user.update(user_params)
         render 'api/users/show'
       else
         render json: @user.errors, status: 422
@@ -36,7 +40,7 @@ class Api::UsersController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit(:username, :password, :email, :dob, :pfp)
+    params.require(:user).permit(:username, :password, :email, :dob, :pfp, :remove_pfp)
   end
 
 end
