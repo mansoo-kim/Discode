@@ -30,20 +30,30 @@ const SettingsPage = ({ toggleSettings, subject, type, updateSubject, deleteSubj
     }
   }
 
-  const onSubmit = (data) => (
-    updateSubject(subject.id, { name: data.subjectName})
+  const onSubmit = (data) => {
+    let formData;
+    if (type === "Server") {
+      formData = new FormData();
+      formData.append("server[name]", data.subjectName);
+      if (data.iconFile[0]) formData.append("server[icon]", data.iconFile[0]);
+    } else {
+      formData = { name: data.subjectName};
+    }
+
+    updateSubject(subject.id, formData)
       .then(() => {
         setShowRed(false);
         reset({ subjectName: watchName});
       },
       () => {})
-  );
+  };
 
   const prompt = (
     <div className={`save-prompt ${ showRed ? 'error-input' : ''}`}>
       Careful - you have unsaved changes!
       <button onClick={() => {
         setShowRed(false);
+        setImgUrl("");
         reset();
       }}>
         Reset
@@ -61,6 +71,27 @@ const SettingsPage = ({ toggleSettings, subject, type, updateSubject, deleteSubj
       # { watchName } TEXT CHANNELS
     </div>
   )
+
+  const [imgUrl, setImgUrl] = useState("");
+
+  const onFileChange = (e) => {
+    const file = e.currentTarget.files[0];
+    const fileReader = new FileReader();
+    fileReader.onloadend = () => setImgUrl(fileReader.result);
+    if (file) {
+      fileReader.readAsDataURL(file);
+    }
+  }
+
+  const imgSrc = imgUrl || subject.iconUrl
+  const preview = imgSrc ? <img src={imgSrc} className="server-icon" /> : null;
+
+  const iconEditDiv = type === "Server" ? (
+    <div>
+      <input type="file" {...register("iconFile")} onChange={onFileChange} />
+      { preview }
+    </div>
+  ) : null;
 
   const overviewText = type === "Server" ?
     (<h2>Server Overview</h2>) : (<h2>OVERVIEW</h2>)
@@ -108,6 +139,7 @@ const SettingsPage = ({ toggleSettings, subject, type, updateSubject, deleteSubj
         <div className="settings-pane">
           { overviewText }
           <form onSubmit={handleSubmit(onSubmit)}>
+            { iconEditDiv }
             { formInner }
             { isDirty && prompt }
           </form>

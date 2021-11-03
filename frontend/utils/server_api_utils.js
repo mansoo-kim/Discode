@@ -26,7 +26,9 @@ export const updateServer = (serverId, server) => (
   $.ajax({
     url: `/api/servers/${serverId}`,
     method: 'PATCH',
-    data: { server }
+    data: server,
+    contentType: false,
+    processData: false
   })
 );
 
