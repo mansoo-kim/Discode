@@ -92,7 +92,7 @@ const UserSettings = ({ currentUser, toggleSettings, logout, openModal, updateUs
           <form>
             <div>
               <input type="file" onChange={onFileChange} ref={fileRef} />
-              { currentUser.pfpUrl && <button type="button" onClick={handleRemove}>Remove Avatar</button> }
+              { currentUser.pfpUrl && <button type="button" onClick={handleRemove}>Remove</button> }
               { (imgUrl || removePfp)  && prompt }
             </div>
           </form>

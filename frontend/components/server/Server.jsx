@@ -20,8 +20,6 @@ const Server = ({ server, channels, isOwner, requestServer, match, history }) =>
     <ServerOptionsDD isOwner={isOwner} serverId={server.id} setShowDD={setShowDD} history={history} toggleSettings={toggleSettings} />
   ) : null;
 
-  console.log(showSettings);
-
   return server ? (
     <div className="main-view">
       <div className="cc-index-container">

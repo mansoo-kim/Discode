@@ -13,6 +13,9 @@ const ServerSettings = ({ toggleSettings, server, updateServer, deleteServer, hi
   const [showRed, setShowRed] = useState(false);
   const watchName = watch("serverName");
 
+  const [imgUrl, setImgUrl] = useState("");
+  const [imgFile, setImgFile] = useState(null);
+  const [removeIcon, setRemoveIcon] = useState(false);
 
   const handleDelete = () => {
     deleteServer(server.id)
@@ -23,10 +26,18 @@ const ServerSettings = ({ toggleSettings, server, updateServer, deleteServer, hi
   }
 
   const checkThenExit = () => {
-    if (isDirty || imgUrl) {
+    if (isDirty || imgUrl || removeIcon) {
       setShowRed(true);
     } else {
       toggleSettings(null);
+    }
+  }
+
+  const handleRemove = () => {
+    if (server.iconUrl) {
+      setRemoveIcon(true);
+      setImgUrl("");
+      setImgFile(null);
     }
   }
 
@@ -38,6 +49,7 @@ const ServerSettings = ({ toggleSettings, server, updateServer, deleteServer, hi
     updateServer(server.id, formData)
       .then(() => {
         setShowRed(false);
+        setRemoveIcon(false);
         setImgUrl("");
         setImgFile(null);
         reset({ serverName: watchName});
@@ -50,6 +62,7 @@ const ServerSettings = ({ toggleSettings, server, updateServer, deleteServer, hi
       Careful - you have unsaved changes!
       <button onClick={() => {
         setShowRed(false);
+        setRemoveIcon(false);
         setImgUrl("");
         setImgFile(null);
         reset();
@@ -59,9 +72,6 @@ const ServerSettings = ({ toggleSettings, server, updateServer, deleteServer, hi
       <button>Save Changes</button>
     </div>
   )
-
-  const [imgUrl, setImgUrl] = useState("");
-  const [imgFile, setImgFile] = useState(null);
 
   const onFileChange = (e) => {
     const file = e.currentTarget.files[0];
@@ -75,8 +85,7 @@ const ServerSettings = ({ toggleSettings, server, updateServer, deleteServer, hi
     }
   }
 
-  const imgSrc = imgUrl || server.iconUrl
-  const preview = imgSrc ? <img src={imgSrc} className="server-icon" /> : null;
+  const imgSrc = removeIcon ? "" : imgUrl || server.iconUrl
 
   return (
     <div className="settings-container">
@@ -102,7 +111,7 @@ const ServerSettings = ({ toggleSettings, server, updateServer, deleteServer, hi
             <div>
               <ServerIcon name={server.name} iconUrl={imgSrc} />
               <input type="file" onChange={onFileChange} />
-              { preview }
+              { server.iconUrl && <button type="button" onClick={handleRemove}>Remove</button> }
             </div>
             <label>SERVER NAME</label>
             <input type="text" placeholder={server.name} {...register("serverName", {
@@ -117,7 +126,7 @@ const ServerSettings = ({ toggleSettings, server, updateServer, deleteServer, hi
               }
             })} />
             { errors.serverName?.message }
-            { (isDirty || imgUrl) && prompt }
+            { (isDirty || imgUrl || removeIcon) && prompt }
           </form>
         </div>
       </div>
