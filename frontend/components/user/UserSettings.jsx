@@ -9,7 +9,7 @@ const UserSettings = ({ currentUser, toggleSettings, logout, openModal, updateUs
   const fileRef = useRef();
 
   const checkThenExit = () => {
-    if (imgUrl) {
+    if (imgUrl || removePfp) {
       setShowRed(true);
     } else {
       toggleSettings(null);
@@ -21,6 +21,7 @@ const UserSettings = ({ currentUser, toggleSettings, logout, openModal, updateUs
       setRemovePfp(true);
       setImgUrl("");
       setImgFile(null);
+      fileRef.current.value = "";
     }
   }
 
@@ -59,6 +60,7 @@ const UserSettings = ({ currentUser, toggleSettings, logout, openModal, updateUs
     const file = e.currentTarget.files[0];
     const fileReader = new FileReader();
     fileReader.onloadend = () => {
+      setRemovePfp(false);
       setImgUrl(fileReader.result);
       setImgFile(file);
     };

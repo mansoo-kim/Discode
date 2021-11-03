@@ -22,9 +22,11 @@ class Api::ServersController < ApplicationController
   end
 
   def update
-    @server = Server.find_by(id: params[:id])
+    @server = current_user.servers.find_by(id: params[:id])
 
-    if @server.update(server_params)
+    @server.icon.purge if server_params[:remove_icon]
+
+    if @server.update(update_params)
       render 'api/servers/show'
     else
       render json: @server.errors, status: 422
@@ -32,7 +34,7 @@ class Api::ServersController < ApplicationController
   end
 
   def destroy
-    @server = Server.find_by(id: params[:id])
+    @server = current_user.servers.find_by(id: params[:id])
 
     if @server.destroy
       render 'api/servers/show'
@@ -41,8 +43,12 @@ class Api::ServersController < ApplicationController
     end
   end
 
-  def server_params
+  def update_params
     params.require(:server).permit(:name, :icon)
+  end
+
+  def server_params
+    params.require(:server).permit(:name, :icon, :remove_icon)
   end
 
 end

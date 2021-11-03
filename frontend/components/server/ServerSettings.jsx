@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import { useForm } from 'react-hook-form';
 import ServerIcon from './ServerIcon';
 
@@ -16,6 +16,8 @@ const ServerSettings = ({ toggleSettings, server, updateServer, deleteServer, hi
   const [imgUrl, setImgUrl] = useState("");
   const [imgFile, setImgFile] = useState(null);
   const [removeIcon, setRemoveIcon] = useState(false);
+
+  const fileRef = useRef();
 
   const handleDelete = () => {
     deleteServer(server.id)
@@ -38,6 +40,7 @@ const ServerSettings = ({ toggleSettings, server, updateServer, deleteServer, hi
       setRemoveIcon(true);
       setImgUrl("");
       setImgFile(null);
+      fileRef.current.value = "";
     }
   }
 
@@ -45,6 +48,7 @@ const ServerSettings = ({ toggleSettings, server, updateServer, deleteServer, hi
     const formData = new FormData();
     formData.append("server[name]", data.serverName);
     if (imgFile) formData.append("server[icon]", imgFile);
+    if (setRemoveIcon) formData.append("server[remove_icon]", setRemoveIcon);
 
     updateServer(server.id, formData)
       .then(() => {
@@ -52,9 +56,9 @@ const ServerSettings = ({ toggleSettings, server, updateServer, deleteServer, hi
         setRemoveIcon(false);
         setImgUrl("");
         setImgFile(null);
+        fileRef.current.value = "";
         reset({ serverName: watchName});
-      },
-      () => {})
+      });
   };
 
   const prompt = (
@@ -66,6 +70,7 @@ const ServerSettings = ({ toggleSettings, server, updateServer, deleteServer, hi
         setImgUrl("");
         setImgFile(null);
         reset();
+        fileRef.current.value = "";
       }}>
         Reset
       </button>
@@ -77,6 +82,7 @@ const ServerSettings = ({ toggleSettings, server, updateServer, deleteServer, hi
     const file = e.currentTarget.files[0];
     const fileReader = new FileReader();
     fileReader.onloadend = () => {
+      setRemoveIcon(false);
       setImgUrl(fileReader.result);
       setImgFile(file);
     };
@@ -110,7 +116,7 @@ const ServerSettings = ({ toggleSettings, server, updateServer, deleteServer, hi
           <form onSubmit={handleSubmit(onSubmit)}>
             <div>
               <ServerIcon name={server.name} iconUrl={imgSrc} />
-              <input type="file" onChange={onFileChange} />
+              <input type="file" onChange={onFileChange} ref={fileRef} />
               { server.iconUrl && <button type="button" onClick={handleRemove}>Remove</button> }
             </div>
             <label>SERVER NAME</label>
