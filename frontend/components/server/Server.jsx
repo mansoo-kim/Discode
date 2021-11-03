@@ -20,6 +20,8 @@ const Server = ({ server, channels, isOwner, requestServer, match, history }) =>
     <ServerOptionsDD isOwner={isOwner} serverId={server.id} setShowDD={setShowDD} history={history} toggleSettings={toggleSettings} />
   ) : null;
 
+  console.log(showSettings);
+
   return server ? (
     <div className="main-view">
       <div className="cc-index-container">
@@ -36,7 +38,7 @@ const Server = ({ server, channels, isOwner, requestServer, match, history }) =>
         <CurrentUser />
       </div>
 
-      { showSettings && <ServerSettings toggleSettings={toggleSettings} subject={server} />}
+      { showSettings && <ServerSettings toggleSettings={toggleSettings} server={server} />}
 
       <Route path={`/channels/:serverId/:ccId?`} component={ChannelContainer} />
     </div>
