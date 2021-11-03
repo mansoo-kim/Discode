@@ -6,13 +6,13 @@ class ChatChannel < ApplicationCable::Channel
   def speak(data)
     message = Message.create(body: data['message'])
     if message.save
-      socket = { message: message.body, type: 'message' }
+      socket = { message: message, type: 'message' }
       ChatChannel.broadcast_to('chat_channel', socket)
     end
   end
 
   def load
-    messages = Message.all.collect(&:body)
+    messages = Message.all
     socket = { messages: messages, type: 'messages' }
     ChatChannel.broadcast_to('chat_channel', socket)
   end

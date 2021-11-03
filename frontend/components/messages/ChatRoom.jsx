@@ -25,9 +25,9 @@ const ChatRoom = ({}) => {
     );
   }, []);
 
-  useEffect(() => {
-    bottomRef.current.scrollIntoView();
-  })
+  // useEffect(() => {
+  //   bottomRef.current.scrollIntoView();
+  // })
 
   const loadChat = (e) => {
     e.preventDefault();
@@ -37,8 +37,8 @@ const ChatRoom = ({}) => {
   const messageList = messages.map(message => {
     return (
       <li key={message.id}>
-        {message}
-        <div ref={this.bottom} />
+        {message.body}
+        <div ref={bottomRef} />
       </li>
     )
   });
