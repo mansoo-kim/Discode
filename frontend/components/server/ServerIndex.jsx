@@ -11,7 +11,11 @@ const ServerIndex = ({ servers, requestServers, openModal }) => {
     <div className="server-index">
       <ul>
         <li>
-          <Link to='/channels/@me'>Home</Link>
+          <Link to='/channels/@me'>
+            <div className="default-server-icon">
+              Home
+            </div>
+          </Link>
         </li>
         {servers.map(server => <ServerIndexItem key={server.id} server={server} />)}
         <li>

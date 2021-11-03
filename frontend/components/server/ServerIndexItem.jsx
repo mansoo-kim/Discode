@@ -1,10 +1,11 @@
 import { Link } from "react-router-dom";
+import ServerIcon from './ServerIcon';
 
 const ServerIndexItem = ({ server }) => {
   return (
     <li>
       <Link to={`/channels/${server.id}/${server.channels[0]}`}>
-        <img src={server.iconUrl} className="server-icon" />
+      <ServerIcon server={server} />
         { server.name }
       </Link>
     </li>

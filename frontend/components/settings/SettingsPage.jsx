@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
+import ServerIcon from '../server/ServerIcon';
 
 const SettingsPage = ({ toggleSettings, subject, type, updateSubject, deleteSubject, history }) => {
   if (!subject) return null;
@@ -95,6 +96,7 @@ const SettingsPage = ({ toggleSettings, subject, type, updateSubject, deleteSubj
 
   const iconEditDiv = type === "Server" ? (
     <div>
+      <ServerIcon server={subject} />
       <input type="file" onChange={onFileChange} />
       { preview }
     </div>

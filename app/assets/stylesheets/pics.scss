@@ -5,3 +5,13 @@
 .server-icon {
   height: 40px;
 }
+
+.default-server-icon {
+  height: 50px;
+  width: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: $blurple;
+  border-radius: 25px;
+}

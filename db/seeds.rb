@@ -44,7 +44,7 @@ ms27 = Membership.create!(user_id: u7.id, joinable_id: s2.id, joinable_type: s2.
 ms28 = Membership.create!(user_id: u9.id, joinable_id: s2.id, joinable_type: s2.class.name)
 ms29 = Membership.create!(user_id: u10.id, joinable_id: s2.id, joinable_type: s2.class.name)
 
-s3 = Server.create!(name: "LLC Lunch League Crew", owner_id: u5.id)
+s3 = Server.create!(name: "Lunch League Crew", owner_id: u5.id)
 ms30 = Membership.create!(user_id: u0.id, joinable_id: s3.id, joinable_type: s3.class.name)
 ms31 = Membership.create!(user_id: u1.id, joinable_id: s3.id, joinable_type: s3.class.name)
 ms32 = Membership.create!(user_id: u2.id, joinable_id: s3.id, joinable_type: s3.class.name)
