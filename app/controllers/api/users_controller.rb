@@ -22,10 +22,8 @@ class Api::UsersController < ApplicationController
     @user = User.find_by(id: params[:id])
 
     if user_params[:pfp] || user_params[:remove_pfp] || @user.is_password?(user_params[:password])
-      # if @user.update(username: user_params[:username], email: user_params[:email])
       if user_params[:remove_pfp]
-        pfp = open('https://discode-seeds.s3.us-east-2.amazonaws.com/icon_clyde_white_RGB.png')
-        @user.pfp.attach(io: pfp, filename: "icon_clyde_white_RGB.png")
+        @user.pfp.purge
         render 'api/users/show'
       elsif @user.update(user_params)
         render 'api/users/show'

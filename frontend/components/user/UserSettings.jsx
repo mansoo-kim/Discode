@@ -17,9 +17,11 @@ const UserSettings = ({ currentUser, toggleSettings, logout, openModal, updateUs
   }
 
   const handleRemove = () => {
-    setRemovePfp(true);
-    setImgUrl("");
-    setImgFile(null);
+    if (currentUser.pfpUrl) {
+      setRemovePfp(true);
+      setImgUrl("");
+      setImgFile(null);
+    }
   }
 
   const handleSubmit = (e) => {
@@ -65,8 +67,7 @@ const UserSettings = ({ currentUser, toggleSettings, logout, openModal, updateUs
     }
   }
 
-  const imgSrc = removePfp ? "" : imgUrl || currentUser.pfpUrl || 'https://raw.githubusercontent.com/mansookim/Discode/main/app/assets/images/icon_clyde_white_RGB.png'
-  const preview = imgSrc ? <img src={imgSrc} className="pfp" /> : null;
+  const imgSrc = removePfp ? 'https://raw.githubusercontent.com/mansookim/Discode/main/app/assets/images/icon_clyde_white_RGB.png' : imgUrl || currentUser.pfpUrl || 'https://raw.githubusercontent.com/mansookim/Discode/main/app/assets/images/icon_clyde_white_RGB.png'
 
   return (
     <div className="settings-container">
@@ -86,12 +87,12 @@ const UserSettings = ({ currentUser, toggleSettings, logout, openModal, updateUs
       <div className="settings-right">
         <div className="settings-pane">
           <h2>My Account</h2>
-          { preview }
+          <img src={imgSrc} className="pfp" />
           { currentUser.username }#{ currentUser.tag }
           <form>
             <div>
               <input type="file" onChange={onFileChange} ref={fileRef} />
-              <button type="button" onClick={handleRemove}>Remove Avatar</button>
+              { currentUser.pfpUrl && <button type="button" onClick={handleRemove}>Remove Avatar</button> }
               { (imgUrl || removePfp)  && prompt }
             </div>
           </form>
