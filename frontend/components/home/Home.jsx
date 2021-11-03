@@ -15,7 +15,7 @@ const Home = () => {
         <CurrentUser />
       </div>
 
-      <Route path='/@me/:ccId' component={ConversationContainer} />
+      <Route path='/channels/@me/:ccId' component={ConversationContainer} />
     </div>
   )
 }

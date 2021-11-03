@@ -65,12 +65,14 @@ const mSTP2 = (state, ownProps) => ({
 });
 
 const ProtectedServer = ({ isMember, path }) => {
+  console.log(isMember);
   if ( isMember === undefined ) return null;
+  console.log("here server");
   return (
     <Route
       path={path}
       render={props => (
-        isMember ? <ConnectedServer {...props} /> : <Redirect to='/@me' />
+        isMember ? <ConnectedServer {...props} /> : <Redirect to='/channels/@me' />
       )}
     />
   )

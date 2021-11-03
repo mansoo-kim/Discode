@@ -15,9 +15,9 @@ const Main = ({ currentUser, requestUser}) => {
       <ModalManager />
       <ServerIndex />
       <Switch>
+        <Route path='/channels/@me' component={Home} />
         <Route path='/channels/:serverId?' component={ProtectedServer} />
-        <Route path='/@me' component={Home} />
-        <Redirect to='/@me' />
+        <Redirect to='/channels/@me' />
       </Switch>
     </div>
   )
