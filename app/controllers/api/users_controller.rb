@@ -1,8 +1,12 @@
+require 'open-uri'
+
 class Api::UsersController < ApplicationController
   def create
     @user = User.new(user_params)
 
     if @user.save
+      pfp = open('https://discode-seeds.s3.us-east-2.amazonaws.com/icon_clyde_white_RGB.png')
+      @user.pfp.attach(io: pfp, filename: "icon_clyde_white_RGB.png")
       login!(@user)
       render 'api/users/show'
     else
