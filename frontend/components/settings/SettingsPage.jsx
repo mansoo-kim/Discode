@@ -23,7 +23,7 @@ const SettingsPage = ({ toggleSettings, subject, type, updateSubject, deleteSubj
   }
 
   const checkThenExit = () => {
-    if (isDirty) {
+    if (isDirty || imgUrl) {
       setShowRed(true);
     } else {
       toggleSettings(null);
@@ -35,7 +35,7 @@ const SettingsPage = ({ toggleSettings, subject, type, updateSubject, deleteSubj
     if (type === "Server") {
       formData = new FormData();
       formData.append("server[name]", data.subjectName);
-      if (data.iconFile[0]) formData.append("server[icon]", data.iconFile[0]);
+      if (imgFile) formData.append("server[icon]", imgFile);
     } else {
       formData = { name: data.subjectName};
     }
@@ -73,11 +73,15 @@ const SettingsPage = ({ toggleSettings, subject, type, updateSubject, deleteSubj
   )
 
   const [imgUrl, setImgUrl] = useState("");
+  const [imgFile, setImgFile] = useState(null);
 
   const onFileChange = (e) => {
     const file = e.currentTarget.files[0];
     const fileReader = new FileReader();
-    fileReader.onloadend = () => setImgUrl(fileReader.result);
+    fileReader.onloadend = () => {
+      setImgUrl(fileReader.result);
+      setImgFile(file);
+    };
     if (file) {
       fileReader.readAsDataURL(file);
     }
@@ -88,7 +92,7 @@ const SettingsPage = ({ toggleSettings, subject, type, updateSubject, deleteSubj
 
   const iconEditDiv = type === "Server" ? (
     <div>
-      <input type="file" {...register("iconFile")} onChange={onFileChange} />
+      <input type="file" onChange={onFileChange} />
       { preview }
     </div>
   ) : null;
@@ -141,7 +145,7 @@ const SettingsPage = ({ toggleSettings, subject, type, updateSubject, deleteSubj
           <form onSubmit={handleSubmit(onSubmit)}>
             { iconEditDiv }
             { formInner }
-            { isDirty && prompt }
+            { (isDirty || imgUrl) && prompt }
           </form>
         </div>
       </div>
