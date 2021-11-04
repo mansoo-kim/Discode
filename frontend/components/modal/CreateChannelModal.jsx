@@ -11,7 +11,7 @@ const CreateChannelModal = ({ closeModal, createChannel, history }) => {
       name: data.channelName
     };
     createChannel(channel)
-      .then(({ channel })=> history.push(`/channels/${channel.serverId}/${channel.id}`))
+      .then(({ res })=> history.push(`/channels/${res.channel.serverId}/${res.channel.id}`))
       .then(() => closeModal())
   }
 

@@ -12,8 +12,8 @@ const ServersReducer = (state = {}, action) => {
     case RECEIVE_SERVER:
       return Object.assign({}, state, { [action.res.server.id]: action.res.server });
     case RECEIVE_CHANNEL:
-      server = Object.assign({}, state[action.channel.serverId]);
-      if (!server.channels.includes(action.channel.id)) server.channels.push(action.channel.id);
+      server = Object.assign({}, state[action.res.channel.serverId]);
+      if (!server.channels.includes(action.res.channel.id)) server.channels.push(action.res.channel.id);
       return Object.assign({}, state, { [server.id]: server });
     case REMOVE_CHANNEL:
       server = Object.assign({}, state[action.channel.serverId]);
