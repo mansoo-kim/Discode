@@ -31,3 +31,21 @@ export const selectChannel = (state, serverId, ccId) => {
     return state.entities.channels[channelIds[0]];
   }
 }
+
+export const selectMessages = (state, type, ccId) => {
+  let messageIds;
+  if (type === "Channel") {
+    messageIds = state.entities.channels[ccId].messages
+  } else {
+    messageIds = state.entities.conversationns[ccId].messages
+  }
+
+  if (messageIds) {
+    const messages = [];
+    for (let messageId of messageIds) {
+      messages.push(state.entities.messages[messageId]);
+    }
+    return messages;
+  }
+  return [];
+}

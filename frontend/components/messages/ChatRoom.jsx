@@ -3,6 +3,7 @@ import MessageForm from './MessageForm';
 import MessageItem from './MessageItem';
 
 const ChatRoom = ({ type, cc, messages, receiveMessage }) => {
+  console.log(messages);
 
   const [chat, setChat] = useState(null);
 
@@ -38,9 +39,10 @@ const ChatRoom = ({ type, cc, messages, receiveMessage }) => {
 
 import { connect } from 'react-redux';
 import { receiveMessage } from '../../actions/message_actions';
+import { selectMessages } from '../../reducers/selectors';
 
-const mSTP = (state) => ({
-  messages: Object.values(state.entities.messages)
+const mSTP = (state, ownProps) => ({
+  messages: selectMessages(state, ownProps.type, ownProps.cc.id)
 })
 
 const mDTP = (dispatch) => ({
