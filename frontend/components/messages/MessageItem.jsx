@@ -33,7 +33,7 @@ const MessageItem = ({ message, chat, currentUserId, sender, openModal }) => {
   const buttons = currentUserId === sender.id ? (
     <div className="message-buttons">
       <button onClick={toggleEdit}>Edit</button>
-      <button onClick={() => openModal({type: "deleteMessage", message, imgSrc})}>Delete</button>
+      <button onClick={() => openModal({type: "deleteMessage", message, imgSrc, chat})}>Delete</button>
     </div>
   ) : null;
 

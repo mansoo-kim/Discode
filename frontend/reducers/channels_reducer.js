@@ -6,6 +6,7 @@ import { RECEIVE_MESSAGE, REMOVE_MESSAGE } from "../actions/message_actions";
 const ChannelsReducer = (state = {}, action) => {
   Object.freeze(state);
   let newState;
+  let channel;
   switch (action.type) {
     case RECEIVE_SERVER:
       if (!action.res.channels) return state;

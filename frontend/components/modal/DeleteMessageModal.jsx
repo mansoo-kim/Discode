@@ -1,4 +1,12 @@
-const DeleteMessageModal = ({ message, imgSrc, closeModal }) => {
+const DeleteMessageModal = ({ message, imgSrc, chat, closeModal }) => {
+
+  const handleDelete = () => {
+    chat.delete(
+      message
+    );
+    closeModal();
+  }
+
   return (
     <div className="modal">
 
@@ -19,7 +27,7 @@ const DeleteMessageModal = ({ message, imgSrc, closeModal }) => {
 
       <div>
         <button type="button" onClick={closeModal}>Cancel</button>
-        <button>Delete</button>
+        <button type="button" onClick={handleDelete}>Delete</button>
       </div>
 
     </div>

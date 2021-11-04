@@ -2,7 +2,7 @@ import { useState, useEffect, useRef } from 'react';
 import MessageForm from './MessageForm';
 import MessageItem from './MessageItem';
 
-const ChatRoom = ({ type, cc, currentUserId, messages, receiveMessage }) => {
+const ChatRoom = ({ type, cc, currentUserId, messages, receiveMessage, removeMessage }) => {
   const [chat, setChat] = useState(null);
 
   useEffect(() => {
