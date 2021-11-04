@@ -1,15 +1,14 @@
 import { useState, useEffect, useRef } from 'react';
 import MessageForm from './MessageForm';
 
-const ChatRoom = ({type, cc}) => {
+const ChatRoom = ({type, cc, messages}) => {
 
-  const [messages, setMessages] = useState([]);
   const [chat, setChat] = useState(null);
 
   useEffect(() => {
     const chat = App.cable.subscriptions.create(
       { channel: "ChatChannel", type: type, id: cc.id },
-      { received: (data) => setMessages(oldMessages => [...oldMessages, data]) }
+      // { received: (data) => setMessages(oldMessages => [...oldMessages, data]) }
     )
     setChat(chat);
     return () => chat.unsubscribe();
@@ -41,4 +40,14 @@ const ChatRoom = ({type, cc}) => {
   )
 }
 
-export default ChatRoom
+import { connect } from 'react-redux';
+
+const mSTP = (state) => ({
+  messages: Object.values(state.entities.messages)
+})
+
+// const mDTP = (state, ownProps) => ({
+//   messages: state.entities.messages
+// })
+
+export default connect(mSTP)(ChatRoom);
