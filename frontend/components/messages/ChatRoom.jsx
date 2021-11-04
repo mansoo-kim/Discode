@@ -9,9 +9,20 @@ const ChatRoom = ({ type, cc, currentUserId, messages, receiveMessage }) => {
     const chat = App.cable.subscriptions.create(
       { channel: "ChatChannel", type: type, id: cc.id },
       {
-        received: (data) => receiveMessage(data),
+        received: (res) => {
+          switch (res.type) {
+            case 'message':
+              receiveMessage(res.message);
+              break;
+            case 'remove':
+              break
+          }
+        },
         update: function(data) {
           return this.perform("update", data);
+        },
+        delete: function(data) {
+          return this.perform("delete", data);
         }
       }
     )

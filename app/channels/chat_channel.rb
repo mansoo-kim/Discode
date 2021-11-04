@@ -12,19 +12,35 @@ class ChatChannel < ApplicationCable::Channel
   def receive(data)
     @message = Message.new(data)
     if @message.save
-      ChatChannel.broadcast_to(@chat, message_json)
+      res = {
+        message: message_json,
+        type: "message"
+      }
+      ChatChannel.broadcast_to(@chat, res)
     end
   end
 
   def update(data)
     @message = Message.find_by(id: data['id'])
     if @message.update(body: data['body'])
-      ChatChannel.broadcast_to(@chat, message_json)
+      res = {
+        message: message_json,
+        type: "message"
+      }
+      ChatChannel.broadcast_to(@chat, res)
     end
   end
 
-  # def unsubscribed
-  # end
+  def delete(data)
+    @message = Message.find_by(id: data['id'])
+    res = {
+      message: message_json,
+      type: "remove"
+    }
+    if @message.destroy
+      ChatChannel.broadcast_to(@chat, res)
+    end
+  end
 
   private
   def message_json
