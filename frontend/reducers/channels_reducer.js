@@ -1,6 +1,7 @@
 import { RECEIVE_SERVER, REMOVE_SERVER } from "../actions/server_actions";
 import { RECEIVE_CHANNEL, REMOVE_CHANNEL } from "../actions/channel_actions";
 import { REMOVE_MEMBERSHIP } from "../actions/membership_actions";
+import { RECEIVE_MESSAGE } from "../actions/message_actions";
 
 const ChannelsReducer = (state = {}, action) => {
   Object.freeze(state);
@@ -30,6 +31,11 @@ const ChannelsReducer = (state = {}, action) => {
       for (let [k,v] of Object.entries(newState)) {
         if (v.serverId === action.res.server.id) delete newState[k];
       }
+      return newState;
+    case RECEIVE_MESSAGE:
+      if (action.message.messageable_type !== "Channel") return state;
+      newState = Object.assign({}, state);
+      newState[action.message.messageable_id].messages.push(action.message.id);
       return newState;
     default:
       return state;
