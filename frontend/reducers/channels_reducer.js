@@ -33,9 +33,9 @@ const ChannelsReducer = (state = {}, action) => {
       }
       return newState;
     case RECEIVE_MESSAGE:
-      if (action.message.messageable_type !== "Channel") return state;
+      if (action.message.messageableType !== "Channel") return state;
       newState = Object.assign({}, state);
-      newState[action.message.messageable_id].messages.push(action.message.id);
+      newState[action.message.messageableId].messages.push(action.message.id);
       return newState;
     default:
       return state;

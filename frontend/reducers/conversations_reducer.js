@@ -9,9 +9,9 @@ const ConversationsReducer = (state = {}, action) => {
     case RECEIVE_CONVERSATION:
       return Object.assign({}, state, { [action.res.conversation.id]: action.res.conversation });
     case RECEIVE_MESSAGE:
-      if (action.message.messageable_type !== "Conversation") return state;
+      if (action.message.messageableType !== "Conversation") return state;
       const newState = Object.assign({}, state);
-      newState[action.message.messageable_id].messages.push(action.message.id);
+      newState[action.message.messageableId].messages.push(action.message.id);
       return newState;
     default:
       return state;

@@ -5,8 +5,6 @@ import MessageItem from './MessageItem';
 const ChatRoom = ({ type, cc, messages, receiveMessage }) => {
   const [chat, setChat] = useState(null);
 
-  console.log(messages);
-
   useEffect(() => {
     const chat = App.cable.subscriptions.create(
       { channel: "ChatChannel", type: type, id: cc.id },
