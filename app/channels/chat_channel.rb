@@ -10,19 +10,20 @@ class ChatChannel < ApplicationCable::Channel
   end
 
   def receive(data)
-    message = Message.new(data)
-    if message.save
-      ChatChannel.broadcast_to(@chat, message)
+    @message = Message.new(data)
+    if @message.save
+      ChatChannel.broadcast_to(@chat, message_json)
     end
   end
-
-  # def load
-  #   messages = Message.all
-  #   socket = { messages: messages, type: 'messages' }
-  #   ChatChannel.broadcast_to('chat_channel', socket)
-  # end
 
   def unsubscribed
   end
 
+  private
+  def message_json
+    JSON.parse(
+      ApplicationController.render(
+        partial: 'api/messages/message',
+        locals: { message: @message }))
+  end
 end

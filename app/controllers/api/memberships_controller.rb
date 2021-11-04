@@ -1,5 +1,4 @@
 class Api::MembershipsController < ApplicationController
-
   def destroy
     @membership = Membership.find_by(membership_params)
 
@@ -10,8 +9,8 @@ class Api::MembershipsController < ApplicationController
     end
   end
 
+  private
   def membership_params
     params.require(:membership).permit(:user_id, :joinable_id, :joinable_type)
   end
-
 end

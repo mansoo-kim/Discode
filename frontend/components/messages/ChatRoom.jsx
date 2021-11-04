@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import MessageForm from './MessageForm';
+import MessageItem from './MessageItem';
 
 const ChatRoom = ({ type, cc, messages, receiveMessage }) => {
 
@@ -21,11 +22,7 @@ const ChatRoom = ({ type, cc, messages, receiveMessage }) => {
   }, [messages])
 
   const messageList = messages.map(message => {
-    return (
-      <li key={message.id}>
-        {message.body}
-      </li>
-    )
+    return <MessageItem key={message.id} message={message} />
   });
 
   return (

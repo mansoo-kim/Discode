@@ -43,6 +43,7 @@ class Api::ServersController < ApplicationController
     end
   end
 
+  private
   def update_params
     params.require(:server).permit(:name, :icon)
   end
@@ -50,5 +51,4 @@ class Api::ServersController < ApplicationController
   def server_params
     params.require(:server).permit(:name, :icon, :remove_icon)
   end
-
 end
