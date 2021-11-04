@@ -27,10 +27,10 @@ const ChatRoom = ({ type, cc, messages, receiveMessage }) => {
 
   return (
     <div className="chatroom-container">
-      <ul className="message-list">
+      <div className="message-list">
         { messageList }
         <div ref={bottomRef}></div>
-      </ul>
+      </div>
       <MessageForm type={type} id={cc.id} chat={chat} />
     </div>
   )

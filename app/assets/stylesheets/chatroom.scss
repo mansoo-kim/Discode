@@ -31,3 +31,12 @@
 .message-input-container {
   height: 5%;
 }
+
+.message-item {
+  display: flex;
+  align-items: center;
+
+  .message-pfp {
+    width: 50px;
+  }
+}

@@ -1,8 +1,13 @@
-const MessageItem = ({ message }) => {
-  return (
-    <li>
+const MessageItem = ({ message, sender }) => {
+  const imgSrc = sender.pfpUrl || 'https://raw.githubusercontent.com/mansookim/Discode/main/app/assets/images/icon_clyde_white_RGB.png'
 
-    </li>
+  return (
+    <div className="message-item">
+      <div className="message-pfp">
+        <img src={imgSrc} className="pfp" />
+      </div>
+      { message.body }
+    </div>
   )
 }
 
