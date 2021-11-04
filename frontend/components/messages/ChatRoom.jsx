@@ -3,9 +3,9 @@ import MessageForm from './MessageForm';
 import MessageItem from './MessageItem';
 
 const ChatRoom = ({ type, cc, messages, receiveMessage }) => {
-  console.log(messages);
-
   const [chat, setChat] = useState(null);
+
+  console.log(messages);
 
   useEffect(() => {
     const chat = App.cable.subscriptions.create(

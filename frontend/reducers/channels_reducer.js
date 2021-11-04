@@ -11,7 +11,7 @@ const ChannelsReducer = (state = {}, action) => {
       if (!action.res.channels) return state;
       newState = Object.assign({}, state);
       for (let [id, channel] of Object.entries(action.res.channels)) {
-        newState[id] = channel;
+        if (!newState[id]?.messages) newState[id] = channel;
       }
       return newState;
     case RECEIVE_CHANNEL:

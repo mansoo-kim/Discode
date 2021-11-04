@@ -37,7 +37,7 @@ export const selectMessages = (state, type, ccId) => {
   if (type === "Channel") {
     messageIds = state.entities.channels[ccId].messages
   } else {
-    messageIds = state.entities.conversationns[ccId].messages
+    messageIds = state.entities.conversations[ccId].messages
   }
 
   if (messageIds) {
