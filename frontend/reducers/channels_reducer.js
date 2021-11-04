@@ -1,7 +1,7 @@
 import { RECEIVE_SERVER, REMOVE_SERVER } from "../actions/server_actions";
 import { RECEIVE_CHANNEL, REMOVE_CHANNEL } from "../actions/channel_actions";
 import { REMOVE_MEMBERSHIP } from "../actions/membership_actions";
-import { RECEIVE_MESSAGE } from "../actions/message_actions";
+import { RECEIVE_MESSAGE, REMOVE_MESSAGE } from "../actions/message_actions";
 
 const ChannelsReducer = (state = {}, action) => {
   Object.freeze(state);
@@ -18,9 +18,10 @@ const ChannelsReducer = (state = {}, action) => {
       return Object.assign({}, state, { [action.res.channel.id]: action.res.channel });
     case REMOVE_CHANNEL:
       newState = Object.assign({}, state);
-      delete newState[action.channel.id];
+      delete newState[action.res.channel.id];
       return newState;
     case REMOVE_MEMBERSHIP:
+      if (action.membership.joinableType !== "Server") return state;
       newState = Object.assign({}, state);
       for (let [k,v] of Object.entries(newState)) {
         if (v.serverId === action.membership.joinableId) delete newState[k];
@@ -38,6 +39,12 @@ const ChannelsReducer = (state = {}, action) => {
       if (newState[action.message.messageableId].messages.includes(action.message.id)) return newState;
       newState[action.message.messageableId].messages.push(action.message.id);
       return newState;
+    case REMOVE_MESSAGE:
+      if (action.message.messageableType !== "Channel") return state;
+      channel = Object.assign({}, state[action.message.messageableId]);
+      const index = channel.messages.indexOf(action.message.id);
+      channel.messages.splice(index, 1);
+      return Object.assign({}, state, { [channel.id]: channel});
     default:
       return state;
   }

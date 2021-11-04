@@ -15,7 +15,8 @@ const ChatRoom = ({ type, cc, currentUserId, messages, receiveMessage }) => {
               receiveMessage(res.message);
               break;
             case 'remove':
-              break
+              removeMessage(res.message);
+              break;
           }
         },
         update: function(data) {
@@ -52,7 +53,7 @@ const ChatRoom = ({ type, cc, currentUserId, messages, receiveMessage }) => {
 }
 
 import { connect } from 'react-redux';
-import { receiveMessage } from '../../actions/message_actions';
+import { receiveMessage, removeMessage } from '../../actions/message_actions';
 import { selectMessages } from '../../reducers/selectors';
 
 const mSTP = (state, ownProps) => ({
@@ -61,7 +62,8 @@ const mSTP = (state, ownProps) => ({
 })
 
 const mDTP = (dispatch) => ({
-  receiveMessage: (message) => dispatch(receiveMessage(message))
+  receiveMessage: (message) => dispatch(receiveMessage(message)),
+  removeMessage: (message) => dispatch(removeMessage(message))
 })
 
 export default connect(mSTP, mDTP)(ChatRoom);

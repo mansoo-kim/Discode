@@ -3,15 +3,14 @@ import MemberIndex from '../member/MemberIndex';
 import ChatRoom from '../messages/ChatRoom';
 
 const CCView = ({ cc, type, requestCC, match }) => {
-  const requestId = cc?.id || match.params.ccId;
   useEffect(() => {
-    requestCC(requestId);
-  }, [requestId])
+    if (cc?.id) requestCC(cc.id);
+  }, [cc?.id])
 
   return cc ? (
     <div className="cc-view">
       <div className="cc-header">
-        showing {type}: { cc.name }
+        <div>showing {type}: { cc.name }</div>
       </div>
 
       <div className="cc-main">

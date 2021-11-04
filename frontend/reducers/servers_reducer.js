@@ -16,11 +16,12 @@ const ServersReducer = (state = {}, action) => {
       if (!server.channels.includes(action.res.channel.id)) server.channels.push(action.res.channel.id);
       return Object.assign({}, state, { [server.id]: server });
     case REMOVE_CHANNEL:
-      server = Object.assign({}, state[action.channel.serverId]);
-      const index = server.channels.indexOf(action.channel.id);
-      server.channels.slice(index, 1);
+      server = Object.assign({}, state[action.res.channel.serverId]);
+      const index = server.channels.indexOf(action.res.channel.id);
+      server.channels.splice(index, 1);
       return Object.assign({}, state, { [server.id]: server });
     case REMOVE_MEMBERSHIP:
+      if (action.membership.joinableType !== "Server") return state;
       newState = Object.assign({}, state);
       delete newState[action.membership.joinableId]
       return newState;
