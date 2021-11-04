@@ -1,6 +1,6 @@
 class Api::ChannelsController < ApplicationController
   def show
-    @channel = Channel.find_by(id: params[:id])
+    @channel = Channel.includes(:messages).find_by(id: params[:id])
     render 'api/channels/show'
   end
 
