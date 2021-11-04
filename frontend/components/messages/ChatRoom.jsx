@@ -14,14 +14,11 @@ const ChatRoom = ({ type, cc, messages, receiveMessage }) => {
     return () => chat.unsubscribe();
   }, [type, cc.id]);
 
-  // useEffect(() => {
-  //   bottomRef.current.scrollIntoView();
-  // })
+  const bottomRef = useRef();
 
-  // const loadChat = (e) => {
-  //   e.preventDefault();
-  //   App.cable.subscriptions.subscriptions[0].load();
-  // }
+  useEffect(() => {
+    if (bottomRef.current) bottomRef.current.scrollIntoView();
+  }, [messages])
 
   const messageList = messages.map(message => {
     return (
@@ -33,7 +30,10 @@ const ChatRoom = ({ type, cc, messages, receiveMessage }) => {
 
   return (
     <div className="chatroom-container">
-      <ul className="message-list">{ messageList }</ul>
+      <ul className="message-list">
+        { messageList }
+        <div ref={bottomRef}></div>
+      </ul>
       <MessageForm type={type} id={cc.id} chat={chat} />
     </div>
   )
