@@ -1,3 +1,8 @@
+.splash {
+  height: 100%;
+  background: $blurple;
+}
+
 .splash-nav {
   display: flex;
   justify-content: space-evenly;
@@ -41,9 +46,59 @@
       font-size: 14px;
       height: 24px;
       padding: 7px 16px;
-      background: white;
+      background: $white;
       color: black;
       border-radius: 40px;
     }
+  }
+}
+
+.splash-main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  > div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 517px;
+    padding: 120px 0px;
+
+    font-size: 20px;
+  }
+}
+
+.main-header {
+  font-size: 48px;
+}
+
+.description {
+  width: 40%;
+  text-align: center;
+  margin-top: 40px;
+  margin-bottom: 30px;
+  line-height: 1.625;
+}
+
+.header-buttons {
+  display: flex;
+
+  .splash-button {
+    border-radius: 28px;
+    font-size: 20px;
+    line-height: 24px;
+    padding: 16px 32px;
+    margin: 0px 10px;
+  }
+
+  .download {
+    background: $white;
+    color: black;
+  }
+
+  .open {
+    background: $black;
+    color: $white;
   }
 }
