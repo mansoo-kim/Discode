@@ -1,6 +1,7 @@
 import CreateServerModal from './CreateServerModal';
 import CreateChannelModal from './CreateChannelModal';
 import EditUserModal from './EditUserModal';
+import DeleteMessageModal from './DeleteMessageModal';
 
 const ModalManager = ({ modal, closeModal, history }) => {
   if (!modal) return null;
@@ -16,6 +17,9 @@ const ModalManager = ({ modal, closeModal, history }) => {
       break;
     case "editUser":
       component = <EditUserModal type={modal.property} />
+      break;
+    case "deleteMessage":
+      component = <DeleteMessageModal message={modal.message} imgSrc={modal.imgSrc} />
       break;
     default:
       return null;

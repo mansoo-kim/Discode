@@ -27,6 +27,7 @@ const CreateChannelModal = ({ closeModal, createChannel, history }) => {
           <input type="text" placeholder="new-channel" {...register("channelName", { required: true })} />
         </div>
 
+        <button type="button" onClick={closeModal}>Cancel</button>
         <button disabled={!!errors["channelName"]}>
           Create Channel
         </button>

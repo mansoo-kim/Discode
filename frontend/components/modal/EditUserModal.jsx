@@ -60,6 +60,7 @@ const EditUserModal = ({ type, userErrors, currentUser, closeModal, updateUser, 
           <label>CURRENT PASSWORD { userErrors.password }</label>
           <input type="password" {...register("password")} />
         </div>
+        <button type="button" onClick={closeModal}>Cancel</button>
         <button>Done</button>
       </form>
     </div>

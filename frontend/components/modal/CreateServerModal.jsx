@@ -54,6 +54,7 @@ const CreateServerModal = ({ serverErrors, currentUser, closeModal, createServer
 
         <p>By creating a server, you agree to Discode's Community Guidelines.</p>
 
+        <button type="button" onClick={closeModal}>Cancel</button>
         <button disabled={!!errors["serverName"]}>
           Create
         </button>
