@@ -2,9 +2,9 @@ import { Link } from "react-router-dom";
 
 const ConvesrationIndexItem = ({ conversation }) => {
   return (
-    <div>
+    <li>
       <Link to={`/channels/@me/${conversation.id}`}>{ conversation.name }</Link>
-    </div>
+    </li>
   )
 }
 

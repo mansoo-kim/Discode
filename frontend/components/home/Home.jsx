@@ -8,7 +8,6 @@ const Home = () => {
     <div className="main-view">
       <div className="cc-index-container">
         <div>
-          DIRECT MESSAGES
           <ConversationIndex />
         </div>
 

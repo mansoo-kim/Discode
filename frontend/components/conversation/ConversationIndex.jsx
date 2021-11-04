@@ -8,6 +8,7 @@ const ConversationIndex = ({ conversations, requestConversations }) => {
 
   return (
     <div className="cc-index">
+      DIRECT MESSAGES
       <ul>
           {conversations.map(conversation => <ConvesrationIndexItem key={conversation.id} conversation={conversation} />)}
       </ul>
