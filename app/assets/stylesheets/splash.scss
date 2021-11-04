@@ -1,0 +1,49 @@
+.splash-nav {
+  display: flex;
+  justify-content: space-evenly;
+  height: 80px;
+  align-items: center;
+
+  .splash-logo {
+    display: flex;
+    align-items: center;
+    height: 80px;
+
+    .splash-logo-icon {
+      height: 30%;
+    }
+
+    span {
+      margin: 0px 16px;
+    }
+  }
+
+  ul {
+    display: flex;
+    justify-content: space-around;
+
+    li {
+      margin: 0px 10px;
+
+      a {
+        font-weight: 700;
+        padding: 0px 10px;
+      }
+
+    }
+  }
+
+  .app-link {
+
+    a {
+      display: flex;
+      align-items: center;
+      font-size: 14px;
+      height: 24px;
+      padding: 7px 16px;
+      background: white;
+      color: black;
+      border-radius: 40px;
+    }
+  }
+}
