@@ -1,4 +1,4 @@
-const MessageItem = ({ message, sender }) => {
+const MessageItem = ({ message, sender, currentUserId }) => {
   const imgSrc = sender.pfpUrl || 'https://raw.githubusercontent.com/mansookim/Discode/main/app/assets/images/icon_clyde_white_RGB.png'
 
   return (
@@ -7,6 +7,7 @@ const MessageItem = ({ message, sender }) => {
         <img src={imgSrc} className="pfp" />
       </div>
       { message.body }
+      { currentUserId === sender.id && <button>Edit</button>}
     </div>
   )
 }

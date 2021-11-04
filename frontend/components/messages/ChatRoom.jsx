@@ -2,7 +2,7 @@ import { useState, useEffect, useRef } from 'react';
 import MessageForm from './MessageForm';
 import MessageItem from './MessageItem';
 
-const ChatRoom = ({ type, cc, messages, receiveMessage }) => {
+const ChatRoom = ({ type, cc, currentUserId, messages, receiveMessage }) => {
   const [chat, setChat] = useState(null);
 
   useEffect(() => {
@@ -21,7 +21,7 @@ const ChatRoom = ({ type, cc, messages, receiveMessage }) => {
   }, [messages])
 
   const messageList = messages.map(message => {
-    return <MessageItem key={message.id} message={message} />
+    return <MessageItem key={message.id} message={message} currentUserId={currentUserId} />
   });
 
   return (
@@ -30,7 +30,7 @@ const ChatRoom = ({ type, cc, messages, receiveMessage }) => {
         { messageList }
         <div ref={bottomRef}></div>
       </div>
-      <MessageForm type={type} id={cc.id} chat={chat} />
+      <MessageForm currentUserId={currentUserId} type={type} id={cc.id} chat={chat} />
     </div>
   )
 }
@@ -40,6 +40,7 @@ import { receiveMessage } from '../../actions/message_actions';
 import { selectMessages } from '../../reducers/selectors';
 
 const mSTP = (state, ownProps) => ({
+  currentUserId: state.session.id,
   messages: selectMessages(state, ownProps.type, ownProps.cc.id)
 })
 

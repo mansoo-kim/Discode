@@ -32,10 +32,4 @@ const MessageForm = ({ currentUserId, type, id, chat }) => {
   )
 }
 
-import { connect } from 'react-redux';
-
-const mSTP = (state) => ({
-  currentUserId: state.session.id
-})
-
-export default connect(mSTP)(MessageForm);
+export default MessageForm;
