@@ -19,7 +19,7 @@ const MessageForm = ({ currentUserId, type, id, chat }) => {
   }
 
   return (
-    <div>
+    <div className="message-input-container">
       <form onSubmit={handleSubmit}>
         <input
           type="text"
@@ -27,7 +27,6 @@ const MessageForm = ({ currentUserId, type, id, chat }) => {
           onChange={update}
           placeholder="Message"
         />
-        <button>Submit</button>
       </form>
     </div>
   )

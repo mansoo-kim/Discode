@@ -9,13 +9,16 @@ const CCView = ({ cc, type, requestCC, match }) => {
 
   return cc ? (
     <div className="cc-view">
-      <div>
+      <div className="cc-header">
         showing {type}: { cc.name }
       </div>
 
-      <ChatRoom cc={cc} type={type}/>
+      <div className="cc-main">
+        <ChatRoom cc={cc} type={type}/>
 
-      <MemberIndex type={type === "Conversation" ? "conversations" : "servers"} id={type === "Conversation" ? match.params.ccId : match.params.serverId} />
+        <MemberIndex type={type === "Conversation" ? "conversations" : "servers"} id={type === "Conversation" ? match.params.ccId : match.params.serverId} />
+      </div>
+
     </div>
   ) : null
 }

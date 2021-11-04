@@ -1,0 +1,33 @@
+.cc-view {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.cc-header {
+  height: 5%
+}
+
+.cc-main {
+  height: 95%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.chatroom-container {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.message-list {
+  height: 95%;
+  overflow-y: auto;
+}
+
+.message-input-container {
+  height: 5%;
+}
