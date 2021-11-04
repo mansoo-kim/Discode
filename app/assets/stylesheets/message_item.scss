@@ -1,0 +1,24 @@
+.message-item {
+  display: flex;
+  align-items: center;
+  width: 100%;
+
+  .message-pfp {
+    width: 50px;
+  }
+
+  .message-content {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+
+    .message-buttons {
+      display: none;
+    }
+  }
+
+
+  &:hover .message-buttons {
+    display: block;
+  };
+}

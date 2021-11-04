@@ -2,9 +2,11 @@ import { useState } from 'react';
 
 const MessageItem = ({ message, sender, currentUserId }) => {
   const [showEdit, setShowEdit] = useState(false);
+  const [showDelete, setShowDelete] = useState(false);
   const [body, setBody] = useState(message.body);
 
   const toggleEdit = () => setShowEdit(!showEdit);
+  const toggleDelete = () => setShowDelete(!showDelete);
 
   const imgSrc = sender.pfpUrl || 'https://raw.githubusercontent.com/mansookim/Discode/main/app/assets/images/icon_clyde_white_RGB.png'
 
@@ -14,13 +16,25 @@ const MessageItem = ({ message, sender, currentUserId }) => {
     </form>
   )
 
+  const buttons = currentUserId === sender.id ? (
+    <div className="message-buttons">
+      <button onClick={toggleEdit}>Edit</button>
+      <button onClick={toggleDelete}>Delete</button>
+    </div>
+  ) : null;
+
   return (
     <div className="message-item">
       <div className="message-pfp">
         <img src={imgSrc} className="pfp" />
       </div>
-      { showEdit ? editInput : message.body }
-      { currentUserId === sender.id && <button onClick={toggleEdit}>Edit</button>}
+
+      <div className="message-content">
+        <div className="message-body">
+        { showEdit ? editInput : message.body }
+        </div>
+        { buttons }
+      </div>
     </div>
   )
 }
