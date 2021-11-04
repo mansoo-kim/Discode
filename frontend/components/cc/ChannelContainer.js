@@ -1,14 +1,11 @@
 import { connect } from 'react-redux';
 import CCView from './CCView';
+import { selectChannel } from '../../reducers/selectors';
 
-const mSTP = (state, ownProps) => {
-  const channelId = ownProps.match.params.ccId || state.entities.servers[ownProps.match.params.serverId].channels[0]
-
-  return {
-    cc: state.entities.channels[channelId],
-    type: 'Channel'
-  };
-};
+const mSTP = (state, ownProps) => ({
+  cc: selectChannel(state, ownProps.match.params.serverId, ownProps.match.params.ccId),
+  type: 'Channel'
+});
 
 const mDTP = () => ({
   requestCC: () => (null)

@@ -1,4 +1,9 @@
 class Api::ChannelsController < ApplicationController
+  def show
+    @channel = Channel.find_by(id: params[:id])
+    render 'api/channels/show'
+  end
+
   def create
     @channel = Channel.new(channel_params)
     @channel.server_id = params[:server_id]

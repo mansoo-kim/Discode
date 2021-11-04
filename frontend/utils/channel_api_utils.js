@@ -20,3 +20,10 @@ export const deleteChannel = (channelId) => (
     method: 'DELETE'
   })
 );
+
+export const requestChannel = (channelId) => (
+  $.ajax({
+    url: `/api/channels/${channelId}`,
+    method: 'GET'
+  })
+);

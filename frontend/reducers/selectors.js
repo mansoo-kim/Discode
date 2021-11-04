@@ -21,3 +21,13 @@ export const selectChannels = (state, serverId) => {
   }
   return [];
 }
+
+export const selectChannel = (state, serverId, ccId) => {
+  const channelIds = state.entities.servers[serverId]?.channels;
+
+  if (channelIds.includes(parseFloat(ccId))) {
+    return state.entities.channels[ccId];
+  } else {
+    return state.entities.channels[channelIds[0]];
+  }
+}
