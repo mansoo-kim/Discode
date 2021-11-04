@@ -7,15 +7,17 @@ const MessageForm = ({ currentUserId, type, id, chat }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    chat.send(
-      {
-        body: body,
-        sender_id: currentUserId,
-        messageable_type: type,
-        messageable_id: id
-      }
-    );
-    setBody("");
+    if (body) {
+      chat.send(
+        {
+          body: body,
+          sender_id: currentUserId,
+          messageable_type: type,
+          messageable_id: id
+        }
+      );
+      setBody("");
+    }
   }
 
   return (

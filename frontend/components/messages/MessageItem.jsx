@@ -16,7 +16,8 @@ const MessageItem = ({ message, chat, currentUserId, sender }) => {
         body: body
       }
     );
-    setBody("");
+    setShowEdit(false);
+    // setBody("");
   }
 
   const imgSrc = sender.pfpUrl || 'https://raw.githubusercontent.com/mansookim/Discode/main/app/assets/images/icon_clyde_white_RGB.png'
