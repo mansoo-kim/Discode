@@ -16,8 +16,15 @@ class ChatChannel < ApplicationCable::Channel
     end
   end
 
-  def unsubscribed
+  def update(data)
+    @message = Message.find_by(id: data['id'])
+    if @message.update(body: data['body'])
+      ChatChannel.broadcast_to(@chat, message_json)
+    end
   end
+
+  # def unsubscribed
+  # end
 
   private
   def message_json

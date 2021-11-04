@@ -8,7 +8,12 @@ const ChatRoom = ({ type, cc, currentUserId, messages, receiveMessage }) => {
   useEffect(() => {
     const chat = App.cable.subscriptions.create(
       { channel: "ChatChannel", type: type, id: cc.id },
-      { received: (data) => receiveMessage(data) }
+      {
+        received: (data) => receiveMessage(data),
+        update: function(data) {
+          return this.perform("update", data);
+        }
+      }
     )
     setChat(chat);
     return () => chat.unsubscribe();
@@ -21,7 +26,7 @@ const ChatRoom = ({ type, cc, currentUserId, messages, receiveMessage }) => {
   }, [messages])
 
   const messageList = messages.map(message => {
-    return <MessageItem key={message.id} message={message} currentUserId={currentUserId} />
+    return <MessageItem key={message.id} message={message} chat={chat} currentUserId={currentUserId} />
   });
 
   return (

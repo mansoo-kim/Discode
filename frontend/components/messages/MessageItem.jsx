@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-const MessageItem = ({ message, sender, currentUserId }) => {
+const MessageItem = ({ message, chat, currentUserId, sender }) => {
   const [showEdit, setShowEdit] = useState(false);
   const [showDelete, setShowDelete] = useState(false);
   const [body, setBody] = useState(message.body);
@@ -8,10 +8,21 @@ const MessageItem = ({ message, sender, currentUserId }) => {
   const toggleEdit = () => setShowEdit(!showEdit);
   const toggleDelete = () => setShowDelete(!showDelete);
 
+  const handleEdit = (e) => {
+    e.preventDefault();
+    chat.update(
+      {
+        id: message.id,
+        body: body
+      }
+    );
+    setBody("");
+  }
+
   const imgSrc = sender.pfpUrl || 'https://raw.githubusercontent.com/mansookim/Discode/main/app/assets/images/icon_clyde_white_RGB.png'
 
   const editInput = (
-    <form>
+    <form onSubmit={handleEdit}>
       <input type="text" value={body} onChange={(e) => setBody(e.currentTarget.value)} />
     </form>
   )
