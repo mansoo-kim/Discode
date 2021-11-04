@@ -1,6 +1,6 @@
 class ChatChannel < ApplicationCable::Channel
   def subscribed
-    if (params[:type] == "channel")
+    if (params[:type] == "Channel")
       @chat = Channel.find_by(id: params[:id])
     else
       @chat = Conversation.find_by(id: params[:id])
