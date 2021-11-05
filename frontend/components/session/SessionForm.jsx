@@ -5,7 +5,7 @@ import DropDown from './DropDown';
 
 const SessionForm = ({ type, sessionErrors, processForm, resetSessionErrors, history }) => {
 
-  const { register, formState: { errors }, handleSubmit, clearErrors, setValue } = useForm({
+  const { register, formState: { errors }, handleSubmit, clearErrors, setValue, setError, getValues } = useForm({
     reValidateMode: 'onSubmit',
     shouldFocusError: false
   });
@@ -27,8 +27,22 @@ const SessionForm = ({ type, sessionErrors, processForm, resetSessionErrors, his
     return () => resetSessionErrors();
   }, [])
 
+  const checkThenSubmit = (e) => {
+    e.preventDefault();
+
+    if (type === 'register' && getValues("year") && getValues("month") && getValues("day")) {
+      clearErrors("dob");
+    }
+    handleSubmit(onSubmit)(e);
+  }
+
   const onSubmit = (data) => {
-    console.log(data);
+    if (type === 'register') {
+      if (!data.year || !data.month || !data.day) {
+        setError("dob", { message: "- This field is required"});
+        return null;
+      }
+    }
     const formUser = type === 'login' ? {
       email: data.email,
       password: data.password
@@ -41,8 +55,7 @@ const SessionForm = ({ type, sessionErrors, processForm, resetSessionErrors, his
     processForm(formUser).then(() => history.push('/@me'));
   }
 
-  const handleDemoLogin = (e) => {
-    e.preventDefault();
+  const handleDemoLogin = () => {
     setValue("email", "demo@gmail.com");
     setValue("password", "password");
     setTimeout(() => handleSubmit(onSubmit)(), 300);
@@ -89,11 +102,8 @@ const SessionForm = ({ type, sessionErrors, processForm, resetSessionErrors, his
   )
 
   const dobInput = type === 'register' ? (
-    <div className={`input-container dob-container`}>
-      <label>DATE OF BIRTH</label>
-        {/* <input type="number" {...register("month") } />
-        <input type="number" {...register("day") } />
-        <input type="number" {...register("year") } /> */}
+    <div className={`input-container dob-container ${errors.dob ? 'show-errors' : ''}`}>
+      <label>DATE OF BIRTH<span>{ errors.dob && errors.dob.message }</span></label>
       <div className={"dob-dds"}>
         <DropDown type="month" setValue={setValue} />
         <DropDown type="day" setValue={setValue} />
@@ -124,7 +134,7 @@ const SessionForm = ({ type, sessionErrors, processForm, resetSessionErrors, his
 
         { header }
 
-        <form className="session-form" onSubmit={handleSubmit(onSubmit)}>
+        <form className="session-form" onSubmit={checkThenSubmit}>
 
           <div className={`input-container ${errors.email ? 'show-errors' : ''}`}>
             <label>EMAIL<span>{ errors.email && errors.email.message }</span></label>

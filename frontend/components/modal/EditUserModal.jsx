@@ -13,8 +13,8 @@ const EditUserModal = ({ type, userErrors, currentUser, closeModal, updateUser, 
   }, [])
 
   const checkThenSubmit = (e) => {
+    e.preventDefault();
     if ((!isDirty && type ==='username') || (type === 'email' && getValues("email") === currentUser.email)) {
-      e.preventDefault();
       closeModal();
     } else {
       handleSubmit(onSubmit)(e);

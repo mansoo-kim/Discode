@@ -40,7 +40,7 @@ const DropDown = ({ type, setValue }) => {
   )
 
   return (
-    <div className={`dd-button dd-${type}`} onClick={toggleDD}>
+    <div tabIndex="0" className={`dd-button dd-${type}`} onClick={toggleDD} onBlur={() => setShowDD(false)}>
       <div className={text !== "Select" ? "" : "unselected"}>
         { text }
       </div>
