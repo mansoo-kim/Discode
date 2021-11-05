@@ -1,27 +1,12 @@
-$not-black: rgb(35,39,42);
-$lighter-black: rgb(54, 57, 63);
+$not-black: #23272a;
+$lighter-black: #36393F;
 
-$kinda-grey: rgb(114, 118, 125);
-$off-grey: rgb(185, 187, 190);
+$kinda-grey: #72767D;
+$off-grey: #B9BBBE;
 
-$off-white: rgb(220, 221, 222);
-$white: rgb(255,255,255);
+$off-white: #DCDDDE;
+$white: #ffffff;
 
-$blurple: rgb(88,101,242);
-$darker-blurple: rgb(64, 78, 237);
-$link-blue: rgb(0, 175, 244);
-
-@font-face {
-  font-family: 'whitney';
-  src: font-url('whitney.ttf') format('truetype');
-};
-
-@font-face {
-  font-family: 'ginto-normal';
-  src: font-url('ginto-normal.ttf') format('truetype');
-};
-
-@font-face {
-  font-family: 'ginto-nord';
-  src: font-url('ginto-nord.ttf') format('truetype');
-};
+$blurple: #5865f2;
+$darker-blurple: #404EED;
+$link-blue: #00b0f4;

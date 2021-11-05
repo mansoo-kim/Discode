@@ -25,7 +25,8 @@
     }
 
     span {
-      margin: 0px 16px;
+      margin: 0px 10px;
+      font-family: 'ginto-nord-black', sans-serif;
     }
   }
 
@@ -34,11 +35,11 @@
     justify-content: space-around;
 
     li {
-      margin: 0px 10px;
 
       a {
         font-weight: 700;
-        padding: 10px 10px;
+        padding: 10px;
+        margin: 10px;
       }
 
       a:hover {
@@ -59,6 +60,7 @@
       background: $white;
       color: $not-black;
       border-radius: 40px;
+      font-weight: 600;
     }
   }
 }
@@ -80,7 +82,8 @@
 }
 
 .main-header {
-  font-size: 48px;
+  font-size: 56px;
+  font-family: 'ginto-nord-black', sans-serif;
 }
 
 .description {
@@ -100,6 +103,7 @@
     line-height: 24px;
     padding: 16px 32px;
     margin: 0px 10px;
+    font-weight: 600;
   }
 
   .download {
