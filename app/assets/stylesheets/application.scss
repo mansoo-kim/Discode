@@ -13,15 +13,15 @@
  *= require_self
  */
 
- @import './reset.scss';
- @import './variables.scss';
- @import './app.scss';
- @import './pics.scss';
- @import './splash.scss';
- @import './session_form.scss';
- @import './main.scss';
- @import './server.scss';
- @import './chatroom.scss';
- @import './message_item.scss';
- @import './modal.scss';
- @import './settings.scss';
+ @import './base/reset.scss';
+ @import './base/variables.scss';
+ @import './base/app.scss';
+ @import './components/pics.scss';
+ @import './components/splash.scss';
+ @import './components/session_form.scss';
+ @import './components/main.scss';
+ @import './components/server.scss';
+ @import './components/chatroom.scss';
+ @import './components/message_item.scss';
+ @import './components/modal.scss';
+ @import './components/settings.scss';
