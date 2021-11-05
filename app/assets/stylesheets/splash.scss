@@ -1,6 +1,13 @@
 .splash {
   height: 100%;
   background: $blurple;
+
+
+  .button:hover {
+    box-shadow: 0 8px 15px rgba(0,0,0,0.2);
+    color: $blurple;
+    transition: color 0.25s ease-in-out, box-shadow 0.25s ease-in-out;
+  }
 }
 
 .splash-nav {
@@ -32,7 +39,11 @@
 
       a {
         font-weight: 700;
-        padding: 0px 10px;
+        padding: 10px 10px;
+      }
+
+      a:hover {
+        text-decoration: underline;
       }
 
     }
@@ -47,7 +58,7 @@
       height: 24px;
       padding: 7px 16px;
       background: $white;
-      color: black;
+      color: $not-black;
       border-radius: 40px;
     }
   }
@@ -98,7 +109,7 @@
   }
 
   .open {
-    background: $black;
+    background: $not-black;
     color: $white;
   }
 }

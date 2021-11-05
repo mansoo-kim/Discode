@@ -17,7 +17,7 @@ const Splash = ({ loggedIn }) => {
             <li><a href="#">Portfolio</a></li>
           </ul>
           <div className="app-link">
-            <Link to='/login'>{loggedIn ? 'Open Discode' : 'Login'}</Link>
+            <Link className="button" to='/login'>{loggedIn ? 'Open Discode' : 'Login'}</Link>
           </div>
         </nav>
       </header>
@@ -35,10 +35,10 @@ const Splash = ({ loggedIn }) => {
           </div>
 
           <div className="header-buttons">
-            <div className="splash-button download">
+            <div className="splash-button download button">
               Download for { window.navigator.platform.includes('Win') ? 'Windows' : 'Mac'}
             </div>
-            <div className="splash-button open">
+            <div className="splash-button open button">
               <Link to='/login'>Open Discord in your browser</Link>
             </div>
           </div>
