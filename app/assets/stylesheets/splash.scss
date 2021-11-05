@@ -1,6 +1,6 @@
 .splash {
   height: 100%;
-  background: $blurple;
+  background: $darker-blurple;
 
 
   .button:hover {
@@ -106,10 +106,15 @@
   .download {
     background: $white;
     color: black;
+    cursor: pointer;
   }
 
   .open {
     background: $not-black;
+    color: $white;
+  }
+
+  .open:hover {
     color: $white;
   }
 }

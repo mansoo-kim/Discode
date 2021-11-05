@@ -38,9 +38,7 @@ const Splash = ({ loggedIn }) => {
             <div className="splash-button download button">
               Download for { window.navigator.platform.includes('Win') ? 'Windows' : 'Mac'}
             </div>
-            <div className="splash-button open button">
-              <Link to='/login'>Open Discord in your browser</Link>
-            </div>
+            <Link className="splash-button open button" to='/login'>Open Discord in your browser</Link>
           </div>
 
         </div>
