@@ -53,44 +53,37 @@ const SessionForm = ({ type, sessionErrors, processForm, resetSessionErrors, his
     </>
   ) : (
     <>
-      <h1>Create an account</h1>
+      <h3>Create an account</h3>
     </>
   )
 
   const usernameInput = type === 'register' ? (
-    <div className="input-container">
-      <label>USERNAME { errors.username && errors.username.message }</label>
-      <input type="text" {...register("username", {
-        required: "This field is required",
+    <div className={`input-container ${errors.username ? 'show-errors' : ''}`}>
+      <label>USERNAME<span>{ errors.username && errors.username.message }</span></label>
+      <input type="text" spellCheck="false" {...register("username", {
+        required: "- This field is required",
         minLength: {
           value: 2,
-          message: "Must be between 2 and 32 in length"
+          message: "- Must be between 2 and 32 in length"
         },
         maxLength: {
           value: 32,
-          message: "Must be between 2 and 32 in length"
+          message: "- Must be between 2 and 32 in length"
         }
-      })}
-        className={ `session-input ${errors.username ? 'error-input' : ''}` } />
+      })} />
     </div>
   ) : null;
 
   const passwordInput = type === 'register' ? (
-    <div className="input-container password-container">
-      <label>PASSWORD { errors.password && errors.password.message }</label>
       <input type="password" {...register("password", {
-        required: "This field is required",
+        required: "- This field is required",
         minLength: {
           value: 6,
-          message: "Must be 6 or more in length"
+          message: "- Must be 6 or more in length"
         }
-      })} className={ `session-input ${errors.password ? 'error-input' : ''}` } />
-    </div>
+      })} />
   ) : (
-    <div className="input-container password-container">
-      <label>PASSWORD { errors.password && errors.password.message }</label>
-      <input type="password" {...register("password", { required: "This field is required"})} className={ `session-input ${errors.password ? 'error-input' : ''}` } />
-    </div>
+      <input type="password" {...register("password", { required: "- This field is required"})} />
   )
 
   const dobInput = type === 'register' ? (
@@ -101,23 +94,18 @@ const SessionForm = ({ type, sessionErrors, processForm, resetSessionErrors, his
     </label>
   ) : null;
 
-  // <input type='button' onClick={handleDemoLogin} value='Login as demo user' />
   const demoButton = type === 'login' ? (
     <div onClick={handleDemoLogin} className="demo-button">
       Login as demo user
     </div>
   ) : null;
 
-  const submitButton = type === 'register' ? (
-    <button className="session-form-submit">Continue</button>
-  ) : (
-    <button className="session-form-submit">Login</button>
-  );
-
   const redirectLink = type === 'register' ? (
-    <Link to='/login' className="redirect-link">Already have an account?</Link>
+    <div className="redirect-div">
+      <Link to='/login' className="redirect-link">Already have an account?</Link>
+    </div>
   ) : (
-    <div className="need-account">
+    <div className="redirect-div">
       Need an account? <Link to='/register' className="redirect-link">Register</Link>
     </div>
   )
@@ -130,26 +118,29 @@ const SessionForm = ({ type, sessionErrors, processForm, resetSessionErrors, his
 
         <form className="session-form" onSubmit={handleSubmit(onSubmit)}>
 
-          <div className="input-container">
-            <label>EMAIL { errors.email && errors.email.message }</label>
-            <input type="text" {...register("email", { required: "This field is required"})} className={ `session-input ${errors.email ? 'error-input' : ''}` } />
+          <div className={`input-container ${errors.email ? 'show-errors' : ''}`}>
+            <label>EMAIL<span>{ errors.email && errors.email.message }</span></label>
+            <input type="email" spellCheck="false" {...register("email", { required: "- This field is required"})} />
           </div>
 
           { usernameInput }
 
-          { passwordInput }
+          <div className={`input-container password-container ${errors.password ? 'show-errors' : ''}`}>
+            <label>PASSWORD<span>{ errors.password && errors.password.message }</span></label>
+            { passwordInput }
+          </div>
 
           { dobInput }
 
           { demoButton }
 
-          { submitButton }
+          <button className="session-form-submit">{type === 'register' ? "Continue" : "Login"}</button>
 
           { redirectLink }
 
+          { type === 'register' && <p>By registering, you agree to Discode's <span className="redirect-link">Terms of Service</span> and <span className="redirect-link">Privacy Policy</span>.</p> }
         </form>
 
-        { type === 'register' && <p>By registering, you agree to Discode's Terms of Service and Privacy Policy.</p> }
       </div>
     </div>
   )
