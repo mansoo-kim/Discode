@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { Link } from 'react-router-dom';
+import DropDown from './DropDown';
 
 const SessionForm = ({ type, sessionErrors, processForm, resetSessionErrors, history }) => {
 
@@ -87,11 +88,17 @@ const SessionForm = ({ type, sessionErrors, processForm, resetSessionErrors, his
   )
 
   const dobInput = type === 'register' ? (
-    <label>DATE OF BIRTH
-      <input type="number" {...register("month") } />
-      <input type="number" {...register("day") } />
-      <input type="number" {...register("year") } />
-    </label>
+    <div className={`input-container dob-container`}>
+      <label>DATE OF BIRTH</label>
+        {/* <input type="number" {...register("month") } />
+        <input type="number" {...register("day") } />
+        <input type="number" {...register("year") } /> */}
+      <div className={"dob-dds"}>
+        <DropDown type="month" />
+        <DropDown type="day" />
+        <DropDown type="year" />
+      </div>
+    </div>
   ) : null;
 
   const demoButton = type === 'login' ? (
@@ -134,7 +141,7 @@ const SessionForm = ({ type, sessionErrors, processForm, resetSessionErrors, his
 
           { demoButton }
 
-          <button className="session-form-submit">{type === 'register' ? "Continue" : "Login"}</button>
+          <button className="session-form-submit"><div className="submit-button">{type === 'register' ? "Continue" : "Login"}</div></button>
 
           { redirectLink }
 

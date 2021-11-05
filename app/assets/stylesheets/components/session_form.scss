@@ -11,10 +11,11 @@
   left: 50%;
   transform : translate(-50%, -50%);
 
-  width: 400px;
+  width: 416px;
   background: $lighter-black;
   padding: 32px;
   border-radius: 5px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.2);
 
   h1, h3 {
     font-size: 24px;
@@ -26,6 +27,7 @@
 
   h3 {
     text-align: center;
+    margin-bottom: 0px;
   }
 
   h2 {
@@ -53,6 +55,7 @@
       margin-bottom: 8px;
       font-size: 12px;
       font-weight: 600;
+      line-height: 16px;
 
       span {
         font-family: 'ginto-normal', sans-serif;
@@ -72,7 +75,7 @@
       color: $off-grey;
       font-size: 14px;
       outline: none;
-      transition: border-color 0.2s ease-in;
+      transition: border-color 0.2s ease-in-out;
 
       &:focus {
         border-color: $link-blue;
@@ -96,6 +99,10 @@
 
   .password-container {
     margin-bottom: 0px;
+  }
+
+  .dob-container {
+    margin-top: 20px;
   }
 
   .demo-button {
@@ -134,19 +141,74 @@
   }
 
   .session-form-submit {
-    background: $blurple;
     color: $white;
-    line-height: 40px;
-    padding: 2px 0px;
     margin-bottom: 8px;
-    border: none;
-    border-radius: 3px;
     cursor: pointer;
     font-weight: 600;
+    border: none;
+    border-radius: 3px;
+    overflow: hidden;
+    background: $blurple;
+    position: relative;
 
+    &:after {
+      background: rgba(0,0,0,0.2);
+      opacity: 0;
+      transition: opacity 0.2s ease;
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      content: '';
+    }
 
-    &:hover {
-      background-image: linear-gradient(rgba(0, 0, 0, 0.2) 0 0);
+    &:hover:after {
+      opacity: 1;
+    }
+
+    div.submit-button {
+      position: relative;
+      line-height: 40px;
+      padding: 2px;
+      z-index: 1;
     }
   }
+}
+
+.dob-dds {
+  display: flex;
+  justify-content: space-between;
+}
+
+.dd-button {
+  position: relative;
+  background: rgba(0,0,0,0.1);
+  border: 1px solid rgba(0,0,0,0.3);
+  border-radius: 3px;
+  color: $kinda-grey;
+
+  height: 40px;
+}
+
+.dd-month {
+  flex-grow: 2;
+  margin-right: 10px;
+}
+
+.dd-day {
+  flex-grow: 1;
+  margin: 0px 10px;
+}
+
+.dd-year {
+  flex-grow: 1.5;
+  margin-left: 10px;
+}
+
+.dd {
+  position: absolute;
+  top: -225px;
+  height: 225px;
+  overflow-y: scroll;
 }
