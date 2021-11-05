@@ -107,6 +107,12 @@
     background: $white;
     color: black;
     cursor: pointer;
+    display: flex;
+    align-items: center;
+
+    .download-icon {
+      margin-right: 10px;
+    }
   }
 
   .open {

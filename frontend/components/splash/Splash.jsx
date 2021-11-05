@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import { MdOutlineFileDownload } from 'react-icons/md';
 
 const Splash = ({ loggedIn }) => {
 
@@ -36,6 +37,7 @@ const Splash = ({ loggedIn }) => {
 
           <div className="header-buttons">
             <div className="splash-button download button">
+              <MdOutlineFileDownload className="download-icon" size={25} />
               Download for { window.navigator.platform.includes('Win') ? 'Windows' : 'Mac'}
             </div>
             <Link className="splash-button open button" to='/login'>Open Discord in your browser</Link>
