@@ -1,6 +1,98 @@
+.outer-container {
+  background: $blurple;
+  height: 100%;
+}
+
+.form-container {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform : translate(-50%, -50%);
+
+  width: 400px;
+  background: $lighter-black;
+  padding: 32px;
+  border-radius: 5px;
+
+  h1 {
+    font-weight: 600;
+    font-size: 24px;
+    line-height: 30px;
+    margin-bottom: 8px;
+  }
+
+  h2 {
+    line-height: 20px;
+    color: $off-grey;
+  }
+}
+
 .session-form {
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+
+  margin-top: 20px;
+
+  .input-container {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+
+    label {
+      color: $off-grey;
+      margin-bottom: 8px;
+      font-size: 14px;
+    }
+
+    input {
+      height: 20px;
+      padding: 10px;
+      border: none;
+      background: rgba(0,0,0,0.1);
+      border: 1px solid rgba(0,0,0,0.3);
+      border-radius: 3px;
+      color: $off-grey;
+      font-size: 16px;
+    }
+  }
+
+  .password-container {
+    margin-bottom: 0px;
+  }
+
+  .demo-button {
+    cursor: pointer;
+    color: $link-blue;
+    font-size: 14px;
+    line-height: 16px;
+
+    margin: 6px 0px 22px 0px;
+  }
+
+  .redirect-link {
+    cursor: pointer;
+    color: $link-blue;
+  }
+
+  .need-account {
+    color: $kinda-grey;
+    font-size: 14px;
+  }
+
+  .session-form-submit {
+    background: $blurple;
+    color: $white;
+    line-height: 40px;
+    padding: 2px 0px;
+    margin-bottom: 8px;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+  }
 }
 
 .error-input {

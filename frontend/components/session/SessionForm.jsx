@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { Link } from 'react-router-dom';
 
@@ -47,18 +47,18 @@ const SessionForm = ({ type, sessionErrors, processForm, resetSessionErrors, his
   }
 
   const header = type === 'login' ? (
-    <div>
+    <>
       <h1>Welcome back!</h1>
       <h2>We're so excited to see you again!</h2>
-    </div>
+    </>
   ) : (
-    <div>
+    <>
       <h1>Create an account</h1>
-    </div>
+    </>
   )
 
   const usernameInput = type === 'register' ? (
-    <div>
+    <div className="input-container">
       <label>USERNAME { errors.username && errors.username.message }</label>
       <input type="text" {...register("username", {
         required: "This field is required",
@@ -76,7 +76,7 @@ const SessionForm = ({ type, sessionErrors, processForm, resetSessionErrors, his
   ) : null;
 
   const passwordInput = type === 'register' ? (
-    <div>
+    <div className="input-container password-container">
       <label>PASSWORD { errors.password && errors.password.message }</label>
       <input type="password" {...register("password", {
         required: "This field is required",
@@ -86,8 +86,9 @@ const SessionForm = ({ type, sessionErrors, processForm, resetSessionErrors, his
         }
       })} className={ `session-input ${errors.password ? 'error-input' : ''}` } />
     </div>
-  ) : (<div>
-    <label>PASSWORD { errors.password && errors.password.message }</label>
+  ) : (
+    <div className="input-container password-container">
+      <label>PASSWORD { errors.password && errors.password.message }</label>
       <input type="password" {...register("password", { required: "This field is required"})} className={ `session-input ${errors.password ? 'error-input' : ''}` } />
     </div>
   )
@@ -100,51 +101,56 @@ const SessionForm = ({ type, sessionErrors, processForm, resetSessionErrors, his
     </label>
   ) : null;
 
+  // <input type='button' onClick={handleDemoLogin} value='Login as demo user' />
   const demoButton = type === 'login' ? (
-    <input type='button' onClick={handleDemoLogin} value='Login as demo user' />
+    <div onClick={handleDemoLogin} className="demo-button">
+      Login as demo user
+    </div>
   ) : null;
 
   const submitButton = type === 'register' ? (
-    <button>Continue</button>
+    <button className="session-form-submit">Continue</button>
   ) : (
-    <button>Login</button>
+    <button className="session-form-submit">Login</button>
   );
 
   const redirectLink = type === 'register' ? (
-    <Link to='/login'>Already have an account?</Link>
+    <Link to='/login' className="redirect-link">Already have an account?</Link>
   ) : (
-    <div>
-      Need an account?<Link to='/register'>Register</Link>
+    <div className="need-account">
+      Need an account? <Link to='/register' className="redirect-link">Register</Link>
     </div>
   )
 
   return (
-    <div>
+    <div className="outer-container">
+      <div className="form-container">
 
-      { header }
+        { header }
 
-      <form className="session-form" onSubmit={handleSubmit(onSubmit)}>
+        <form className="session-form" onSubmit={handleSubmit(onSubmit)}>
 
-        <div>
-          <label>EMAIL { errors.email && errors.email.message }</label>
-          <input type="text" {...register("email", { required: "This field is required"})} className={ `session-input ${errors.email ? 'error-input' : ''}` } />
-        </div>
+          <div className="input-container">
+            <label>EMAIL { errors.email && errors.email.message }</label>
+            <input type="text" {...register("email", { required: "This field is required"})} className={ `session-input ${errors.email ? 'error-input' : ''}` } />
+          </div>
 
-        { usernameInput }
+          { usernameInput }
 
-        { passwordInput }
+          { passwordInput }
 
-        { dobInput }
+          { dobInput }
 
-        { demoButton }
+          { demoButton }
 
-        { submitButton }
+          { submitButton }
 
-        { redirectLink }
+          { redirectLink }
 
-      </form>
+        </form>
 
-      { type === 'register' && <p>By registering, you agree to Discode's Terms of Service and Privacy Policy.</p> }
+        { type === 'register' && <p>By registering, you agree to Discode's Terms of Service and Privacy Policy.</p> }
+      </div>
     </div>
   )
 }
