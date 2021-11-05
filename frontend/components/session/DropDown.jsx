@@ -1,6 +1,7 @@
 import { useState } from 'react';
+import { FaChevronDown } from 'react-icons/fa'
 
-const DropDown = ({ type }) => {
+const DropDown = ({ type, setValue }) => {
   const [showDD, setShowDD] = useState(false);
   const [text, setText] = useState("Select");
 
@@ -25,17 +26,26 @@ const DropDown = ({ type }) => {
       break;
   }
 
+  const handleSelect = (val, i) => {
+    setText(val);
+    setValue(type, type === "month" ? i : val);
+  }
+
   const dd = (
     <div className="dd">
-      { values.map(val => (
-        <div className="dd-item" key={val}>{val}</div>
+      { values.map((val, i) => (
+        <div className="dd-item" key={i} onClick={() => handleSelect(val, i)}>{val}</div>
       ))}
     </div>
   )
 
   return (
     <div className={`dd-button dd-${type}`} onClick={toggleDD}>
-      { text }
+      <div className={text !== "Select" ? "" : "unselected"}>
+        { text }
+      </div>
+
+      <FaChevronDown size={13} />
       { showDD && dd }
     </div>
   )

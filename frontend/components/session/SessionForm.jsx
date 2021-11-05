@@ -28,6 +28,7 @@ const SessionForm = ({ type, sessionErrors, processForm, resetSessionErrors, his
   }, [])
 
   const onSubmit = (data) => {
+    console.log(data);
     const formUser = type === 'login' ? {
       email: data.email,
       password: data.password
@@ -94,9 +95,9 @@ const SessionForm = ({ type, sessionErrors, processForm, resetSessionErrors, his
         <input type="number" {...register("day") } />
         <input type="number" {...register("year") } /> */}
       <div className={"dob-dds"}>
-        <DropDown type="month" />
-        <DropDown type="day" />
-        <DropDown type="year" />
+        <DropDown type="month" setValue={setValue} />
+        <DropDown type="day" setValue={setValue} />
+        <DropDown type="year" setValue={setValue} />
       </div>
     </div>
   ) : null;

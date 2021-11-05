@@ -186,29 +186,68 @@
   background: rgba(0,0,0,0.1);
   border: 1px solid rgba(0,0,0,0.3);
   border-radius: 3px;
-  color: $kinda-grey;
+  color: $off-white;
 
   height: 40px;
+  font-size: 18px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0px 10px;
+}
+
+.unselected {
+  color: $kinda-grey;
 }
 
 .dd-month {
-  flex-grow: 2;
+  width: 154px;
   margin-right: 10px;
 }
 
 .dd-day {
-  flex-grow: 1;
+  width: 100px;
   margin: 0px 10px;
 }
 
 .dd-year {
-  flex-grow: 1.5;
+  width: 120px;
   margin-left: 10px;
 }
 
 .dd {
   position: absolute;
   top: -225px;
+  left: -1px;
   height: 225px;
   overflow-y: scroll;
+  width: 100%;
+
+  background: $lighter-black;
+  border: 2px solid rgba(0,0,0,0.3);
+  border-radius: 3px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+.dd-item {
+  background: rgba(0,0,0,0.1);
+  padding: 12px;
+  color: $off-white;
+  font-size: 18px;
+
+  &:hover {
+    background: rgba(0,0,0,0.25);
+  }
+}
+
+::-webkit-scrollbar {
+  background: rgba(0,0,0,0.1);
+  width: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgb(25, 25, 25);
+  height: 5px;
+  border-radius: 4px;
 }
