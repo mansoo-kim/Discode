@@ -1,0 +1,21 @@
+.cc-header {
+  flex-shrink: 0;
+  display: flex;
+  justify-content: space-between;
+  height: 48px;
+  // position: relative;
+  // z-index: 1;
+
+  border-bottom: 1px solid $not-black;
+  box-shadow: 0 1px 0 rgba(0,0,0,0.2);
+
+
+  > div {
+    display: flex;
+  }
+
+}
+
+.cc-hash {
+  color: $channels-grey;
+}

@@ -24,9 +24,11 @@
  @import './components/main.scss';
  @import './server/server.scss';
  @import './server/server_index.scss';
- @import './server/channel_index.scss';
+ @import './cc/channel_index.scss';
+ @import './cc/cc_header.scss';
+ @import './chat/chatroom.scss';
+ @import './chat/message_item.scss';
+ @import './components/member_index.scss';
  @import './components/current_user.scss';
- @import './components/chatroom.scss';
- @import './components/message_item.scss';
  @import './components/modal.scss';
  @import './components/settings.scss';

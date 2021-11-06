@@ -1,16 +1,13 @@
 .cc-view {
+  height: 100%;
   flex-grow: 1;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
 }
 
-.cc-header {
-  height: 5%
-}
-
 .cc-main {
-  height: 95%;
+  height: calc(100% - 48px);
   display: flex;
   justify-content: space-between;
 }
@@ -26,6 +23,17 @@
 .message-list {
   height: 95%;
   overflow-y: auto;
+
+  &::-webkit-scrollbar {
+    background: rgba(0,0,0,0.1);
+    width: 8px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: $another-black;
+    height: 5px;
+    border-radius: 4px;
+  }
 }
 
 .message-input-container {

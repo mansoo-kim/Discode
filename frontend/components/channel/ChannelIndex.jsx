@@ -19,8 +19,8 @@ const ChannelIndex = ({ channels, isOwner, serverId, openModal }) => {
 
   return (
     <div className="cc-index-container">
-      <div className="cc-header-container">
-        <div className="cc-header">
+      <div className="cc-index-header-container">
+        <div className="cc-index-header">
           <FaChevronDown size={8} />
           <span>
             TEXT CHANNELS
