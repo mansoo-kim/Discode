@@ -36,6 +36,7 @@
 
 .message-form.edit {
   flex-direction: column;
+  padding-top: 8px;
 
   input {
     padding-left: 16px;
@@ -43,11 +44,13 @@
 
   div {
     font-size: 12px;
+    line-height: 14px;
     padding: 7px 0px;
   }
 
   span {
     color: $link-blue;
+    cursor: pointer;
 
     &:hover {
       text-decoration: underline;

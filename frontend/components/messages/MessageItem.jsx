@@ -1,12 +1,21 @@
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { RiDeleteBin5Fill } from 'react-icons/ri';
 import { FaPen } from 'react-icons/fa';
 
 const MessageItem = ({ message, chat, currentUserId, sameSender, sender, openModal }) => {
   const [showEdit, setShowEdit] = useState(false);
   const [body, setBody] = useState(message.body);
+  const editRef = useRef(null);
 
-  const toggleEdit = () => setShowEdit(!showEdit);
+  const openEdit = () => {
+    setShowEdit(true);
+  }
+
+  useEffect(() => {
+    if (showEdit) {
+      editRef.current.focus();
+    }
+  })
 
   const handleEdit = (e) => {
     e.preventDefault();
@@ -19,21 +28,27 @@ const MessageItem = ({ message, chat, currentUserId, sameSender, sender, openMod
       );
     }
     setShowEdit(false);
-  }
+  };
+
+  const handleEscapeExit = (e) => {
+    if (e.keyCode === 27) {
+      setShowEdit(false);
+    }
+  };
 
   const editInput = (
     <form onSubmit={handleEdit} className="message-form edit">
-      <input type="text" value={body} onChange={(e) => setBody(e.currentTarget.value)} />
+      <input type="text" value={body} ref={editRef} onChange={(e) => setBody(e.currentTarget.value)} onKeyDown={handleEscapeExit} />
 
       <div>
-        escape to <span onClick={() => setShowEdit(false)}>cancel</span> enter to <span>save</span>
+        escape to <span onClick={() => setShowEdit(false)}>cancel</span> enter to <span onClick={handleEdit}>save</span>
       </div>
     </form>
   )
 
   const buttons = currentUserId === sender.id ? (
     <div className="message-buttons">
-      <div onClick={toggleEdit}>
+      <div onClick={openEdit}>
         <FaPen size={14} />
       </div>
       <div onClick={() => openModal({type: "deleteMessage", message, sender, chat})}>
