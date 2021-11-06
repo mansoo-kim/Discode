@@ -22,21 +22,22 @@ const MessageItem = ({ message, chat, currentUserId, sameSender, sender, openMod
   }
 
   const editInput = (
-    <form onSubmit={handleEdit}>
+    <form onSubmit={handleEdit} className="message-form edit">
       <input type="text" value={body} onChange={(e) => setBody(e.currentTarget.value)} />
 
-      <button type="button" onClick={() => setShowEdit(false)}>cancel</button>
-      <button>save</button>
+      <div>
+        escape to <span onClick={() => setShowEdit(false)}>cancel</span> enter to <span>save</span>
+      </div>
     </form>
   )
 
   const buttons = currentUserId === sender.id ? (
     <div className="message-buttons">
       <div onClick={toggleEdit}>
-        <FaPen />
+        <FaPen size={14} />
       </div>
       <div onClick={() => openModal({type: "deleteMessage", message, sender, chat})}>
-        <RiDeleteBin5Fill />
+        <RiDeleteBin5Fill size={16} />
       </div>
     </div>
   ) : null;

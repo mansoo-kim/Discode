@@ -9,6 +9,7 @@
   position: relative;
   display: flex;
   justify-content: center;
+  width: 100%;
 
   svg {
     top: 22px;
@@ -30,5 +31,26 @@
     color: $off-white;
     padding-left: 56px;
     font-family: 'whitney', sans-erif;
+  }
+}
+
+.message-form.edit {
+  flex-direction: column;
+
+  input {
+    padding-left: 16px;
+  }
+
+  div {
+    font-size: 12px;
+    padding: 7px 0px;
+  }
+
+  span {
+    color: $link-blue;
+
+    &:hover {
+      text-decoration: underline;
+    }
   }
 }

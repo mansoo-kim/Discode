@@ -53,23 +53,26 @@
 .message-body {
   display: flex;
   color: $off-white;
+  width: 100%;
 
   > div:first-child {
     min-width: 40px;
-    margin: 0px 16px;
+    margin: 2px 16px 0px 16px;
     display: flex;
-    align-items: center;
+    align-items: flex-start;
   }
 
   .message-text {
     display: flex;
     flex-direction: column;
+    flex-grow: 1;
     margin-right: 48px;
 
     > div {
       line-height: 22px;
       display: flex;
       align-items: center;
+      width: 100%;
     }
 
     .sender-username {
