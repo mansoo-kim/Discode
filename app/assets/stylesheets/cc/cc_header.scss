@@ -1,18 +1,32 @@
 .cc-header {
-  flex-shrink: 0;
   display: flex;
   justify-content: space-between;
+  align-items: center;
   height: 48px;
+  cursor: default;
+  padding: 0px 8px;
 
-  border-bottom: 1px solid $not-black;
+  border-bottom: 1px solid $yet-another-black;
   box-shadow: 0 1px 0 rgba(0,0,0,0.2);
+
+  position: relative;
+  z-index: 1;
 
   > div {
     display: flex;
+    align-items: center;
   }
 
 }
 
 .cc-hash {
+  display: flex;
+  align-items: center;
   color: $channels-grey;
+  margin: 0px 8px;
+}
+
+.cc-name {
+  font-family: 'ginto-normal', sans-serif;
+  font-size: 16px;
 }

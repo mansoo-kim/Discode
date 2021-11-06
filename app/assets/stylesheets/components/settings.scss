@@ -1,6 +1,9 @@
 .settings-container {
   display: flex;
 
+  position: relative;
+  z-index: 2;
+
   .settings-left {
     position: fixed;
     left: 0;
