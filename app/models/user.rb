@@ -14,7 +14,7 @@
 #
 class User < ApplicationRecord
   validates :username, length: { in: 2..32, message: "Must be between 2 and 32 in length" }
-  validates :username, uniqueness: { scope: :tag, message: "- Too many users have this username, please try another." }
+  validates :username, uniqueness: { scope: :tag, case_sensitive: false, message: "- Too many users have this username, please try another." }
   validates :email, presence: true, uniqueness: { message: "- Email is already registered"}
   validates :dob, presence: true
   validates :session_token, presence: true, uniqueness: true
