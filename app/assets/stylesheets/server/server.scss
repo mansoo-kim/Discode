@@ -14,7 +14,7 @@
   color: $off-white;
 
   border-bottom: 1px solid $yet-another-black;
-  box-shadow: 0 1px 0 rgba(0,0,0,0.2);
+  box-shadow: 0 1px 0 rgba(0,0,0,0.1);
 
   position: relative;
   z-index: 1;
@@ -23,13 +23,14 @@
   padding: 0px 19px;
 
   .server-name {
+    font-family: 'ginto-normal', sans-serif;
     font-size: 15px;
     font-weight: 600;
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
     line-height: 48px;
-    width: 85%;
+    width: 90%;
     color: $white;
   }
 

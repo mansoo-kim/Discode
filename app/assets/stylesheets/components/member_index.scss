@@ -1,5 +1,6 @@
 .member-index-container {
   width: 240px;
+  flex-shrink: 0;
   color: $channels-grey;
   background: $diff-black;
 

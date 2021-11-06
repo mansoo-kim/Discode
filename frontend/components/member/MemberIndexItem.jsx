@@ -3,7 +3,7 @@ import UserPfp from "../user/UserPfp"
 const MemberIndexItem = ({ member }) => {
 
   return (
-    <div class="member-index-item">
+    <div className="member-index-item">
       <UserPfp user={member} />
       { member.username }
     </div>

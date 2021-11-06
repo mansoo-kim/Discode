@@ -24,6 +24,27 @@
   }
 }
 
+.message-pfp {
+  .pfp-container {
+    height: 40px;
+    width: 40px;
+
+    .pfp {
+      height: 40px;
+      width: 40px;
+    }
+  }
+
+  .default-pfp {
+    background: $blurple;
+
+    .pfp {
+      width: 23px;
+      height: 17px;
+    }
+  }
+}
+
 .server-icon-container {
   height: 48px;
   width: 48px;

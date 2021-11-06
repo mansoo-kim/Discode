@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-const MessageItem = ({ message, chat, currentUserId, sender, openModal }) => {
+const MessageItem = ({ message, chat, currentUserId, sameSender, sender, openModal }) => {
   const [showEdit, setShowEdit] = useState(false);
   const [body, setBody] = useState(message.body);
 
@@ -35,16 +35,35 @@ const MessageItem = ({ message, chat, currentUserId, sender, openModal }) => {
     </div>
   ) : null;
 
-  return (
-    <div className="message-item">
-      <UserPfp user={sender} />
-
-      <div className="message-content">
-        <div className="message-body">
-        { showEdit ? editInput : message.body }
+  const messageBody = sameSender ? (
+    <>
+      <div></div>
+      <div className="message-text">
+        <div>
+          { showEdit ? editInput : message.body }
         </div>
-        { !showEdit && buttons }
       </div>
+    </>
+  ) : (
+    <>
+      <div className="message-pfp"><UserPfp user={sender} /></div>
+      <div className="message-text">
+        <div className="sender-username">
+          { sender.username }
+        </div>
+        <div>
+          { showEdit ? editInput : message.body }
+        </div>
+      </div>
+    </>
+  )
+
+  return (
+    <div className={`message-item ${sameSender ? '' : 'first-message'}`}>
+      <div className="message-body">
+        { messageBody }
+      </div>
+      { !showEdit && buttons }
     </div>
   )
 }

@@ -37,8 +37,8 @@ const ChatRoom = ({ type, cc, currentUserId, messages, receiveMessage, removeMes
     if (bottomRef.current) bottomRef.current.scrollIntoView();
   }, [messages])
 
-  const messageList = messages.map(message => {
-    return <MessageItem key={message.id} message={message} chat={chat} currentUserId={currentUserId} />
+  const messageList = messages.map((message,i) => {
+    return <MessageItem key={message.id} message={message} chat={chat} currentUserId={currentUserId} sameSender={message.senderId === messages[i-1]?.senderId} />
   });
 
   return (

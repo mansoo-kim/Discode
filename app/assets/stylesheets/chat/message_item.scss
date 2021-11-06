@@ -1,20 +1,47 @@
 .message-item {
   display: flex;
-  align-items: center;
+  justify-content: space-between;
   width: 100%;
+  padding: 2px 0px;
 
-  .message-content {
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
-
-    .message-buttons {
-      display: none;
-    }
+  .message-buttons {
+    display: none;
   }
-
 
   &:hover .message-buttons {
     display: block;
   };
+}
+
+.first-message {
+  margin-top: 17px;
+}
+
+
+.message-body {
+  display: flex;
+  color: $off-white;
+
+  > div:first-child {
+    min-width: 40px;
+    margin: 0px 16px;
+    display: flex;
+    align-items: center;
+  }
+
+  .message-text {
+    display: flex;
+    flex-direction: column;
+
+    > div {
+      line-height: 22px;
+      display: flex;
+      align-items: center;
+    }
+
+    .sender-username {
+      color: $white;
+      font-weight: 600;
+    }
+  }
 }
