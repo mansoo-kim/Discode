@@ -12,6 +12,7 @@
 .pfp {
   height: 32px;
   width: 32px;
+  object-fit: cover;
 }
 
 .default-pfp {
@@ -37,4 +38,5 @@
 .server-icon {
   height: 48px;
   width: 48px;
+  object-fit: cover;
 }

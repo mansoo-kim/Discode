@@ -39,9 +39,7 @@ const MessageItem = ({ message, chat, currentUserId, sender, openModal }) => {
 
   return (
     <div className="message-item">
-      <div className="message-pfp">
-        <img src={imgSrc} className="pfp" />
-      </div>
+      <UserPfp user={sender} />
 
       <div className="message-content">
         <div className="message-body">
@@ -55,6 +53,7 @@ const MessageItem = ({ message, chat, currentUserId, sender, openModal }) => {
 
 import { connect } from 'react-redux';
 import { openModal } from '../../actions/modal_actions';
+import UserPfp from '../user/UserPfp';
 
 const mSTP = (state, ownProps) => ({
   sender: state.entities.users[ownProps.message.senderId]
