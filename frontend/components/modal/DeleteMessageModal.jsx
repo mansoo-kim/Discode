@@ -1,4 +1,6 @@
-const DeleteMessageModal = ({ message, imgSrc, chat, closeModal }) => {
+import UserPfp from '../user/UserPfp';
+
+const DeleteMessageModal = ({ message, sender, chat, closeModal }) => {
 
   const handleDelete = () => {
     chat.delete(
@@ -14,9 +16,7 @@ const DeleteMessageModal = ({ message, imgSrc, chat, closeModal }) => {
       <p>Are you sure you want to delete this message?</p>
 
       <div className="message-item">
-        <div className="message-pfp">
-          <img src={imgSrc} className="pfp" />
-        </div>
+        <UserPfp user={sender} />
 
         <div className="message-content">
           <div className="message-body">

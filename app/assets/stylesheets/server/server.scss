@@ -11,6 +11,7 @@
   justify-content: space-between;
   height: 48px;
   cursor: pointer;
+  color: $off-white;
 
   border-bottom: 1px solid $yet-another-black;
   box-shadow: 0 1px 0 rgba(0,0,0,0.2);
@@ -19,7 +20,7 @@
   z-index: 1;
 
   background: $diff-black;
-  padding: 0px 16px;
+  padding: 0px 19px;
 
   .server-name {
     font-size: 15px;
@@ -29,6 +30,7 @@
     text-overflow: ellipsis;
     line-height: 48px;
     width: 85%;
+    color: $white;
   }
 
 }

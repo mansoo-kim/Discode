@@ -9,7 +9,7 @@ const ChannelIndexItem = ({ channel, isOwner, toggleSettings }) => {
           <div><RiHashtag size={20} /></div>
           <div>{ channel.name }</div>
       </Link>
-      { isOwner && <div className="new-channel-button" tabIndex="0" onClick={() => toggleSettings(channel.id)}><BsFillGearFill /></div>}
+      { isOwner && <div className="new-channel-button" tabIndex="0" onClick={() => toggleSettings(channel.id)}><BsFillGearFill size={12} /></div>}
     </div>
   )
 }

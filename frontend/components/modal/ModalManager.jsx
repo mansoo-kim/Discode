@@ -19,7 +19,7 @@ const ModalManager = ({ modal, closeModal, history }) => {
       component = <EditUserModal type={modal.property} />
       break;
     case "deleteMessage":
-      component = <DeleteMessageModal message={modal.message} imgSrc={modal.imgSrc} chat={modal.chat} />
+      component = <DeleteMessageModal message={modal.message} sender={modal.sender} chat={modal.chat} />
       break;
     default:
       return null;

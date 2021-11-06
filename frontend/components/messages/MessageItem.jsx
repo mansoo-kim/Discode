@@ -19,8 +19,6 @@ const MessageItem = ({ message, chat, currentUserId, sender, openModal }) => {
     setShowEdit(false);
   }
 
-  const imgSrc = sender.pfpUrl || 'https://raw.githubusercontent.com/mansookim/Discode/main/app/assets/images/icon_clyde_white_RGB.png'
-
   const editInput = (
     <form onSubmit={handleEdit}>
       <input type="text" value={body} onChange={(e) => setBody(e.currentTarget.value)} />
@@ -33,7 +31,7 @@ const MessageItem = ({ message, chat, currentUserId, sender, openModal }) => {
   const buttons = currentUserId === sender.id ? (
     <div className="message-buttons">
       <button onClick={toggleEdit}>Edit</button>
-      <button onClick={() => openModal({type: "deleteMessage", message, imgSrc, chat})}>Delete</button>
+      <button onClick={() => openModal({type: "deleteMessage", message, sender, chat})}>Delete</button>
     </div>
   ) : null;
 
