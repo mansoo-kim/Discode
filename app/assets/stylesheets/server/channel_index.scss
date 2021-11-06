@@ -1,4 +1,75 @@
-.cc-index {
+.cc-index-container {
   background: $diff-black;
   flex-grow: 1;
+
+  .cc-index {
+    font-weight: 600;
+
+    .cc-index-item {
+      line-height: 34px;
+      padding: 0px 15px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      .channel-button {
+        width: 85%;
+        display: flex;
+        align-items: center;
+
+        color: $channels-grey;
+
+        div:first-child {
+          display: flex;
+          align-items: center;
+        }
+
+        div:last-child {
+          margin-left: 5px;
+          width: 90%;
+          overflow: hidden;
+          white-space: nowrap;
+          text-overflow: ellipsis;
+        }
+      }
+
+      .new-channel-button {
+        display: flex;
+        align-items: center;
+        color: $channels-grey;
+        cursor: pointer;
+      }
+
+
+    }
+  }
+}
+
+.cc-header-container {
+  flex-shrink: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 12px;
+  font-family: 'ginto-normal', sans-serif;
+  font-weight: 600;
+  color: $channels-grey;
+  line-height: 24px;
+  cursor: pointer;
+  padding: 16px 18px 0px 5px;
+
+  span {
+    padding-left: 5px;
+  }
+
+  .new-channel-button {
+    display: flex;
+    align-items: center;
+  }
+}
+
+.cc-header{
+  flex-grow: 1;
+  display: flex;
+  align-items: center;
 }

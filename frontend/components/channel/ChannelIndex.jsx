@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import ChannelIndexItem from './ChannelIndexItem';
 import ChannelSettings from './ChannelSettings';
+import { FaChevronDown } from 'react-icons/fa';
+import { HiOutlinePlus } from 'react-icons/hi';
 
 const ChannelIndex = ({ channels, isOwner, serverId, openModal }) => {
   const [showSettings, setShowSettings] = useState(false);
@@ -10,18 +12,25 @@ const ChannelIndex = ({ channels, isOwner, serverId, openModal }) => {
     setShowSettings(!showSettings);
   };
 
-  const newChannelButton = <button onClick={() =>
+  const newChannelButton = <div className="new-channel-button" tabIndex="0" onClick={() =>
     openModal({type: "createChannel", serverId})}>
-    New Channel
-  </button>
+    <HiOutlinePlus size={18} />
+  </div>
 
   return (
-    <div className="cc-index">
-      TEXT CHANNELS
-      { isOwner && newChannelButton }
-      <ul>
+    <div className="cc-index-container">
+      <div className="cc-header-container">
+        <div className="cc-header">
+          <FaChevronDown size={8} />
+          <span>
+            TEXT CHANNELS
+          </span>
+        </div>
+        { isOwner && newChannelButton }
+      </div>
+      <div className="cc-index">
         {channels.map(channel => <ChannelIndexItem key={channel.id} channel={channel} isOwner={isOwner} toggleSettings={toggleSettings} />)}
-      </ul>
+      </div>
 
       { showSettings && <ChannelSettings toggleSettings={toggleSettings} channelId={settingsId} />}
     </div>

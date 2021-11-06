@@ -26,7 +26,6 @@ const Server = ({ server, channels, isOwner, requestServer, match, history }) =>
       <div className="server-nav-column">
         <div>
           <div className="server-header">
-
             <div className="server-name-container" tabIndex="0" onClick={() => setShowDD(!showDD)} onBlur={() => setShowDD(false)}>
               <div className="server-name">
                 { server.name }

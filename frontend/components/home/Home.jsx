@@ -6,7 +6,7 @@ import CurrentUser from '../user/CurrentUser';
 const Home = () => {
   return (
     <div className="main-view">
-      <div className="cc-index-container">
+      <div className="server-nav-column">
         <div>
           <ConversationIndex />
         </div>
