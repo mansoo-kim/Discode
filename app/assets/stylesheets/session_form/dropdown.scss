@@ -1,3 +1,25 @@
+.dob-dds {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 4px;
+}
+
+.dd-button {
+  position: relative;
+  background: rgba(0,0,0,0.1);
+  border: 1px solid rgba(0,0,0,0.3);
+  border-radius: 3px;
+  color: $off-white;
+
+  height: 40px;
+  font-size: 18px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0px 10px;
+}
+
 .unselected {
   color: $kinda-grey;
 }
