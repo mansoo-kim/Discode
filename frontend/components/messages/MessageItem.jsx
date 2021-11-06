@@ -1,4 +1,6 @@
 import { useState } from 'react';
+import { RiDeleteBin5Fill } from 'react-icons/ri';
+import { FaPen } from 'react-icons/fa';
 
 const MessageItem = ({ message, chat, currentUserId, sameSender, sender, openModal }) => {
   const [showEdit, setShowEdit] = useState(false);
@@ -30,8 +32,12 @@ const MessageItem = ({ message, chat, currentUserId, sameSender, sender, openMod
 
   const buttons = currentUserId === sender.id ? (
     <div className="message-buttons">
-      <button onClick={toggleEdit}>Edit</button>
-      <button onClick={() => openModal({type: "deleteMessage", message, sender, chat})}>Delete</button>
+      <div onClick={toggleEdit}>
+        <FaPen />
+      </div>
+      <div onClick={() => openModal({type: "deleteMessage", message, sender, chat})}>
+        <RiDeleteBin5Fill />
+      </div>
     </div>
   ) : null;
 

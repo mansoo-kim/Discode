@@ -3,13 +3,45 @@
   justify-content: space-between;
   width: 100%;
   padding: 2px 0px;
+  position: relative;
 
   .message-buttons {
     display: none;
+    position: absolute;
+    right: 10px;
+    top: -5px;
+    transform: translateY(-50%);
+    background-color: $lighter-black;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    transition: box-shadow 0.1s ease-in-out;
+    align-items: center;
+    justify-content: space-between;
+
+    border: 1px solid $diff-black;
+    border-radius: 5px;
+    overflow: hidden;
+    color: $off-grey;
+
+    &:hover {
+      box-shadow: 0 5px 5px rgba(0,0,0,0.3);
+    }
+
+    > div {
+      padding: 8px;
+    }
+
+    > div:hover {
+      filter: brightness(1.1);
+      background: $lighter-black;
+    }
+  }
+
+  &:hover {
+    background: rgba(4,4,5,0.07);
   }
 
   &:hover .message-buttons {
-    display: block;
+    display: flex;
   };
 }
 
@@ -32,6 +64,7 @@
   .message-text {
     display: flex;
     flex-direction: column;
+    margin-right: 48px;
 
     > div {
       line-height: 22px;

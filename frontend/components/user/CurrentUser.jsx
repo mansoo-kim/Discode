@@ -21,7 +21,7 @@ const CurrentUser = ({ currentUser }) => {
           </div>
         </div>
 
-        <div tabIndex="0" onClick={toggleSettings}>
+        <div onClick={toggleSettings}>
           <BsFillGearFill size={17} />
         </div>
       </div>
