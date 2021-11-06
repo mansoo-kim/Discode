@@ -1,6 +1,7 @@
 import { useState } from 'react';
+import { BsPlusCircleFill } from 'react-icons/bs';
 
-const MessageForm = ({ currentUserId, type, id, chat }) => {
+const MessageForm = ({ currentUserId, cc, chat }) => {
   const [body, setBody] = useState("");
 
   const update = (e) => setBody(e.currentTarget.value);
@@ -12,8 +13,8 @@ const MessageForm = ({ currentUserId, type, id, chat }) => {
         {
           body: body,
           sender_id: currentUserId,
-          messageable_type: type,
-          messageable_id: id
+          messageable_type: cc.messageable_type,
+          messageable_id: cc.id
         }
       );
       setBody("");
@@ -22,12 +23,14 @@ const MessageForm = ({ currentUserId, type, id, chat }) => {
 
   return (
     <div className="message-input-container">
-      <form onSubmit={handleSubmit}>
+      <form className="message-form" onSubmit={handleSubmit}>
+        <BsPlusCircleFill size={20} />
+
         <input
           type="text"
           value={body}
           onChange={update}
-          placeholder="Message"
+          placeholder={`Message ${cc.name}`}
         />
       </form>
     </div>

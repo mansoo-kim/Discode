@@ -47,7 +47,7 @@ const ChatRoom = ({ type, cc, currentUserId, messages, receiveMessage, removeMes
         { messageList }
         <div ref={bottomRef}></div>
       </div>
-      <MessageForm currentUserId={currentUserId} type={type} id={cc.id} chat={chat} />
+      <MessageForm currentUserId={currentUserId} cc={cc} chat={chat} />
     </div>
   )
 }
