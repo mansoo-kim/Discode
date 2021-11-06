@@ -6,11 +6,12 @@
 .main-view {
   width: 100%;
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
+}
 
-  .cc-index-container {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-  }
+.server-nav-column {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 240px;
 }

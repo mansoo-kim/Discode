@@ -5,6 +5,7 @@ import ChannelContainer from '../cc/ChannelContainer';
 import ServerOptionsDD from './ServerOptionsDD';
 import ServerSettings from './ServerSettings';
 import CurrentUser from '../user/CurrentUser';
+import { FaChevronDown } from 'react-icons/fa'
 
 const Server = ({ server, channels, isOwner, requestServer, match, history }) => {
   useEffect(() => {
@@ -22,14 +23,20 @@ const Server = ({ server, channels, isOwner, requestServer, match, history }) =>
 
   return server?.members ? (
     <div className="main-view">
-      <div className="cc-index-container">
+      <div className="server-nav-column">
         <div>
-          <div className="server-name-container">
-            <div tabIndex="0" onClick={() => setShowDD(!showDD)} onBlur={() => setShowDD(false)}>
-              { server.name }
+          <div className="server-header">
+
+            <div className="server-name-container" tabIndex="0" onClick={() => setShowDD(!showDD)} onBlur={() => setShowDD(false)}>
+              <div className="server-name">
+                { server.name }
+              </div>
+              <FaChevronDown size={13} />
             </div>
+
             { serverOptionsDD }
           </div>
+
           <ChannelIndex channels={channels} isOwner={isOwner} serverId={server.id} />
         </div>
 
