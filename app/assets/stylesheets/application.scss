@@ -19,9 +19,11 @@
  @import './base/app.scss';
  @import './components/pics.scss';
  @import './components/splash.scss';
- @import './components/session_form.scss';
+ @import './session_form/session_form.scss';
+ @import './session_form/dropdown.scss';
  @import './components/main.scss';
- @import './components/server.scss';
+ @import './server/server.scss';
+ @import './server/server_index.scss';
  @import './components/chatroom.scss';
  @import './components/message_item.scss';
  @import './components/modal.scss';

@@ -3,12 +3,11 @@ import ServerIcon from './ServerIcon';
 
 const ServerIndexItem = ({ server }) => {
   return (
-    <li>
+    <div>
       <Link to={`/channels/${server.id}${server.channels[0] ? `/${server.channels[0]}` : '' }`}>
-      <ServerIcon name={server.name} iconUrl={server.iconUrl} />
-        { server.name }
+        <ServerIcon name={server.name} iconUrl={server.iconUrl} />
       </Link>
-    </li>
+    </div>
   )
 }
 

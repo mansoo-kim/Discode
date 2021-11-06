@@ -2,16 +2,18 @@
   height: 30px;
 }
 
-.server-icon {
-  height: 40px;
-}
-
-.default-server-icon {
-  height: 50px;
-  width: 50px;
+.server-icon-container {
+  height: 48px;
+  width: 48px;
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: $blurple;
-  border-radius: 25px;
+  background: $lighter-black;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.server-icon {
+  height: 48px;
+  width: 48px;
 }
