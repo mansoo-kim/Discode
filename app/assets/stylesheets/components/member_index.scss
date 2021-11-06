@@ -28,4 +28,13 @@
 .member-index-item {
   display: flex;
   align-items: center;
+  height: 44px;
+  cursor: default;
+
+  padding: 0px 8px;
+  margin-left: 8px;
+
+  .pfp-container {
+    margin-right: 12px;
+  }
 }
