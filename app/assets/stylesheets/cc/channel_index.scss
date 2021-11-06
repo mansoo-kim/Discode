@@ -2,6 +2,19 @@
   background: $diff-black;
   flex-grow: 1;
 
+  overflow-y: scroll;
+
+  &::-webkit-scrollbar {
+    background: rgba(0,0,0,0);
+    width: 6px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: $another-black;
+    height: 5px;
+    border-radius: 4px;
+  }
+
   .cc-index {
     font-weight: 600;
 
@@ -39,7 +52,6 @@
         color: $channels-grey;
         cursor: pointer;
       }
-
 
     }
   }

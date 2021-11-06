@@ -13,8 +13,9 @@
 }
 
 .chatroom-container {
+  overflow: hidden;
   height: 100%;
-  width: 100%;
+  flex-grow: 1;
   display: flex;
   flex-direction: column;
   justify-content: space-between;

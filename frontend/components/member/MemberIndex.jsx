@@ -2,13 +2,13 @@ import MemberIndexItem from "./MemberIndexItem";
 
 const MemberIndex = ({ members }) => {
   return (
-    <div className="member-index">
+    <div className="member-index-container">
       <div className="members-index-header">
         MEMBERS - { members.length }
       </div>
-      <ul>
+      <div className="members-index">
         {members.map(member => <MemberIndexItem key={member.id} member={member} />)}
-      </ul>
+      </div>
     </div>
   )
 }

@@ -1,5 +1,25 @@
+.pfp-container {
+  height: 32px;
+  width: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: $lighter-black;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
 .pfp {
-  height: 30px;
+  height: 32px;
+  width: 32px;
+}
+
+.default-pfp {
+
+  .pfp {
+    width: 25px;
+    height: 19px;
+  }
 }
 
 .server-icon-container {

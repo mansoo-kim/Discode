@@ -1,10 +1,12 @@
+import UserPfp from "../user/UserPfp"
+
 const MemberIndexItem = ({ member }) => {
-  const imgSrc = member.pfpUrl || 'https://raw.githubusercontent.com/mansookim/Discode/main/app/assets/images/icon_clyde_white_RGB.png'
+
   return (
-    <li>
-      <img src={imgSrc} className="pfp" />
+    <div class="member-index-item">
+      <UserPfp user={member} />
       { member.username }
-    </li>
+    </div>
   )
 }
 

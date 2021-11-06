@@ -1,7 +1,20 @@
-.member-index {
+.member-index-container {
   width: 240px;
   color: $channels-grey;
   background: $diff-black;
+
+  overflow-y: scroll;
+
+  &::-webkit-scrollbar {
+    background: rgba(0,0,0,0);
+    width: 6px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: $another-black;
+    height: 5px;
+    border-radius: 4px;
+  }
 }
 
 .members-index-header {
@@ -10,4 +23,9 @@
   font-size: 12px;
   line-height: 16px;
   padding: 24px 8px 0px 16px;
+}
+
+.member-index-item {
+  display: flex;
+  align-items: center;
 }
