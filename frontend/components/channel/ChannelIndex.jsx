@@ -36,6 +36,7 @@ const ChannelIndex = ({ channels, isOwner, serverId, activeChannelId, openModal 
       <CSSTransition
         in={showSettings}
         timeout={300}
+        mountOnEnter
         unmountOnExit
         classNames="settings">
         <ChannelSettings toggleSettings={toggleSettings} channelId={settingsId} />

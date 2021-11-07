@@ -1,6 +1,6 @@
-const Prompt = ({ promptBackground, isDirty, reset, handleSubmit }) => {
+const Prompt = ({ promptBackground, reset, handleSubmit }) => {
   return (
-    <div style={{ background: promptBackground }} className={`save-prompt ${ isDirty ? 'show-prompt' : ''}`}>
+    <div style={{ background: promptBackground }} className={`save-prompt`}>
       Careful - you have unsaved changes!
 
       <div className="buttons">

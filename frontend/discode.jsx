@@ -12,13 +12,11 @@ document.addEventListener("DOMContentLoaded", () => {
     },
     session: window.currentUser
   } : {}
+  delete window.currentUser;
 
   const store = configureStore(preloadedState);
 
   window.store = store;
-  window.registerNewUser = registerNewUser;
-  window.login = login;
-  window.logout = logout;
 
   render(<Root store={store} />, root);
 });

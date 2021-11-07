@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
+import { CSSTransition } from 'react-transition-group';
 import { FaHashtag, FaTimes } from 'react-icons/fa';
 import Prompt from './Prompt';
 
@@ -68,8 +69,16 @@ const ChannelSettings = ({ toggleSettings, channel, updateChannel, openModal }) 
             <input type="text" autoFocus className={`${errors.channelName ? 'show-errors' : ''}`} placeholder={channel.name} {...register("channelName", { required: "This field is required" })} />
 
             { errors.channelName && <div className="error-message">{ errors.channelName?.message }</div> }
-
-            <Prompt promptBackground={promptBackground} isDirty={isDirty} reset={reset} handleSubmit={handleSubmit(onSubmit)} />
+            <CSSTransition
+              in={isDirty}
+              timeout={{
+                enter: 300,
+                exit: 200
+              }}
+              mountOnEnter
+              classNames="prompt">
+                <Prompt promptBackground={promptBackground} reset={reset} handleSubmit={handleSubmit(onSubmit)} />
+            </CSSTransition>
           </div>
         </div>
 
