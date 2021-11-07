@@ -42,12 +42,14 @@ const ChatRoom = ({ type, cc, currentUserId, messages, receiveMessage, removeMes
   });
 
   return (
-    <div className="chatroom-container">
-      <div className="message-list">
-        { messageList }
-        <div ref={bottomRef}></div>
+    <div>
+      <div className="chatroom-container">
+        <div className="message-list">
+          { messageList }
+          <div ref={bottomRef}></div>
+        </div>
+        <MessageForm currentUserId={currentUserId} cc={cc} chat={chat} />
       </div>
-      <MessageForm currentUserId={currentUserId} cc={cc} chat={chat} />
     </div>
   )
 }

@@ -10,6 +10,12 @@
   height: calc(100% - 48px);
   display: flex;
   justify-content: space-between;
+
+  > div:first-child {
+    display: flex;
+    padding-right: 3px;
+    flex-grow: 1;
+  }
 }
 
 .chatroom-container {
@@ -31,8 +37,7 @@
 
   &::-webkit-scrollbar-thumb {
     background: $another-black;
-    height: 5px;
-    border-radius: 4px;
+    border-radius: 10px;
   }
 
   > div:last-child {
