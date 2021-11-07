@@ -23,6 +23,11 @@
     margin-bottom: 8px;
   }
 
+  .server-index-item.active-server > a > div {
+    border-radius: 35%;
+    background: $blurple;
+  }
+
   .separator {
     min-height: 2px;
     width: 32px;
@@ -39,6 +44,11 @@
       height: 19px;
 
       filter: brightness(0.9);
+    }
+
+    &.active-home > div {
+      border-radius: 35%;
+      background: $blurple;
     }
   }
 

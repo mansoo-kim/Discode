@@ -4,7 +4,7 @@ import ChannelSettings from './ChannelSettings';
 import { FaChevronDown } from 'react-icons/fa';
 import { HiOutlinePlus } from 'react-icons/hi';
 
-const ChannelIndex = ({ channels, isOwner, serverId, openModal }) => {
+const ChannelIndex = ({ channels, isOwner, serverId, activeChannelId, openModal }) => {
   const [showSettings, setShowSettings] = useState(false);
   const [settingsId, setSettingsId] = useState(null);
   const toggleSettings = (id) => {
@@ -29,7 +29,7 @@ const ChannelIndex = ({ channels, isOwner, serverId, openModal }) => {
         { isOwner && newChannelButton }
       </div>
       <div className="cc-index">
-        {channels.map(channel => <ChannelIndexItem key={channel.id} channel={channel} isOwner={isOwner} toggleSettings={toggleSettings} />)}
+        {channels.map(channel => <ChannelIndexItem key={channel.id} channel={channel} isOwner={isOwner} activeChannelId={activeChannelId} toggleSettings={toggleSettings} />)}
       </div>
 
       { showSettings && <ChannelSettings toggleSettings={toggleSettings} channelId={settingsId} />}

@@ -41,7 +41,7 @@ const MessageItem = ({ message, chat, currentUserId, sameSender, sender, openMod
       <input type="text" value={body} ref={editRef} onChange={(e) => setBody(e.currentTarget.value)} onKeyDown={handleEscapeExit} />
 
       <div>
-        escape to <span onClick={() => setShowEdit(false)}>cancel</span> enter to <span onClick={handleEdit}>save</span>
+        escape to <span onClick={() => setShowEdit(false)}>cancel</span> &#8226; enter to <span onClick={handleEdit}>save</span>
       </div>
     </form>
   )

@@ -13,10 +13,10 @@ const Main = ({ currentUser, requestUser}) => {
   return (
     <div className="main">
       <ModalManager />
-      <ServerIndex />
+      <Route path='/channels/:serverId?' component={ServerIndex} />
       <Switch>
         <Route path='/channels/@me' component={Home} />
-        <Route path='/channels/:serverId' component={ProtectedServer} />
+        <Route path='/channels/:serverId/:channelId?' component={ProtectedServer} />
         <Redirect to='/channels/@me' />
       </Switch>
     </div>

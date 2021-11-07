@@ -19,14 +19,24 @@
     font-weight: 600;
 
     .cc-index-item {
-      line-height: 34px;
-      padding: 0px 13px 0px 13px;
+      line-height: 30px;
+      margin: 2px 8px;
+      padding: 0px 5px;
       display: flex;
       justify-content: space-between;
       align-items: center;
+      border-radius: 4px;
+
+      &:hover, &.active-channel  {
+        background: $lighter-black;
+      }
+
+      &:hover .new-channel-button {
+        display: flex;
+      }
 
       .channel-button {
-        width: 85%;
+        width: 90%;
         display: flex;
         align-items: center;
 
@@ -47,8 +57,10 @@
       }
 
       .new-channel-button {
-        display: flex;
+        width: 10%;
+        display: none;
         align-items: center;
+        justify-content: center;
         color: $channels-grey;
         cursor: pointer;
       }
@@ -67,7 +79,7 @@
   font-weight: 600;
   color: $channels-grey;
   line-height: 24px;
-  cursor: pointer;
+  cursor: default;
   padding: 16px 10px 0px 5px;
 
   span {
@@ -77,6 +89,7 @@
   .new-channel-button {
     display: flex;
     align-items: center;
+    cursor: pointer;
   }
 }
 

@@ -36,7 +36,7 @@ const Server = ({ server, channels, isOwner, requestServer, match, history }) =>
             { serverOptionsDD }
           </div>
 
-          <ChannelIndex channels={channels} isOwner={isOwner} serverId={server.id} />
+          <ChannelIndex channels={channels} isOwner={isOwner} serverId={server.id} activeChannelId={parseInt(match.params.channelId)} />
         </div>
 
         <CurrentUser />
@@ -67,7 +67,7 @@ const mDTP = (dispatch) => ({
 const ConnectedServer = connect(mSTP, mDTP)(Server);
 
 const mSTP2 = (state, ownProps) => ({
-    isMember: state.session.servers?.includes(parseFloat(ownProps.match.params.serverId))
+    isMember: state.session.servers?.includes(parseInt(ownProps.match.params.serverId))
 });
 
 const ProtectedServer = ({ isMember, path }) => {

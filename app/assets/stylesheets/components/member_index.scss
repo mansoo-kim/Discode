@@ -24,18 +24,25 @@
   font-size: 12px;
   line-height: 16px;
   padding: 24px 8px 0px 16px;
+  cursor: default;
 }
 
 .member-index-item {
   display: flex;
   align-items: center;
-  height: 44px;
+  height: 40px;
   cursor: default;
 
   padding: 0px 8px;
-  margin-left: 8px;
+  margin: 2px 0px 2px 8px;
+
+  border-radius: 4px;
 
   .pfp-container {
     margin-right: 12px;
+  }
+
+  &:hover {
+    background: $lighter-black;
   }
 }

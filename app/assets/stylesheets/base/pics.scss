@@ -54,6 +54,12 @@
   background: $lighter-black;
   border-radius: 50%;
   overflow: hidden;
+  transition: border-radius 0.2s ease, background 0.2s ease;
+
+  &:hover {
+    border-radius: 35%;
+    background: $blurple;
+  }
 }
 
 .server-icon {

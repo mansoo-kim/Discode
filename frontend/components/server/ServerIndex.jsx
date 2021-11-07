@@ -4,7 +4,7 @@ import ServerIndexItem from './ServerIndexItem';
 import ServerIcon from './ServerIcon';
 import { HiOutlinePlus } from 'react-icons/hi';
 
-const ServerIndex = ({ servers, requestServers, openModal }) => {
+const ServerIndex = ({ servers, requestServers, openModal, match }) => {
   useEffect(() => {
     requestServers();
   }, [])
@@ -12,9 +12,9 @@ const ServerIndex = ({ servers, requestServers, openModal }) => {
   return (
     <div className="server-index">
 
-      <div>
+      <div className="server-index-item">
         <Link to='/channels/@me'>
-          <div className="server-icon-container home-icon">
+          <div className={`home-icon ${match.params.serverId === '@me' ? 'active-home' : ''}`}>
             <ServerIcon name={"Home"} iconUrl={'https://raw.githubusercontent.com/mansookim/Discode/main/app/assets/images/icon_clyde_white_RGB.png'} />
           </div>
         </Link>
@@ -22,7 +22,7 @@ const ServerIndex = ({ servers, requestServers, openModal }) => {
 
       <div className={"separator"}></div>
 
-      {servers.map(server => <ServerIndexItem key={server.id} server={server} />)}
+      {servers.map(server => <ServerIndexItem key={server.id} server={server} activeServerId={parseInt(match.params.serverId)} />)}
 
       <div className={"separator"}></div>
 
