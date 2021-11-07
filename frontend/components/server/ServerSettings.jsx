@@ -2,7 +2,7 @@ import { useState, useRef } from 'react';
 import { useForm } from 'react-hook-form';
 import ServerIcon from './ServerIcon';
 
-const ServerSettings = ({ toggleSettings, server, updateServer, openModal, history }) => {
+const ServerSettings = ({ toggleSettings, server, updateServer, openModal }) => {
   if (!server) return null;
 
   const { register, formState: { errors, isDirty }, watch, reset, handleSubmit } = useForm({
@@ -88,18 +88,21 @@ const ServerSettings = ({ toggleSettings, server, updateServer, openModal, histo
   return (
     <div className="settings-container">
       <div className="settings-left-container">
-        <div>
-          <div>
-            { watchName }
+        <div className="settings-left">
+          <div className="options-header">
+            { watchName.toUpperCase() }
           </div>
-          <ul>
-            <li>
+
+          <div className="option selected">
               Overview
-            </li>
-            <li onClick={() => openModal({type: "deleteServer", server})}>
-              Delete Server
-            </li>
-          </ul>
+          </div>
+
+          <div className="separator"></div>
+
+          <div className="option action" onClick={() => openModal({type: "deleteServer", server})}>
+            Delete Server
+          </div>
+
         </div>
       </div>
       <div className="settings-right-container">

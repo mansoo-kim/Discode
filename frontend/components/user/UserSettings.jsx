@@ -74,16 +74,20 @@ const UserSettings = ({ currentUser, toggleSettings, logout, openModal, updateUs
   return (
     <div className="settings-container">
       <div className="settings-left-container">
-        <div>
-          User Settings
-          <ul>
-            <li>
-              My Account
-            </li>
-            <li onClick={logout}>
-              Log Out
-            </li>
-          </ul>
+        <div className="settings-left">
+          <div  className="options-header">
+            USER SETTINGS
+          </div>
+
+          <div className="option selected">
+            My Account
+          </div>
+
+          <div className="separator"></div>
+
+          <div className="option action" onClick={logout}>
+            Log Out
+          </div>
         </div>
       </div>
       <div className="settings-right-container">
