@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { FaHashtag, FaTimes } from 'react-icons/fa';
+import Prompt from './Prompt';
 
 const ChannelSettings = ({ toggleSettings, channel, updateChannel, openModal }) => {
   if (!channel) return null;
@@ -37,24 +38,6 @@ const ChannelSettings = ({ toggleSettings, channel, updateChannel, openModal }) 
       () => {})
   };
 
-  const prompt = (
-    <div style={{ background: promptBackground }} className={`save-prompt ${ isDirty ? 'show-prompt' : ''}`}>
-      Careful - you have unsaved changes!
-
-      <div className="buttons">
-        <div className="button reset" type="button" onClick={() => {
-          reset();
-        }}>
-          Reset
-        </div>
-
-        <div className="button save">
-          <div className="inner-save" type="button" onClick={handleSubmit(onSubmit)}>Save Changes</div>
-        </div>
-      </div>
-    </div>
-  )
-
   return (
     <div className="settings-container">
       <div className="settings-left-container">
@@ -86,7 +69,7 @@ const ChannelSettings = ({ toggleSettings, channel, updateChannel, openModal }) 
 
             { errors.channelName && <div className="error-message">{ errors.channelName?.message }</div> }
 
-            { prompt }
+            <Prompt promptBackground={promptBackground} isDirty={isDirty} reset={reset} handleSubmit={handleSubmit(onSubmit)} />
           </div>
         </div>
 
