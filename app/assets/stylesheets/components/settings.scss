@@ -1,49 +1,12 @@
 .settings-container {
-  display: flex;
-
   position: relative;
   z-index: 2;
+}
 
-  .settings-left {
-    position: fixed;
-    left: 0;
-    top: 0;
-    width: 35%;
-    height: 100%;
-    background: $not-black;
-
-    display: flex;
-    justify-content: flex-end;
-  }
-
-  .settings-right {
-    position: fixed;
-    right: 0;
-    top: 0;
-    width: 65%;
-    height: 100%;
-    background: $not-black;
-
-    .settings-pane {
-      width: 59%;
-
-      ul > li {
-        display: flex;
-
-        > div {
-          display: flex;
-          flex-direction: column;
-        }
-      }
-    }
-
-  }
-
-  .close-settings {
-    position: fixed;
-    top: 60px;
-    right: 25%;
-  }
+.close-settings {
+  position: fixed;
+  top: 60px;
+  right: 25%;
 }
 
 .save-prompt {
@@ -51,4 +14,65 @@
   bottom: 50px;
   left: 50%;
   transform: translateX(-50%);
+}
+
+.settings-left-container {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 35%;
+  height: 100%;
+  background: $diff-black;
+
+  display: flex;
+  justify-content: flex-end;
+
+  .settings-left {
+    padding: 60px 6px 60px 20px;
+    width: 218px;
+  }
+
+  .options-header {
+    width: 100%;
+    font-family: 'ginto-normal', sans-serif;
+    color: $channels-grey;
+    display: flex;
+    align-items: center;
+    font-size: 12px;
+    font-weight: 600;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    padding: 0px 10px 6px 10px;
+
+    span {
+      margin-left: 4px;
+      font-size: 10px;
+      font-weight: 400;
+    }
+  }
+
+}
+
+.settings-right-container {
+  position: fixed;
+  right: 0;
+  top: 0;
+  width: 65%;
+  height: 100%;
+  background: $lighter-black;
+
+  .settings-pane {
+    width: 59%;
+
+    ul > li {
+      display: flex;
+
+      > div {
+        display: flex;
+        flex-direction: column;
+      }
+    }
+  }
+
 }

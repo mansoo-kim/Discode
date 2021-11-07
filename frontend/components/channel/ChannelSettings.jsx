@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
+import { FaHashtag } from 'react-icons/fa';
 
 const ChannelSettings = ({ toggleSettings, channel, updateChannel, deleteChannel, history }) => {
   if (!channel) return null;
@@ -54,10 +55,12 @@ const ChannelSettings = ({ toggleSettings, channel, updateChannel, deleteChannel
 
   return (
     <div className="settings-container">
-      <div className="settings-left">
-        <div>
-          <div>
-            # { watchName } TEXT CHANNELS
+      <div className="settings-left-container">
+        <div className="settings-left">
+          <div className="options-header">
+              <FaHashtag size={12} /> { watchName.toUpperCase() }
+
+              <span>TEXT CHANNELS</span>
           </div>
           <ul>
             <li>
@@ -69,7 +72,7 @@ const ChannelSettings = ({ toggleSettings, channel, updateChannel, deleteChannel
           </ul>
         </div>
       </div>
-      <div className="settings-right">
+      <div className="settings-right-container">
         <div className="settings-pane">
           <h2>OVERVIEW</h2>
           <form onSubmit={handleSubmit(onSubmit)}>

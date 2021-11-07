@@ -28,8 +28,24 @@
       align-items: center;
       border-radius: 4px;
 
-      &:hover, &.active-channel  {
-        background: $lighter-black;
+      &:hover {
+        background: rgba(79,84,92,0.16);
+
+        .channel-button > div:last-child {
+          color: $off-white;
+        }
+      }
+
+      &.active-channel  {
+        background: rgba(79,84,92,0.32);
+
+        .channel-button > div:last-child {
+          color: $white;
+        }
+
+        .new-channel-button {
+          display: flex;
+        }
       }
 
       &:hover .new-channel-button {
@@ -40,13 +56,14 @@
         width: 90%;
         display: flex;
         align-items: center;
+        padding-left: 5px;
 
         color: $channels-grey;
 
         div:first-child {
           display: flex;
           align-items: center;
-          margin-top: 1px;
+          color: $kinda-grey;
         }
 
         div:last-child {

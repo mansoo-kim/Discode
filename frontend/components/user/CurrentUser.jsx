@@ -2,7 +2,6 @@ import { useState } from 'react';
 import UserSettings from './UserSettings';
 import UserPfp from './UserPfp';
 import { BsFillGearFill } from 'react-icons/bs';
-import { RiHashtag } from 'react-icons/ri';
 
 const CurrentUser = ({ currentUser }) => {
   const [showSettings, setShowSettings] = useState(false);
@@ -16,7 +15,7 @@ const CurrentUser = ({ currentUser }) => {
           <div>
             <div className="username">{ currentUser.username }</div>
             <div className="tag">
-              <RiHashtag size={12} />{ currentUser.tag }
+              #{ currentUser.tag }
             </div>
           </div>
         </div>

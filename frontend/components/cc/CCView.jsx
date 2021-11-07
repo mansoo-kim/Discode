@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import MemberIndex from '../member/MemberIndex';
 import ChatRoom from '../messages/ChatRoom';
-import { RiHashtag } from 'react-icons/ri';
+import { FaHashtag } from 'react-icons/fa';
 
 const CCView = ({ cc, type, requestCC, match }) => {
   useEffect(() => {
@@ -12,7 +12,7 @@ const CCView = ({ cc, type, requestCC, match }) => {
     <div className="cc-view">
       <div className="cc-header">
         <div>
-          <div className="cc-hash"><RiHashtag size={24} /></div>
+          <div className="cc-hash"><FaHashtag size={20} /></div>
           <div className="cc-name">{ cc.name }</div>
         </div>
       </div>
