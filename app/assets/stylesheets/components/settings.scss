@@ -30,6 +30,13 @@
   .settings-left {
     padding: 60px 6px 60px 20px;
     width: 218px;
+    margin-right: 6px;
+  }
+
+  .separator {
+    min-height: 1px;
+    background: hsla(0,0%,100%,0.06);
+    margin: 8px 8px;
   }
 
   .options-header {
@@ -49,6 +56,29 @@
       margin-left: 4px;
       font-size: 10px;
       font-weight: 400;
+      opacity: 0.7;
+    }
+  }
+
+  .option {
+    padding: 6px 10px;
+    margin-bottom: 2px;
+    line-height: 20px;
+    font-weight: 500;
+    border-radius: 4px;
+  }
+
+  .selected {
+    background: rgba(79,84,92,0.32);
+    cursor: default;
+  }
+
+  .action {
+    color: $error-red;
+    cursor: pointer;
+
+    &:hover {
+      background: rgba(79,84,92,0.16);
     }
   }
 

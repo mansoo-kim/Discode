@@ -95,7 +95,7 @@ const ServerSettings = ({ toggleSettings, server, updateServer, deleteServer, hi
 
   return (
     <div className="settings-container">
-      <div className="settings-left">
+      <div className="settings-left-container">
         <div>
           <div>
             { watchName }
@@ -110,7 +110,7 @@ const ServerSettings = ({ toggleSettings, server, updateServer, deleteServer, hi
           </ul>
         </div>
       </div>
-      <div className="settings-right">
+      <div className="settings-right-container">
         <div className="settings-pane">
           <h2>Server Overview</h2>
           <form onSubmit={handleSubmit(onSubmit)}>

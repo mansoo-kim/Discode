@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { FaHashtag } from 'react-icons/fa';
 
-const ChannelSettings = ({ toggleSettings, channel, updateChannel, deleteChannel, history }) => {
+const ChannelSettings = ({ toggleSettings, channel, updateChannel, openModal }) => {
   if (!channel) return null;
 
   const { register, formState: { errors, isDirty }, watch, reset, handleSubmit } = useForm({
@@ -12,14 +12,6 @@ const ChannelSettings = ({ toggleSettings, channel, updateChannel, deleteChannel
 
   const [showRed, setShowRed] = useState(false);
   const watchName = watch("channelName");
-
-  const handleDelete = () => {
-    deleteChannel(channel.id)
-      .then(() => toggleSettings(null))
-      .then(() => {
-        if (history.location.pathname !== `/channels/${channel.serverId}`) history.push(`/channels/${channel.serverId}`)
-      });
-  }
 
   const checkThenExit = () => {
     if (isDirty) {
@@ -62,14 +54,15 @@ const ChannelSettings = ({ toggleSettings, channel, updateChannel, deleteChannel
 
               <span>TEXT CHANNELS</span>
           </div>
-          <ul>
-            <li>
+          <div className="option selected">
               Overview
-            </li>
-            <li onClick={handleDelete}>
-              Delete Channel
-            </li>
-          </ul>
+          </div>
+
+          <div className="separator"></div>
+
+          <div className="option action" onClick={() => openModal({type: "deleteChannel", channel})}>
+            Delete Channel
+          </div>
         </div>
       </div>
       <div className="settings-right-container">
@@ -95,7 +88,8 @@ const ChannelSettings = ({ toggleSettings, channel, updateChannel, deleteChannel
 
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import { updateChannel, deleteChannel } from '../../actions/channel_actions';
+import { updateChannel } from '../../actions/channel_actions';
+import { openModal } from '../../actions/modal_actions';
 
 const mSTP = (state, ownProps) => ({
   channel: state.entities.channels[ownProps.channelId],
@@ -103,7 +97,7 @@ const mSTP = (state, ownProps) => ({
 
 const mDTP = (dispatch) => ({
   updateChannel: (channelId, channel) => dispatch(updateChannel(channelId, channel)),
-  deleteChannel: (channelId) => dispatch(deleteChannel(channelId))
+  openModal: (modal) => dispatch(openModal(modal))
 });
 
 export default withRouter(connect(mSTP, mDTP)(ChannelSettings));

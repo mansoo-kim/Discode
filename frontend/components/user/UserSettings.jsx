@@ -73,7 +73,7 @@ const UserSettings = ({ currentUser, toggleSettings, logout, openModal, updateUs
 
   return (
     <div className="settings-container">
-      <div className="settings-left">
+      <div className="settings-left-container">
         <div>
           User Settings
           <ul>
@@ -86,7 +86,7 @@ const UserSettings = ({ currentUser, toggleSettings, logout, openModal, updateUs
           </ul>
         </div>
       </div>
-      <div className="settings-right">
+      <div className="settings-right-container">
         <div className="settings-pane">
           <h2>My Account</h2>
           <img src={imgSrc} className="pfp" />

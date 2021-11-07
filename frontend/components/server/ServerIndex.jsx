@@ -20,11 +20,11 @@ const ServerIndex = ({ servers, requestServers, openModal, match }) => {
         </Link>
       </div>
 
-      <div className={"separator"}></div>
+      <div className="separator"></div>
 
       {servers.map(server => <ServerIndexItem key={server.id} server={server} activeServerId={parseInt(match.params.serverId)} />)}
 
-      <div className={"separator"}></div>
+      <div className="separator"></div>
 
       <div>
         <div className={"server-icon-container new-server-icon"} onClick={() => openModal({
