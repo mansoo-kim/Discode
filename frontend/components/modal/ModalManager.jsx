@@ -3,6 +3,7 @@ import CreateChannelModal from './CreateChannelModal';
 import EditUserModal from './EditUserModal';
 import DeleteMessageModal from './DeleteMessageModal';
 import DeleteChannelModal from './DeleteChannelModal';
+import DeleteServerModal from './DeleteServerModal';
 
 const ModalManager = ({ modal, closeModal, history }) => {
   if (!modal) return null;
@@ -24,6 +25,9 @@ const ModalManager = ({ modal, closeModal, history }) => {
       break;
     case "deleteChannel":
       component = <DeleteChannelModal channel={modal.channel} history={history} />
+      break;
+    case "deleteServer":
+      component = <DeleteServerModal server={modal.server} history={history} />
       break;
     default:
       return null;

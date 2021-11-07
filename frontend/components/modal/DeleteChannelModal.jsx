@@ -6,7 +6,6 @@ const DeleteChannelModal = ({ channel, deleteChannel, closeModal, history }) => 
       if (history.location.pathname !== `/channels/${channel.serverId}`) history.push(`/channels/${channel.serverId}`)
     })
     .then(() => closeModal());
-    // .then(() => toggleSettings(null))
   }
 
   return (

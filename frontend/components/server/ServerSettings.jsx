@@ -2,7 +2,7 @@ import { useState, useRef } from 'react';
 import { useForm } from 'react-hook-form';
 import ServerIcon from './ServerIcon';
 
-const ServerSettings = ({ toggleSettings, server, updateServer, deleteServer, history }) => {
+const ServerSettings = ({ toggleSettings, server, updateServer, openModal, history }) => {
   if (!server) return null;
 
   const { register, formState: { errors, isDirty }, watch, reset, handleSubmit } = useForm({
@@ -18,14 +18,6 @@ const ServerSettings = ({ toggleSettings, server, updateServer, deleteServer, hi
   const [removeIcon, setRemoveIcon] = useState(false);
 
   const fileRef = useRef();
-
-  const handleDelete = () => {
-    deleteServer(server.id)
-      .then(() => toggleSettings(null))
-      .then(() => {
-        if (history.location.pathname !== '/channels/@me') history.push('/channels/@me')
-      });
-  }
 
   const checkThenExit = () => {
     if (isDirty || imgUrl || removeIcon) {
@@ -104,7 +96,7 @@ const ServerSettings = ({ toggleSettings, server, updateServer, deleteServer, hi
             <li>
               Overview
             </li>
-            <li onClick={handleDelete}>
+            <li onClick={() => openModal({type: "deleteServer", server})}>
               Delete Server
             </li>
           </ul>
@@ -146,11 +138,12 @@ const ServerSettings = ({ toggleSettings, server, updateServer, deleteServer, hi
 
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import { updateServer, deleteServer } from '../../actions/server_actions';
+import { updateServer } from '../../actions/server_actions';
+import { openModal } from '../../actions/modal_actions';
 
 const mDTP = (dispatch) => ({
   updateServer: (serverId, server) => dispatch(updateServer(serverId, server)),
-  deleteServer: (serverId) => dispatch(deleteServer(serverId))
+  openModal: (modal) => dispatch(openModal(modal))
 });
 
 export default withRouter(connect(null, mDTP)(ServerSettings));
