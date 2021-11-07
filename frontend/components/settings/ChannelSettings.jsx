@@ -15,6 +15,10 @@ const ChannelSettings = ({ toggleSettings, channel, updateChannel, openModal }) 
   const [promptBackground, setPromptBackground] = useState(darkBackground);
   const watchName = watch("channelName");
 
+  useEffect(() => {
+    if (promptBackground === redBackground) setTimeout(() => setPromptBackground(darkBackground), 500);
+  }, [promptBackground]);
+
   const checkThenExit = () => {
     if (isDirty) {
       setPromptBackground(redBackground);
@@ -22,10 +26,6 @@ const ChannelSettings = ({ toggleSettings, channel, updateChannel, openModal }) 
       toggleSettings(null);
     }
   }
-
-  useEffect(() => {
-    if (promptBackground === redBackground) setTimeout(() => setPromptBackground(darkBackground), 500);
-  }, [promptBackground]);
 
   const onSubmit = (data) => {
     const formData = { name: data.channelName};
@@ -82,7 +82,7 @@ const ChannelSettings = ({ toggleSettings, channel, updateChannel, openModal }) 
           <div className="fake-form">
             <label>CHANNEL NAME</label>
 
-            <input type="text" className={`${errors.channelName ? 'show-errors' : ''}`} placeholder={channel.name} {...register("channelName", { required: "This field is required" })} />
+            <input type="text" autoFocus className={`${errors.channelName ? 'show-errors' : ''}`} placeholder={channel.name} {...register("channelName", { required: "This field is required" })} />
 
             { errors.channelName && <div className="error-message">{ errors.channelName?.message }</div> }
 

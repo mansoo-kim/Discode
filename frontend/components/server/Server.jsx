@@ -3,7 +3,7 @@ import { Route } from 'react-router-dom';
 import ChannelIndex from '../channel/ChannelIndex';
 import ChannelContainer from '../cc/ChannelContainer';
 import ServerOptionsDD from './ServerOptionsDD';
-import ServerSettings from './ServerSettings';
+import ServerSettings from '../settings/ServerSettings';
 import CurrentUser from '../user/CurrentUser';
 import { FaChevronDown } from 'react-icons/fa'
 

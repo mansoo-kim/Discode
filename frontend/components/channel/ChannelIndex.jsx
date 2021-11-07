@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import ChannelIndexItem from './ChannelIndexItem';
-import ChannelSettings from './ChannelSettings';
+import ChannelSettings from '../settings/ChannelSettings';
 import { FaChevronDown } from 'react-icons/fa';
 import { HiOutlinePlus } from 'react-icons/hi';
 

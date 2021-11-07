@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import UserSettings from './UserSettings';
+import UserSettings from '../settings/UserSettings';
 import UserPfp from './UserPfp';
 import { BsFillGearFill } from 'react-icons/bs';
 

@@ -1,6 +1,6 @@
 import { useState, useRef } from 'react';
 import { useForm } from 'react-hook-form';
-import ServerIcon from './ServerIcon';
+import ServerIcon from '../server/ServerIcon';
 
 const ServerSettings = ({ toggleSettings, server, updateServer, openModal }) => {
   if (!server) return null;
