@@ -1,6 +1,10 @@
 .cc-index-container {
   background: $diff-black;
   flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
 
   overflow-y: scroll;
 
@@ -18,11 +22,12 @@
 
   .cc-index {
     font-weight: 600;
+    width: 100%;
 
     .cc-index-item {
       line-height: 30px;
-      margin: 2px 8px;
-      padding: 0px 5px;
+      margin: 2px 0px 2px 8px;
+      padding: 0px 8px 0px 10px;
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -56,7 +61,6 @@
         width: 90%;
         display: flex;
         align-items: center;
-        padding-left: 5px;
 
         color: $channels-grey;
 
@@ -90,6 +94,7 @@
 }
 
 .cc-index-header-container {
+  width: 100%;
   flex-shrink: 0;
   display: flex;
   justify-content: space-between;
@@ -100,7 +105,7 @@
   color: $channels-grey;
   line-height: 24px;
   cursor: default;
-  padding: 16px 10px 0px 5px;
+  padding: 16px 8px 0px 5px;
 
   span {
     padding-left: 5px;
