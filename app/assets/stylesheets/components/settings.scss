@@ -1,3 +1,18 @@
+.settings-enter {
+  opacity: 0;
+}
+.settings-enter-active {
+  opacity: 1;
+  transition: opacity 300ms;
+}
+.settings-exit {
+  opacity: 1;
+}
+.settings-exit-active {
+  opacity: 0;
+  transition: opacity 300ms;
+}
+
 .settings-container {
   position: relative;
   z-index: 2;

@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import ChannelIndexItem from './ChannelIndexItem';
 import ChannelSettings from '../settings/ChannelSettings';
+import { CSSTransition } from 'react-transition-group';
 import { FaChevronDown } from 'react-icons/fa';
 import { HiOutlinePlus } from 'react-icons/hi';
 
@@ -32,7 +33,13 @@ const ChannelIndex = ({ channels, isOwner, serverId, activeChannelId, openModal 
         {channels.map(channel => <ChannelIndexItem key={channel.id} channel={channel} isOwner={isOwner} activeChannelId={activeChannelId} toggleSettings={toggleSettings} />)}
       </div>
 
-      { showSettings && <ChannelSettings toggleSettings={toggleSettings} channelId={settingsId} />}
+      <CSSTransition
+        in={showSettings}
+        timeout={300}
+        unmountOnExit
+        classNames="settings">
+        <ChannelSettings toggleSettings={toggleSettings} channelId={settingsId} />
+      </CSSTransition>
     </div>
   )
 }

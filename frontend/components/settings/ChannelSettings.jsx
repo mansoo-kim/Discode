@@ -24,7 +24,7 @@ const ChannelSettings = ({ toggleSettings, channel, updateChannel, openModal }) 
     if (isDirty) {
       setPromptBackground(redBackground);
     } else {
-      toggleSettings(null);
+      toggleSettings(channel.id);
     }
   }
 
