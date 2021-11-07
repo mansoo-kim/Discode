@@ -3,17 +3,78 @@
   z-index: 2;
 }
 
-.close-settings {
-  position: fixed;
-  top: 60px;
-  right: 25%;
+.save-prompt.show-prompt {
+  opacity: 1;
+  transform: translateY(0);
+  transform: translateX(20px);
 }
 
 .save-prompt {
+  opacity: 0;
   position: fixed;
-  bottom: 50px;
-  left: 50%;
-  transform: translateX(-50%);
+  bottom: 20px;
+  left: 35%;
+  transform: translateY(200px);
+  transition: transform 0.2s ease-in-out, opacity 0.2s ease-in-out;
+
+  width: 700px;
+  height: 52px;
+  padding: 10px 10px 10px 16px;
+  border-radius: 5px;
+  background: rgba(32, 34, 37, 0.9);
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  .buttons {
+    display: flex;
+  }
+
+  .button {
+    cursor: pointer;
+    font-size: 14px;
+    line-height: 28px;
+    padding: 2px 16px;
+
+    display: flex;
+    align-items: center;
+  }
+
+  .reset {
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  .save {
+    margin-left: 10px;
+    border-radius: 3px;
+    background:rgb(59, 165, 93);
+    position: relative;
+
+    &:after {
+      background: rgba(0,0,0,0.3);
+      opacity: 0;
+      transition: opacity 0.15s ease;
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      content: '';
+    }
+
+    &:hover:after {
+      opacity: 1;
+    }
+
+    div.inner-save {
+      position: relative;
+      padding: 2px;
+      z-index: 1;
+    }
+  }
 }
 
 .settings-left-container {
@@ -27,7 +88,7 @@
   display: flex;
   justify-content: flex-end;
 
-  .settings-left {
+  .settings-options {
     padding: 60px 6px 60px 20px;
     width: 218px;
     margin-right: 6px;
@@ -76,6 +137,7 @@
   .action {
     color: $error-red;
     cursor: pointer;
+    transition: background 0.1s ease;
 
     &:hover {
       background: rgba(79,84,92,0.16);
@@ -91,18 +153,92 @@
   width: 65%;
   height: 100%;
   background: $lighter-black;
+  display: flex;
 
-  .settings-pane {
-    width: 59%;
+}
 
-    ul > li {
-      display: flex;
+.settings-pane {
+  padding: 60px 40px 80px 40px;
+  min-width: 460px;
+  max-width: 740px;
+  width: 740px;
 
-      > div {
-        display: flex;
-        flex-direction: column;
-      }
+  h2 {
+    line-height: 20px;
+    margin-bottom: 20px;
+    font-family: 'ginto-normal', sans-serif;
+    font-weight: 600;
+    color: $white;
+  }
+
+  .fake-form {
+    display: flex;
+    flex-direction: column;
+  }
+
+  label {
+    color: $off-grey;
+    font-family: 'ginto-normal', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    line-height: 16px;
+
+    margin-bottom: 8px;
+  }
+
+  input {
+    height: 40px;
+    padding: 10px;
+    border: none;
+    background: rgba(0,0,0,0.1);
+    border: 1px solid rgba(0,0,0,0.3);
+    border-radius: 3px;
+    color: $off-white;
+    font-size: 14px;
+    outline: none;
+    transition: border-color 0.2s ease-in-out;
+
+    &:focus {
+      border-color: $link-blue;
     }
   }
 
+
+  ul > li {
+    display: flex;
+
+    > div {
+      display: flex;
+      flex-direction: column;
+    }
+  }
+}
+
+.close-settings {
+  margin-top: 60px;
+  color: $kinda-grey;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 13px;
+  font-weight: 600;
+
+  .close-circle {
+    border: 2px solid $kinda-grey;
+    border-radius: 50%;
+    height: 36px;
+    width: 36px;
+    cursor: pointer;
+    color: $off-grey;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    margin-bottom: 8px;
+
+    &:hover {
+      background: rgba(114, 118, 125, 0.3);
+    }
+  }
 }

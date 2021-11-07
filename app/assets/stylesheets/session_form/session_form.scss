@@ -145,9 +145,7 @@
     margin-bottom: 8px;
     cursor: pointer;
     font-weight: 600;
-    border: none;
     border-radius: 3px;
-    overflow: hidden;
     background: $blurple;
     position: relative;
     height: 44px;
@@ -155,7 +153,7 @@
     &:after {
       background: rgba(0,0,0,0.2);
       opacity: 0;
-      transition: opacity 0.2s ease;
+      transition: opacity 0.15s ease;
       position: absolute;
       top: 0;
       left: 0;

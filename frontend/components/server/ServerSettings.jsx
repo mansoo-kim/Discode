@@ -88,7 +88,7 @@ const ServerSettings = ({ toggleSettings, server, updateServer, openModal }) => 
   return (
     <div className="settings-container">
       <div className="settings-left-container">
-        <div className="settings-left">
+        <div className="settings-options">
           <div className="options-header">
             { watchName.toUpperCase() }
           </div>
@@ -130,10 +130,10 @@ const ServerSettings = ({ toggleSettings, server, updateServer, openModal }) => 
             { (isDirty || imgUrl || removeIcon) && prompt }
           </form>
         </div>
-      </div>
 
-      <div className="close-settings">
-        <button onClick={checkThenExit}>X</button>
+        <div className="close-settings">
+          <button onClick={checkThenExit}>X</button>
+        </div>
       </div>
     </div>
   )

@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { FaHashtag } from 'react-icons/fa';
+import { FaHashtag, FaTimes } from 'react-icons/fa';
 
 const ChannelSettings = ({ toggleSettings, channel, updateChannel, openModal }) => {
   if (!channel) return null;
@@ -33,24 +33,30 @@ const ChannelSettings = ({ toggleSettings, channel, updateChannel, openModal }) 
   };
 
   const prompt = (
-    <div className={`save-prompt ${ showRed ? 'error-input' : ''}`}>
+    <div className={`save-prompt ${ isDirty ? 'show-prompt' : ''} ${ showRed ? 'error-input' : ''}`}>
       Careful - you have unsaved changes!
-      <button onClick={() => {
-        setShowRed(false);
-        reset();
-      }}>
-        Reset
-      </button>
-      <button>Save Changes</button>
+
+      <div className="buttons">
+        <div className="button reset" type="button" onClick={() => {
+          setShowRed(false);
+          reset();
+        }}>
+          Reset
+        </div>
+
+        <div className="button save">
+          <div className="inner-save" type="button" onClick={handleSubmit(onSubmit)}>Save Changes</div>
+        </div>
+      </div>
     </div>
   )
 
   return (
     <div className="settings-container">
       <div className="settings-left-container">
-        <div className="settings-left">
+        <div className="settings-options">
           <div className="options-header">
-              <FaHashtag size={12} /> { watchName.toUpperCase() }
+              <FaHashtag size={12} />&nbsp;{ watchName.toUpperCase() }
 
               <span>TEXT CHANNELS</span>
           </div>
@@ -68,19 +74,22 @@ const ChannelSettings = ({ toggleSettings, channel, updateChannel, openModal }) 
       <div className="settings-right-container">
         <div className="settings-pane">
           <h2>OVERVIEW</h2>
-          <form onSubmit={handleSubmit(onSubmit)}>
-            <div>
-              <label>CHANNEL NAME</label>
-              <input type="text" placeholder={channel.name} {...register("channelName", { required: "This field is required" })} />
-              { errors.channelName?.message }
-            </div>
-            { (isDirty ) && prompt }
-          </form>
-        </div>
-      </div>
 
-      <div className="close-settings">
-        <button onClick={checkThenExit}>X</button>
+          <div className="fake-form">
+            <label>CHANNEL NAME</label>
+            <input type="text" placeholder={channel.name} {...register("channelName", { required: "This field is required" })} />
+            { errors.channelName?.message }
+            {/* { (isDirty ) && prompt } */}
+            { prompt }
+          </div>
+        </div>
+
+        <div className="close-settings">
+          <div className="close-circle" onClick={checkThenExit}>
+            <FaTimes size={16} />
+          </div>
+          ESC
+        </div>
       </div>
     </div>
   )

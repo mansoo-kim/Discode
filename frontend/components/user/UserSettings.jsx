@@ -74,7 +74,7 @@ const UserSettings = ({ currentUser, toggleSettings, logout, openModal, updateUs
   return (
     <div className="settings-container">
       <div className="settings-left-container">
-        <div className="settings-left">
+        <div className="settings-options">
           <div  className="options-header">
             USER SETTINGS
           </div>
@@ -126,10 +126,10 @@ const UserSettings = ({ currentUser, toggleSettings, logout, openModal, updateUs
           </ul>
 
         </div>
-      </div>
 
-      <div className="close-settings">
-        <button onClick={checkThenExit}>X</button>
+        <div className="close-settings">
+          <button onClick={checkThenExit}>X</button>
+        </div>
       </div>
     </div>
   )
