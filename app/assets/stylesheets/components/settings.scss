@@ -5,8 +5,8 @@
 
 .save-prompt.show-prompt {
   opacity: 1;
-  transform: translateY(0);
   transform: translateX(20px);
+  transform: translateY(0);
 }
 
 .save-prompt {
@@ -16,12 +16,12 @@
   left: 35%;
   transform: translateY(200px);
   transition: transform 0.2s ease-in-out, opacity 0.2s ease-in-out;
+  transition: background 0.5s ease-in-out;
 
   width: 700px;
   height: 52px;
   padding: 10px 10px 10px 16px;
   border-radius: 5px;
-  background: rgba(32, 34, 37, 0.9);
 
   display: flex;
   align-items: center;
@@ -201,6 +201,21 @@
     &:focus {
       border-color: $link-blue;
     }
+  }
+
+  .show-errors {
+    border: 1px $error-red solid;
+
+    &:focus {
+      border-color: $error-red;
+    }
+  }
+
+  .error-message {
+    font-size: 12px;
+    line-height: 16px;
+    color: rgb(237, 66, 69);
+    margin-top: 4px;
   }
 
 

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { FaHashtag, FaTimes } from 'react-icons/fa';
 
@@ -10,35 +10,39 @@ const ChannelSettings = ({ toggleSettings, channel, updateChannel, openModal }) 
     defaultValues: { channelName: channel.name }
   });
 
-  const [showRed, setShowRed] = useState(false);
+  const darkBackground = 'rgba(32, 34, 37, 0.9)';
+  const redBackground = '#F14846';
+  const [promptBackground, setPromptBackground] = useState(darkBackground);
   const watchName = watch("channelName");
 
   const checkThenExit = () => {
     if (isDirty) {
-      setShowRed(true);
+      setPromptBackground(redBackground);
     } else {
       toggleSettings(null);
     }
   }
+
+  useEffect(() => {
+    if (promptBackground === redBackground) setTimeout(() => setPromptBackground(darkBackground), 500);
+  }, [promptBackground]);
 
   const onSubmit = (data) => {
     const formData = { name: data.channelName};
 
     updateChannel(channel.id, formData)
       .then(() => {
-        setShowRed(false);
         reset({ channelName: watchName});
       },
       () => {})
   };
 
   const prompt = (
-    <div className={`save-prompt ${ isDirty ? 'show-prompt' : ''} ${ showRed ? 'error-input' : ''}`}>
+    <div style={{ background: promptBackground }} className={`save-prompt ${ isDirty ? 'show-prompt' : ''}`}>
       Careful - you have unsaved changes!
 
       <div className="buttons">
         <div className="button reset" type="button" onClick={() => {
-          setShowRed(false);
           reset();
         }}>
           Reset
@@ -77,9 +81,11 @@ const ChannelSettings = ({ toggleSettings, channel, updateChannel, openModal }) 
 
           <div className="fake-form">
             <label>CHANNEL NAME</label>
-            <input type="text" placeholder={channel.name} {...register("channelName", { required: "This field is required" })} />
-            { errors.channelName?.message }
-            {/* { (isDirty ) && prompt } */}
+
+            <input type="text" className={`${errors.channelName ? 'show-errors' : ''}`} placeholder={channel.name} {...register("channelName", { required: "This field is required" })} />
+
+            { errors.channelName && <div className="error-message">{ errors.channelName?.message }</div> }
+
             { prompt }
           </div>
         </div>
