@@ -63,12 +63,12 @@ const ChannelSettings = ({ toggleSettings, channel, updateChannel, openModal }) 
       </div>
       <div className="settings-right-container">
         <div className="settings-pane">
-          <h2>OVERVIEW</h2>
+          <h3>OVERVIEW</h3>
 
           <div className="fake-form">
             <label>CHANNEL NAME</label>
 
-            <input type="text" autoFocus className={`${errors.channelName ? 'show-errors' : ''}`} placeholder={channel.name} {...register("channelName", { required: "This field is required" })} />
+            <input type="text" spellCheck={false} autoFocus className={`text-input ${errors.channelName ? 'show-errors' : ''}`} placeholder={channel.name} {...register("channelName", { required: "This field is required" })} />
 
             { errors.channelName && <div className="error-message">{ errors.channelName?.message }</div> }
 
@@ -91,6 +91,7 @@ const ChannelSettings = ({ toggleSettings, channel, updateChannel, openModal }) 
           </div>
           ESC
         </div>
+
       </div>
     </div>
   )

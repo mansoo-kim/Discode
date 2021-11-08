@@ -1,7 +1,8 @@
 import { useState, useRef, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { CSSTransition } from 'react-transition-group';
-import ServerIcon from '../server/ServerIcon';
+import { FaTimes } from 'react-icons/fa';
+import ChangePic from './ChangePic';
 import Prompt from './Prompt';
 
 const ServerSettings = ({ toggleSettings, server, updateServer, openModal }) => {
@@ -69,23 +70,6 @@ const ServerSettings = ({ toggleSettings, server, updateServer, openModal }) => 
     fileRef.current.value = "";
   }
 
-  // const prompt = (
-  //   <div className={`save-prompt ${ showRed ? 'error-input' : ''}`}>
-  //     Careful - you have unsaved changes!
-  //     <button onClick={() => {
-  //       setShowRed(false);
-  //       setRemoveIcon(false);
-  //       setImgUrl("");
-  //       setImgFile(null);
-  //       reset();
-  //       fileRef.current.value = "";
-  //     }}>
-  //       Reset
-  //     </button>
-  //     <button>Save Changes</button>
-  //   </div>
-  // )
-
   const onFileChange = (e) => {
     const file = e.currentTarget.files[0];
     const fileReader = new FileReader();
@@ -125,13 +109,26 @@ const ServerSettings = ({ toggleSettings, server, updateServer, openModal }) => 
         <div className="settings-pane">
           <h2>Server Overview</h2>
           <div className="fake-form">
-            <div>
-              <ServerIcon name={server.name} iconUrl={imgSrc} />
-              <input type="file" onChange={onFileChange} ref={fileRef} />
+
+            <ChangePic onFileChange={onFileChange} handleRemove={handleRemove} fileRef={fileRef} imgSrc={imgSrc} server={server} />
+
+            {/* <div className="icon-group">
               { server.iconUrl && <button type="button" onClick={handleRemove}>Remove</button> }
-            </div>
+
+              <div className="icon-left">
+
+                <div className="icon-input-wrapper">
+                  <input type="file" className="iconInput" onChange={onFileChange} ref={fileRef} />
+                </div>
+
+                <div className="remove-icon" onClick={handleRemove}>
+                  Remove
+                </div>
+              </div>
+            </div> */}
+
             <label>SERVER NAME</label>
-            <input type="text" placeholder={server.name} {...register("serverName", {
+            <input type="text" className="text-input" placeholder={server.name} {...register("serverName", {
               required: "This field is required",
               minLength: {
                 value: 2,
@@ -158,9 +155,14 @@ const ServerSettings = ({ toggleSettings, server, updateServer, openModal }) => 
           </div>
 
         </div>
+
         <div className="close-settings">
-          <button onClick={checkThenExit}>X</button>
+          <div className="close-circle" onClick={checkThenExit}>
+            <FaTimes size={16} />
+          </div>
+          ESC
         </div>
+
       </div>
     </div>
   )

@@ -140,6 +140,7 @@
     display: flex;
     align-items: center;
     font-size: 12px;
+    line-height: 16px;
     font-weight: 600;
     overflow: hidden;
     white-space: nowrap;
@@ -197,6 +198,15 @@
   width: 740px;
 
   h2 {
+    font-size: 20px;
+    line-height: 24px;
+    margin-bottom: 20px;
+    font-family: 'ginto-normal', sans-serif;
+    font-weight: 600;
+    color: $white;
+  }
+
+  h3 {
     line-height: 20px;
     margin-bottom: 20px;
     font-family: 'ginto-normal', sans-serif;
@@ -219,7 +229,7 @@
     margin-bottom: 8px;
   }
 
-  input {
+  .text-input {
     height: 40px;
     padding: 10px;
     border: none;
@@ -249,6 +259,93 @@
     line-height: 16px;
     color: rgb(237, 66, 69);
     margin-top: 4px;
+  }
+
+  .icon-group {
+    margin-bottom: 50px;
+    margin-left: 10px;
+
+    .icon-left {
+      width: 100px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .icon-input-wrapper {
+      height: 100px;
+      width: 100px;
+      position: relative;
+      overflow: hidden;
+      border-radius: 50%;
+      cursor: pointer;
+      background-color: $blurple;
+      margin: 0px 10px 10px 10px;
+
+      &:after {
+        background: rgba(0,0,0,0.4);
+        opacity: 0;
+        transition: opacity 0.15s ease;
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        content: 'CHANGE ICON';
+        pointer-events: none;
+        z-index: 1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 10px;
+        font-weight: 700;
+        color: $white;
+      }
+
+      &:hover:after {
+        opacity: 1;
+      }
+
+      .icon-input {
+        width: 100px;
+        height: 100px;
+        position: absolute;
+        top: 0;
+        left: 0;
+        opacity: 1;
+        cursor: pointer;
+        height: 100%;
+        font-size: 0px;
+      }
+
+      .input-cover {
+        position: absolute;
+        width: 100px;
+        height: 100px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        pointer-events: none;
+
+        &:hover {
+          color: transparent;
+        }
+
+        img {
+          width: 100px;
+          height: 100px;
+          object-fit: cover;
+        }
+      }
+    }
+
+    .remove-icon {
+      text-align: center;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      color: $off-grey;
+    }
   }
 
 
