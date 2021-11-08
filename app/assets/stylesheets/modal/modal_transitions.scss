@@ -1,21 +1,28 @@
 .modals-enter {
   opacity: 0;
-  transform: scale(0.6);
+
+  .modal {
+    transform: translate(-50%, -50%) scale(0.5);
+  }
 }
 .modals-enter-active {
   opacity: 1;
-  transform: scale(1);
-  transition: opacity 300ms, transform 300ms;
-}
-.modals-enter-done {
-  opacity: 1;
-  pointer-events: auto;
+  transition: opacity 300ms;
+
+  .modal {
+    transform: translate(-50%, -50%) scale(1);
+    transition: transform 300ms;
+  }
 }
 .modals-exit {
   opacity: 1;
 }
 .modals-exit-active {
   opacity: 0;
-  transform: scale(0.6);
-  transition: opacity 300ms, transform 300ms;
+  transition: opacity 300ms;
+
+  .modal {
+    transform: translate(-50%, -50%) scale(0.5);
+    transition: transform 300ms;
+  }
 }

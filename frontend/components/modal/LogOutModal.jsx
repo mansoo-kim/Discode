@@ -7,16 +7,20 @@ const LogOutModal = ({ closeModal, logout}) => {
 
   return (
     <div className="modal">
-      <button onClick={closeModal}>X</button>
+      <form onSubmit={handleLogout}>
 
-      <form>
-        <h2>Log Out</h2>
-        <p>Are you sure you want to logout?</p>
+        <div className="modal-content">
+          <h2>Log Out</h2>
+          <p>Are you sure you want to logout?</p>
+        </div>
 
-        <button type="button" onClick={closeModal}>Cancel</button>
-        <button type="button" onClick={handleLogout}>
-          Log Out
-        </button>
+        <div className="buttons-container">
+          <button type="button" className="cancel-button" onClick={closeModal}>Cancel</button>
+          <button className="submit-button">
+            Log Out
+          </button>
+        </div>
+
       </form>
     </div>
   )
