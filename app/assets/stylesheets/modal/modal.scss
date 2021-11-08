@@ -96,8 +96,15 @@
       }
     }
 
+    .blue-button {
+      background: $blurple;
+    }
+
     .red-button {
       background: $error-red;
+    }
+
+    .submit-button {
       border-radius: 3px;
       position: relative;
       min-width: 96px;

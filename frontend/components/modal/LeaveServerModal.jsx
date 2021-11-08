@@ -21,7 +21,7 @@ const LeaveServerModal = ({ server, currentUserId, closeModal, deleteMembership,
 
         <div className="buttons-container">
           <button type="button" className="cancel-button" onClick={closeModal}>Cancel</button>
-          <button className="red-button">
+          <button className="submit-button red-button">
             <div>Leave Server</div>
           </button>
         </div>

@@ -36,7 +36,7 @@ const DeleteMessageModal = ({ message, sender, chat, closeModal }) => {
 
         <div className="buttons-container">
           <button type="button" className="cancel-button" onClick={closeModal}>Cancel</button>
-          <button className="red-button">
+          <button className="submit-button red-button">
             <div>Delete</div>
           </button>
         </div>

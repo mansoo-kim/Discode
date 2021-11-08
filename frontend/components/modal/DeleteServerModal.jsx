@@ -32,7 +32,7 @@ const DeleteServerModal = ({ server, deleteServer, closeModal, history }) => {
 
         <div className="buttons-container">
           <button type="button" className="cancel-button" onClick={closeModal}>Cancel</button>
-          <button className="red-button">
+          <button className="submit-button red-button">
             <div>Delete Server</div>
           </button>
         </div>

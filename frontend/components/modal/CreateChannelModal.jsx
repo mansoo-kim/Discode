@@ -1,4 +1,5 @@
 import { useForm } from 'react-hook-form';
+import { FaHashtag, FaTimes } from 'react-icons/fa';
 
 const CreateChannelModal = ({ closeModal, createChannel, history }) => {
   const { register, formState: { errors }, handleSubmit } = useForm({
@@ -17,20 +18,28 @@ const CreateChannelModal = ({ closeModal, createChannel, history }) => {
 
   return (
     <div className="modal">
-      <button onClick={closeModal}>X</button>
-
+      {/* <button onClick={closeModal}>X</button> */}
       <form onSubmit={handleSubmit(onSubmit)} >
         <h2>Create Text Channel</h2>
 
-        <div>
+        <div className="modal-content">
+
+          <label>CHANNEL TYPE</label>
+          <input type="radio" selected />
+          <input type="radio" disabled />
+
           <label>CHANNEL NAME </label>
           <input type="text" placeholder="new-channel" {...register("channelName", { required: true })} />
+
         </div>
 
-        <button type="button" onClick={closeModal}>Cancel</button>
-        <button disabled={!!errors["channelName"]}>
-          Create Channel
-        </button>
+        <div className="buttons-container">
+          <button type="button" className="cancel-button" onClick={closeModal}>Cancel</button>
+          <button className="submit-button blue-button">
+            <div>Create Channel</div>
+          </button>
+        </div>
+
       </form>
     </div>
   )
