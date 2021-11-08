@@ -403,6 +403,11 @@
         height: 100px;
         object-fit: cover;
       }
+
+      &.default > img {
+        width: 60px;
+        height: 45px;
+      }
     }
   }
 
