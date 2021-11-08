@@ -40,10 +40,10 @@ const ServerSettings = ({ toggleSettings, server, updateServer, openModal }) => 
   const handleRemove = () => {
     if (server.iconUrl) {
       setRemoveIcon(true);
-      setImgUrl("");
-      setImgFile(null);
-      fileRef.current.value = "";
     }
+    setImgUrl("");
+    setImgFile(null);
+    fileRef.current.value = "";
   }
 
   const onSubmit = (data) => {
@@ -111,21 +111,6 @@ const ServerSettings = ({ toggleSettings, server, updateServer, openModal }) => 
           <div className="fake-form">
 
             <ChangePic onFileChange={onFileChange} handleRemove={handleRemove} fileRef={fileRef} imgSrc={imgSrc} server={server} />
-
-            {/* <div className="icon-group">
-              { server.iconUrl && <button type="button" onClick={handleRemove}>Remove</button> }
-
-              <div className="icon-left">
-
-                <div className="icon-input-wrapper">
-                  <input type="file" className="iconInput" onChange={onFileChange} ref={fileRef} />
-                </div>
-
-                <div className="remove-icon" onClick={handleRemove}>
-                  Remove
-                </div>
-              </div>
-            </div> */}
 
             <label>SERVER NAME</label>
             <input type="text" className="text-input" placeholder={server.name} {...register("serverName", {
