@@ -117,7 +117,7 @@ const UserSettings = ({ currentUser, toggleSettings, openModal, updateUser }) =>
 
               <div className="attribute-container">
                 <div className="text-group">
-                  <div class="label">USERNAME</div>
+                  <div className="label">USERNAME</div>
                   <div className="attribute-value">
                     { currentUser.username }
                     <span>#{ currentUser.tag }</span>
@@ -131,7 +131,7 @@ const UserSettings = ({ currentUser, toggleSettings, openModal, updateUser }) =>
 
               <div className="attribute-container">
                 <div className="text-group">
-                  <div class="label">EMAIL</div>
+                  <div className="label">EMAIL</div>
                   <div className="attribute-value">{ currentUser.email }</div>
                 </div>
                 <button onClick={() =>

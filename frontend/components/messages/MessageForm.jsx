@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { BsPlusCircleFill } from 'react-icons/bs';
 
-const MessageForm = ({ currentUserId, cc, chat }) => {
+const MessageForm = ({ currentUserId, type, cc, chat }) => {
   const [body, setBody] = useState("");
 
   const update = (e) => setBody(e.currentTarget.value);
@@ -13,7 +13,7 @@ const MessageForm = ({ currentUserId, cc, chat }) => {
         {
           body: body,
           sender_id: currentUserId,
-          messageable_type: cc.messageable_type,
+          messageable_type: type,
           messageable_id: cc.id
         }
       );
