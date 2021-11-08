@@ -1,6 +1,6 @@
 const ServerOptionsDD = ({isOwner, serverId, setShowDD, currentUserId, openModal, deleteMembership, history, toggleSettings}) => {
   const serverSettingsOption = isOwner ? (
-    <div>
+    <div className="server-option">
       <button onMouseDown={(e => e.preventDefault())}
       onClick={toggleSettings}>
         Server Settings
@@ -9,7 +9,7 @@ const ServerOptionsDD = ({isOwner, serverId, setShowDD, currentUserId, openModal
   ) : null;
 
   const newChannelOption = isOwner ? (
-    <div>
+    <div className="server-option">
       <button onMouseDown={(e => e.preventDefault())}
       onClick={() => openModal({type: "createChannel", serverId })}>
         Create Channel
@@ -27,7 +27,7 @@ const ServerOptionsDD = ({isOwner, serverId, setShowDD, currentUserId, openModal
   }
 
   const leaveOption = isOwner ? null : (
-    <div>
+    <div className="server-option leave-server">
       <button onMouseDown={(e => e.preventDefault())}
       onClick={handleLeaving}>
         Leave Server
