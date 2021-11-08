@@ -20,7 +20,6 @@ const ChannelSettings = ({ toggleSettings, channel, updateChannel, openModal }) 
 
   const handleEscapeExit = (e) => {
     if (e.keyCode === 27) {
-      console.log("escape");
       toggleSettings();
     }
   };

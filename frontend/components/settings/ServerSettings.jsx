@@ -22,7 +22,6 @@ const ServerSettings = ({ toggleSettings, server, updateServer, openModal }) => 
 
   const handleEscapeExit = (e) => {
     if (e.keyCode === 27) {
-      console.log("escape");
       toggleSettings();
     }
   };

@@ -7,9 +7,14 @@
 
 .server-header {
   width: 100%;
+  position: relative;
 }
 
 .server-name-container {
+  &:focus-visible {
+    outline: none;
+  }
+
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -38,9 +43,4 @@
     color: $white;
   }
 
-}
-
-.server-options-dd {
-  position: absolute;
-  background-color: white;
 }

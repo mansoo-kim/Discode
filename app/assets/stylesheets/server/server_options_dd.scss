@@ -1,7 +1,38 @@
 .server-options-dd {
+  position: absolute;
+  top: 56px;
+  left: 8px;
   width: 220px;
+  background: $dark-black;
+  border-radius: 4px;
+  padding: 6px;
 }
 
 .server-option {
   cursor: pointer;
+  color: $off-grey;
+  font-weight: 600;
+  border-radius: 2px;
+
+  font-size: 14px;
+  padding: 9px 8px;
+  margin: 2px 0px;
+
+  &:hover {
+    background: $blurple;
+    color: $white;
+  }
+
+  &:active {
+    filter: brightness(0.8);
+  }
+}
+
+.leave-server {
+  color: $error-red;
+
+  &:hover {
+    background: $error-red;
+    color: $white;
+  }
 }

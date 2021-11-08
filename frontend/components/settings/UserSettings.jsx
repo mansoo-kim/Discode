@@ -16,7 +16,6 @@ const UserSettings = ({ currentUser, toggleSettings, openModal, updateUser }) =>
 
   const handleEscapeExit = (e) => {
     if (e.keyCode === 27) {
-      console.log("escape");
       toggleSettings();
     }
   };
