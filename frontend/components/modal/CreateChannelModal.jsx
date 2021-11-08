@@ -2,10 +2,13 @@ import { useForm } from 'react-hook-form';
 import { FaHashtag, FaTimes } from 'react-icons/fa';
 
 const CreateChannelModal = ({ closeModal, createChannel, history }) => {
-  const { register, formState: { errors }, handleSubmit } = useForm({
+  const { register, watch, handleSubmit } = useForm({
     mode: 'onChange',
-    shouldFocusError: false
+    shouldFocusError: false,
+    defaultValues: { channelName: "" }
   });
+
+  const channelName = watch("channelName");
 
   const onSubmit = (data) => {
     const channel = {
@@ -18,24 +21,24 @@ const CreateChannelModal = ({ closeModal, createChannel, history }) => {
 
   return (
     <div className="modal">
-      {/* <button onClick={closeModal}>X</button> */}
+      <div className="close-button" onClick={closeModal}>
+        <FaTimes size={20} />
+      </div>
+
       <form onSubmit={handleSubmit(onSubmit)} >
         <h2>Create Text Channel</h2>
 
         <div className="modal-content">
-
-          <label>CHANNEL TYPE</label>
-          <input type="radio" selected />
-          <input type="radio" disabled />
+          <FaHashtag size={14} />
 
           <label>CHANNEL NAME </label>
-          <input type="text" placeholder="new-channel" {...register("channelName", { required: true })} />
+          <input type="text" className="text-input channel-name" placeholder="new-channel" {...register("channelName", { required: true })} />
 
         </div>
 
         <div className="buttons-container">
           <button type="button" className="cancel-button" onClick={closeModal}>Cancel</button>
-          <button className="submit-button blue-button">
+          <button className="submit-button blue-button" disabled={channelName === ""}>
             <div>Create Channel</div>
           </button>
         </div>

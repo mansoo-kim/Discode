@@ -25,6 +25,7 @@
   overflow: hidden;
   box-shadow: 0 0 0 1px rgba(32,34,37,0.6);
   cursor: default;
+  position: relative;
 
   h2 {
     font-weight: 600;
@@ -40,6 +41,7 @@
     display: flex;
     flex-direction: column;
     padding: 0px 16px;
+    position: relative;
 
     p {
       color: $off-white;
@@ -67,6 +69,17 @@
       line-height: 16px;
 
       margin-bottom: 8px;
+    }
+
+    .channel-name {
+      padding-left: 32px;
+    }
+
+    svg {
+      top: 38px;
+      left: 26px;
+      color: $off-white;
+      position: absolute;
     }
   }
 
@@ -98,6 +111,15 @@
 
     .blue-button {
       background: $blurple;
+
+      &:disabled {
+        filter: brightness(0.7);
+        cursor: not-allowed;
+
+        &:hover:after {
+          opacity: 0;
+        }
+      }
     }
 
     .red-button {
@@ -133,6 +155,24 @@
         position: relative;
         z-index: 3;
       }
+    }
+  }
+
+  .close-button {
+    position: absolute;
+    right: 8px;
+    top: 8px;
+    height: 24px;
+    width: 24px;
+    cursor: pointer;
+    color: $off-grey;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &:hover {
+      color: $off-white;
     }
   }
 }
