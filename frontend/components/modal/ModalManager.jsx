@@ -1,3 +1,4 @@
+import { CSSTransition } from 'react-transition-group';
 import CreateServerModal from './CreateServerModal';
 import CreateChannelModal from './CreateChannelModal';
 import EditUserModal from './EditUserModal';
@@ -8,49 +9,58 @@ import LogOutModal from './LogOutModal';
 import LeaveServerModal from './LeaveServerModal';
 
 const ModalManager = ({ modal, closeModal, history }) => {
-  if (!modal) return null;
+  // if (!modal) return null;
 
   let component;
 
-  switch (modal.type) {
+  switch (modal?.type) {
     case "createServer":
       component = <CreateServerModal history={history} />
       break;
     case "createChannel":
-      component = <CreateChannelModal serverId={modal.serverId} history={history} />
+      component = <CreateChannelModal serverId={modal?.serverId} history={history} />
       break;
     case "editUser":
-      component = <EditUserModal type={modal.property} />
+      component = <EditUserModal type={modal?.property} />
       break;
     case "deleteMessage":
-      component = <DeleteMessageModal message={modal.message} sender={modal.sender} chat={modal.chat} />
+      component = <DeleteMessageModal message={modal?.message} sender={modal?.sender} chat={modal?.chat} />
       break;
     case "deleteChannel":
-      component = <DeleteChannelModal channel={modal.channel} history={history} />
+      component = <DeleteChannelModal channel={modal?.channel} history={history} />
       break;
     case "deleteServer":
-      component = <DeleteServerModal server={modal.server} history={history} />
+      component = <DeleteServerModal server={modal?.server} history={history} />
       break;
     case "logout":
       component = <LogOutModal />
       break
     case "leaveServer":
-      component = <LeaveServerModal server={modal.server} currentUserId={modal.currentUserId} history={history} />
+      component = <LeaveServerModal server={modal?.server} currentUserId={modal?.currentUserId} history={history} />
       break;
-    default:
-      return null;
+    // default:
+    //   return null;
   }
 
   const handleClick = (e) => {
     if (e.target === e.currentTarget) {
-      closeModal();
+      closeModal(modal);
     }
   }
 
+  console.log(modal.action === "open");
+
   return (
-    <div className="modal-container" onClick={handleClick}>
-      { component }
-    </div>
+    <CSSTransition
+      in={modal.action === "open"}
+      timeout={1000}
+      // mountOnEnter
+      unmountOnExit
+      classNames="modals">
+      <div className="modal-container" onClick={handleClick}>
+        { component }
+      </div>
+    </CSSTransition>
   )
 }
 
@@ -63,7 +73,7 @@ const mSTP = (state) => ({
 });
 
 const mDTP = (dispatch) => ({
-  closeModal: () => dispatch(closeModal())
+  closeModal: (modal) => dispatch(closeModal(modal))
 });
 
 export default withRouter(connect(mSTP, mDTP)(ModalManager));

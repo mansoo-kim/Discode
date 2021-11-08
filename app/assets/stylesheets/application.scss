@@ -18,7 +18,7 @@
  @import './base/fonts.scss';
  @import './base/app.scss';
  @import './base/pics.scss';
- @import './components/splash.scss';
+ @import './splash/splash.scss';
  @import './session_form/session_form.scss';
  @import './session_form/dropdown.scss';
  @import './server/server.scss';
@@ -34,6 +34,7 @@
  @import './settings/settings.scss';
  @import './settings/prompt.scss';
  @import './settings/edit_pic.scss';
- @import './settings/transitions.scss';
+ @import './settings/settings_transitions.scss';
  @import './settings/user_settings.scss';
- @import './components/modal.scss';
+ @import './modal/modal.scss';
+ @import './modal/modal_transitions.scss';

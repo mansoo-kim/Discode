@@ -1,0 +1,26 @@
+.modals-enter {
+  opacity: 0;
+  // transform: scale(0.6);
+}
+.modals-enter-active {
+  opacity: 1;
+  // transform: scale(1);
+  transition: opacity 1000ms; //, transform 300ms;
+}
+.modals-enter-done {
+  opacity: 1;
+  pointer-events: auto;
+}
+.modals-exit {
+  opacity: 1;
+  // transform: scale(1);
+}
+.modals-exit-active {
+  opacity: 0;
+  // transform: scale(0.6);
+  transition: opacity 1000ms; //, transform 300ms;
+}
+.modals-exit-done {
+  opacity: 0;
+  // transform: scale(0.6);
+}
