@@ -1,4 +1,10 @@
 const LogOutModal = ({ closeModal, logout}) => {
+
+  const handleLogout = () => {
+    logout()
+      .then(() => closeModal());
+  }
+
   return (
     <div className="modal">
       <button onClick={closeModal}>X</button>
@@ -8,7 +14,7 @@ const LogOutModal = ({ closeModal, logout}) => {
         <p>Are you sure you want to logout?</p>
 
         <button type="button" onClick={closeModal}>Cancel</button>
-        <button type="button" onClick={logout}>
+        <button type="button" onClick={handleLogout}>
           Log Out
         </button>
       </form>
