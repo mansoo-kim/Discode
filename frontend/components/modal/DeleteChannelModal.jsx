@@ -11,9 +11,9 @@ const DeleteChannelModal = ({ channel, deleteChannel, closeModal, history }) => 
   return (
     <div className="modal">
       <form onSubmit={handleDelete}>
+        <h2>Delete Channel</h2>
 
         <div className="modal-content">
-          <h2>Delete Channel</h2>
           <p>Are you sure you want to delete <span>#{channel.name}</span>? This cannot be undone.</p>
         </div>
 

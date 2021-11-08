@@ -11,25 +11,37 @@ const DeleteMessageModal = ({ message, sender, chat, closeModal }) => {
 
   return (
     <div className="modal">
+      <form onSubmit={handleDelete}>
+        <h2>Delete Message</h2>
 
-      <h2>Delete Message</h2>
-      <p>Are you sure you want to delete this message?</p>
+        <div className="modal-content">
+          <p>Are you sure you want to delete this message?</p>
 
-      <div className="message-item">
-        <UserPfp user={sender} />
+          <div className="to-delete-container">
+            <div className="message-pfp">
+              <UserPfp user={sender} />
+            </div>
 
-        <div className="message-content">
-          <div className="message-body">
-          { message.body }
+            <div className="message-text">
+              <div className="sender-username">
+                { sender.username }
+              </div>
+              <div>
+                {  message.body }
+              </div>
+            </div>
           </div>
+
         </div>
-      </div>
 
-      <div>
-        <button type="button" onClick={closeModal}>Cancel</button>
-        <button type="button" onClick={handleDelete}>Delete</button>
-      </div>
+        <div className="buttons-container">
+          <button type="button" className="cancel-button" onClick={closeModal}>Cancel</button>
+          <button className="red-button">
+            <div>Delete</div>
+          </button>
+        </div>
 
+      </form>
     </div>
   )
 }

@@ -23,26 +23,26 @@
   background: $lighter-black;
   border-radius: 4px;
   overflow: hidden;
-  box-shadow: 0 0 0 1px rgba(32, 34, 37, 0.6);
+  box-shadow: 0 0 0 1px rgba(32,34,37,0.6);
   cursor: default;
 
-  .modal-content {
-    padding-bottom: 20px;
+  h2 {
+    font-weight: 600;
+    color: $white;
+    font-size: 20px;
+    padding: 18px 16px;
+    font-family: 'ginto-normal', sans-serif;
+  }
 
-    h2 {
-      font-weight: 600;
-      color: $white;
-      font-size: 20px;
-      padding: 18px 16px;
-      font-family: 'ginto-normal', sans-serif;
-    }
+  .modal-content {
+    margin-bottom: 20px;
+    min-height: 54px;
 
     p {
       color: $off-white;
       font-size: 16px;
       padding: 0px 16px;
       line-height: 20px;
-      height: 54px;
 
       span {
         font-weight: 600;
@@ -109,3 +109,26 @@
     }
   }
 }
+
+.to-delete-container {
+  display: flex;
+  align-items: center;
+  min-height: 70px;
+  margin: 20px 16px 0px 16px;
+  padding: 10px 0px;
+  box-shadow: 0 2px 10px 0 rgba(0,0,0,0.2);
+  border: 1px solid rgba(32,34,37,0.6);
+  border-radius: 3px;
+  color: $off-white;
+
+  .message-pfp {
+    padding: 0px 16px;
+  }
+
+  .message-text {
+    margin-right: 16px;
+  }
+}
+
+
+// 0 0 0 1px rgba(32,34,37,0.6),

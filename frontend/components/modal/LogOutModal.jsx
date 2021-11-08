@@ -8,9 +8,9 @@ const LogOutModal = ({ closeModal, logout}) => {
   return (
     <div className="modal">
       <form onSubmit={handleLogout}>
+        <h2>Log Out</h2>
 
         <div className="modal-content">
-          <h2>Log Out</h2>
           <p>Are you sure you want to logout?</p>
         </div>
 

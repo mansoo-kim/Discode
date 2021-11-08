@@ -13,9 +13,9 @@ const LeaveServerModal = ({ server, currentUserId, closeModal, deleteMembership,
   return (
     <div className="modal">
       <form onSubmit={handleLeaving}>
+        <h2>Leave '{server.name}'</h2>
 
         <div className="modal-content">
-          <h2>Leave '{server.name}'</h2>
           <p>Are you sure you want to leave <span>{server.name}</span>? You won't be able to rejoin this server unless you are re-invited.</p>
         </div>
 
