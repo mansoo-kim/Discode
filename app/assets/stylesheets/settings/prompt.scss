@@ -54,6 +54,10 @@
       opacity: 1;
     }
 
+    &:active:after {
+      background: rgba(0,0,0,0.4);
+    }
+
     div.inner-save {
       position: relative;
       padding: 2px;

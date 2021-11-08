@@ -166,6 +166,10 @@
       opacity: 1;
     }
 
+    &:active:after {
+      background: rgba(0,0,0,0.3);
+    }
+
     div.submit-button {
       position: relative;
       padding: 2px;

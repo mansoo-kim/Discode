@@ -12,16 +12,20 @@ const LeaveServerModal = ({ server, currentUserId, closeModal, deleteMembership,
 
   return (
     <div className="modal">
-      <button onClick={closeModal}>X</button>
+      <form onSubmit={handleLeaving}>
 
-      <form>
-        <h2>Leave '{server.name}'</h2>
-        <p>Are you sure you want to leave <span>{server.name}</span>? You won't be able to rejoin this server unless you are re-invited.</p>
+        <div className="modal-content">
+          <h2>Leave '{server.name}'</h2>
+          <p>Are you sure you want to leave <span>{server.name}</span>? You won't be able to rejoin this server unless you are re-invited.</p>
+        </div>
 
-        <button type="button" onClick={closeModal}>Cancel</button>
-        <button type="button" onClick={handleLeaving}>
-          Leave Server
-        </button>
+        <div className="buttons-container">
+          <button type="button" className="cancel-button" onClick={closeModal}>Cancel</button>
+          <button className="red-button">
+            <div>Leave Server</div>
+          </button>
+        </div>
+
       </form>
     </div>
   )

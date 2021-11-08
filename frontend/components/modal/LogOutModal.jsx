@@ -16,8 +16,8 @@ const LogOutModal = ({ closeModal, logout}) => {
 
         <div className="buttons-container">
           <button type="button" className="cancel-button" onClick={closeModal}>Cancel</button>
-          <button className="submit-button">
-            Log Out
+          <button className="red-button">
+            <div>Log Out</div>
           </button>
         </div>
 
