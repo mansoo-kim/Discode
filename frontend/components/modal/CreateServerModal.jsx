@@ -18,9 +18,7 @@ const CreateServerModal = ({ serverErrors, currentUser, closeModal, createServer
     if (data.iconFile[0]) formData.append("server[icon]", data.iconFile[0]);
     createServer(formData)
       .then(({ res: { server } })=> history.push(`/channels/${server.id}/${server.channels[0]}`))
-      .then(() => closeModal({
-        type: "createServer"
-      }));
+      .then(() => closeModal());
   }
 
   const [imgUrl, setImgUrl] = useState("");
@@ -38,9 +36,7 @@ const CreateServerModal = ({ serverErrors, currentUser, closeModal, createServer
 
   return (
     <div className="modal">
-      <button onClick={() => closeModal({
-        type: "createServer"
-      })}>X</button>
+      <button onClick={closeModal}>X</button>
 
       <form onSubmit={handleSubmit(onSubmit)}>
         <h2>Customize your server</h2>
@@ -68,7 +64,6 @@ const CreateServerModal = ({ serverErrors, currentUser, closeModal, createServer
 }
 
 import { connect } from 'react-redux';
-import { closeModal } from '../../actions/modal_actions';
 import { createServer, resetServerErrors } from '../../actions/server_actions';
 
 const mSTP = (state) => ({
@@ -77,7 +72,6 @@ const mSTP = (state) => ({
 });
 
 const mDTP = (dispatch) => ({
-  closeModal: (modal) => dispatch(closeModal(modal)),
   createServer: (server) => dispatch(createServer(server)),
   resetServerErrors: () => dispatch(resetServerErrors())
 });

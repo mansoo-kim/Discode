@@ -34,11 +34,4 @@ const DeleteMessageModal = ({ message, sender, chat, closeModal }) => {
   )
 }
 
-import { connect } from 'react-redux';
-import { closeModal } from '../../actions/modal_actions';
-
-const mDTP = (dispatch) => ({
-  closeModal: () => dispatch(closeModal())
-});
-
-export default connect(null, mDTP)(DeleteMessageModal);
+export default DeleteMessageModal;

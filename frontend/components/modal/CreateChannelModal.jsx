@@ -37,11 +37,9 @@ const CreateChannelModal = ({ closeModal, createChannel, history }) => {
 }
 
 import { connect } from 'react-redux';
-import { closeModal } from '../../actions/modal_actions';
 import { createChannel } from '../../actions/channel_actions';
 
 const mDTP = (dispatch, ownProps) => ({
-  closeModal: () => dispatch(closeModal()),
   createChannel: (channel) => dispatch(createChannel(ownProps.serverId, channel))
 });
 

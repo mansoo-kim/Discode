@@ -24,11 +24,9 @@ const DeleteChannelModal = ({ channel, deleteChannel, closeModal, history }) => 
 }
 
 import { connect } from 'react-redux';
-import { closeModal } from '../../actions/modal_actions';
 import { deleteChannel } from '../../actions/channel_actions';
 
 const mDTP = (dispatch) => ({
-  closeModal: () => dispatch(closeModal()),
   deleteChannel: (channelId) => dispatch(deleteChannel(channelId))
 });
 

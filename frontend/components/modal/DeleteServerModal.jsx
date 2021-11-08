@@ -40,7 +40,6 @@ import { closeModal } from '../../actions/modal_actions';
 import { deleteServer } from '../../actions/server_actions';
 
 const mDTP = (dispatch) => ({
-  closeModal: () => dispatch(closeModal()),
   deleteServer: (serverId) => dispatch(deleteServer(serverId))
 });
 

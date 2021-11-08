@@ -9,37 +9,36 @@ import LogOutModal from './LogOutModal';
 import LeaveServerModal from './LeaveServerModal';
 
 const ModalManager = ({ modal, closeModal, history }) => {
-  // if (!modal) return null;
-
   let component;
 
-  switch (modal?.type) {
+  switch (modal.type) {
     case "createServer":
-      component = <CreateServerModal history={history} />
+      component = <CreateServerModal history={history} closeModal={() => closeModal(modal)} />
       break;
     case "createChannel":
-      component = <CreateChannelModal serverId={modal?.serverId} history={history} />
+      component = <CreateChannelModal serverId={modal.serverId} history={history} closeModal={() => closeModal(modal)} />
       break;
     case "editUser":
-      component = <EditUserModal type={modal?.property} />
+      component = <EditUserModal type={modal?.property} closeModal={() => closeModal(modal)} />
       break;
     case "deleteMessage":
-      component = <DeleteMessageModal message={modal?.message} sender={modal?.sender} chat={modal?.chat} />
+      component = <DeleteMessageModal message={modal.message} sender={modal.sender} chat={modal.chat} closeModal={() => closeModal(modal)} />
       break;
     case "deleteChannel":
-      component = <DeleteChannelModal channel={modal?.channel} history={history} />
+      component = <DeleteChannelModal channel={modal.channel} history={history} closeModal={() => closeModal(modal)} />
       break;
     case "deleteServer":
-      component = <DeleteServerModal server={modal?.server} history={history} />
+      component = <DeleteServerModal server={modal.server} history={history} closeModal={() => closeModal(modal)} />
       break;
     case "logout":
-      component = <LogOutModal />
+      component = <LogOutModal closeModal={() => closeModal(modal)} />
       break
     case "leaveServer":
-      component = <LeaveServerModal server={modal?.server} currentUserId={modal?.currentUserId} history={history} />
+      component = <LeaveServerModal server={modal.server} currentUserId={modal.currentUserId} history={history} closeModal={() => closeModal(modal)} />
       break;
-    // default:
-    //   return null;
+    default:
+      component = <div className="modal"><h2>Nothing to see here</h2></div>;
+      break;
   }
 
   const handleClick = (e) => {
@@ -48,13 +47,11 @@ const ModalManager = ({ modal, closeModal, history }) => {
     }
   }
 
-  console.log(modal.action === "open");
-
   return (
     <CSSTransition
       in={modal.action === "open"}
-      timeout={1000}
-      // mountOnEnter
+      timeout={300}
+      mountOnEnter
       unmountOnExit
       classNames="modals">
       <div className="modal-container" onClick={handleClick}>

@@ -28,11 +28,9 @@ const LeaveServerModal = ({ server, currentUserId, closeModal, deleteMembership,
 }
 
 import { connect } from 'react-redux';
-import { closeModal } from '../../actions/modal_actions';
 import { deleteMembership } from '../../actions/membership_actions';
 
 const mDTP = (dispatch) => ({
-  closeModal: () => dispatch(closeModal()),
   deleteMembership: (membership) => dispatch(deleteMembership(membership))
 });
 

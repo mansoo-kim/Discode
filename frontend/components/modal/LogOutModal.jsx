@@ -23,11 +23,9 @@ const LogOutModal = ({ closeModal, logout}) => {
 }
 
 import { connect } from 'react-redux';
-import { closeModal } from '../../actions/modal_actions';
 import { logout } from '../../actions/session_actions';
 
 const mDTP = (dispatch) => ({
-  closeModal: () => dispatch(closeModal()),
   logout: () => dispatch(logout())
 });
 

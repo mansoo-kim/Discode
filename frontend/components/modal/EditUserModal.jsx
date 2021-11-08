@@ -68,7 +68,6 @@ const EditUserModal = ({ type, userErrors, currentUser, closeModal, updateUser, 
 }
 
 import { connect } from 'react-redux';
-import { closeModal } from '../../actions/modal_actions';
 import { updateUser, resetUserErrors } from '../../actions/user_actions';
 
 const mSTP = (state) => ({
@@ -77,7 +76,6 @@ const mSTP = (state) => ({
 });
 
 const mDTP = (dispatch) => ({
-  closeModal: () => dispatch(closeModal()),
   updateUser: (userId, user) => dispatch(updateUser(userId, user)),
   resetUserErrors: () => dispatch(resetUserErrors())
 });
