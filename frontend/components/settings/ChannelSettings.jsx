@@ -18,6 +18,18 @@ const ChannelSettings = ({ toggleSettings, channel, updateChannel, openModal }) 
   const [promptBackground, setPromptBackground] = useState(darkBackground);
   const watchName = watch("channelName");
 
+  const handleEscapeExit = (e) => {
+    if (e.keyCode === 27) {
+      console.log("escape");
+      toggleSettings();
+    }
+  };
+
+  useEffect(() => {
+   document.addEventListener("keydown", handleEscapeExit);
+   return () => document.removeEventListener("keydown", handleEscapeExit);
+  });
+
   useEffect(() => {
     if (promptBackground === redBackground) setTimeout(() => setPromptBackground(darkBackground), 500);
   }, [promptBackground]);
@@ -51,6 +63,7 @@ const ChannelSettings = ({ toggleSettings, channel, updateChannel, openModal }) 
 
               <span>TEXT CHANNELS</span>
           </div>
+
           <div className="option selected">
               Overview
           </div>
@@ -60,6 +73,7 @@ const ChannelSettings = ({ toggleSettings, channel, updateChannel, openModal }) 
           <div className="option action" onClick={() => openModal({type: "deleteChannel", channel})}>
             Delete Channel
           </div>
+
         </div>
       </div>
       <div className="settings-right-container">
@@ -84,6 +98,7 @@ const ChannelSettings = ({ toggleSettings, channel, updateChannel, openModal }) 
                 <Prompt promptBackground={promptBackground} handleReset={handleReset} handleSubmit={handleSubmit(onSubmit)} />
             </CSSTransition>
           </div>
+
         </div>
 
         <div className="close-settings">

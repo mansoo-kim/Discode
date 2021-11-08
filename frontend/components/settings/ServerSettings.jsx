@@ -17,8 +17,20 @@ const ServerSettings = ({ toggleSettings, server, updateServer, openModal }) => 
   const darkBackground = 'rgba(32, 34, 37, 0.9)';
   const redBackground = '#F14846';
   const [promptBackground, setPromptBackground] = useState(darkBackground);
-
   const watchName = watch("serverName");
+  const fileRef = useRef();
+
+  const handleEscapeExit = (e) => {
+    if (e.keyCode === 27) {
+      console.log("escape");
+      toggleSettings();
+    }
+  };
+
+  useEffect(() => {
+   document.addEventListener("keydown", handleEscapeExit);
+   return () => document.removeEventListener("keydown", handleEscapeExit);
+  });
 
   useEffect(() => {
     if (promptBackground === redBackground) setTimeout(() => setPromptBackground(darkBackground), 500);
@@ -28,13 +40,11 @@ const ServerSettings = ({ toggleSettings, server, updateServer, openModal }) => 
   const [imgFile, setImgFile] = useState(null);
   const [removeIcon, setRemoveIcon] = useState(false);
 
-  const fileRef = useRef();
-
   const checkThenExit = () => {
     if (isDirty || imgUrl || removeIcon) {
       setPromptBackground(redBackground);
     } else {
-      toggleSettings(null);
+      toggleSettings();
     }
   }
 
@@ -109,6 +119,7 @@ const ServerSettings = ({ toggleSettings, server, updateServer, openModal }) => 
       <div className="settings-right-container">
         <div className="settings-pane">
           <h2>Server Overview</h2>
+
           <div className="fake-form">
 
             <ChangePic onFileChange={onFileChange} handleRemove={handleRemove} fileRef={fileRef} imgSrc={imgSrc} server={server} />
