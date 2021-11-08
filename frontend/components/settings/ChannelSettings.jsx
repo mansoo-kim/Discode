@@ -39,6 +39,8 @@ const ChannelSettings = ({ toggleSettings, channel, updateChannel, openModal }) 
       () => {})
   };
 
+  const handleReset = () => reset();
+
   return (
     <div className="settings-container">
       <div className="settings-left-container">
@@ -69,6 +71,7 @@ const ChannelSettings = ({ toggleSettings, channel, updateChannel, openModal }) 
             <input type="text" autoFocus className={`${errors.channelName ? 'show-errors' : ''}`} placeholder={channel.name} {...register("channelName", { required: "This field is required" })} />
 
             { errors.channelName && <div className="error-message">{ errors.channelName?.message }</div> }
+
             <CSSTransition
               in={isDirty}
               timeout={{
@@ -77,7 +80,7 @@ const ChannelSettings = ({ toggleSettings, channel, updateChannel, openModal }) 
               }}
               mountOnEnter
               classNames="prompt">
-                <Prompt promptBackground={promptBackground} reset={reset} handleSubmit={handleSubmit(onSubmit)} />
+                <Prompt promptBackground={promptBackground} handleReset={handleReset} handleSubmit={handleSubmit(onSubmit)} />
             </CSSTransition>
           </div>
         </div>

@@ -1,12 +1,10 @@
-const Prompt = ({ promptBackground, reset, handleSubmit }) => {
+const Prompt = ({ promptBackground, handleReset, handleSubmit }) => {
   return (
     <div style={{ background: promptBackground }} className={`save-prompt`}>
       Careful - you have unsaved changes!
 
       <div className="buttons">
-        <div className="button reset" type="button" onClick={() => {
-          reset();
-        }}>
+        <div className="button reset" type="button" onClick={handleReset}>
           Reset
         </div>
 

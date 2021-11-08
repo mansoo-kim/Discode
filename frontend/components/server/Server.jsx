@@ -5,6 +5,7 @@ import ChannelContainer from '../cc/ChannelContainer';
 import ServerOptionsDD from './ServerOptionsDD';
 import ServerSettings from '../settings/ServerSettings';
 import CurrentUser from '../user/CurrentUser';
+import { CSSTransition } from 'react-transition-group';
 import { FaChevronDown } from 'react-icons/fa'
 
 const Server = ({ server, channels, isOwner, requestServer, match, history }) => {
@@ -42,7 +43,14 @@ const Server = ({ server, channels, isOwner, requestServer, match, history }) =>
         <CurrentUser />
       </div>
 
-      { showSettings && <ServerSettings toggleSettings={toggleSettings} server={server} />}
+      <CSSTransition
+        in={showSettings}
+        timeout={300}
+        mountOnEnter
+        unmountOnExit
+        classNames="settings">
+        <ServerSettings toggleSettings={toggleSettings} server={server} />
+      </CSSTransition>
 
       <Route path={`/channels/:serverId/:ccId?`} component={ChannelContainer} />
     </div>

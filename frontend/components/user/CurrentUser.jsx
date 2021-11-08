@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import UserSettings from '../settings/UserSettings';
 import UserPfp from './UserPfp';
+import { CSSTransition } from 'react-transition-group';
 import { BsFillGearFill } from 'react-icons/bs';
 
 const CurrentUser = ({ currentUser }) => {
@@ -25,7 +26,15 @@ const CurrentUser = ({ currentUser }) => {
         </div>
       </div>
 
-      { showSettings && <UserSettings currentUser={currentUser} toggleSettings={toggleSettings} />}
+
+      <CSSTransition
+        in={showSettings}
+        timeout={300}
+        mountOnEnter
+        unmountOnExit
+        classNames="settings">
+        <UserSettings toggleSettings={toggleSettings} currentUser={currentUser} />
+      </CSSTransition>
     </div>
   )
 }

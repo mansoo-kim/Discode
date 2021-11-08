@@ -1,6 +1,8 @@
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
+import { CSSTransition } from 'react-transition-group';
 import ServerIcon from '../server/ServerIcon';
+import Prompt from './Prompt';
 
 const ServerSettings = ({ toggleSettings, server, updateServer, openModal }) => {
   if (!server) return null;
@@ -10,8 +12,15 @@ const ServerSettings = ({ toggleSettings, server, updateServer, openModal }) => 
     defaultValues: { serverName: server.name }
   });
 
-  const [showRed, setShowRed] = useState(false);
+  const darkBackground = 'rgba(32, 34, 37, 0.9)';
+  const redBackground = '#F14846';
+  const [promptBackground, setPromptBackground] = useState(darkBackground);
+
   const watchName = watch("serverName");
+
+  useEffect(() => {
+    if (promptBackground === redBackground) setTimeout(() => setPromptBackground(darkBackground), 500);
+  }, [promptBackground]);
 
   const [imgUrl, setImgUrl] = useState("");
   const [imgFile, setImgFile] = useState(null);
@@ -21,7 +30,7 @@ const ServerSettings = ({ toggleSettings, server, updateServer, openModal }) => 
 
   const checkThenExit = () => {
     if (isDirty || imgUrl || removeIcon) {
-      setShowRed(true);
+      setPromptBackground(redBackground);
     } else {
       toggleSettings(null);
     }
@@ -44,7 +53,6 @@ const ServerSettings = ({ toggleSettings, server, updateServer, openModal }) => 
 
     updateServer(server.id, formData)
       .then(() => {
-        setShowRed(false);
         setRemoveIcon(false);
         setImgUrl("");
         setImgFile(null);
@@ -53,22 +61,30 @@ const ServerSettings = ({ toggleSettings, server, updateServer, openModal }) => 
       });
   };
 
-  const prompt = (
-    <div className={`save-prompt ${ showRed ? 'error-input' : ''}`}>
-      Careful - you have unsaved changes!
-      <button onClick={() => {
-        setShowRed(false);
-        setRemoveIcon(false);
-        setImgUrl("");
-        setImgFile(null);
-        reset();
-        fileRef.current.value = "";
-      }}>
-        Reset
-      </button>
-      <button>Save Changes</button>
-    </div>
-  )
+  const handleReset = () => {
+    setRemoveIcon(false);
+    setImgUrl("");
+    setImgFile(null);
+    reset();
+    fileRef.current.value = "";
+  }
+
+  // const prompt = (
+  //   <div className={`save-prompt ${ showRed ? 'error-input' : ''}`}>
+  //     Careful - you have unsaved changes!
+  //     <button onClick={() => {
+  //       setShowRed(false);
+  //       setRemoveIcon(false);
+  //       setImgUrl("");
+  //       setImgFile(null);
+  //       reset();
+  //       fileRef.current.value = "";
+  //     }}>
+  //       Reset
+  //     </button>
+  //     <button>Save Changes</button>
+  //   </div>
+  // )
 
   const onFileChange = (e) => {
     const file = e.currentTarget.files[0];
@@ -108,7 +124,7 @@ const ServerSettings = ({ toggleSettings, server, updateServer, openModal }) => 
       <div className="settings-right-container">
         <div className="settings-pane">
           <h2>Server Overview</h2>
-          <form onSubmit={handleSubmit(onSubmit)}>
+          <div className="fake-form">
             <div>
               <ServerIcon name={server.name} iconUrl={imgSrc} />
               <input type="file" onChange={onFileChange} ref={fileRef} />
@@ -127,10 +143,21 @@ const ServerSettings = ({ toggleSettings, server, updateServer, openModal }) => 
               }
             })} />
             { errors.serverName?.message }
-            { (isDirty || imgUrl || removeIcon) && prompt }
-          </form>
-        </div>
 
+            {/* { (isDirty || imgUrl || removeIcon) && prompt } */}
+            <CSSTransition
+              in={(isDirty || Boolean(imgUrl) || removeIcon)}
+              timeout={{
+                enter: 300,
+                exit: 200
+              }}
+              mountOnEnter
+              classNames="prompt">
+                <Prompt promptBackground={promptBackground} handleReset={handleReset} handleSubmit={handleSubmit(onSubmit)} />
+            </CSSTransition>
+          </div>
+
+        </div>
         <div className="close-settings">
           <button onClick={checkThenExit}>X</button>
         </div>
