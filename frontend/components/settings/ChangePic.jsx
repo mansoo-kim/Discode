@@ -17,7 +17,7 @@ const ChangePic = ({ onFileChange, handleRemove, fileRef, imgSrc, imageable, typ
           <input type="file" className="icon-input" spellCheck={false} onChange={onFileChange} ref={fileRef} />
         </div>
 
-        { imgSrc && <div className="remove-icon" onClick={handleRemove}>
+        { imgSrc && !usingDefault && <div className="remove-icon" onClick={handleRemove}>
           Remove
         </div>
         }

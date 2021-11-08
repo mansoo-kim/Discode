@@ -8,8 +8,9 @@
     margin: 8px 8px;
   }
 
-  .separator.bottom {
-    margin-bottom: 16px;
+  .separator.large {
+    margin-top: 20px;
+    margin-bottom: 32px;
   }
 }
 
@@ -43,6 +44,7 @@
     white-space: nowrap;
     text-overflow: ellipsis;
     padding: 0px 10px 6px 10px;
+    cursor: default;
 
     span {
       margin-left: 4px;
@@ -94,21 +96,21 @@
   max-width: 740px;
   width: 740px;
 
-  h2 {
-    font-size: 20px;
-    line-height: 24px;
+  h2, h3 {
     margin-bottom: 20px;
     font-family: 'ginto-normal', sans-serif;
     font-weight: 600;
     color: $white;
+    cursor: default;
+  }
+
+  h2 {
+    font-size: 20px;
+    line-height: 24px;
   }
 
   h3 {
     line-height: 20px;
-    margin-bottom: 20px;
-    font-family: 'ginto-normal', sans-serif;
-    font-weight: 600;
-    color: $white;
   }
 
   .fake-form {
@@ -176,6 +178,7 @@
   align-items: center;
   font-size: 13px;
   font-weight: 600;
+  cursor: default;
 
   .close-circle {
     border: 2px solid $kinda-grey;

@@ -124,7 +124,7 @@ const ServerSettings = ({ toggleSettings, server, updateServer, openModal }) => 
 
             <ChangePic onFileChange={onFileChange} handleRemove={handleRemove} fileRef={fileRef} imgSrc={imgSrc} imageable={server} type={"server"} />
 
-            <div className="separator bottom"></div>
+            <div className="separator large"></div>
 
             <label>SERVER NAME</label>
             <input type="text" className="text-input" placeholder={server.name} {...register("serverName", {

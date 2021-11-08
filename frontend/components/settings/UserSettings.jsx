@@ -60,22 +60,6 @@ const UserSettings = ({ currentUser, toggleSettings, openModal, updateUser }) =>
       });
   }
 
-  // const prompt = (
-  //   <div className={`save-prompt ${ showRed ? 'error-input' : ''}`}>
-  //     Careful - you have unsaved changes!
-  //     <button type="button" onClick={() => {
-  //       setShowRed(false);
-  //       setRemovePfp(false);
-  //       setImgUrl("");
-  //       setImgFile(null);
-  //       fileRef.current.value = "";
-  //     }}>
-  //       Reset
-  //     </button>
-  //     <button onClick={handleSubmit}>Save Changes</button>
-  //   </div>
-  // )
-
   const handleReset = () => {
     setRemovePfp(false);
     setImgUrl("");
@@ -127,7 +111,26 @@ const UserSettings = ({ currentUser, toggleSettings, openModal, updateUser }) =>
 
             <ChangePic onFileChange={onFileChange} handleRemove={handleRemove} fileRef={fileRef} imgSrc={imgSrc} imageable={currentUser} type={"user"} />
 
-            <div className="separator bottom"></div>
+            <div className="separator large"></div>
+
+            <div className="user-settings-section">
+              <div>
+                <div>USERNAME</div>
+                <div>{ currentUser.username }#{ currentUser.tag }</div>
+              </div>
+              <button onClick={() =>
+                openModal({type: "editUser", property: "username"})}>
+                  Edit
+              </button>
+                <div>
+                  <div>EMAIL</div>
+                  <div>{ currentUser.email }</div>
+                </div>
+                <button onClick={() =>
+                  openModal({type: "editUser", property: "email"})}>
+                    Edit
+                </button>
+            </div>
 
             <CSSTransition
               in={(Boolean(imgUrl) || removePfp)}
@@ -139,31 +142,7 @@ const UserSettings = ({ currentUser, toggleSettings, openModal, updateUser }) =>
               classNames="prompt">
                 <Prompt promptBackground={promptBackground} handleReset={handleReset} handleSubmit={handleSubmit} />
             </CSSTransition>
-
           </div>
-{/*
-          <ul>
-            <li>
-              <div>
-                <div>USERNAME</div>
-                <div>{ currentUser.username }#{ currentUser.tag }</div>
-              </div>
-              <button onClick={() =>
-                openModal({type: "editUser", property: "username"})}>
-                  Edit
-              </button>
-            </li>
-            <li>
-              <div>
-                <div>EMAIL</div>
-                <div>{ currentUser.email }</div>
-              </div>
-              <button onClick={() =>
-                openModal({type: "editUser", property: "email"})}>
-                  Edit
-              </button>
-            </li>
-          </ul> */}
 
         </div>
 
