@@ -1,38 +1,58 @@
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
+import { CSSTransition } from 'react-transition-group';
+import { FaTimes } from 'react-icons/fa';
+import ChangePic from './ChangePic';
+import Prompt from './Prompt';
 
 const UserSettings = ({ currentUser, toggleSettings, logout, openModal, updateUser }) => {
-  const [showRed, setShowRed] = useState(false);
   const [imgUrl, setImgUrl] = useState("");
   const [imgFile, setImgFile] = useState(null);
   const [removePfp, setRemovePfp] = useState(false);
 
+  const darkBackground = 'rgba(32, 34, 37, 0.9)';
+  const redBackground = '#F14846';
+  const [promptBackground, setPromptBackground] = useState(darkBackground);
   const fileRef = useRef();
+
+  const handleEscapeExit = (e) => {
+    if (e.keyCode === 27) {
+      console.log("escape");
+      toggleSettings();
+    }
+  };
+
+  useEffect(() => {
+   document.addEventListener("keydown", handleEscapeExit);
+   return () => document.removeEventListener("keydown", handleEscapeExit);
+  });
+
+  useEffect(() => {
+    if (promptBackground === redBackground) setTimeout(() => setPromptBackground(darkBackground), 500);
+  }, [promptBackground]);
 
   const checkThenExit = () => {
     if (imgUrl || removePfp) {
-      setShowRed(true);
+      setPromptBackground(redBackground);
     } else {
-      toggleSettings(null);
+      toggleSettings();
     }
   }
 
   const handleRemove = () => {
     if (currentUser.pfpUrl) {
       setRemovePfp(true);
-      setImgUrl("");
-      setImgFile(null);
-      fileRef.current.value = "";
     }
+    setImgUrl("");
+    setImgFile(null);
+    fileRef.current.value = "";
   }
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const handleSubmit = () => {
     const formData = new FormData();
     if (imgFile) formData.append("user[pfp]", imgFile);
     if (removePfp) formData.append("user[remove_pfp]", removePfp);
     updateUser(currentUser.id, formData)
       .then(() => {
-        setShowRed(false);
         setRemovePfp(false);
         setImgUrl("");
         setImgFile(null);
@@ -40,21 +60,28 @@ const UserSettings = ({ currentUser, toggleSettings, logout, openModal, updateUs
       });
   }
 
-  const prompt = (
-    <div className={`save-prompt ${ showRed ? 'error-input' : ''}`}>
-      Careful - you have unsaved changes!
-      <button type="button" onClick={() => {
-        setShowRed(false);
-        setRemovePfp(false);
-        setImgUrl("");
-        setImgFile(null);
-        fileRef.current.value = "";
-      }}>
-        Reset
-      </button>
-      <button onClick={handleSubmit}>Save Changes</button>
-    </div>
-  )
+  // const prompt = (
+  //   <div className={`save-prompt ${ showRed ? 'error-input' : ''}`}>
+  //     Careful - you have unsaved changes!
+  //     <button type="button" onClick={() => {
+  //       setShowRed(false);
+  //       setRemovePfp(false);
+  //       setImgUrl("");
+  //       setImgFile(null);
+  //       fileRef.current.value = "";
+  //     }}>
+  //       Reset
+  //     </button>
+  //     <button onClick={handleSubmit}>Save Changes</button>
+  //   </div>
+  // )
+
+  const handleReset = () => {
+    setRemovePfp(false);
+    setImgUrl("");
+    setImgFile(null);
+    fileRef.current.value = "";
+  }
 
   const onFileChange = (e) => {
     const file = e.currentTarget.files[0];
@@ -88,20 +115,32 @@ const UserSettings = ({ currentUser, toggleSettings, logout, openModal, updateUs
           <div className="option action" onClick={logout}>
             Log Out
           </div>
+
         </div>
       </div>
       <div className="settings-right-container">
         <div className="settings-pane">
           <h2>My Account</h2>
-          <img src={imgSrc} className="pfp" />
-          { currentUser.username }#{ currentUser.tag }
-          <form>
-            <div>
-              <input type="file" onChange={onFileChange} ref={fileRef} />
-              { currentUser.pfpUrl && <button type="button" onClick={handleRemove}>Remove</button> }
-              { (imgUrl || removePfp)  && prompt }
-            </div>
-          </form>
+
+          <div className="fake-form">
+
+            <ChangePic onFileChange={onFileChange} handleRemove={handleRemove} fileRef={fileRef} imgSrc={imgSrc} imageable={currentUser} type={"user"} />
+
+            <div className="separator bottom"></div>
+
+            <CSSTransition
+              in={(Boolean(imgUrl) || removePfp)}
+              timeout={{
+                enter: 300,
+                exit: 200
+              }}
+              mountOnEnter
+              classNames="prompt">
+                <Prompt promptBackground={promptBackground} handleReset={handleReset} handleSubmit={handleSubmit} />
+            </CSSTransition>
+
+          </div>
+{/*
           <ul>
             <li>
               <div>
@@ -123,13 +162,17 @@ const UserSettings = ({ currentUser, toggleSettings, logout, openModal, updateUs
                   Edit
               </button>
             </li>
-          </ul>
+          </ul> */}
 
         </div>
 
         <div className="close-settings">
-          <button onClick={checkThenExit}>X</button>
+          <div className="close-circle" onClick={checkThenExit}>
+            <FaTimes size={16} />
+          </div>
+          ESC
         </div>
+
       </div>
     </div>
   )

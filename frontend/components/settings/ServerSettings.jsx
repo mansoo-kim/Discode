@@ -61,7 +61,7 @@ const ServerSettings = ({ toggleSettings, server, updateServer, openModal }) => 
     const formData = new FormData();
     formData.append("server[name]", data.serverName);
     if (imgFile) formData.append("server[icon]", imgFile);
-    if (setRemoveIcon) formData.append("server[remove_icon]", setRemoveIcon);
+    if (removeIcon) formData.append("server[remove_icon]", removeIcon);
 
     updateServer(server.id, formData)
       .then(() => {
@@ -122,8 +122,7 @@ const ServerSettings = ({ toggleSettings, server, updateServer, openModal }) => 
 
           <div className="fake-form">
 
-            <ChangePic onFileChange={onFileChange} handleRemove={handleRemove} fileRef={fileRef} imgSrc={imgSrc} server={server} />
-
+            <ChangePic onFileChange={onFileChange} handleRemove={handleRemove} fileRef={fileRef} imgSrc={imgSrc} imageable={server} type={"server"} />
 
             <div className="separator bottom"></div>
 

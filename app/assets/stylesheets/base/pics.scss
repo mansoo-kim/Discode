@@ -19,7 +19,7 @@
   background: $blurple;
 
   .pfp {
-    width: 20px;
+    width: 19px;
     height: 14px;
   }
 }
@@ -32,6 +32,7 @@
     .pfp {
       height: 40px;
       width: 40px;
+      object-fit: cover;
     }
   }
 
@@ -39,8 +40,8 @@
     background: $blurple;
 
     .pfp {
-      width: 23px;
-      height: 17px;
+      width: 24px;
+      height: 18px;
     }
   }
 }
