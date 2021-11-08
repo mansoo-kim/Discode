@@ -16,21 +16,28 @@ const DeleteServerModal = ({ server, deleteServer, closeModal, history }) => {
 
   return (
     <div className="modal">
-
-      <h2>Delete '{server.name}'</h2>
-      <p>Are you sure you want to delete {server.name}? This action cannot be undone.</p>
-
       <form onSubmit={handleSubmit(onSubmit)}>
-        ENTER SERVER NAME
+        <h2>Delete '{server.name}'</h2>
 
-        <input type="text" {...register("serverName", { validate: value => value === server.name || "You didn't enter the server name correctly" })} />
-        { errors.serverName?.message }
-        <div>
-          <button type="button" onClick={closeModal}>Cancel</button>
-          <button>Delete</button>
+        <div className="modal-content">
+
+          <p className="delete-server-message">Are you sure you want to delete <span>{server.name}</span>? This action cannot be undone.</p>
+
+          <label>ENTER SERVER NAME</label>
+
+          <input type="text" className="text-input" {...register("serverName", { validate: value => value === server.name || "You didn't enter the server name correctly" })} />
+          { errors.serverName && <div className="error-message">{ errors.serverName?.message }</div> }
+
         </div>
-      </form>
 
+        <div className="buttons-container">
+          <button type="button" className="cancel-button" onClick={closeModal}>Cancel</button>
+          <button className="red-button">
+            <div>Delete Server</div>
+          </button>
+        </div>
+
+      </form>
     </div>
   )
 }

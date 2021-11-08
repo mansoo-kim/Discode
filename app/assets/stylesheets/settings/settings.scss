@@ -132,38 +132,6 @@
     margin-bottom: 8px;
   }
 
-  .text-input {
-    height: 40px;
-    padding: 10px;
-    border: none;
-    background: rgba(0,0,0,0.1);
-    border: 1px solid rgba(0,0,0,0.3);
-    border-radius: 3px;
-    color: $off-white;
-    font-size: 16px;
-    outline: none;
-    transition: border-color 0.2s ease-in-out;
-
-    &:focus {
-      border-color: $link-blue;
-    }
-  }
-
-  .show-errors {
-    border: 1px $error-red solid;
-
-    &:focus {
-      border-color: $error-red;
-    }
-  }
-
-  .error-message {
-    font-size: 12px;
-    line-height: 16px;
-    color: rgb(237, 66, 69);
-    margin-top: 4px;
-  }
-
   ul > li {
     display: flex;
 
@@ -172,6 +140,31 @@
       flex-direction: column;
     }
   }
+}
+
+.text-input {
+  height: 40px;
+  padding: 10px;
+  border: none;
+  background: rgba(0,0,0,0.1);
+  border: 1px solid rgba(0,0,0,0.3);
+  border-radius: 3px;
+  color: $off-white;
+  font-size: 16px;
+  outline: none;
+  transition: border-color 0.2s ease-in-out;
+
+  &:focus {
+    border-color: $link-blue;
+  }
+}
+
+.error-message {
+  font-size: 12px;
+  line-height: 16px;
+  color: rgb(237, 66, 69);
+  margin-top: 6px;
+  margin-left: 2px;
 }
 
 .close-settings {
