@@ -6,7 +6,7 @@ import ServerOptionsDD from './ServerOptionsDD';
 import ServerSettings from '../settings/ServerSettings';
 import CurrentUser from '../user/CurrentUser';
 import { CSSTransition } from 'react-transition-group';
-import { FaChevronDown } from 'react-icons/fa'
+import { FaChevronDown, FaTimes } from 'react-icons/fa'
 
 const Server = ({ server, channels, isOwner, requestServer, match, history }) => {
   useEffect(() => {
@@ -31,7 +31,7 @@ const Server = ({ server, channels, isOwner, requestServer, match, history }) =>
               <div className="server-name">
                 { server.name }
               </div>
-              <FaChevronDown size={13} />
+              { showDD ? <FaTimes size={14} /> : <FaChevronDown size={14} />}
             </div>
 
             { serverOptionsDD }

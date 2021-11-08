@@ -1,36 +1,28 @@
-const ServerOptionsDD = ({isOwner, server, setShowDD, currentUserId, openModal, deleteMembership, history, toggleSettings}) => {
+import { BsFillGearFill } from 'react-icons/bs';
+import { BsPlusCircleFill } from 'react-icons/bs';
+import { FaArrowAltCircleLeft } from 'react-icons/fa';
+
+const ServerOptionsDD = ({isOwner, server, setShowDD, currentUserId, openModal, toggleSettings}) => {
   const serverSettingsOption = isOwner ? (
     <div className="server-option" onMouseDown={(e => e.preventDefault())}
     onClick={toggleSettings}>
-      <div>
-        Server Settings
-      </div>
+      Server Settings
+      <BsFillGearFill size={14} />
     </div>
   ) : null;
 
   const newChannelOption = isOwner ? (
     <div className="server-option"  onMouseDown={(e => e.preventDefault())}
     onClick={() => openModal({type: "createChannel", serverId: server.id })}>
-      <div>
-        Create Channel
-      </div>
+      Create Channel
+      <BsPlusCircleFill size={14} />
     </div>
   ) : null;
 
-  const handleLeaving = () => {
-    deleteMembership({
-      user_id: currentUserId,
-      joinable_id: server.id,
-      joinable_type: "Server"
-    })
-      .then(() => history.push('/@me'))
-  }
-
   const leaveOption = isOwner ? null : (
     <div className="server-option leave-server" onMouseDown={(e => e.preventDefault())} onClick={() => openModal({type: "leaveServer", server, currentUserId })}>
-      <div>
-        Leave Server
-      </div>
+      Leave Server
+      <FaArrowAltCircleLeft size={14} />
     </div>
   )
 

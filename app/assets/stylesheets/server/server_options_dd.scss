@@ -16,7 +16,11 @@
 
   font-size: 14px;
   padding: 9px 8px;
-  margin: 2px 0px;
+  margin: 2px 2px;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 
   &:hover {
     background: $blurple;
