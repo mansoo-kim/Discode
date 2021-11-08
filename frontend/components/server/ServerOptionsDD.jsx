@@ -1,4 +1,4 @@
-const ServerOptionsDD = ({isOwner, serverId, setShowDD, currentUserId, openModal, deleteMembership, history, toggleSettings}) => {
+const ServerOptionsDD = ({isOwner, server, setShowDD, currentUserId, openModal, deleteMembership, history, toggleSettings}) => {
   const serverSettingsOption = isOwner ? (
     <div className="server-option" onMouseDown={(e => e.preventDefault())}
     onClick={toggleSettings}>
@@ -10,7 +10,7 @@ const ServerOptionsDD = ({isOwner, serverId, setShowDD, currentUserId, openModal
 
   const newChannelOption = isOwner ? (
     <div className="server-option"  onMouseDown={(e => e.preventDefault())}
-    onClick={() => openModal({type: "createChannel", serverId })}>
+    onClick={() => openModal({type: "createChannel", serverId: server.id })}>
       <div>
         Create Channel
       </div>
@@ -20,14 +20,14 @@ const ServerOptionsDD = ({isOwner, serverId, setShowDD, currentUserId, openModal
   const handleLeaving = () => {
     deleteMembership({
       user_id: currentUserId,
-      joinable_id: serverId,
+      joinable_id: server.id,
       joinable_type: "Server"
     })
       .then(() => history.push('/@me'))
   }
 
   const leaveOption = isOwner ? null : (
-    <div className="server-option leave-server" onMouseDown={(e => e.preventDefault())} onClick={handleLeaving}>
+    <div className="server-option leave-server" onMouseDown={(e => e.preventDefault())} onClick={() => openModal({type: "leaveServer", server, currentUserId })}>
       <div>
         Leave Server
       </div>
@@ -45,15 +45,13 @@ const ServerOptionsDD = ({isOwner, serverId, setShowDD, currentUserId, openModal
 
 import { connect } from 'react-redux'
 import { openModal } from '../../actions/modal_actions';
-import { deleteMembership } from '../../actions/membership_actions';
 
 const mSTP = (state) => ({
   currentUserId: state.session.id
 });
 
 const mDTP = (dispatch) => ({
-  openModal: (modal) => dispatch(openModal(modal)),
-  deleteMembership: (membership) => dispatch(deleteMembership(membership))
+  openModal: (modal) => dispatch(openModal(modal))
 });
 
 export default connect(mSTP, mDTP)(ServerOptionsDD);

@@ -5,6 +5,7 @@ import DeleteMessageModal from './DeleteMessageModal';
 import DeleteChannelModal from './DeleteChannelModal';
 import DeleteServerModal from './DeleteServerModal';
 import LogOutModal from './LogOutModal';
+import LeaveServerModal from './LeaveServerModal';
 
 const ModalManager = ({ modal, closeModal, history }) => {
   if (!modal) return null;
@@ -33,6 +34,9 @@ const ModalManager = ({ modal, closeModal, history }) => {
     case "logout":
       component = <LogOutModal />
       break
+    case "leaveServer":
+      component = <LeaveServerModal server={modal.server} currentUserId={modal.currentUserId} history={history} />
+      break;
     default:
       return null;
   }

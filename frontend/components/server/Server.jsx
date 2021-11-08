@@ -19,7 +19,7 @@ const Server = ({ server, channels, isOwner, requestServer, match, history }) =>
   const [ showDD, setShowDD] = useState(false);
 
   const serverOptionsDD = showDD ? (
-    <ServerOptionsDD isOwner={isOwner} serverId={server.id} setShowDD={setShowDD} history={history} toggleSettings={toggleSettings} />
+    <ServerOptionsDD isOwner={isOwner} server={server} setShowDD={setShowDD} history={history} toggleSettings={toggleSettings} />
   ) : null;
 
   return server?.members ? (
