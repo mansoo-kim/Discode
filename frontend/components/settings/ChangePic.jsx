@@ -21,6 +21,12 @@ const ChangePic = ({ onFileChange, handleRemove, fileRef, imgSrc, server }) => {
         </div>
         }
       </div>
+
+      <div className="icon-right">
+        <div className="upload-button" onClick={() => fileRef.current.click()}>
+          Upload Image
+        </div>
+      </div>
     </div>
   )
 }

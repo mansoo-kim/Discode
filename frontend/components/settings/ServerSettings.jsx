@@ -10,6 +10,7 @@ const ServerSettings = ({ toggleSettings, server, updateServer, openModal }) => 
 
   const { register, formState: { errors, isDirty }, watch, reset, handleSubmit } = useForm({
     shouldFocusError: false,
+    reValidateMode: 'onSubmit',
     defaultValues: { serverName: server.name }
   });
 
@@ -90,7 +91,7 @@ const ServerSettings = ({ toggleSettings, server, updateServer, openModal }) => 
       <div className="settings-left-container">
         <div className="settings-options">
           <div className="options-header">
-            { watchName.toUpperCase() }
+            { watchName.toUpperCase() || "SERVER SETTINGS"}
           </div>
 
           <div className="option selected">
@@ -112,6 +113,9 @@ const ServerSettings = ({ toggleSettings, server, updateServer, openModal }) => 
 
             <ChangePic onFileChange={onFileChange} handleRemove={handleRemove} fileRef={fileRef} imgSrc={imgSrc} server={server} />
 
+
+            <div className="separator bottom"></div>
+
             <label>SERVER NAME</label>
             <input type="text" className="text-input" placeholder={server.name} {...register("serverName", {
               required: "This field is required",
@@ -124,9 +128,8 @@ const ServerSettings = ({ toggleSettings, server, updateServer, openModal }) => 
                 message: "Must be between 2 and 100 in length"
               }
             })} />
-            { errors.serverName?.message }
+            { errors.serverName && <div className="error-message">{ errors.serverName?.message }</div> }
 
-            {/* { (isDirty || imgUrl || removeIcon) && prompt } */}
             <CSSTransition
               in={(isDirty || Boolean(imgUrl) || removeIcon)}
               timeout={{

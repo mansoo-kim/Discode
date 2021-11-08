@@ -9,6 +9,7 @@ const ChannelSettings = ({ toggleSettings, channel, updateChannel, openModal }) 
 
   const { register, formState: { errors, isDirty }, watch, reset, handleSubmit } = useForm({
     shouldFocusError: false,
+    reValidateMode: 'onSubmit',
     defaultValues: { channelName: channel.name }
   });
 
