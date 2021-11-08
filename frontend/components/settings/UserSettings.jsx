@@ -114,22 +114,31 @@ const UserSettings = ({ currentUser, toggleSettings, openModal, updateUser }) =>
             <div className="separator large"></div>
 
             <div className="user-settings-section">
-              <div>
-                <div>USERNAME</div>
-                <div>{ currentUser.username }#{ currentUser.tag }</div>
+
+              <div className="attribute-container">
+                <div className="text-group">
+                  <div class="label">USERNAME</div>
+                  <div className="attribute-value">
+                    { currentUser.username }
+                    <span>#{ currentUser.tag }</span>
+                  </div>
+                </div>
+                <button onClick={() =>
+                  openModal({type: "editUser", property: "username"})}>
+                    Edit
+                </button>
               </div>
-              <button onClick={() =>
-                openModal({type: "editUser", property: "username"})}>
-                  Edit
-              </button>
-                <div>
-                  <div>EMAIL</div>
-                  <div>{ currentUser.email }</div>
+
+              <div className="attribute-container">
+                <div className="text-group">
+                  <div class="label">EMAIL</div>
+                  <div className="attribute-value">{ currentUser.email }</div>
                 </div>
                 <button onClick={() =>
                   openModal({type: "editUser", property: "email"})}>
                     Edit
                 </button>
+              </div>
             </div>
 
             <CSSTransition

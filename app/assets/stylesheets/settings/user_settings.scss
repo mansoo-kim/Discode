@@ -4,3 +4,46 @@
   background: $diff-black;
   border-radius: 8px;
 }
+
+.attribute-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  &:first-child {
+    margin-bottom: 24px;
+  }
+
+  button {
+    background: #4f545c;
+    cursor: pointer;
+    font-size: 14px;
+    color: $white;
+    border-radius: 3px;
+
+    height: 32px;
+    padding: 2px 16px;
+  }
+}
+
+.text-group {
+  cursor: default;
+
+  .label {
+    color: $off-grey;
+    font-family: 'ginto-normal', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    line-height: 16px;
+
+    margin-bottom: 4px;
+  }
+
+  .attribute-value {
+    line-height: 20px;
+
+    span {
+      color: $off-grey;
+    }
+  }
+}
