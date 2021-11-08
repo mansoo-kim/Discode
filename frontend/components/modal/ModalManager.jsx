@@ -4,6 +4,7 @@ import EditUserModal from './EditUserModal';
 import DeleteMessageModal from './DeleteMessageModal';
 import DeleteChannelModal from './DeleteChannelModal';
 import DeleteServerModal from './DeleteServerModal';
+import LogOutModal from './LogOutModal';
 
 const ModalManager = ({ modal, closeModal, history }) => {
   if (!modal) return null;
@@ -29,6 +30,9 @@ const ModalManager = ({ modal, closeModal, history }) => {
     case "deleteServer":
       component = <DeleteServerModal server={modal.server} history={history} />
       break;
+    case "logout":
+      component = <LogOutModal />
+      break
     default:
       return null;
   }

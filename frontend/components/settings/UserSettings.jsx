@@ -4,7 +4,7 @@ import { FaTimes } from 'react-icons/fa';
 import ChangePic from './ChangePic';
 import Prompt from './Prompt';
 
-const UserSettings = ({ currentUser, toggleSettings, logout, openModal, updateUser }) => {
+const UserSettings = ({ currentUser, toggleSettings, openModal, updateUser }) => {
   const [imgUrl, setImgUrl] = useState("");
   const [imgFile, setImgFile] = useState(null);
   const [removePfp, setRemovePfp] = useState(false);
@@ -112,7 +112,8 @@ const UserSettings = ({ currentUser, toggleSettings, logout, openModal, updateUs
 
           <div className="separator"></div>
 
-          <div className="option action" onClick={logout}>
+          <div className="option action" onClick={() =>
+                openModal({type: "logout"})}>
             Log Out
           </div>
 
@@ -179,12 +180,10 @@ const UserSettings = ({ currentUser, toggleSettings, logout, openModal, updateUs
 }
 
 import { connect } from 'react-redux';
-import { logout } from '../../actions/session_actions';
 import { openModal } from '../../actions/modal_actions';
 import { updateUser } from '../../actions/user_actions';
 
 const mDTP = (dispatch) => ({
-  logout: () => dispatch(logout()),
   openModal: (modal) => dispatch(openModal(modal)),
   updateUser: (userId, user) => dispatch(updateUser(userId, user))
 })
