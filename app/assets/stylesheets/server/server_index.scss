@@ -1,3 +1,10 @@
+.server-nav-column {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 240px;
+}
+
 .server-index {
   background: $another-black;
   width: 72px;

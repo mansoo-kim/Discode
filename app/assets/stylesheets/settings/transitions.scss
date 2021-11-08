@@ -1,0 +1,41 @@
+.settings-enter {
+  opacity: 0;
+}
+.settings-enter-active {
+  opacity: 1;
+  transition: opacity 300ms;
+}
+.settings-exit {
+  opacity: 1;
+}
+.settings-exit-active {
+  opacity: 0;
+  transition: opacity 300ms;
+}
+
+
+.prompt-enter {
+  opacity: 0;
+  transform: translate(20px, 50px);
+}
+.prompt-enter-active {
+  opacity: 1;
+  transform: translate(20px, -20px);
+  transition: opacity 300ms, transform 300ms;
+}
+.prompt-enter-done {
+  transform: translate(20px, 0px);
+  transition: transform 200ms, background 0.5s ease-in-out;
+}
+.prompt-exit {
+  transform: translate(20px, 0px);
+}
+.prompt-exit-active {
+  transform: translate(20px, -20px);
+  transition: transform 200ms;
+}
+.prompt-exit-done {
+  opacity: 0;
+  transform: translate(20px, 50px);
+  transition: opacity 300ms, transform 300ms;
+}

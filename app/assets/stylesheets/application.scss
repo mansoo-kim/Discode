@@ -21,7 +21,6 @@
  @import './components/splash.scss';
  @import './session_form/session_form.scss';
  @import './session_form/dropdown.scss';
- @import './components/main.scss';
  @import './server/server.scss';
  @import './server/server_index.scss';
  @import './cc/channel_index.scss';
@@ -29,7 +28,10 @@
  @import './chat/chatroom.scss';
  @import './chat/message_item.scss';
  @import './chat/message_form.scss';
- @import './components/member_index.scss';
- @import './components/current_user.scss';
+ @import './user/member_index.scss';
+ @import './user/current_user.scss';
+ @import './settings/settings.scss';
+ @import './settings/prompt.scss';
+ @import './settings/edit_pic.scss';
+ @import './settings/transitions.scss';
  @import './components/modal.scss';
- @import './components/settings.scss';

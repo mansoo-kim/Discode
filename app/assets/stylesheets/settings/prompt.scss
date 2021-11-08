@@ -1,0 +1,63 @@
+.save-prompt {
+  position: fixed;
+  bottom: 20px;
+  left: 35%;
+
+  width: 700px;
+  height: 52px;
+  padding: 10px 10px 10px 16px;
+  border-radius: 5px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  .buttons {
+    display: flex;
+  }
+
+  .button {
+    cursor: pointer;
+    font-size: 14px;
+    line-height: 28px;
+    padding: 2px 16px;
+
+    display: flex;
+    align-items: center;
+  }
+
+  .reset {
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  .save {
+    margin-left: 10px;
+    border-radius: 3px;
+    background:rgb(59, 165, 93);
+    position: relative;
+
+    &:after {
+      background: rgba(0,0,0,0.3);
+      opacity: 0;
+      transition: opacity 0.15s ease;
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      content: '';
+    }
+
+    &:hover:after {
+      opacity: 1;
+    }
+
+    div.inner-save {
+      position: relative;
+      padding: 2px;
+      z-index: 1;
+    }
+  }
+}

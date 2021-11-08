@@ -17,3 +17,14 @@ a {
 #root {
   height: 100%;
 }
+
+.main {
+  height: 100%;
+  display: flex;
+}
+
+.main-view {
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+}
