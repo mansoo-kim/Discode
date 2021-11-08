@@ -23,6 +23,14 @@
 
     height: 32px;
     padding: 2px 16px;
+
+    &:hover {
+      background: $hover-grey;
+    }
+
+    &:active {
+      background: $kinda-grey;
+    }
   }
 }
 
