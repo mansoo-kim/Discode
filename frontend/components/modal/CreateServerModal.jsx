@@ -32,7 +32,7 @@ const CreateServerModal = ({ currentUser, closeModal, createServer, history }) =
     }
   }
 
-  const preview = imgUrl ? <img src={imgUrl} className="server-icon" /> : null;
+  const preview = <img src={imgUrl ? imgUrl : 'https://raw.githubusercontent.com/mansookim/Discode/main/app/assets/images/upload_icon.png'} className="server-icon" />
 
   return (
     <div className="modal white">
@@ -49,8 +49,8 @@ const CreateServerModal = ({ currentUser, closeModal, createServer, history }) =
 
         <div className="modal-content">
 
-          <div>
-            <input type="file" {...register("iconFile")} onChange={onFileChange} />
+          <div className="icon-input-wrapper">
+            <input type="file" accept=".jpg,.jpeg,.png,.gif" className="icon-input" {...register("iconFile")} onChange={onFileChange} />
             { preview }
           </div>
 

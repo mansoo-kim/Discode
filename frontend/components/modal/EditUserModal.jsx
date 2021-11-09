@@ -52,8 +52,7 @@ const EditUserModal = ({ type, userErrors, currentUser, closeModal, updateUser, 
           }
         })} />
         <div className="tag">
-
-        #{currentUser.tag}
+          #{currentUser.tag}
         </div>
       </div>
     </>

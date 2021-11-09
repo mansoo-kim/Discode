@@ -256,3 +256,28 @@
     color: $off-grey;
   }
 }
+
+.modal {
+  .icon-input-wrapper {
+    height: 80px;
+    width: 80px;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .icon-input {
+    width: 80px;
+    height: 80px;
+    object-fit: fill;
+    position: absolute;
+    top: 0;
+    left: 0;
+    cursor: pointer;
+    height: 100%;
+    font-size: 0px;
+  }
+}
