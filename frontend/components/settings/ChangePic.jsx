@@ -11,7 +11,7 @@ const ChangePic = ({ onFileChange, handleRemove, fileRef, imgSrc, imageable, typ
       <div className="icon-left">
 
         <div className="icon-input-wrapper">
-          <div className={`input-cover ${usingDefault ? 'default' : ''}`} style={{ fontSize }}>
+          <div className={`input-cover ${usingDefault ? 'default' : ''}`} style={{ fontSize }} onClick={() => fileRef.current.click()}>
             { imgSrc ? img : abbreviation }
           </div>
           <input type="file" accept=".jpg,.jpeg,.png,.gif" className="icon-input" spellCheck={false} onChange={onFileChange} ref={fileRef} />

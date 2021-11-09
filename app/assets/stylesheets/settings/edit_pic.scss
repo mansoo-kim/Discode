@@ -37,7 +37,6 @@
     position: relative;
     overflow: hidden;
     border-radius: 50%;
-    cursor: pointer;
     background-color: $blurple;
     margin: 0px 10px;
 
@@ -69,24 +68,17 @@
     }
 
     .icon-input {
-      width: 100px;
-      height: 100px;
-      position: absolute;
-      top: 0;
-      left: 0;
-      cursor: pointer;
-      height: 100%;
-      font-size: 0px;
+      display: none;
     }
 
     .input-cover {
+      cursor: pointer;
       position: absolute;
       width: 100px;
       height: 100px;
       display: flex;
       align-items: center;
       justify-content: center;
-      pointer-events: none;
 
       &:hover {
         color: transparent;
