@@ -1,6 +1,10 @@
-import { useEffect } from 'react';
+import { useState, useEffect } from 'react';
+import FriendIndex from './FriendIndex';
+import PendingIndex from './PendingIndex';
 
 const Friends = ({ friends, outgoings, incomings, requestFriendships }) => {
+
+  const [showAll, setShowAll] = useState(true);
 
   useEffect(() => {
     requestFriendships();
@@ -8,33 +12,14 @@ const Friends = ({ friends, outgoings, incomings, requestFriendships }) => {
 
   return (
     <div>
-      <h1>
-        friends list
-      </h1>
 
-      <div>
-        { friends.map(friend => {
-          if (friend) {
-            return <div key={friend.id}>{friend.username}</div>;
-          }
-        })}
-      </div>
+      <nav>
+        <div onClick={() => setShowAll(true)}>All</div>
+        <div onClick={() => setShowAll(false)}>Pending</div>
+      </nav>
 
-      <div>
-        { outgoings.map(friend => {
-          if (friend) {
-            return <div key={friend.id}>{friend.username}</div>;
-          }
-        })}
-      </div>
-
-      <div>
-        { incomings.map(friend => {
-          if (friend) {
-            return <div key={friend.id}>{friend.username}</div>;
-          }
-        })}
-      </div>
+      { showAll && <FriendIndex friends={friends} /> }
+      { !showAll && <PendingIndex incomings={incomings} outgoings={outgoings} /> }
 
     </div>
   )

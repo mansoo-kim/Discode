@@ -1,4 +1,4 @@
-import { Route } from 'react-router-dom';
+import { Route, Link } from 'react-router-dom';
 import ConversationIndex from '../conversation/ConversationIndex';
 import ConversationContainer from '../cc/ConversationContainer';
 import CurrentUser from '../user/CurrentUser';
@@ -9,6 +9,10 @@ const Home = () => {
     <div className="main-view">
       <div className="server-nav-column">
         <div>
+          <div>
+            <Link to='/channels/@me'>Friends</Link>
+          </div>
+
           <ConversationIndex />
         </div>
 
