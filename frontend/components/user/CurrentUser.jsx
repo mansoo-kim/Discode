@@ -33,7 +33,7 @@ const CurrentUser = ({ currentUser }) => {
         mountOnEnter
         unmountOnExit
         classNames="settings">
-        <UserSettings toggleSettings={toggleSettings} currentUser={currentUser} />
+          <UserSettings toggleSettings={() => (setShowSettings(false))} currentUser={currentUser} />
       </CSSTransition>
     </div>
   )

@@ -49,7 +49,7 @@ const Server = ({ server, channels, isOwner, requestServer, match, history }) =>
         mountOnEnter
         unmountOnExit
         classNames="settings">
-        <ServerSettings toggleSettings={toggleSettings} server={server} />
+          <ServerSettings toggleSettings={() => setShowSettings(false)} server={server} />
       </CSSTransition>
 
       <Route path={`/channels/:serverId/:ccId?`} component={ChannelContainer} />

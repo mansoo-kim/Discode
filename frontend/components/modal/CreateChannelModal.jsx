@@ -1,7 +1,23 @@
+import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { FaHashtag, FaTimes } from 'react-icons/fa';
 
 const CreateChannelModal = ({ closeModal, createChannel, history }) => {
+
+  const handleEscapeExit = (e) => {
+    console.log("checking escape modal")
+
+    if (e.keyCode === 27) {
+      console.log("checking escape modal")
+      closeModal();
+    }
+  };
+
+  useEffect(() => {
+    document.addEventListener("keydown", handleEscapeExit);
+    return () => document.removeEventListener("keydown", handleEscapeExit);
+   });
+
   const { register, formState: { isDirty }, handleSubmit } = useForm({
     mode: 'onChange',
     shouldFocusError: false,
