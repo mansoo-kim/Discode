@@ -2,13 +2,11 @@ import { useForm } from 'react-hook-form';
 import { FaHashtag, FaTimes } from 'react-icons/fa';
 
 const CreateChannelModal = ({ closeModal, createChannel, history }) => {
-  const { register, watch, handleSubmit } = useForm({
+  const { register, formState: { isDirty }, handleSubmit } = useForm({
     mode: 'onChange',
     shouldFocusError: false,
     defaultValues: { channelName: "" }
   });
-
-  const channelName = watch("channelName");
 
   const onSubmit = (data) => {
     const channel = {
@@ -26,7 +24,10 @@ const CreateChannelModal = ({ closeModal, createChannel, history }) => {
       </div>
 
       <form onSubmit={handleSubmit(onSubmit)} >
-        <h2>Create Text Channel</h2>
+
+        <div className="modal-header">
+          <h2>Create Text Channel</h2>
+        </div>
 
         <div className="modal-content">
           <FaHashtag size={14} />
@@ -38,7 +39,7 @@ const CreateChannelModal = ({ closeModal, createChannel, history }) => {
 
         <div className="buttons-container">
           <button type="button" className="cancel-button" onClick={closeModal}>Cancel</button>
-          <button className="submit-button blue-button" disabled={channelName === ""}>
+          <button className="submit-button blue-button" disabled={!isDirty}>
             <div>Create Channel</div>
           </button>
         </div>

@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
+import { FaTimes } from 'react-icons/fa';
 
 const EditUserModal = ({ type, userErrors, currentUser, closeModal, updateUser, resetUserErrors }) => {
   const { register, formState: { errors, isDirty }, handleSubmit, getValues } = useForm({
@@ -35,33 +36,68 @@ const EditUserModal = ({ type, userErrors, currentUser, closeModal, updateUser, 
   }
 
   const inputToChange = type === 'username' ? (
-    <div>
-      <label>USERNAME { errors.username?.message } { userErrors.username }</label>
-      <input type="text" {...register("username", { required: "- This field is requred" })} /> #{currentUser.tag}
-    </div>
+    <>
+      <label className={`${errors.username || userErrors.username ? 'show-errors' : ''}`}>
+        USERNAME <span>{ errors.username?.message } { userErrors.username }</span>
+      </label>
+      <div className="username-input">
+          <input type="text" className="text-input" {...register("username", { required: "- This field is requred",
+          minLength: {
+            value: 2,
+            message: "- Must be between 2 and 32 in length"
+          },
+          maxLength: {
+            value: 32,
+            message: "- Must be between 2 and 32 in length"
+          }
+        })} />
+        <div className="tag">
+
+        #{currentUser.tag}
+        </div>
+      </div>
+    </>
   ) : (
-    <div>
-      <label>EMAIL { errors.email?.message } { userErrors.email }</label>
-      <input type="text" {...register("email", { required: "- This field is requred" })} />
-    </div>
+    <>
+      <label className={`${errors.email || userErrors.email ? 'show-errors' : ''}`}>
+        EMAIL <span>{ errors.email?.message } { userErrors.email }</span>
+      </label>
+      <input type="email" className="text-input" {...register("email", { required: "- This field is requred" })} />
+    </>
   )
 
   return (
     <div className="modal">
-      <button onClick={closeModal}>X</button>
+      <div className="close-button" onClick={closeModal}>
+        <FaTimes size={20} />
+      </div>
 
       <form onSubmit={checkThenSubmit}>
-        { type === 'username' ? <h2>Change your username</h2> : <h2>Enter an email address</h2> }
-        <p>Enter a new {type === 'username' ? "username" : "email address"} and your existing password.</p>
 
-        { inputToChange }
-
-        <div>
-          <label>CURRENT PASSWORD { userErrors.password }</label>
-          <input type="password" {...register("password")} />
+        <div className="modal-header">
+          <h2>{ type === 'username' ? "Change your username" : "Enter an email address" }</h2>
+          <p>Enter a new {type === 'username' ? "username" : "email address"} and your existing password.</p>
         </div>
-        <button type="button" onClick={closeModal}>Cancel</button>
-        <button>Done</button>
+
+        <div className="modal-content">
+
+          { inputToChange }
+
+          <div className="user-modal-spacer"></div>
+
+          <label className={`${userErrors.password ? 'show-errors' : ''}`}>
+            CURRENT PASSWORD <span>{ userErrors.password }</span></label>
+          <input type="password" className="text-input" {...register("password")} />
+
+        </div>
+
+        <div className="buttons-container">
+          <button type="button" className="cancel-button" onClick={closeModal}>Cancel</button>
+          <button className="submit-button blue-button">
+            <div>Done</div>
+          </button>
+        </div>
+
       </form>
     </div>
   )

@@ -35,54 +35,6 @@
     font-family: 'ginto-normal', sans-serif;
   }
 
-  .modal-content {
-    margin-bottom: 20px;
-    min-height: 54px;
-    display: flex;
-    flex-direction: column;
-    padding: 0px 16px;
-    position: relative;
-
-    p {
-      color: $off-white;
-      font-size: 16px;
-      line-height: 20px;
-
-      span {
-        font-weight: 600;
-      }
-    }
-
-    p.delete-server-message {
-      color: $white;
-      background: $warning-yellow;
-      padding: 10px;
-      border-radius: 5px;
-      margin-bottom: 20px;
-    }
-
-    label {
-      color: $off-grey;
-      font-family: 'ginto-normal', sans-serif;
-      font-size: 12px;
-      font-weight: 600;
-      line-height: 16px;
-
-      margin-bottom: 8px;
-    }
-
-    .channel-name {
-      padding-left: 32px;
-    }
-
-    svg {
-      top: 38px;
-      left: 26px;
-      color: $off-white;
-      position: absolute;
-    }
-  }
-
   .buttons-container {
     background: $diff-black;
     padding: 16px;
@@ -160,12 +112,12 @@
 
   .close-button {
     position: absolute;
-    right: 8px;
-    top: 8px;
+    right: 16px;
+    top: 16px;
     height: 24px;
     width: 24px;
     cursor: pointer;
-    color: $off-grey;
+    color: $channels-grey;
 
     display: flex;
     align-items: center;
@@ -174,6 +126,79 @@
     &:hover {
       color: $off-white;
     }
+  }
+}
+
+.modal-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 6px 0px 24px 0px;
+
+  h2 {
+    font-size: 24px;
+    font-weight: 700;
+  }
+
+  p {
+    color: $off-grey;
+  }
+}
+
+.modal-content {
+  margin-bottom: 20px;
+  min-height: 54px;
+  display: flex;
+  flex-direction: column;
+  padding: 0px 16px;
+  position: relative;
+
+  p {
+    color: $off-white;
+    font-size: 16px;
+    line-height: 20px;
+    span {
+      font-weight: 600;
+    }
+  }
+
+  p.delete-server-message {
+    color: $white;
+    background: $warning-yellow;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+  }
+
+  label {
+    color: $off-grey;
+    font-family: 'ginto-normal', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    line-height: 16px;
+
+    margin-bottom: 8px;
+
+    &.show-errors {
+      color: $error-red;
+    }
+
+    span {
+      font-style: italic;
+      font-weight: 300;
+      padding-left: 3px;
+    }
+  }
+
+  .channel-name {
+    padding-left: 32px;
+  }
+
+  svg {
+    top: 38px;
+    left: 26px;
+    color: $off-white;
+    position: absolute;
   }
 }
 
@@ -194,5 +219,25 @@
 
   .message-text {
     margin-right: 16px;
+  }
+}
+
+.user-modal-spacer {
+  height: 16px;
+}
+
+.username-input {
+  position: relative;
+
+  .text-input {
+    width: 100%;
+    padding-right: 64px;
+  }
+
+  .tag {
+    position: absolute;
+    top: 12px;
+    right: 16px;
+    color: $off-grey;
   }
 }
