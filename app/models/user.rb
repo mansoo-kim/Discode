@@ -51,12 +51,12 @@ class User < ApplicationRecord
     through: :friendships,
     source: :friend
 
-  has_many :outgoing_requests,
+  has_many :outgoing,
     -> { where friendships: { status: 0 } },
     through: :friendships,
     source: :friend
 
-  has_many :incoming_requests,
+  has_many :incoming,
     -> { where friendships: { status: 1 } },
     through: :friendships,
     source: :friend
