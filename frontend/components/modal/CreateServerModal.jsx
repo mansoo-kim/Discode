@@ -1,16 +1,16 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { useForm } from 'react-hook-form';
+import { FaTimes } from 'react-icons/fa';
 
-const CreateServerModal = ({ serverErrors, currentUser, closeModal, createServer, resetServerErrors, history }) => {
-  const { register, formState: { errors }, handleSubmit } = useForm({
-    mode: 'onChange',
+
+const CreateServerModal = ({ currentUser, closeModal, createServer, history }) => {
+  const { register, formState: { errors }, watch, handleSubmit } = useForm({
     shouldFocusError: false,
-    defaultValues: { serverName: `${currentUser.username}'s server`}
+    defaultValues: { serverName: `${currentUser.username}'s server`},
+    reValidateMode: 'onSubmit'
   });
 
-  useEffect(() => {
-    return () => resetServerErrors();
-  }, [])
+  const serverName = watch("serverName");
 
   const onSubmit = (data) => {
     const formData = new FormData();
@@ -35,36 +35,56 @@ const CreateServerModal = ({ serverErrors, currentUser, closeModal, createServer
   const preview = imgUrl ? <img src={imgUrl} className="server-icon" /> : null;
 
   return (
-    <div className="modal">
-      <button onClick={closeModal}>X</button>
+    <div className="modal white">
+      <div className="close-button" onClick={closeModal}>
+        <FaTimes size={20} />
+      </div>
 
       <form onSubmit={handleSubmit(onSubmit)}>
-        <h2>Customize your server</h2>
-        <p>Give your new server a personality with a name and an icon. You can always change it later.</p>
 
-        <div>
-          <input type="file" {...register("iconFile")} onChange={onFileChange} />
-          { preview }
+        <div className="modal-header">
+          <h2>Customize your server</h2>
+          <p>Give your new server a personality with a name and an icon. You can always change it later.</p>
         </div>
 
-        <div>
-          <label>SERVER NAME { serverErrors.name }</label>
-          <input type="text" {...register("serverName", { required: true })} />
+        <div className="modal-content">
+
+          <div>
+            <input type="file" {...register("iconFile")} onChange={onFileChange} />
+            { preview }
+          </div>
+
+          <label className={`${errors.serverName ? 'show-errors' : ''}`}>
+            SERVER NAME <span>{ errors.serverName?.message }</span>
+          </label>
+          <input type="text" className="text-input" {...register("serverName", { required: true,
+            minLength: {
+              value: 2,
+              message: "- Must be between 2 and 32 in length"
+            },
+            maxLength: {
+              value: 32,
+              message: "- Must be between 2 and 32 in length"
+            }
+          })} />
+
+          <p className="fine-print">By creating a server, you agree to Discode's <span>Community Guidelines</span>.</p>
         </div>
 
-        <p>By creating a server, you agree to Discode's Community Guidelines.</p>
+        <div className="buttons-container">
+          <button type="button" className="cancel-button" onClick={closeModal}>Cancel</button>
+          <button className="submit-button blue-button" disabled={serverName === ""}>
+            <div>Create</div>
+          </button>
+        </div>
 
-        <button type="button" onClick={closeModal}>Cancel</button>
-        <button disabled={!!errors["serverName"]}>
-          Create
-        </button>
       </form>
     </div>
   )
 }
 
 import { connect } from 'react-redux';
-import { createServer, resetServerErrors } from '../../actions/server_actions';
+import { createServer } from '../../actions/server_actions';
 
 const mSTP = (state) => ({
   serverErrors: state.errors.server,
@@ -72,8 +92,7 @@ const mSTP = (state) => ({
 });
 
 const mDTP = (dispatch) => ({
-  createServer: (server) => dispatch(createServer(server)),
-  resetServerErrors: () => dispatch(resetServerErrors())
+  createServer: (server) => dispatch(createServer(server))
 });
 
 export default connect(mSTP, mDTP)(CreateServerModal);

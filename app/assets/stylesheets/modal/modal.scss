@@ -133,7 +133,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: 6px 0px 24px 0px;
+  margin: 6px 24px 24px 24px;
 
   h2 {
     font-size: 24px;
@@ -142,6 +142,7 @@
 
   p {
     color: $off-grey;
+    text-align: center;
   }
 }
 
@@ -159,6 +160,20 @@
     line-height: 20px;
     span {
       font-weight: 600;
+    }
+  }
+
+  p.fine-print {
+    margin-top: 8px;
+    font-size: 12px;
+    padding: 2px 0px;
+
+    span {
+      color: $link-blue;
+
+      &:hover {
+        text-decoration: underline;
+      }
     }
   }
 

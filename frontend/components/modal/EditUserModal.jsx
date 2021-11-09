@@ -41,7 +41,7 @@ const EditUserModal = ({ type, userErrors, currentUser, closeModal, updateUser, 
         USERNAME <span>{ errors.username?.message } { userErrors.username }</span>
       </label>
       <div className="username-input">
-          <input type="text" className="text-input" {...register("username", { required: "- This field is requred",
+        <input type="text" className="text-input" {...register("username", { required: "- This field is requred",
           minLength: {
             value: 2,
             message: "- Must be between 2 and 32 in length"
