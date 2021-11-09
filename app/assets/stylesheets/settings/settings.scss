@@ -34,21 +34,24 @@
   }
 
   .options-header {
-    width: 100%;
+    width: 192px;
     font-family: 'ginto-normal', sans-serif;
     color: $channels-grey;
-    display: flex;
-    align-items: center;
     font-size: 12px;
     line-height: 16px;
     font-weight: 600;
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    padding: 0px 10px 6px 10px;
+    padding: 0px 20px 6px 10px;
     cursor: default;
 
-    span {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+
+    > svg {
+      vertical-align: -2px;
+    }
+
+    > span {
       margin-left: 4px;
       font-size: 10px;
       font-weight: 400;

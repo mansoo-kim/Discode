@@ -58,9 +58,12 @@ const ChannelSettings = ({ toggleSettings, channel, updateChannel, openModal }) 
       <div className="settings-left-container">
         <div className="settings-options">
           <div className="options-header">
-              <FaHashtag size={12} />&nbsp;{ watchName.toUpperCase() }
+            <FaHashtag size={12} />
 
-              <span>TEXT CHANNELS</span>
+            &nbsp;{ watchName.toUpperCase() }
+
+            <span>TEXT CHANNELS</span>
+
           </div>
 
           <div className="option selected">
