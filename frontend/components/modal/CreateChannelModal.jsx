@@ -33,7 +33,7 @@ const CreateChannelModal = ({ closeModal, createChannel, history }) => {
           <FaHashtag size={14} />
 
           <label>CHANNEL NAME </label>
-          <input type="text" className="text-input channel-name" placeholder="new-channel" {...register("channelName", { required: true })} />
+          <input type="text" spellCheck={false} autoFocus className="text-input channel-name" placeholder="new-channel" {...register("channelName", { required: true })} />
 
         </div>
 

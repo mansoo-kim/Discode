@@ -25,7 +25,7 @@ const DeleteServerModal = ({ server, deleteServer, closeModal, history }) => {
 
           <label>ENTER SERVER NAME</label>
 
-          <input type="text" className="text-input" {...register("serverName", { validate: value => value === server.name || "You didn't enter the server name correctly" })} />
+          <input type="text" spellCheck={false} autoFocus className="text-input" {...register("serverName", { validate: value => value === server.name || "You didn't enter the server name correctly" })} />
           { errors.serverName && <div className="error-message">{ errors.serverName?.message }</div> }
 
         </div>

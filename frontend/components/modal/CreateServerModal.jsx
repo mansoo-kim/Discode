@@ -61,7 +61,7 @@ const CreateServerModal = ({ currentUser, closeModal, createServer, history }) =
           <label className={`${errors.serverName ? 'show-errors' : ''}`}>
             SERVER NAME <span>{ errors.serverName?.message }</span>
           </label>
-          <input type="text" className="text-input" {...register("serverName", { required: true,
+          <input type="text" spellCheck={false} autoFocus className="text-input" {...register("serverName", { required: true,
             minLength: {
               value: 2,
               message: "- Must be between 2 and 32 in length"

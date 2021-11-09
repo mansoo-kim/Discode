@@ -41,7 +41,7 @@ const EditUserModal = ({ type, userErrors, currentUser, closeModal, updateUser, 
         USERNAME <span>{ errors.username?.message } { userErrors.username }</span>
       </label>
       <div className="username-input">
-        <input type="text" className="text-input" {...register("username", { required: "- This field is requred",
+        <input type="text" spellCheck={false} autoFocus className="text-input" {...register("username", { required: "- This field is requred",
           minLength: {
             value: 2,
             message: "- Must be between 2 and 32 in length"
@@ -61,7 +61,7 @@ const EditUserModal = ({ type, userErrors, currentUser, closeModal, updateUser, 
       <label className={`${errors.email || userErrors.email ? 'show-errors' : ''}`}>
         EMAIL <span>{ errors.email?.message } { userErrors.email }</span>
       </label>
-      <input type="email" className="text-input" {...register("email", { required: "- This field is requred" })} />
+      <input type="email" spellCheck={false} autoFocus className="text-input" {...register("email", { required: "- This field is requred" })} />
     </>
   )
 

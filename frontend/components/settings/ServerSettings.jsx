@@ -126,7 +126,7 @@ const ServerSettings = ({ toggleSettings, server, updateServer, openModal }) => 
             <div className="separator large"></div>
 
             <label>SERVER NAME</label>
-            <input type="text" className="text-input" placeholder={server.name} {...register("serverName", {
+            <input type="text" spellCheck={false} className="text-input" placeholder={server.name} {...register("serverName", {
               required: "This field is required",
               minLength: {
                 value: 2,
