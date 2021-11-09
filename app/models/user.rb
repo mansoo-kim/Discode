@@ -44,6 +44,23 @@ class User < ApplicationRecord
     source: :joinable,
     source_type: :Conversation
 
+  has_many :friendships
+
+  has_many :friends,
+    -> { where friendships: { status: 2 } },
+    through: :friendships,
+    source: :friend
+
+  has_many :outgoing_requests,
+    -> { where friendships: { status: 0 } },
+    through: :friendships,
+    source: :friend
+
+  has_many :incoming_requests,
+    -> { where friendships: { status: 1 } },
+    through: :friendships,
+    source: :friend
+
   def ensure_unique_tag
     self.tag ||= self.generate_unique_tag
   end
