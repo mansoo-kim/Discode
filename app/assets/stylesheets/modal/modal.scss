@@ -163,20 +163,6 @@
     }
   }
 
-  p.fine-print {
-    margin-top: 8px;
-    font-size: 12px;
-    padding: 2px 0px;
-
-    span {
-      color: $link-blue;
-
-      &:hover {
-        text-decoration: underline;
-      }
-    }
-  }
-
   p.delete-server-message {
     color: $white;
     background: $warning-yellow;
@@ -259,25 +245,90 @@
 
 .modal {
   .icon-input-wrapper {
-    height: 80px;
+    align-self: center;
     width: 80px;
+    height: 80px;
     position: relative;
-    overflow: hidden;
-    cursor: pointer;
+    // cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
+    margin-bottom: 20px;
   }
 
   .icon-input {
+    display: none;
+  }
+
+  .input-cover {
+    position: absolute;
     width: 80px;
     height: 80px;
-    object-fit: fill;
-    position: absolute;
-    top: 0;
-    left: 0;
+    display: flex;
+    align-items: center;
     cursor: pointer;
-    height: 100%;
-    font-size: 0px;
+    justify-content: center;
+    z-index: 12;
+
+    img {
+      width: 80px;
+      height: 80px;
+      object-fit: cover;
+    }
+
+    &.uploaded {
+      border-radius: 50%;
+      overflow: hidden;
+    }
   }
+}
+
+.modal.white {
+  background: $white;
+
+  h2 {
+    color: black;
+  }
+
+  p {
+    color: $light-grey;
+  }
+
+  .buttons-container {
+    background: rgb(246, 246, 247);
+
+    .cancel-button {
+      color: black;
+    }
+  }
+
+  label {
+    color: $light-grey;
+
+    &.show-errors {
+      color: $error-red;
+    }
+  }
+
+  .text-input {
+    background: white;
+    color: $black-text;
+    font-weight: 600;
+  }
+
+  p.fine-print {
+    margin-top: 8px;
+    font-size: 12px;
+    padding: 2px 0px;
+    color: $black-text;
+
+    span {
+      color: $contrast-blue;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+
 }

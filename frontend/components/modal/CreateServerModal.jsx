@@ -1,7 +1,6 @@
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import { useForm } from 'react-hook-form';
 import { FaTimes } from 'react-icons/fa';
-
 
 const CreateServerModal = ({ currentUser, closeModal, createServer, history }) => {
   const { register, formState: { errors }, watch, handleSubmit } = useForm({
@@ -15,24 +14,29 @@ const CreateServerModal = ({ currentUser, closeModal, createServer, history }) =
   const onSubmit = (data) => {
     const formData = new FormData();
     formData.append("server[name]", data.serverName);
-    if (data.iconFile[0]) formData.append("server[icon]", data.iconFile[0]);
+    if (imgFile) formData.append("server[icon]", imgFile);
     createServer(formData)
       .then(({ res: { server } })=> history.push(`/channels/${server.id}/${server.channels[0]}`))
       .then(() => closeModal());
   }
 
   const [imgUrl, setImgUrl] = useState("");
+  const [imgFile, setImgFile] = useState(null);
+  const fileRef = useRef();
 
   const onFileChange = (e) => {
     const file = e.currentTarget.files[0];
     const fileReader = new FileReader();
-    fileReader.onloadend = () => setImgUrl(fileReader.result);
+    fileReader.onloadend = () => {
+      setImgUrl(fileReader.result);
+      setImgFile(file);
+    };
     if (file) {
       fileReader.readAsDataURL(file);
     }
   }
 
-  const preview = <img src={imgUrl ? imgUrl : 'https://raw.githubusercontent.com/mansookim/Discode/main/app/assets/images/upload_icon.png'} className="server-icon" />
+  const preview = <img src={imgUrl ? imgUrl : 'https://raw.githubusercontent.com/mansookim/Discode/2f0c918b287576e27984a17d1d64edc705f291da/app/assets/images/upload-icon.svg'} className="server-icon" />
 
   return (
     <div className="modal white">
@@ -50,8 +54,8 @@ const CreateServerModal = ({ currentUser, closeModal, createServer, history }) =
         <div className="modal-content">
 
           <div className="icon-input-wrapper">
-            <input type="file" accept=".jpg,.jpeg,.png,.gif" className="icon-input" {...register("iconFile")} onChange={onFileChange} />
-            { preview }
+            <div className={`input-cover ${imgUrl ? "uploaded" : ''}`} onClick={() => fileRef.current.click()}>{ preview }</div>
+            <input type="file" accept=".jpg,.jpeg,.png,.gif" className="icon-input" ref={fileRef}onChange={onFileChange} />
           </div>
 
           <label className={`${errors.serverName ? 'show-errors' : ''}`}>
