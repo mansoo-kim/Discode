@@ -8,7 +8,10 @@ const _nullSession = {
   email: null,
   tag: null,
   servers: [],
-  conversations: []
+  conversations: [],
+  friends: [],
+  outgoing: [],
+  incoming: []
 }
 
 const SessionReducer = (state = _nullSession, action) => {
