@@ -5,17 +5,15 @@ import { FaHashtag, FaTimes } from 'react-icons/fa';
 const CreateChannelModal = ({ closeModal, createChannel, history }) => {
 
   const handleEscapeExit = (e) => {
-    console.log("checking escape modal")
-
     if (e.keyCode === 27) {
-      console.log("checking escape modal")
+      e.stopImmediatePropagation();
       closeModal();
     }
   };
 
   useEffect(() => {
-    document.addEventListener("keydown", handleEscapeExit);
-    return () => document.removeEventListener("keydown", handleEscapeExit);
+    document.addEventListener("keydown", handleEscapeExit, true);
+    return () => document.removeEventListener("keydown", handleEscapeExit, true);
    });
 
   const { register, formState: { isDirty }, handleSubmit } = useForm({

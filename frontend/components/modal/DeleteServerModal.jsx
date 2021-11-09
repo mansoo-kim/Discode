@@ -1,6 +1,20 @@
+import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 
 const DeleteServerModal = ({ server, deleteServer, closeModal, history }) => {
+
+  const handleEscapeExit = (e) => {
+    if (e.keyCode === 27) {
+      e.stopImmediatePropagation();
+      closeModal();
+    }
+  };
+
+  useEffect(() => {
+    document.addEventListener("keydown", handleEscapeExit, true);
+    return () => document.removeEventListener("keydown", handleEscapeExit, true);
+   });
+
   const { register, formState: { errors }, handleSubmit, getValues } = useForm({
     shouldFocusError: false,
     reValidateMode: 'onSubmit',

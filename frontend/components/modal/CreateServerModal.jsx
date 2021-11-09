@@ -1,8 +1,21 @@
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { FaTimes } from 'react-icons/fa';
 
 const CreateServerModal = ({ currentUser, closeModal, createServer, history }) => {
+
+  const handleEscapeExit = (e) => {
+    if (e.keyCode === 27) {
+      e.stopImmediatePropagation();
+      closeModal();
+    }
+  };
+
+  useEffect(() => {
+    document.addEventListener("keydown", handleEscapeExit, true);
+    return () => document.removeEventListener("keydown", handleEscapeExit, true);
+   });
+
   const { register, formState: { errors }, watch, handleSubmit } = useForm({
     shouldFocusError: false,
     defaultValues: { serverName: `${currentUser.username}'s server`},

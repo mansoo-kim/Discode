@@ -5,20 +5,15 @@ import { FaTimes } from 'react-icons/fa';
 const EditUserModal = ({ type, userErrors, currentUser, closeModal, updateUser, resetUserErrors }) => {
 
   const handleEscapeExit = (e) => {
-    console.log("checking escape modal")
-
     if (e.keyCode === 27) {
-      e.preventDefault();
-      e.stopPropagation();
       e.stopImmediatePropagation();
-      console.log("in escape modal")
       closeModal();
     }
   };
 
   useEffect(() => {
-    document.addEventListener("keydown", handleEscapeExit);
-    return () => document.removeEventListener("keydown", handleEscapeExit);
+    document.addEventListener("keydown", handleEscapeExit, true);
+    return () => document.removeEventListener("keydown", handleEscapeExit, true);
    });
 
   const { register, formState: { errors, isDirty }, handleSubmit, getValues } = useForm({

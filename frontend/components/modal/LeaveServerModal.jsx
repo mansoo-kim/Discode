@@ -1,4 +1,18 @@
+import { useEffect } from 'react';
+
 const LeaveServerModal = ({ server, currentUserId, closeModal, deleteMembership, history }) => {
+
+  const handleEscapeExit = (e) => {
+    if (e.keyCode === 27) {
+      e.stopImmediatePropagation();
+      closeModal();
+    }
+  };
+
+  useEffect(() => {
+    document.addEventListener("keydown", handleEscapeExit, true);
+    return () => document.removeEventListener("keydown", handleEscapeExit, true);
+   });
 
   const handleLeaving = () => {
     deleteMembership({

@@ -19,9 +19,7 @@ const ChannelSettings = ({ toggleSettings, channel, updateChannel, openModal }) 
   const watchName = watch("channelName");
 
   const handleEscapeExit = (e) => {
-    console.log("checking escape channel")
     if (e.keyCode === 27) {
-      console.log("in escape channel")
       toggleSettings(channel.id);
     }
   };

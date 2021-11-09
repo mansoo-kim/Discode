@@ -15,12 +15,7 @@ const UserSettings = ({ currentUser, toggleSettings, openModal, updateUser }) =>
   const fileRef = useRef();
 
   const handleEscapeExit = (e) => {
-    console.log("checking escape user")
     if (e.keyCode === 27) {
-      console.log("in escape user")
-      e.preventDefault();
-      e.stopPropagation();
-      e.stopImmediatePropagation();
       toggleSettings();
     }
   };
