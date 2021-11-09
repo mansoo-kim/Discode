@@ -57,24 +57,24 @@ export const selectFriends = (state) => {
   return friends;
 }
 
-export const selectOutgoing = (state) => {
-  const outgoingIds = state.session.outgoing;
+export const selectOutgoings = (state) => {
+  const outgoingIds = state.session.outgoings;
   if (!outgoingIds) return [];
 
-  const outgoing = [];
+  const outgoings = [];
   for (let outgoingId of outgoingIds) {
-    outgoing.push(state.entities.users[outgoingId]);
+    outgoings.push(state.entities.users[outgoingId]);
   }
-  return outgoing;
+  return outgoings;
 }
 
-export const selectIncoming = (state) => {
-  const incomingIds = state.session.incoming;
+export const selectIncomings = (state) => {
+  const incomingIds = state.session.incomings;
   if (!incomingIds) return [];
 
-  const incoming = [];
+  const incomings = [];
   for (let incomingId of incomingIds) {
-    incoming.push(state.entities.users[incomingId]);
+    incomings.push(state.entities.users[incomingId]);
   }
-  return incoming;
+  return incomings;
 }

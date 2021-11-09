@@ -15,6 +15,8 @@ Rails.application.routes.draw do
     resources :channels, only: [:show, :update, :destroy]
     resources :conversations, only: [:index, :show]
 
+    resources :friendships, only: [:index]
+
     delete 'memberships', to: 'memberships#destroy'
   end
 end
