@@ -1,4 +1,11 @@
-const Friends = ({ friends, outgoings, incomings }) => {
+import { useEffect } from 'react';
+
+const Friends = ({ friends, outgoings, incomings, requestFriendships }) => {
+
+  useEffect(() => {
+    requestFriendships();
+  }, []);
+
   return (
     <div>
       <h1>
@@ -34,6 +41,7 @@ const Friends = ({ friends, outgoings, incomings }) => {
 }
 
 import { connect } from 'react-redux';
+import { requestFriendships } from '../../actions/friendship_actions';
 import { selectFriends, selectOutgoings, selectIncomings } from '../../reducers/selectors';
 
 const mSTP = (state) => ({
@@ -42,4 +50,8 @@ const mSTP = (state) => ({
   incomings: selectIncomings(state),
 });
 
-export default connect(mSTP)(Friends);
+const mDTP = (dispatch) => ({
+  requestFriendships: () => dispatch(requestFriendships())
+});
+
+export default connect(mSTP, mDTP)(Friends);

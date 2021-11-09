@@ -3,6 +3,12 @@ import * as UserApiUtil from '../utils/user_api_utils';
 export const RECEIVE_USER = 'RECEIVE_USER';
 export const RECEIVE_USER_ERRORS = 'RECEIVE_USER_ERRORS';
 export const RESET_USER_ERRORS = "RESET_USER_ERRORS"
+export const RECEIVE_USERS = 'RECEIVE_USERS';
+
+export const receiveUsers = (users) => ({
+  type: RECEIVE_USERS,
+  users
+});
 
 export const receiveUser = (user) => ({
   type: RECEIVE_USER,
