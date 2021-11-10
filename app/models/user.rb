@@ -47,19 +47,24 @@ class User < ApplicationRecord
   has_many :friendships
 
   has_many :friends,
-    -> { where friendships: { status: 2 } },
+    -> { where friendships: { status: 3 } },
     through: :friendships,
     source: :friend
 
   has_many :incomings,
-    -> { where friendships: { status: 1 } },
+    -> { where friendships: { status: 2 } },
     through: :friendships,
     source: :friend
 
   has_many :outgoings,
-    -> { where friendships: { status: 0 } },
+    -> { where friendships: { status: 1 } },
     through: :friendships,
     source: :friend
+
+  def friend_status(friend)
+    relation = Friendship.find_relation(self.id, friend.id)
+    relation.any? ? relation[0].status : 0
+  end
 
   def ensure_unique_tag
     self.tag ||= self.generate_unique_tag

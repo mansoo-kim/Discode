@@ -3,7 +3,6 @@ import { RECEIVE_USER } from "../actions/user_actions";
 import { RECEIVE_SERVER } from "../actions/server_actions";
 import { REMOVE_SERVER } from "../actions/server_actions";
 import { REMOVE_MEMBERSHIP } from "../actions/membership_actions";
-import { RECEIVE_FRIENDSHIP, REMOVE_FRIENDSHIP } from "../actions/friendship_actions";
 
 const _nullSession = {
   id: null,
@@ -46,31 +45,6 @@ const SessionReducer = (state = _nullSession, action) => {
       newState = Object.assign({}, state);
       index = newState.servers.indexOf(action.membership.id);
       newState.servers.splice(index, 1);
-      return newState;
-    case RECEIVE_FRIENDSHIP:
-      console.log(action);
-      newState = Object.assign({}, state);
-      if (action.friendship.status === 2) {
-        index = newState.incomings.indexOf(action.friendship.friendId);
-        newState.incomings.splice(index, 1);
-        newState.friends.push(action.friendship.friendId);
-      } else {
-        if (!newState.outgoings.includes(action.friendship.friendId)) newState.outgoings.push(action.friendship.friendId);
-      }
-      return newState;
-    case REMOVE_FRIENDSHIP:
-      console.log(action);
-      newState = Object.assign({}, state);
-      if (action.friendship.status === 2) {
-        index = newState.friends.indexOf(action.friendship.friendId);
-        newState.friends.splice(index, 1);
-      } else if (action.friendship.status === 1) {
-        index = newState.incomings.indexOf(action.friendship.friendId);
-        newState.incomings.splice(index, 1);
-      } else {
-        index = newState.outgoings.indexOf(action.friendship.friendId);
-        newState.outgoings.splice(index, 1);
-      }
       return newState;
     default:
       return state;

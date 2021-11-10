@@ -22,7 +22,7 @@ const MemberPopup = ({ currentUser, createFriendship, updateFriendship, deleteFr
 
   return (
     <div>
-
+      <button></button>
     </div>
   )
 }

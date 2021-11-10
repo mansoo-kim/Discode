@@ -6,8 +6,8 @@ class Api::FriendshipsController < ApplicationController
   end
 
   def create
-    @friendship = Friendship.create(user_id: current_user.id, friend_id: friendship_params[:friend_id], status: 0)
-    Friendship.create(friend_id: current_user.id, user_id: friendship_params[:friend_id], status: 1)
+    @friendship = Friendship.create(user_id: current_user.id, friend_id: friendship_params[:friend_id], status: 1)
+    Friendship.create(friend_id: current_user.id, user_id: friendship_params[:friend_id], status: 2)
 
     render 'api/friendships/show'
   end
@@ -16,7 +16,7 @@ class Api::FriendshipsController < ApplicationController
     @friendship = Friendship.find_by(user_id: friendship_params[:user_id], friend_id: friendship_params[:friend_id])
     friendship = Friendship.find_by(user_id: friendship_params[:friend_id], friend_id: current_user.id)
 
-    if @friendship.update(status: 2) && friendship.update(status: 2)
+    if @friendship.update(status: 3) && friendship.update(status: 3)
       render 'api/friendships/show'
     else
       render json: @friendship.errors, status: 422
