@@ -14,12 +14,13 @@ const NewConversationPopup = ({ top, conversations, setShowPopup, currentUser, f
     const groupIds = [currentUser.id, ...Object.keys(selectedFriends)].map(id => parseInt(id)).sort();
     for (let conversation of conversations) {
       if (arrayEquals(conversation.members, groupIds)) {
-        if (history.location.pathname !== `/channels/@me/${conversation.id}`) history.push(`/channels/@me/${conversation.id}`)
+        if (history.location.pathname !== `/channels/@me/${conversation.id}`) history.push(`/channels/@me/${conversation.id}`);
         setShowPopup(false);
         return;
       }
     }
     createConversation({member_ids: groupIds})
+      .then(({ res })=> history.push(`/channels/@me/${res.conversation.id}`))
       .then(() => setShowPopup(false));
   }
 
