@@ -14,10 +14,7 @@ const MemberIndexItem = ({ member }) => {
 
   return (
     <div className="member-index-item" tabIndex="0" onClick={handlePopupShow} onBlur={() => setShowPopup(false)}>
-      { showPopup &&
-        <div className="user-popup-container">
-          <UserPopup user={member} top={popupTop} />
-        </div>}
+      { showPopup && <UserPopup user={member} top={popupTop} /> }
       <UserPfp user={member} />
 
       <div className="username">

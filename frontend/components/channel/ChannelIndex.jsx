@@ -13,7 +13,7 @@ const ChannelIndex = ({ channels, isOwner, serverId, activeChannelId, openModal 
     setShowSettings(!showSettings);
   };
 
-  const newChannelButton = <div className="new-channel-button" onClick={() =>
+  const newChannelButton = <div className="new-cc-button" onClick={() =>
     openModal({type: "createChannel", serverId})}>
     <HiOutlinePlus size={18} />
   </div>

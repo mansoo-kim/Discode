@@ -43,8 +43,10 @@ const UserPopup = ({ user, top, currentUser, createFriendship, updateFriendship,
   }
 
   return (
-    <div className="user-popup" style={{top: `${top}px`}} onClick={() => action(user.id)}>
-      { label }
+    <div className="popup-container">
+      <div className="user-popup" style={{top: `${top}px`}} onClick={() => action(user.id)}>
+        { label }
+      </div>
     </div>
   )
 }

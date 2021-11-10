@@ -39,6 +39,10 @@
 
   border-radius: 4px;
 
+  &:focus-visible {
+    outline: none;
+  }
+
   .pfp-container {
     margin-right: 12px;
   }

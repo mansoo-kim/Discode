@@ -48,12 +48,12 @@
           color: $white;
         }
 
-        .new-channel-button {
+        .channel-settings-button {
           display: flex;
         }
       }
 
-      &:hover .new-channel-button {
+      &:hover .channel-settings-button {
         display: flex;
       }
 
@@ -80,7 +80,7 @@
         }
       }
 
-      .new-channel-button {
+      .channel-settings-button {
         width: 10%;
         display: none;
         align-items: center;
@@ -111,10 +111,14 @@
     padding-left: 5px;
   }
 
-  .new-channel-button {
+  .new-cc-button {
     display: flex;
     align-items: center;
     cursor: pointer;
+
+    &:focus-visible {
+      outline: none;
+    }
   }
 }
 
