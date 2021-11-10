@@ -36,8 +36,10 @@ u5.incoming_ids = [u1.id]
 u6.incoming_ids = [u1.id]
 u7.incoming_ids = [u1.id]
 
-u1.incoming_ids = [u8.id, u11.id]
+u1.incoming_ids = [u8.id, u9.id, u10.id, u11.id]
 u8.outgoing_ids = [u1.id]
+u9.outgoing_ids = [u1.id]
+u10.outgoing_ids = [u1.id]
 u11.outgoing_ids = [u1.id]
 
 # Servers
