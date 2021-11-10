@@ -52,7 +52,7 @@ export const selectFriends = (state) => {
 
   const friends = [];
   for (let friendId of friendIds) {
-    friends.push(state.entities.users[friendId]);
+    if (state.entities.users[friendId]) friends.push(state.entities.users[friendId]);
   }
   return friends;
 }
@@ -63,7 +63,7 @@ export const selectOutgoings = (state) => {
 
   const outgoings = [];
   for (let outgoingId of outgoingIds) {
-    outgoings.push(state.entities.users[outgoingId]);
+    if (state.entities.users[outgoingId]) outgoings.push(state.entities.users[outgoingId]);
   }
   return outgoings;
 }
@@ -74,7 +74,7 @@ export const selectIncomings = (state) => {
 
   const incomings = [];
   for (let incomingId of incomingIds) {
-    incomings.push(state.entities.users[incomingId]);
+    if (state.entities.users[incomingId]) incomings.push(state.entities.users[incomingId]);
   }
   return incomings;
 }

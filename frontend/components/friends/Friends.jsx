@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import FriendIndex from './FriendIndex';
 import PendingIndex from './PendingIndex';
 
-const Friends = ({ friends, outgoings, incomings, requestFriendships }) => {
+const Friends = ({ requestFriendships }) => {
 
   const [showAll, setShowAll] = useState(true);
 
@@ -18,8 +18,8 @@ const Friends = ({ friends, outgoings, incomings, requestFriendships }) => {
         <div onClick={() => setShowAll(false)}>Pending</div>
       </nav>
 
-      { showAll && <FriendIndex friends={friends} /> }
-      { !showAll && <PendingIndex incomings={incomings} outgoings={outgoings} /> }
+      { showAll && <FriendIndex /> }
+      { !showAll && <PendingIndex /> }
 
     </div>
   )
@@ -27,16 +27,9 @@ const Friends = ({ friends, outgoings, incomings, requestFriendships }) => {
 
 import { connect } from 'react-redux';
 import { requestFriendships } from '../../actions/friendship_actions';
-import { selectFriends, selectOutgoings, selectIncomings } from '../../reducers/selectors';
-
-const mSTP = (state) => ({
-  friends: selectFriends(state),
-  outgoings: selectOutgoings(state),
-  incomings: selectIncomings(state),
-});
 
 const mDTP = (dispatch) => ({
   requestFriendships: () => dispatch(requestFriendships())
 });
 
-export default connect(mSTP, mDTP)(Friends);
+export default connect(null, mDTP)(Friends);
