@@ -3,6 +3,7 @@ import { RECEIVE_USER } from "../actions/user_actions";
 import { RECEIVE_SERVER } from "../actions/server_actions";
 import { REMOVE_SERVER } from "../actions/server_actions";
 import { REMOVE_MEMBERSHIP } from "../actions/membership_actions";
+import { RECEIVE_CONVERSATION } from "../actions/conversation_actions";
 
 const _nullSession = {
   id: null,
@@ -43,6 +44,13 @@ const SessionReducer = (state = _nullSession, action) => {
       index = newState.servers.indexOf(action.membership.id);
       newState.servers.splice(index, 1);
       return newState;
+    case RECEIVE_CONVERSATION:
+      if (!state.conversations.includes(action.res.conversation.id)) {
+        newState = Object.assign({}, state);
+        newState.conversations.push(action.res.conversation.id);
+        return newState
+      }
+      return state;
     default:
       return state;
   }

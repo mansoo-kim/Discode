@@ -1,12 +1,18 @@
 import { useState } from 'react';
 
-const NewConversationPopup = ({ top, currentUser, friends }) => {
+const NewConversationPopup = ({ top, currentUser, friends, createConversation}) => {
 
   const [selectedFriends, setSelectedFriends] = useState({});
 
   const toggleFriend = (friend) => {
     console.log(friend);
     setSelectedFriends(prevState => ({...prevState, [friend.id]: friend}));
+  }
+
+  const handleCreate = () => {
+    createConversation({
+      member_ids: [currentUser.id, ...Object.keys(selectedFriends)]
+    })
   }
 
   console.log(selectedFriends);
@@ -31,7 +37,7 @@ const NewConversationPopup = ({ top, currentUser, friends }) => {
           )
         })}
 
-        <button onMouseDown={e => e.preventDefault()}>Create Group DM</button>
+        <button onMouseDown={e => e.preventDefault()} onClick={handleCreate}>Create Group DM</button>
       </div>
     </div>
   )
@@ -39,14 +45,15 @@ const NewConversationPopup = ({ top, currentUser, friends }) => {
 
 import { connect } from 'react-redux';
 import { selectStatus } from '../../reducers/selectors';
+import { createConversation } from '../../actions/conversation_actions';
 
 const mSTP = (state) => ({
   currentUser: state.session,
   friends: selectStatus(state, 3)
 });
 
-// const mDTP = (dispatch) => ({
-//   deleteFriendship: (ids) => dispatch(deleteFriendship(ids))
-// });
+const mDTP = (dispatch) => ({
+  createConversation: (conversation) => dispatch(createConversation(conversation))
+});
 
-export default connect(mSTP)(NewConversationPopup);
+export default connect(mSTP, mDTP)(NewConversationPopup);
