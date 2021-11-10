@@ -1,14 +1,14 @@
-const FriendIndexItem = ({ friend, type, action1, action2 }) => {
+const FriendIndexItem = ({ friend, action1, action2 }) => {
 
-  const label1 = type === "friend" ? "Message" : type === "incoming" ? "Accept" : "Cancel";
-  const label2 = type === "friend" ? "Remove Friend" : type === "incoming" ? "Reject" : "";
+  const label1 = friend.status === 3 ? "Message" : friend.status === 2 ? "Accept" : "Cancel";
+  const label2 = friend.status === 3 ? "Remove Friend" : friend.status === 2 ? "Reject" : "";
 
   return (
     <div>
       { friend.username }
 
       <button onClick={() => action1(friend.id)}>{ label1 }</button>
-      { type !== "outgoing" && <button onClick={() => action2(friend.id)}>{ label2 }</button> }
+      { friend.status !== 1 && <button onClick={() => action2(friend.id)}>{ label2 }</button> }
     </div>
   )
 }

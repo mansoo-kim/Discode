@@ -18,8 +18,8 @@ const PendingIndex = ({ currentUser, incomings, outgoings, updateFriendship, del
 
   return (
     <div>
-      { incomings.map(friend => <FriendIndexItem key={friend.id} friend={friend} type="incoming" action1={handleUpdate} action2={handleDelete} />)}
-      { outgoings.map(friend => <FriendIndexItem key={friend.id} friend={friend} type="outgoing" action1={handleDelete} />)}
+      { incomings.map(friend => <FriendIndexItem key={friend.id} friend={friend} action1={handleUpdate} action2={handleDelete} />)}
+      { outgoings.map(friend => <FriendIndexItem key={friend.id} friend={friend} action1={handleDelete} />)}
     </div>
   )
 }
