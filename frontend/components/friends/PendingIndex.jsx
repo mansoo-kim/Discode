@@ -25,12 +25,12 @@ const PendingIndex = ({ currentUser, incomings, outgoings, updateFriendship, del
 }
 import { connect } from 'react-redux';
 import { updateFriendship, deleteFriendship } from "../../actions/friendship_actions";
-import { selectOutgoings, selectIncomings } from '../../reducers/selectors';
+import { selectStatus } from '../../reducers/selectors';
 
 const mSTP = (state) => ({
   currentUser: state.session,
-  outgoings: selectOutgoings(state),
-  incomings: selectIncomings(state)
+  outgoings: selectStatus(state, 1),
+  incomings: selectStatus(state, 2)
 });
 
 const mDTP = (dispatch) => ({

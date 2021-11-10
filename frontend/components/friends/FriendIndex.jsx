@@ -18,11 +18,11 @@ const FriendIndex = ({ currentUser, friends, deleteFriendship }) => {
 
 import { connect } from 'react-redux';
 import { deleteFriendship } from "../../actions/friendship_actions";
-import { selectFriends } from '../../reducers/selectors';
+import { selectStatus } from '../../reducers/selectors';
 
 const mSTP = (state) => ({
   currentUser: state.session,
-  friends: selectFriends(state)
+  friends: selectStatus(state, 3)
 });
 
 const mDTP = (dispatch) => ({

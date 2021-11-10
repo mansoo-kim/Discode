@@ -46,35 +46,10 @@ export const selectMessages = (state, type, ccId) => {
   return messages;
 }
 
-export const selectFriends = (state) => {
-  const friendIds = state.session.friends;
-  if (!friendIds) return [];
-
+export const selectStatus = (state, status) => {
   const friends = [];
-  for (let friendId of friendIds) {
-    if (state.entities.users[friendId]) friends.push(state.entities.users[friendId]);
+  for (let user of Object.values(state.entities.users)) {
+    if (user.status === status) friends.push(user);
   }
   return friends;
-}
-
-export const selectOutgoings = (state) => {
-  const outgoingIds = state.session.outgoings;
-  if (!outgoingIds) return [];
-
-  const outgoings = [];
-  for (let outgoingId of outgoingIds) {
-    if (state.entities.users[outgoingId]) outgoings.push(state.entities.users[outgoingId]);
-  }
-  return outgoings;
-}
-
-export const selectIncomings = (state) => {
-  const incomingIds = state.session.incomings;
-  if (!incomingIds) return [];
-
-  const incomings = [];
-  for (let incomingId of incomingIds) {
-    if (state.entities.users[incomingId]) incomings.push(state.entities.users[incomingId]);
-  }
-  return incomings;
 }
