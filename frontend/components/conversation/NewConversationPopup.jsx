@@ -20,6 +20,7 @@ const NewConversationPopup = ({ top, conversations, setShowPopup, currentUser, f
       });
     } else {
       setSelectedFriends(prevState => ({...prevState, [friend.id]: friend}));
+      setSearchText("");
     }
   }
 
@@ -49,23 +50,27 @@ const NewConversationPopup = ({ top, conversations, setShowPopup, currentUser, f
 
         { count <= 8 ? <p>You can add {9-count} more friends.</p> : <p>This group has a 10 member limit.</p>}
 
-        <div>
-          {/* { Object.values(selectedFriends).map(friend => <div>{friend.username}</div>) } */}
-          {/* <input type="text" className="friend-search-bar" autoFocus /> */}
-          <input
-            type="text"
-            value={searchText}
-            onChange={(e) => setSearchText(e.currentTarget.value)}
-            placeholder={"Type the username of a friend"}
-          />
+        <div className="search-bar-container">
+          { Object.values(selectedFriends).map(friend => <div className="selected-friend" key={friend.id}>{friend.username}</div>) }
+
+          <div className="search-input-container">
+            <input className="search-input"
+              type="text"
+              value={searchText}
+              onChange={(e) => setSearchText(e.currentTarget.value)}
+              placeholder={"Type the username of a friend"}
+              />
+          </div>
         </div>
 
         { friends.map(friend => {
-          return (
-            <div key={friend.id} onClick={() => toggleFriend(friend)}>
-              {friend.username}
-            </div>
-          )
+          if (friend.username.includes(searchText)) {
+            return (
+              <div key={friend.id} onClick={() => toggleFriend(friend)}>
+                {friend.username}
+              </div>
+            )
+          }
         })}
 
         <button onClick={handleCreate} disabled={count > 9}>Create Group DM</button>
