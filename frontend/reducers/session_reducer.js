@@ -50,9 +50,13 @@ const SessionReducer = (state = _nullSession, action) => {
     case RECEIVE_FRIENDSHIP:
       console.log(action);
       newState = Object.assign({}, state);
-      index = newState.incomings.indexOf(action.friendship.friendId);
-      newState.incomings.splice(index, 1);
-      newState.friends.push(action.friendship.friendId);
+      if (action.friendship.status === 2) {
+        index = newState.incomings.indexOf(action.friendship.friendId);
+        newState.incomings.splice(index, 1);
+        newState.friends.push(action.friendship.friendId);
+      } else {
+        newState.outgoings.push(action.friendship.friendId);
+      }
       return newState;
     case REMOVE_FRIENDSHIP:
       console.log(action);
