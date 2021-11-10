@@ -1,11 +1,12 @@
-import { useState } from 'react';
-import { FaChevronDown } from 'react-icons/fa'
+import { useRef } from 'react';
+import { closeOnEscape, closeOnOutsideClick } from '../../utils/close_utils';
 
-const DropDown = ({ type, setValue }) => {
-  const [showDD, setShowDD] = useState(false);
-  const [text, setText] = useState("Select");
+const DropDown = ({ type, setValue, setText, setShowDD }) => {
 
-  const toggleDD = () => setShowDD(!showDD);
+  const popupRef = useRef();
+
+  closeOnOutsideClick(popupRef, setShowDD);
+  closeOnEscape(setShowDD);
 
   let values = [];
 
@@ -31,22 +32,11 @@ const DropDown = ({ type, setValue }) => {
     setValue(type, type === "month" ? i : val);
   }
 
-  const dd = (
-    <div className="dd">
+  return (
+    <div className="dd" ref={popupRef}>
       { values.map((val, i) => (
         <div className="dd-item" key={i} onClick={() => handleSelect(val, i)}>{val}</div>
       ))}
-    </div>
-  )
-
-  return (
-    <div className={`dd-button dd-${type}`} tabIndex="0" onClick={toggleDD} onBlur={() => setShowDD(false)}>
-      <div className={text !== "Select" ? "" : "unselected"}>
-        { text }
-      </div>
-
-      <FaChevronDown size={13} />
-      { showDD && dd }
     </div>
   )
 }

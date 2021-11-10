@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import UserPfp from "../user/UserPfp"
 import UserPopup from '../user/UserPopup';
 
@@ -12,20 +12,9 @@ const MemberIndexItem = ({ member }) => {
     setShowPopup(!showPopup);
   };
 
-  const handleEscapeExit = (e) => {
-    if (e.keyCode === 27) {
-      setShowPopup(false);
-    }
-  };
-
-  useEffect(() => {
-   document.addEventListener("keydown", handleEscapeExit);
-   return () => document.removeEventListener("keydown", handleEscapeExit);
-  }, []);
-
   return (
-    <div className="member-index-item" tabIndex="0" onClick={handlePopupShow} onBlur={() => setShowPopup(false)}>
-      { showPopup && <UserPopup user={member} top={popupTop} /> }
+    <div className="member-index-item" onClick={handlePopupShow}>
+      { showPopup && <UserPopup user={member} top={popupTop} setShowPopup={setShowPopup} /> }
       <UserPfp user={member} />
 
       <div className="username">

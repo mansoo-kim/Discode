@@ -5,6 +5,7 @@ import { RECEIVE_USER, RECEIVE_USERS } from "../actions/user_actions";
 import { RECEIVE_FRIENDSHIP, REMOVE_FRIENDSHIP } from "../actions/friendship_actions";
 
 const receiveUsers = (state, members) => {
+  if (!members) return state;
   const newState = Object.assign({}, state);
   for (let [id, member] of Object.entries(members)) {
     newState[id] = member;

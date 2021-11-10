@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { Link } from 'react-router-dom';
-import DropDown from './DropDown';
+import DropDownButton from './DropDownButton';
 
 const SessionForm = ({ type, sessionErrors, processForm, resetSessionErrors, history }) => {
 
@@ -30,7 +30,7 @@ const SessionForm = ({ type, sessionErrors, processForm, resetSessionErrors, his
   const checkThenSubmit = (e) => {
     e.preventDefault();
 
-    if (type === 'register' && getValues("year") && getValues("month") && getValues("day")) {
+    if (type === 'register' && getValues("year") !== undefined && getValues("month") && getValues("day")) {
       clearErrors("dob");
     }
     handleSubmit(onSubmit)(e);
@@ -38,7 +38,7 @@ const SessionForm = ({ type, sessionErrors, processForm, resetSessionErrors, his
 
   const onSubmit = (data) => {
     if (type === 'register') {
-      if (!data.year || !data.month || !data.day) {
+      if (!data.year || data.month === undefined || !data.day) {
         setError("dob", { message: "- This field is required"});
         return null;
       }
@@ -105,9 +105,9 @@ const SessionForm = ({ type, sessionErrors, processForm, resetSessionErrors, his
     <div className={`input-container dob-container ${errors.dob ? 'show-errors' : ''}`}>
       <label>DATE OF BIRTH<span>{ errors.dob && errors.dob.message }</span></label>
       <div className={"dob-dds"}>
-        <DropDown type="month" setValue={setValue} />
-        <DropDown type="day" setValue={setValue} />
-        <DropDown type="year" setValue={setValue} />
+        <DropDownButton type="month" setValue={setValue} />
+        <DropDownButton type="day" setValue={setValue} />
+        <DropDownButton type="year" setValue={setValue} />
       </div>
     </div>
   ) : null;

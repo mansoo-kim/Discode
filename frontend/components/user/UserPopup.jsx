@@ -1,5 +1,13 @@
-const UserPopup = ({ user, top, currentUser, conversations, createFriendship, updateFriendship, deleteFriendship, createConversation, history }) => {
+import { useRef } from 'react';
+import { closeOnEscape, closeOnOutsideClick } from '../../utils/close_utils';
+
+const UserPopup = ({ user, top, setShowPopup, currentUser, conversations, createFriendship, updateFriendship, deleteFriendship, createConversation, history }) => {
   if (user.id === currentUser.id) return null;
+
+  const popupRef = useRef();
+
+  closeOnOutsideClick(popupRef, setShowPopup);
+  closeOnEscape(setShowPopup);
 
   const handleCreate = (friendId) => {
     createFriendship({
@@ -58,7 +66,7 @@ const UserPopup = ({ user, top, currentUser, conversations, createFriendship, up
 
   return (
     <div className="popup-container">
-      <div className="user-popup" style={{top: `${top}px`}}>
+      <div className="user-popup" style={{top: `${top}px`}} ref={popupRef}>
         <div onClick={handleConversationStart}>
           Message
         </div>
