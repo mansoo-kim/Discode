@@ -5,7 +5,15 @@ const NewConversationPopup = ({ top, conversations, setShowPopup, currentUser, f
   const [selectedFriends, setSelectedFriends] = useState({});
 
   const toggleFriend = (friend) => {
-    setSelectedFriends(prevState => ({...prevState, [friend.id]: friend}));
+    if (selectedFriends[friend.id]) {
+      setSelectedFriends(prevState => {
+        const newState = { ...prevState}
+        delete newState[friend.id];
+        return newState;
+      });
+    } else {
+      setSelectedFriends(prevState => ({...prevState, [friend.id]: friend}));
+    }
   }
 
   const arrayEquals = (a, b) => a.length === b.length && a.every((val, idx) => val === b[idx])
