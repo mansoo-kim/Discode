@@ -25,12 +25,12 @@ const SessionForm = ({ type, sessionErrors, processForm, resetSessionErrors, his
   useEffect(() => {
     clearErrors();
     return () => resetSessionErrors();
-  }, [])
+  }, []);
 
   const checkThenSubmit = (e) => {
     e.preventDefault();
 
-    if (type === 'register' && getValues("year") !== undefined && getValues("month") && getValues("day")) {
+    if (type === 'register' && getValues("year") && getValues("month") !== undefined && getValues("day")) {
       clearErrors("dob");
     }
     handleSubmit(onSubmit)(e);
