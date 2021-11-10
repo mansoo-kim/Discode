@@ -1,8 +1,22 @@
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 
 const NewConversationPopup = ({ top, conversations, setShowPopup, currentUser, friends, createConversation, history}) => {
 
+  const popupRef = useRef();
+
+  const checkOutside = (e) => {
+    if (popupRef.current && !popupRef.current.contains(e.target)) {
+      setShowPopup(false);
+    }
+  };
+
+  useEffect(() => {
+   document.addEventListener("mousedown", checkOutside);
+   return () => document.removeEventListener("mousedown", checkOutside);
+  }, []);
+
   const [selectedFriends, setSelectedFriends] = useState({});
+  const [searchText, setSearchText] = useState("");
 
   const toggleFriend = (friend) => {
     if (selectedFriends[friend.id]) {
@@ -21,9 +35,7 @@ const NewConversationPopup = ({ top, conversations, setShowPopup, currentUser, f
   const handleCreate = () => {
     console.log(selectedFriends);
     const groupIds = [currentUser.id, ...Object.keys(selectedFriends)].map(id => parseInt(id)).sort((a,b) => a-b);
-    console.log(groupIds);
     for (let conversation of conversations) {
-      console.log(conversation.members);
       if (arrayEquals(conversation.members, groupIds)) {
         if (history.location.pathname !== `/channels/@me/${conversation.id}`) history.push(`/channels/@me/${conversation.id}`);
         setShowPopup(false);
@@ -35,30 +47,35 @@ const NewConversationPopup = ({ top, conversations, setShowPopup, currentUser, f
       .then(() => setShowPopup(false));
   }
 
-  const count = Object.keys(selectedFriends).length
+  const count = Object.keys(selectedFriends).length;
 
   return (
     <div className="popup-container">
-
-      <div className="new-conversation-popup" style={{top: `${top+25}px`}}>
-
+      <div className="new-conversation-popup" style={{top: `${top+25}px`}} ref={popupRef}>
         <h3>Select Friends</h3>
 
         { count <= 8 ? <p>You can add {9-count} more friends.</p> : <p>This group has a 10 member limit.</p>}
 
         <div>
-          { Object.values(selectedFriends).map(friend => friend.username).join(" ") }
+          {/* { Object.values(selectedFriends).map(friend => <div>{friend.username}</div>) } */}
+          {/* <input type="text" className="friend-search-bar" autoFocus /> */}
+          <input
+            type="text"
+            value={searchText}
+            onChange={(e) => setSearchText(e.currentTarget.value)}
+            placeholder={"Type the username of a friend"}
+          />
         </div>
 
         { friends.map(friend => {
           return (
-            <div key={friend.id} onMouseDown={e => e.preventDefault()} onClick={() => toggleFriend(friend)}>
+            <div key={friend.id} onClick={() => toggleFriend(friend)}>
               {friend.username}
             </div>
           )
         })}
 
-        <button onMouseDown={e => e.preventDefault()} onClick={handleCreate} disabled={count > 9}>Create Group DM</button>
+        <button onClick={handleCreate} disabled={count > 9}>Create Group DM</button>
       </div>
     </div>
   )
