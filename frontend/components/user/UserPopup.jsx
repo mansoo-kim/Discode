@@ -1,4 +1,4 @@
-const MemberPopup = ({ currentUser, createFriendship, updateFriendship, deleteFriendship }) => {
+const UserPopup = ({ currentUser, createFriendship, updateFriendship, deleteFriendship }) => {
   const handleCreate = (friendId) => {
     createFriendship({
       user_id: currentUser.id,
@@ -21,8 +21,8 @@ const MemberPopup = ({ currentUser, createFriendship, updateFriendship, deleteFr
   };
 
   return (
-    <div>
-      <button></button>
+    <div className="user-popup">
+      <button>hi</button>
     </div>
   )
 }
@@ -40,4 +40,4 @@ const mDTP = (dispatch) => ({
   deleteFriendship: (ids) => dispatch(deleteFriendship(ids))
 });
 
-export default connect(mSTP, mDTP)(MemberPopup);
+export default connect(mSTP, mDTP)(UserPopup);

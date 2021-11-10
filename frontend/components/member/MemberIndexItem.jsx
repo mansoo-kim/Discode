@@ -1,17 +1,15 @@
 import { useState } from 'react';
 import UserPfp from "../user/UserPfp"
-import MemberPopup from './MemberPopup';
+import UserPopup from '../user/UserPopup';
 
 const MemberIndexItem = ({ member }) => {
 
   const [showOptions, setShowOptions] = useState(false);
-  const toggleOptions = () => setShowOptions(!showOptions);
+  const togglePopup = () => setShowOptions(!showOptions);
 
   return (
-    <div className="member-index-item" onClick={toggleOptions}>
-      {/* <div>
-        <button onClick={() => action(member.id)}>{isFriend ? "Remove Friend" : "Add Friend"}</button>
-      </div> */}
+    <div className="member-index-item" onClick={togglePopup}>
+      { showOptions && <UserPopup user={member} />}
       <UserPfp user={member} />
 
       <div className="username">
