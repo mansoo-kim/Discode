@@ -1,4 +1,6 @@
-const UserPopup = ({ currentUser, createFriendship, updateFriendship, deleteFriendship }) => {
+const UserPopup = ({ user, currentUser, createFriendship, updateFriendship, deleteFriendship }) => {
+  if (user.id === currentUser.id) return null;
+
   const handleCreate = (friendId) => {
     createFriendship({
       user_id: currentUser.id,
@@ -20,9 +22,29 @@ const UserPopup = ({ currentUser, createFriendship, updateFriendship, deleteFrie
     });
   };
 
+  let action;
+  let label;
+  switch (user.status) {
+    case 3:
+      action = handleDelete;
+      label = "Remove Friend";
+      break;
+    case 2:
+      action = handleUpdate;
+      label = "Add Friend";
+      break;
+    case 1:
+      action = () => null;
+      label = "Add Friend";
+      break;
+    default:
+      action = handleCreate;
+      label = "Add Friend";
+  }
+
   return (
-    <div className="user-popup">
-      <button>hi</button>
+    <div className="user-popup" onClick={() => action(user.id)}>
+      { label }
     </div>
   )
 }

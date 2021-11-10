@@ -4,12 +4,11 @@ import UserPopup from '../user/UserPopup';
 
 const MemberIndexItem = ({ member }) => {
 
-  const [showOptions, setShowOptions] = useState(false);
-  const togglePopup = () => setShowOptions(!showOptions);
+  const [showPopup, setShowPopup] = useState(false);
 
   return (
-    <div className="member-index-item" onClick={togglePopup}>
-      { showOptions && <UserPopup user={member} />}
+    <div className="member-index-item" tabIndex="0" onClick={() => setShowPopup(!showPopup)} onBlur={() => setShowPopup(false)}>
+      { showPopup && <UserPopup user={member} />}
       <UserPfp user={member} />
 
       <div className="username">

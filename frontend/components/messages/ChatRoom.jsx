@@ -34,7 +34,7 @@ const ChatRoom = ({ type, cc, currentUserId, messages, receiveMessage, removeMes
   const bottomRef = useRef();
 
   useEffect(() => {
-    if (bottomRef.current) bottomRef.current.scrollIntoView();
+    bottomRef.current?.scrollIntoView();
   }, [messages])
 
   const messageList = messages.map((message,i) => {
