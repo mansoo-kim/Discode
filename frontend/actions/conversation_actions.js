@@ -18,11 +18,18 @@ export const requestConversations = () => (dispatch) => (
     .then(
       (res) => dispatch(receiveConversations(res))
     )
-)
+);
 
 export const requestConversation = (conversationId) => (dispatch) => (
   ConversationApiUtil.requestConversation(conversationId)
     .then(
       (res) => dispatch(receiveConversation(res))
     )
-)
+);
+
+export const createConversation = (conversation) => (dispatch) => (
+  ConversationApiUtil.createConversation(conversation)
+    .then(
+      (res) => dispatch(receiveConversation(res))
+    )
+);

@@ -11,3 +11,11 @@ export const requestConversation = (conversationId) => (
     method: 'GET'
   })
 );
+
+export const createConversation = (conversation) => (
+  $.ajax({
+    url: `/api/conversations`,
+    method: 'POST',
+    data: { conversation }
+  })
+)
