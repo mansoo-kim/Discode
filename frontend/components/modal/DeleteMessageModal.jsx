@@ -1,19 +1,10 @@
-import { useEffect } from 'react';
+import { closeModalOnEscape } from '../../utils/close_utils';
+
 import UserPfp from '../user/UserPfp';
 
 const DeleteMessageModal = ({ message, sender, chat, closeModal }) => {
 
-  const handleEscapeExit = (e) => {
-    if (e.keyCode === 27) {
-      e.stopImmediatePropagation();
-      closeModal();
-    }
-  };
-
-  useEffect(() => {
-    document.addEventListener("keydown", handleEscapeExit, true);
-    return () => document.removeEventListener("keydown", handleEscapeExit, true);
-   }, []);
+  closeModalOnEscape(closeModal);
 
   const handleDelete = () => {
     chat.delete(

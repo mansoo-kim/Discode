@@ -1,20 +1,11 @@
 import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
+import { closeModalOnEscape } from '../../utils/close_utils';
 import { FaTimes } from 'react-icons/fa';
 
 const EditUserModal = ({ type, userErrors, currentUser, closeModal, updateUser, resetUserErrors }) => {
 
-  const handleEscapeExit = (e) => {
-    if (e.keyCode === 27) {
-      e.stopImmediatePropagation();
-      closeModal();
-    }
-  };
-
-  useEffect(() => {
-    document.addEventListener("keydown", handleEscapeExit, true);
-    return () => document.removeEventListener("keydown", handleEscapeExit, true);
-   }, []);
+  closeModalOnEscape(closeModal);
 
   const { register, formState: { errors, isDirty }, handleSubmit, getValues } = useForm({
     shouldFocusError: false,

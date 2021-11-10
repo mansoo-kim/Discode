@@ -1,20 +1,10 @@
-import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
+import { closeModalOnEscape } from '../../utils/close_utils';
 import { FaHashtag, FaTimes } from 'react-icons/fa';
 
 const CreateChannelModal = ({ closeModal, createChannel, history }) => {
 
-  const handleEscapeExit = (e) => {
-    if (e.keyCode === 27) {
-      e.stopImmediatePropagation();
-      closeModal();
-    }
-  };
-
-  useEffect(() => {
-    document.addEventListener("keydown", handleEscapeExit, true);
-    return () => document.removeEventListener("keydown", handleEscapeExit, true);
-   }, []);
+  closeModalOnEscape(closeModal);
 
   const { register, formState: { isDirty }, handleSubmit } = useForm({
     mode: 'onChange',

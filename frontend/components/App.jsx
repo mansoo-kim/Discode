@@ -1,4 +1,4 @@
-import { Route, Switch, Redirect } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 import { AuthRoute, ProtectedRoute } from '../utils/route_utils';
 import Splash from './splash/Splash';
 import LoginFormContainer from './session/LoginFormContainer';
@@ -9,8 +9,8 @@ const App = () => {
   return (
     <Switch>
       <Route exact path='/' component={Splash} />
-      <AuthRoute exact path='/register' component={RegisterFormContainer} />
-      <AuthRoute exact path='/login' component={LoginFormContainer} />
+      <AuthRoute path='/register' component={RegisterFormContainer} />
+      <AuthRoute path='/login' component={LoginFormContainer} />
       <ProtectedRoute path='/' component={Main} />
     </Switch>
   )
