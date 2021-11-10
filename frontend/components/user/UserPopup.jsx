@@ -1,4 +1,4 @@
-const UserPopup = ({ user, currentUser, createFriendship, updateFriendship, deleteFriendship }) => {
+const UserPopup = ({ user, top, currentUser, createFriendship, updateFriendship, deleteFriendship }) => {
   if (user.id === currentUser.id) return null;
 
   const handleCreate = (friendId) => {
@@ -43,7 +43,7 @@ const UserPopup = ({ user, currentUser, createFriendship, updateFriendship, dele
   }
 
   return (
-    <div className="user-popup" onClick={() => action(user.id)}>
+    <div className="user-popup" style={{top: `${top}px`}} onClick={() => action(user.id)}>
       { label }
     </div>
   )
