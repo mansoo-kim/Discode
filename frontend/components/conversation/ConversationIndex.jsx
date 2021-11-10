@@ -38,9 +38,8 @@ const ConversationIndex = ({ conversations, requestConversations }) => {
         </div>
         <div className="new-cc-button" tabIndex="0" onClick={handlePopupShow} onBlur={() => setShowPopup(false)}>
           <HiOutlinePlus size={18} />
-
-          { showPopup && <NewConversationPopup top={popupTop} /> }
         </div>
+        { showPopup && <NewConversationPopup top={popupTop} /> }
       </div>
 
       <div className="cc-index">

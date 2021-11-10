@@ -4,7 +4,7 @@ import { FaArrowAltCircleLeft } from 'react-icons/fa';
 
 const ServerOptionsDD = ({isOwner, server, setShowDD, currentUserId, openModal, toggleSettings}) => {
   const serverSettingsOption = isOwner ? (
-    <div className="server-option" onMouseDown={(e => e.preventDefault())}
+    <div className="server-option" onMouseDown={e => e.preventDefault()}
     onClick={toggleSettings}>
       Server Settings
       <BsFillGearFill size={14} />
@@ -12,7 +12,7 @@ const ServerOptionsDD = ({isOwner, server, setShowDD, currentUserId, openModal, 
   ) : null;
 
   const newChannelOption = isOwner ? (
-    <div className="server-option"  onMouseDown={(e => e.preventDefault())}
+    <div className="server-option"  onMouseDown={e => e.preventDefault()}
     onClick={() => openModal({type: "createChannel", serverId: server.id })}>
       Create Channel
       <BsPlusCircleFill size={14} />
@@ -20,7 +20,7 @@ const ServerOptionsDD = ({isOwner, server, setShowDD, currentUserId, openModal, 
   ) : null;
 
   const leaveOption = isOwner ? null : (
-    <div className="server-option leave-server" onMouseDown={(e => e.preventDefault())} onClick={() => openModal({type: "leaveServer", server, currentUserId })}>
+    <div className="server-option leave-server" onMouseDown={e => e.preventDefault()} onClick={() => openModal({type: "leaveServer", server, currentUserId })}>
       Leave Server
       <FaArrowAltCircleLeft size={14} />
     </div>
