@@ -1,21 +1,27 @@
 import { useState } from 'react';
 
-const NewConversationPopup = ({ top, currentUser, friends, createConversation}) => {
+const NewConversationPopup = ({ top, conversations, setShowPopup, currentUser, friends, createConversation, history}) => {
 
   const [selectedFriends, setSelectedFriends] = useState({});
 
   const toggleFriend = (friend) => {
-    console.log(friend);
     setSelectedFriends(prevState => ({...prevState, [friend.id]: friend}));
   }
 
-  const handleCreate = () => {
-    createConversation({
-      member_ids: [currentUser.id, ...Object.keys(selectedFriends)]
-    })
-  }
+  const arrayEquals = (a, b) => a.length === b.length && a.every((val, idx) => val === b[idx])
 
-  console.log(selectedFriends);
+  const handleCreate = () => {
+    const groupIds = [currentUser.id, ...Object.keys(selectedFriends)].map(id => parseInt(id)).sort();
+    for (let conversation of conversations) {
+      if (arrayEquals(conversation.members, groupIds)) {
+        if (history.location.pathname !== `/channels/@me/${conversation.id}`) history.push(`/channels/@me/${conversation.id}`)
+        setShowPopup(false);
+        return;
+      }
+    }
+    createConversation({member_ids: groupIds})
+      .then(() => setShowPopup(false));
+  }
 
   return (
     <div className="popup-container">
@@ -44,6 +50,7 @@ const NewConversationPopup = ({ top, currentUser, friends, createConversation}) 
 }
 
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 import { selectStatus } from '../../reducers/selectors';
 import { createConversation } from '../../actions/conversation_actions';
 
@@ -56,4 +63,4 @@ const mDTP = (dispatch) => ({
   createConversation: (conversation) => dispatch(createConversation(conversation))
 });
 
-export default connect(mSTP, mDTP)(NewConversationPopup);
+export default withRouter(connect(mSTP, mDTP)(NewConversationPopup));

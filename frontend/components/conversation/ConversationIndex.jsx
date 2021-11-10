@@ -12,7 +12,7 @@ const ConversationIndex = ({ conversations, requestConversations }) => {
   const [showPopup, setShowPopup] = useState(false);
   const [popupTop, setPopupTop] = useState(0);
 
-  const handlePopupShow = (e) => {
+  const togglePopup = (e) => {
     setPopupTop(e.currentTarget.getBoundingClientRect().top)
     setShowPopup(!showPopup);
   };
@@ -36,10 +36,10 @@ const ConversationIndex = ({ conversations, requestConversations }) => {
             DIRECT MESSAGES
           </span>
         </div>
-        <div className="new-cc-button" tabIndex="0" onClick={handlePopupShow} onBlur={() => setShowPopup(false)}>
+        <div className="new-cc-button" tabIndex="0" onClick={togglePopup} onBlur={() => setShowPopup(false)}>
           <HiOutlinePlus size={18} />
         </div>
-        { showPopup && <NewConversationPopup top={popupTop} /> }
+        { showPopup && <NewConversationPopup top={popupTop} conversations={conversations} setShowPopup={setShowPopup} /> }
       </div>
 
       <div className="cc-index">
