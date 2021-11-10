@@ -14,7 +14,7 @@ const CreateChannelModal = ({ closeModal, createChannel, history }) => {
   useEffect(() => {
     document.addEventListener("keydown", handleEscapeExit, true);
     return () => document.removeEventListener("keydown", handleEscapeExit, true);
-   });
+   }, []);
 
   const { register, formState: { isDirty }, handleSubmit } = useForm({
     mode: 'onChange',

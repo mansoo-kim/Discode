@@ -12,7 +12,7 @@ const LogOutModal = ({ closeModal, logout}) => {
   useEffect(() => {
     document.addEventListener("keydown", handleEscapeExit, true);
     return () => document.removeEventListener("keydown", handleEscapeExit, true);
-   });
+   }, []);
 
   const handleLogout = () => {
     logout()

@@ -14,7 +14,7 @@ const CreateServerModal = ({ currentUser, closeModal, createServer, history }) =
   useEffect(() => {
     document.addEventListener("keydown", handleEscapeExit, true);
     return () => document.removeEventListener("keydown", handleEscapeExit, true);
-   });
+   }, []);
 
   const { register, formState: { errors }, watch, handleSubmit } = useForm({
     shouldFocusError: false,

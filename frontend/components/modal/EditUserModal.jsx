@@ -14,7 +14,7 @@ const EditUserModal = ({ type, userErrors, currentUser, closeModal, updateUser, 
   useEffect(() => {
     document.addEventListener("keydown", handleEscapeExit, true);
     return () => document.removeEventListener("keydown", handleEscapeExit, true);
-   });
+   }, []);
 
   const { register, formState: { errors, isDirty }, handleSubmit, getValues } = useForm({
     shouldFocusError: false,

@@ -29,7 +29,7 @@ const ServerSettings = ({ toggleSettings, server, updateServer, openModal }) => 
   useEffect(() => {
    document.addEventListener("keydown", handleEscapeExit);
    return () => document.removeEventListener("keydown", handleEscapeExit);
-  });
+  }, []);
 
   useEffect(() => {
     if (promptBackground === redBackground) setTimeout(() => setPromptBackground(darkBackground), 500);

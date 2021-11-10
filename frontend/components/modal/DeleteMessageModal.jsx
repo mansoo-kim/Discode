@@ -13,7 +13,7 @@ const DeleteMessageModal = ({ message, sender, chat, closeModal }) => {
   useEffect(() => {
     document.addEventListener("keydown", handleEscapeExit, true);
     return () => document.removeEventListener("keydown", handleEscapeExit, true);
-   });
+   }, []);
 
   const handleDelete = () => {
     chat.delete(

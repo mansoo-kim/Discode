@@ -12,7 +12,7 @@ const LeaveServerModal = ({ server, currentUserId, closeModal, deleteMembership,
   useEffect(() => {
     document.addEventListener("keydown", handleEscapeExit, true);
     return () => document.removeEventListener("keydown", handleEscapeExit, true);
-   });
+   }, []);
 
   const handleLeaving = () => {
     deleteMembership({

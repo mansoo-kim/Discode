@@ -12,7 +12,7 @@ const DeleteChannelModal = ({ channel, deleteChannel, closeModal, history }) => 
   useEffect(() => {
     document.addEventListener("keydown", handleEscapeExit, true);
     return () => document.removeEventListener("keydown", handleEscapeExit, true);
-   });
+   }, []);
 
   const handleDelete = () => {
     deleteChannel(channel.id)

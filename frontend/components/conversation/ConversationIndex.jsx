@@ -17,6 +17,17 @@ const ConversationIndex = ({ conversations, requestConversations }) => {
     setShowPopup(!showPopup);
   };
 
+  const handleEscapeExit = (e) => {
+    if (e.keyCode === 27) {
+      setShowPopup(false);
+    }
+  };
+
+  useEffect(() => {
+   document.addEventListener("keydown", handleEscapeExit);
+   return () => document.removeEventListener("keydown", handleEscapeExit);
+  }, []);
+
   return (
     <div className="cc-index-container">
       <div className="cc-index-header-container">
