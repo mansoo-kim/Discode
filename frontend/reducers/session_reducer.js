@@ -55,7 +55,7 @@ const SessionReducer = (state = _nullSession, action) => {
         newState.incomings.splice(index, 1);
         newState.friends.push(action.friendship.friendId);
       } else {
-        newState.outgoings.push(action.friendship.friendId);
+        if (!newState.outgoings.includes(action.friendship.friendId)) newState.outgoings.push(action.friendship.friendId);
       }
       return newState;
     case REMOVE_FRIENDSHIP:

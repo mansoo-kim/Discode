@@ -46,4 +46,11 @@
   &:hover {
     background: $lighter-black;
   }
+
+  .username {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    width: 150px;
+  }
 }

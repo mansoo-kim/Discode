@@ -39,6 +39,11 @@
       font-weight: 600;
       line-height: 18px;
       padding-left: 1px;
+
+      text-overflow: ellipsis;
+      overflow: hidden;
+      white-space: nowrap;
+      width: 150px;
     }
 
     .tag {
