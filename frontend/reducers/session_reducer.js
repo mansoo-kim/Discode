@@ -1,6 +1,8 @@
 import { RECEIVE_CURRENT_USER, LOGOUT_CURRENT_USER } from "../actions/session_actions";
 import { RECEIVE_USER } from "../actions/user_actions";
 import { RECEIVE_SERVER } from "../actions/server_actions";
+import { REMOVE_SERVER } from "../actions/server_actions";
+import { REMOVE_MEMBERSHIP } from "../actions/membership_actions";
 
 const _nullSession = {
   id: null,
@@ -16,6 +18,8 @@ const _nullSession = {
 
 const SessionReducer = (state = _nullSession, action) => {
   Object.freeze(state);
+  let newState;
+  let index;
   switch (action.type) {
     case RECEIVE_CURRENT_USER:
       return action.currentUser;
@@ -26,11 +30,22 @@ const SessionReducer = (state = _nullSession, action) => {
       return state;
     case RECEIVE_SERVER:
       if (action.res.server.ownerId === state.id && !state.servers.includes(action.res.server.id)) {
-        const newState = Object.assign({}, state);
+        newState = Object.assign({}, state);
         newState.servers.push(action.res.server.id);
         return newState
       }
       return state;
+    case REMOVE_SERVER:
+      newState = Object.assign({}, state);
+      index = newState.servers.indexOf(action.res.server.id);
+      newState.servers.splice(index, 1);
+      return newState;
+    case REMOVE_MEMBERSHIP:
+      if (action.membership.joinableType !== "Server") return state;
+      newState = Object.assign({}, state);
+      index = newState.servers.indexOf(action.membership.id);
+      newState.servers.splice(index, 1);
+      return newState;
     default:
       return state;
   }

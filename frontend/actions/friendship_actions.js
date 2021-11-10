@@ -1,9 +1,18 @@
 import * as FriendshipApiUtil from "../utils/friendship_api_utils";
 import { receiveUsers } from "./user_actions";
 
-export const CREATE_FRIENDSHIP = 'CREATE_FRIENDSHIP';
-export const UPDATE_FRIENDSHIP = 'UPDATE_FRIENDSHIP';
+export const RECEIVE_FRIENDSHIP = 'UPDATE_FRIENDSHIP';
 export const REMOVE_FRIENDSHIP = 'REMOVE_FRIENDSHIP';
+
+export const receiveFriendship = (friendship) => ({
+  type: RECEIVE_FRIENDSHIP,
+  friendship
+});
+
+export const removeFriendship = (friendship) => ({
+  type: REMOVE_FRIENDSHIP,
+  friendship
+});
 
 export const requestFriendships = () => (dispatch) => (
   FriendshipApiUtil.requestFriendships()
@@ -15,20 +24,20 @@ export const requestFriendships = () => (dispatch) => (
 export const createFriendship = (ids) => (dispatch) => (
   FriendshipApiUtil.createFriendship(ids)
     .then(
-      (users) => dispatch(receiveUsers(users))
+      (friendship) => dispatch(receiveFriendship(friendship))
     )
 );
 
 export const updateFriendship = (ids) => (dispatch) => (
   FriendshipApiUtil.updateFriendship(ids)
     .then(
-      (users) => dispatch(receiveUsers(users))
+      (friendship) => dispatch(receiveFriendship(friendship))
     )
 );
 
 export const deleteFriendship = (ids) => (dispatch) => (
   FriendshipApiUtil.deleteFriendship(ids)
     .then(
-      (users) => dispatch(receiveUsers(users))
+      (friendship) => dispatch(removeFriendship(friendship))
     )
 );
