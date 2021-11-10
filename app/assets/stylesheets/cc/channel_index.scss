@@ -115,10 +115,6 @@
     display: flex;
     align-items: center;
     cursor: pointer;
-
-    &:focus-visible {
-      outline: none;
-    }
   }
 }
 

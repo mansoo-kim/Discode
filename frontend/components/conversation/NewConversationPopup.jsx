@@ -1,19 +1,12 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useRef } from 'react';
+import { closeOnEscape, closeOnOutsideClick } from '../../utils/close_utils';
 
 const NewConversationPopup = ({ top, conversations, setShowPopup, currentUser, friends, createConversation, history}) => {
 
   const popupRef = useRef();
 
-  const checkOutside = (e) => {
-    if (popupRef.current && !popupRef.current.contains(e.target)) {
-      setShowPopup(false);
-    }
-  };
-
-  useEffect(() => {
-   document.addEventListener("mousedown", checkOutside);
-   return () => document.removeEventListener("mousedown", checkOutside);
-  }, []);
+  closeOnOutsideClick(popupRef, setShowPopup);
+  closeOnEscape(setShowPopup);
 
   const [selectedFriends, setSelectedFriends] = useState({});
   const [searchText, setSearchText] = useState("");

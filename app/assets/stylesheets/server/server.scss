@@ -11,10 +11,6 @@
 }
 
 .server-name-container {
-  &:focus-visible {
-    outline: none;
-  }
-
   display: flex;
   align-items: center;
   justify-content: space-between;
