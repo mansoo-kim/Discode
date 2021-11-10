@@ -11,8 +11,11 @@ const NewConversationPopup = ({ top, conversations, setShowPopup, currentUser, f
   const arrayEquals = (a, b) => a.length === b.length && a.every((val, idx) => val === b[idx])
 
   const handleCreate = () => {
-    const groupIds = [currentUser.id, ...Object.keys(selectedFriends)].map(id => parseInt(id)).sort();
+    console.log(selectedFriends);
+    const groupIds = [currentUser.id, ...Object.keys(selectedFriends)].map(id => parseInt(id)).sort((a,b) => a-b);
+    console.log(groupIds);
     for (let conversation of conversations) {
+      console.log(conversation.members);
       if (arrayEquals(conversation.members, groupIds)) {
         if (history.location.pathname !== `/channels/@me/${conversation.id}`) history.push(`/channels/@me/${conversation.id}`);
         setShowPopup(false);
@@ -24,13 +27,16 @@ const NewConversationPopup = ({ top, conversations, setShowPopup, currentUser, f
       .then(() => setShowPopup(false));
   }
 
+  const count = Object.keys(selectedFriends).length
+
   return (
     <div className="popup-container">
 
       <div className="new-conversation-popup" style={{top: `${top+25}px`}}>
 
         <h3>Select Friends</h3>
-        <p>You can add {10-Object.keys(selectedFriends).length} more friends.</p>
+
+        { count <= 8 ? <p>You can add {9-count} more friends.</p> : <p>This group has a 10 member limit.</p>}
 
         <div>
           { Object.values(selectedFriends).map(friend => friend.username).join(" ") }
@@ -44,7 +50,7 @@ const NewConversationPopup = ({ top, conversations, setShowPopup, currentUser, f
           )
         })}
 
-        <button onMouseDown={e => e.preventDefault()} onClick={handleCreate}>Create Group DM</button>
+        <button onMouseDown={e => e.preventDefault()} onClick={handleCreate} disabled={count > 9}>Create Group DM</button>
       </div>
     </div>
   )

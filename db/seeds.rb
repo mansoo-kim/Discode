@@ -19,25 +19,22 @@ u9 = User.create!(username: "the beef", email: "beefy@gmail.com", dob: "1996-07-
 u10 = User.create!(username: "arebiter", email: "arebiter@gmail.com", dob: "1996-09-14", password: "bellpedro")
 u11 = User.create!(username: "mothammer", email: "mothammer@gmail.com", dob: "1988-04-22", password: "kimmmm")
 
-u1.friend_ids = [u2.id, u3.id, u4.id]
+u1.friend_ids = [u2.id, u3.id, u4.id, u5.id, u6.id, u7.id]
 u2.friend_ids = [u1.id, u3.id, u4.id, u5.id, u6.id, u7.id, u8.id, u9.id, u10.id, u11.id]
 u3.friend_ids = [u1.id, u2.id]
 u4.friend_ids = [u1.id, u2.id]
-u5.friend_ids = [u2.id]
-u6.friend_ids = [u2.id]
-u7.friend_ids = [u2.id]
+u5.friend_ids = [u1.id, u2.id]
+u6.friend_ids = [u1.id, u2.id]
+u7.friend_ids = [u1.id, u2.id]
 u8.friend_ids = [u2.id]
 u9.friend_ids = [u2.id]
 u10.friend_ids = [u2.id]
 u11.friend_ids = [u2.id]
 
-u1.outgoing_ids = [u5.id, u6.id, u7.id]
-u5.incoming_ids = [u1.id]
-u6.incoming_ids = [u1.id]
-u7.incoming_ids = [u1.id]
+u1.outgoing_ids = [u8.id]
+u8.incoming_ids = [u1.id]
 
-u1.incoming_ids = [u8.id, u9.id, u10.id, u11.id]
-u8.outgoing_ids = [u1.id]
+u1.incoming_ids = [u9.id, u10.id, u11.id]
 u9.outgoing_ids = [u1.id]
 u10.outgoing_ids = [u1.id]
 u11.outgoing_ids = [u1.id]
