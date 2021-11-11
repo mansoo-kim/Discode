@@ -12,7 +12,7 @@
   color: $white;
   font-size: 16px;
   font-family: 'ginto-normal', sans-serif;
-  font-weight: 500;
+  font-weight: 600;
 }
 
 .friend-nav-button {
@@ -33,4 +33,44 @@
     color: $off-white;
     background: rgba(79,84,92,0.16);
   }
+}
+
+.friend-index-container {
+  height: calc(100% - 48px);
+  padding-right: 3px;
+  display: flex;
+  flex-direction: column;
+}
+
+.friend-index {
+  overflow-y: auto;
+
+  &::-webkit-scrollbar {
+    background: rgba(0,0,0,0.1);
+    width: 8px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: $another-black;
+    border-radius: 10px;
+  }
+}
+
+.all-friends {
+  margin: 24px 20px 8px 30px;
+  font-family: 'ginto-normal', sans-serif;
+  color: $off-grey;
+  font-size: 12px;
+  line-height: 16px;
+  font-weight: 600;
+  letter-spacing: 0.25px;
+}
+
+.friend-index-item {
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  margin: 0px 20px 0px 30px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 61px;
 }

@@ -4,11 +4,15 @@ const FriendIndexItem = ({ friend, action1, action2 }) => {
   const label2 = friend.status === 3 ? "Remove Friend" : friend.status === 2 ? "Reject" : "";
 
   return (
-    <div>
-      { friend.username }
+    <div className="friend-index-item">
+      <div>
+        { friend.username }
+      </div>
 
-      <button onClick={() => action1(friend.id)}>{ label1 }</button>
-      { friend.status !== 1 && <button onClick={() => action2(friend.id)}>{ label2 }</button> }
+      <div>
+        <button onClick={() => action1(friend.id)}>{ label1 }</button>
+        { friend.status !== 1 && <button onClick={() => action2(friend.id)}>{ label2 }</button> }
+      </div>
     </div>
   )
 }

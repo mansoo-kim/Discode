@@ -24,8 +24,13 @@ const FriendIndex = ({ currentUser, friends, conversations, deleteFriendship, cr
   }
 
   return (
-    <div>
-      { friends.map(friend => <FriendIndexItem key={friend.id} friend={friend} action1={handleConversationStart} action2={handleDelete} />)}
+    <div className="friend-index-container">
+      <div className="friend-index">
+        <div className="all-friends">
+          ALL FRIENDS - {friends.length}
+        </div>
+        { friends.map(friend => <FriendIndexItem key={friend.id} friend={friend} action1={handleConversationStart} action2={handleDelete} />)}
+      </div>
     </div>
   )
 }
