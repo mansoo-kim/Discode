@@ -30,9 +30,7 @@ const ServerIndex = ({ servers, requestServers, openModal, match }) => {
         <div className={"server-icon-container new-server-icon"} onClick={() => openModal({
           type: "createServer"
         })}>
-          <div>
-            <HiOutlinePlus size={24} />
-          </div>
+          <HiOutlinePlus size={20} />
         </div>
       </div>
 

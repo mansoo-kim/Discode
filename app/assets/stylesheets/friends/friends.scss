@@ -160,9 +160,12 @@
     position: absolute;
     top: -40px;
     background: $not-black;
+    font-size: 14px;
+    font-weight: 600;
     padding: 8px 12px;
     border-radius: 4px;
     width: fit-content;
+    color: $off-grey;
     box-shadow: 0 5px 10px rgba(0,0,0,0.2);
   }
 
@@ -177,11 +180,11 @@
     border-width: 10px 10px 0 10px;
   }
 
-  .grey-button {
-    color: $off-grey;
+  .green-button:hover {
+    color: $icon-green;
   }
 
-  .red-button {
+  .red-button:hover {
     color: $error-red;
   }
 }

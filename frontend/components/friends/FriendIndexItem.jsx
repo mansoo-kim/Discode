@@ -13,7 +13,7 @@ const FriendIndexItem = ({ friend, action1, action2, subtext }) => {
       icon1 = <MdChatBubble />, icon2 = <RiDeleteBin5Fill />
       break;
     case 2:
-      label1 = "Accept", label2 = "Reject"
+      label1 = "Accept", label2 = "Ignore"
       icon1 = <FaCheck />, icon2 = <FaTimes />
       break;
     case 1:
@@ -38,7 +38,7 @@ const FriendIndexItem = ({ friend, action1, action2, subtext }) => {
 
         <div className="friend-buttons">
           { friend.status !== 1 &&
-            <div className="grey-button" onClick={() => action1(friend.id)}>
+            <div className="green-button" onClick={() => action1(friend.id)}>
               { icon1 }
               <div className="hover-label">
                 { label1 }
