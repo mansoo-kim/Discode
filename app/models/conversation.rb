@@ -13,6 +13,6 @@ class Conversation < ApplicationRecord
 
   def display_name
     return self.name if self.name
-    self.members.map(&:username).join(', ')
+    self.members.sort{ |a, b| a.username <=> b.username }.map(&:username).join(', ')
   end
 end

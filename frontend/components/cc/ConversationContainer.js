@@ -1,10 +1,12 @@
 import { connect } from 'react-redux';
 import CCView from './CCView';
 import { requestConversation } from '../../actions/conversation_actions';
+import { selectMembers } from '../../reducers/selectors';
 
 const mSTP = (state, ownProps) => ({
   cc: state.entities.conversations[ownProps.match.params.ccId],
-  type: 'Conversation'
+  type: 'Conversation',
+  members: selectMembers(state, "conversations", ownProps.match.params.ccId)
 });
 
 const mDTP = (dispatch) => ({

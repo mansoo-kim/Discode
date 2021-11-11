@@ -14,11 +14,13 @@ const MemberIndex = ({ members }) => {
   )
 }
 
-import { connect } from 'react-redux';
-import { selectMembers } from '../../reducers/selectors';
+export default MemberIndex
 
-const mSTP = (state, ownProps) => ({
-  members: selectMembers(state, ownProps.type, ownProps.id)
-});
+// import { connect } from 'react-redux';
+// import { selectMembers } from '../../reducers/selectors';
 
-export default connect(mSTP)(MemberIndex);
+// const mSTP = (state, ownProps) => ({
+//   members: selectMembers(state, ownProps.type, ownProps.id)
+// });
+
+// export default connect(mSTP)(MemberIndex);
