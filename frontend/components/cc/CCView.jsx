@@ -26,7 +26,7 @@ const CCView = ({ cc, type, members, currentUser, requestCC, updateCC }) => {
   const handleEdit = (e) => {
     e.preventDefault();
     if (newName !== displayName) {
-      updateCC({ ...cc, name: body });
+      updateCC({ ...cc, name: newName });
     }
     setShowEdit(false);
   };

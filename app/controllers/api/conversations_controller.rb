@@ -21,7 +21,7 @@ class Api::ConversationsController < ApplicationController
   end
 
   def update
-    @conversation = current_user.conversations.find_by(id: params[:id])
+    @conversation = current_user.conversations.includes(:members).find_by(id: params[:id])
 
     if @conversation.update(conversation_params)
       render 'api/conversations/show'

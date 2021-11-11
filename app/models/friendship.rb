@@ -19,8 +19,4 @@ class Friendship < ApplicationRecord
   belongs_to :friend,
     class_name: :User
 
-  def self.find_relation(user_id, friend_id)
-    Friendship.where(user_id: user_id, friend_id: friend_id)
-  end
-
 end

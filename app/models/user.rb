@@ -62,8 +62,8 @@ class User < ApplicationRecord
     source: :friend
 
   def friend_status(friend)
-    relation = Friendship.find_relation(self.id, friend.id)
-    relation.any? ? relation[0].status : 0
+    relation = self.friendships.find_by(friend_id: friend.id)
+    relation ? relation.status : 0
   end
 
   def ensure_unique_tag

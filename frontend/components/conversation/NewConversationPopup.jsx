@@ -27,7 +27,6 @@ const NewConversationPopup = ({ top, conversations, setShowPopup, currentUser, f
   const arrayEquals = (a, b) => a.length === b.length && a.every((val, idx) => val === b[idx])
 
   const handleCreate = () => {
-    console.log(selectedFriends);
     const groupIds = [currentUser.id, ...Object.keys(selectedFriends)].map(id => parseInt(id)).sort((a,b) => a-b);
     for (let conversation of conversations) {
       if (arrayEquals(conversation.members, groupIds)) {
