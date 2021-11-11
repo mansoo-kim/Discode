@@ -223,6 +223,22 @@
   height: 44px;
   padding: 0px 8px;
   margin: 8px 8px 0px 8px;
+  color: $off-grey;
+  border-radius: 4px;
+
+  &.active {
+    color: $white;
+    background: $background-active;
+  }
+
+  &:hover {
+    background: $background-hover;
+    color: $white;
+
+    img {
+      filter: brightness(1.8);
+    }
+  }
 
   img {
     width: 24px;

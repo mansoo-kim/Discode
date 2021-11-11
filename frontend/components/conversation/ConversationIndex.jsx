@@ -20,12 +20,12 @@ const ConversationIndex = ({ conversations, membersById, currentUser, requestCon
   return (
     <div className="cc-index-container">
       <div className="cc-index-header-container">
-        <div className="cc-index-header">
+        <div className="cc-index-header conversation">
           <span>
             DIRECT MESSAGES
           </span>
         </div>
-        <div className="new-cc-button" onClick={togglePopup} >
+        <div className="new-cc-button new-conversation" onClick={togglePopup} >
           <HiOutlinePlus size={18} />
         </div>
         { showPopup && <NewConversationPopup top={popupTop} conversations={conversations} setShowPopup={setShowPopup} /> }

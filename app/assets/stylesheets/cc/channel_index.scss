@@ -87,6 +87,10 @@
         justify-content: center;
         color: $channels-grey;
         cursor: pointer;
+
+        &:hover {
+          color: $off-white;
+        }
       }
 
     }
@@ -115,6 +119,10 @@
     display: flex;
     align-items: center;
     cursor: pointer;
+
+    &:hover {
+      color: $off-white;
+    }
   }
 }
 

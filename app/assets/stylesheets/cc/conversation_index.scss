@@ -1,0 +1,30 @@
+.cc-index-header.conversation {
+  padding-left: 8px;
+}
+
+.new-cc-button.new-conversation {
+  color: $off-grey;
+}
+
+.conversation-button {
+  width: 224px;
+  height: 42px;
+  margin-left: 8px;
+  padding: 0px 8px;
+  display: flex;
+  align-items: center;
+  color: $channels-grey;
+  border-radius: 4px;
+
+  &:hover {
+    background: $background-hover;
+    color: $white;
+  }
+}
+
+.conversation-name {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  margin-left: 12px;
+}

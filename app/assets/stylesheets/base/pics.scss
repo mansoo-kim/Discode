@@ -7,6 +7,7 @@
   background: $lighter-black;
   border-radius: 50%;
   overflow: hidden;
+  flex-shrink: 0;
 }
 
 .pfp {
@@ -21,6 +22,17 @@
   .pfp {
     width: 19px;
     height: 14px;
+  }
+}
+
+.default-dm {
+
+  .pfp {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: $icon-blue;
+    color: $white;
   }
 }
 
