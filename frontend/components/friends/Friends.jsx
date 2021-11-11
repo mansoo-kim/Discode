@@ -11,16 +11,24 @@ const Friends = ({ requestFriendships }) => {
   }, []);
 
   return (
-    <div className="friends-container">
-      <nav className="friends-nav">
+    <div className="cc-view">
+      <div className="cc-header">
         <div>
-          <img src='https://raw.githubusercontent.com/mansookim/Discode/6a4da7e263eacb2f22da39214b7ae35999db03f1/app/assets/images/wave_icon.svg' />
-          Frends
-        </div>
+          <div className="friends-label">
+            <div className="cc-hash">
+              <img src='https://raw.githubusercontent.com/mansookim/Discode/0d26be6a765cb13972bba354d10d5463fc80ae42/app/assets/images/wave_icon.svg' />
+            </div>
+            Friends
+          </div>
 
-        <div className="friend-nav-button" onClick={() => setShowAll(true)}>All</div>
-        <div className="friend-nav-button" onClick={() => setShowAll(false)}>Pending</div>
-      </nav>
+          <div className="separator">
+
+          </div>
+
+          <div className={`friend-nav-button ${showAll ? "active" : ""}`} onClick={() => setShowAll(true)}>All</div>
+          <div className={`friend-nav-button ${showAll ? "" : "active"}`} onClick={() => setShowAll(false)}>Pending</div>
+        </div>
+      </div>
 
       { showAll && <FriendIndex /> }
       { !showAll && <PendingIndex /> }
