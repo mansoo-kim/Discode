@@ -30,7 +30,6 @@ export const closeOnEscape = (setBoolean) => {
 export const closeOnOutsideClick = (ref, setBoolean) => {
   const checkOutside = (e) => {
     if (ref.current && !ref.current.contains(e.target)) {
-      e.stopImmediatePropagation();
       setBoolean(false);
     }
   };
