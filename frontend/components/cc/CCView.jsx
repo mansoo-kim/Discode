@@ -1,10 +1,11 @@
-import { useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import MemberIndex from '../member/MemberIndex';
 import ChatRoom from '../messages/ChatRoom';
+import { closeOnOutsideClick } from '../../utils/close_utils';
 import { FaHashtag } from 'react-icons/fa';
 import { MdPeopleAlt } from 'react-icons/md';
 
-const CCView = ({ cc, type, members, currentUser, requestCC }) => {
+const CCView = ({ cc, type, members, currentUser, requestCC, updateCC }) => {
   if (!cc) return null;
 
   useEffect(() => {
@@ -18,12 +19,45 @@ const CCView = ({ cc, type, members, currentUser, requestCC }) => {
     displayName = members.filter(member => member.id !== currentUser.id).map(member => member.username).join(", ")
   }
 
+  const [showEdit, setShowEdit] = useState(false);
+  const [newName, setNewName] = useState(displayName);
+
+  const handleEdit = (e) => {
+    e.preventDefault();
+    if (newName !== displayName) {
+      updateCC({ ...cc, name: body });
+    }
+    setShowEdit(false);
+  };
+
+  const inputRef = useRef();
+  useEffect(() => {
+    if (showEdit) {
+      inputRef.current.focus();
+    }
+  });
+
+  const containerRef = useRef();
+  closeOnOutsideClick(containerRef, setShowEdit)
+
+  const editName = (
+    <form onSubmit={handleEdit} className="message-form edit">
+      <input type="text" ref={inputRef} value={newName} onChange={(e) => setNewName(e.currentTarget.value)} />
+    </form>
+  )
+
+  const displayNameDiv = type === "Channel" ? (
+    <div className="cc-name">{ displayName }</div>
+  ) : (
+    <div className="cc-name" ref={containerRef} onClick={() => setShowEdit(true)}>{ showEdit ? editName : displayName }</div>
+  )
+
   return (
     <div className="cc-view">
       <div className="cc-header">
         <div>
           <div className="cc-hash">{ type === "Channel" ? <FaHashtag size={20} /> : <MdPeopleAlt size={20} /> }</div>
-          <div className="cc-name">{ displayName }</div>
+          { displayNameDiv }
         </div>
       </div>
 

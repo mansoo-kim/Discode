@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import CCView from './CCView';
-import { requestConversation } from '../../actions/conversation_actions';
+import { requestConversation, updateConversation } from '../../actions/conversation_actions';
 import { selectMembers } from '../../reducers/selectors';
 
 const mSTP = (state, ownProps) => ({
@@ -11,7 +11,8 @@ const mSTP = (state, ownProps) => ({
 });
 
 const mDTP = (dispatch) => ({
-  requestCC: (conversationId) => dispatch(requestConversation(conversationId))
+  requestCC: (conversationId) => dispatch(requestConversation(conversationId)),
+  updateCC: (conversation) => dispatch(updateConversation(conversation))
 });
 
 const ConnectedCCView = connect(mSTP, mDTP)(CCView);

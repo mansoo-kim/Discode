@@ -13,7 +13,7 @@ Rails.application.routes.draw do
       resources :channels, only: [:create]
     end
     resources :channels, only: [:show, :update, :destroy]
-    resources :conversations, only: [:index, :show, :create]
+    resources :conversations, only: [:index, :show, :create, :update]
 
     resources :friendships, only: [:index, :create]
     patch 'friendships', to: 'friendships#update'

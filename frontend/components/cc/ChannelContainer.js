@@ -12,7 +12,8 @@ const mSTP = (state, ownProps) => ({
 });
 
 const mDTP = (dispatch) => ({
-  requestCC: (channelId) => dispatch(requestChannel(channelId))
+  requestCC: (channelId) => dispatch(requestChannel(channelId)),
+  updateCC: () => null
 });
 
 export default connect(mSTP, mDTP)(CCView);

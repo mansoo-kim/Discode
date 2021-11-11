@@ -19,3 +19,11 @@ export const createConversation = (conversation) => (
     data: { conversation }
   })
 )
+
+export const updateConversation = (conversation) => (
+  $.ajax({
+    url: `/api/conversations/${conversation.id}`,
+    method: 'PATCH',
+    data: { conversation }
+  })
+)

@@ -20,9 +20,19 @@ class Api::ConversationsController < ApplicationController
     end
   end
 
+  def update
+    @conversation = current_user.conversations.find_by(id: params[:id])
+
+    if @conversation.update(conversation_params)
+      render 'api/conversations/show'
+    else
+      render json: @conversation.errors, status: 422
+    end
+  end
+
   private
 
   def conversation_params
-    params.require(:conversation).permit(member_ids: [])
+    params.require(:conversation).permit(:name, member_ids: [])
   end
 end

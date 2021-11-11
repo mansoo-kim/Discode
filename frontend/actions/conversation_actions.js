@@ -33,3 +33,10 @@ export const createConversation = (conversation) => (dispatch) => (
       (res) => dispatch(receiveConversation(res))
     )
 );
+
+export const updateConversation = (conversation) => (dispatch) => (
+  ConversationApiUtil.updateConversation(conversation)
+    .then(
+      (res) => dispatch(receiveConversation(res))
+    )
+);
