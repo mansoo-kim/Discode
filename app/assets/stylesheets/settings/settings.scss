@@ -68,7 +68,7 @@
   }
 
   .selected {
-    background: rgba(79,84,92,0.32);
+    background: $background-active;
     cursor: default;
   }
 
@@ -78,7 +78,7 @@
     transition: background 0.1s ease;
 
     &:hover {
-      background: rgba(79,84,92,0.16);
+      background: $background-hover;
     }
 
     &:active {

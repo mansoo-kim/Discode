@@ -34,7 +34,7 @@
       border-radius: 4px;
 
       &:hover {
-        background: rgba(79,84,92,0.16);
+        background: $background-hover;
 
         .channel-button > div:last-child {
           color: $off-white;
@@ -42,7 +42,7 @@
       }
 
       &.active-channel  {
-        background: rgba(79,84,92,0.32);
+        background: $background-active;
 
         .channel-button > div:last-child {
           color: $white;
