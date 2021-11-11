@@ -6,7 +6,7 @@ export const selectMembers = (state, type, id) => {
   for (let memberId of memberIds) {
     members.push(state.entities.users[memberId]);
   }
-  return members;
+  return members.sort((a,b) => a.username > b.username ? 1 : -1)
 };
 
 export const selectChannels = (state, serverId) => {
