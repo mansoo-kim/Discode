@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
+import { closeOnEscape } from '../../utils/close_utils';
 import { RiDeleteBin5Fill } from 'react-icons/ri';
 import { FaPen } from 'react-icons/fa';
 
@@ -30,15 +31,11 @@ const MessageItem = ({ message, chat, currentUserId, sameSender, sender, openMod
     setShowEdit(false);
   };
 
-  const handleEscapeExit = (e) => {
-    if (e.keyCode === 27) {
-      setShowEdit(false);
-    }
-  };
+  closeOnEscape(setShowEdit);
 
   const editInput = (
     <form onSubmit={handleEdit} className="message-form edit">
-      <input type="text" value={body} ref={editRef} onChange={(e) => setBody(e.currentTarget.value)} onKeyDown={handleEscapeExit} />
+      <input type="text" value={body} ref={editRef} onChange={(e) => setBody(e.currentTarget.value)} />
 
       <div>
         escape to <span onClick={() => setShowEdit(false)}>cancel</span> &#8226; enter to <span onClick={handleEdit}>save</span>
