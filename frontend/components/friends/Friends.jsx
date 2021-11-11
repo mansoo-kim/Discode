@@ -14,7 +14,7 @@ const Friends = ({ requestFriendships }) => {
     <div className="friends-container">
       <nav className="friends-nav">
         <div>
-
+          <img src='https://raw.githubusercontent.com/mansookim/Discode/6a4da7e263eacb2f22da39214b7ae35999db03f1/app/assets/images/wave_icon.svg' />
           Frends
         </div>
 
