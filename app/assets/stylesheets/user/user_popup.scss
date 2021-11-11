@@ -13,4 +13,44 @@
   color: $off-grey;
   right: 248px;
   pointer-events: auto;
+
+  padding: 6px 8px;
+  width: 188;
+  border-radius: 4px;
+}
+
+.user-option {
+  width: 172px;
+  height: 32px;
+  padding: 6px 8px;
+  border-radius: 2px;
+  position: relative;
+  display: flex;
+  align-items: center;
+
+  span {
+    position: relative;
+    z-index: 3;
+  }
+
+  &:hover {
+    background: $blurple;
+    color: $white;
+  }
+
+  &:after {
+    background: rgba(0,0,0,0.3);
+    opacity: 0;
+    transition: opacity 0.15s ease;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    content: '';
+  }
+
+  &:active:after {
+    opacity: 1;
+  }
 }

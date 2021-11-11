@@ -67,10 +67,13 @@ const UserPopup = ({ user, top, setShowPopup, currentUser, conversations, create
   return (
     <div className="popup-container">
       <div className="user-popup" style={{top: `${top}px`}} ref={popupRef}>
-        <div onClick={handleConversationStart}>
-          Message
+        <div onClick={handleConversationStart} className="user-option">
+          <span>
+            Message
+
+          </span>
         </div>
-        <div onClick={() => action(user.id)}>
+        <div onClick={() => action(user.id)} className="user-option">
           { label }
         </div>
       </div>

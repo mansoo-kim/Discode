@@ -13,12 +13,14 @@ const MemberIndexItem = ({ member }) => {
   };
 
   return (
-    <div className="member-index-item" onClick={handlePopupShow}>
+    <div>
       { showPopup && <UserPopup user={member} top={popupTop} setShowPopup={setShowPopup} /> }
-      <UserPfp user={member} />
+      <div className="member-index-item" onClick={handlePopupShow}>
+        <UserPfp user={member} />
 
-      <div className="username">
-        { member.username }
+        <div className="username">
+          { member.username }
+        </div>
       </div>
     </div>
   )
