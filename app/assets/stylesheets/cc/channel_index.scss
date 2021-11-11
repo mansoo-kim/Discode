@@ -1,10 +1,8 @@
 .cc-index-container {
   background: $diff-black;
   flex-grow: 1;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
   width: 100%;
+  height: calc(100vh - 48px - 52px);
 
   overflow-y: scroll;
 

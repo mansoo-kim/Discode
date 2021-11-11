@@ -1,4 +1,4 @@
-import { Route, Link } from 'react-router-dom';
+import { Route } from 'react-router-dom';
 import ConversationIndex from '../conversation/ConversationIndex';
 import ConversationContainer from '../cc/ConversationContainer';
 import CurrentUser from '../user/CurrentUser';
@@ -9,16 +9,13 @@ const Home = ({ match }) => {
     <div className="main-view">
       <div className="server-nav-column">
         <div>
-          <div className="dummy-search-container">
-            <div className="dummy-search">Find or start a conversation</div>
+          <div className="server-header">
+            <div className="dummy-search-container">
+              <div className="dummy-search">Find or start a conversation</div>
+            </div>
           </div>
 
-          <Link className={`friends-link ${match.url === "/channels/@me" ? "active" : ""}`} to='/channels/@me'>
-            <img src='https://raw.githubusercontent.com/mansookim/Discode/0d26be6a765cb13972bba354d10d5463fc80ae42/app/assets/images/wave_icon.svg' />
-            Friends
-          </Link>
-
-          <ConversationIndex activeConversationId={parseInt(match.params.conversationId)}/>
+          <ConversationIndex match={match} />
         </div>
 
         <CurrentUser />
