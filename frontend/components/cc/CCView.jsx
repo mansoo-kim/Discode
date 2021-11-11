@@ -8,10 +8,6 @@ import { MdPeopleAlt } from 'react-icons/md';
 const CCView = ({ cc, type, members, currentUser, requestCC, updateCC }) => {
   if (!cc) return null;
 
-  useEffect(() => {
-    if (cc?.id) requestCC(cc.id);
-  }, [cc?.id])
-
   let displayName;
   if (type === "Channel" || cc.name) {
     displayName = cc.name;
@@ -21,6 +17,11 @@ const CCView = ({ cc, type, members, currentUser, requestCC, updateCC }) => {
 
   const [showEdit, setShowEdit] = useState(false);
   const [newName, setNewName] = useState(displayName);
+
+  useEffect(() => {
+    if (cc?.id) requestCC(cc.id);
+    setNewName(displayName);
+  }, [cc?.id]);
 
   const handleEdit = (e) => {
     e.preventDefault();
@@ -46,7 +47,7 @@ const CCView = ({ cc, type, members, currentUser, requestCC, updateCC }) => {
     </form>
   )
 
-  const displayNameDiv = type === "Channel" ? (
+  const displayNameDiv = (type === "Channel" || members.length < 3) ? (
     <div className="cc-name">{ displayName }</div>
   ) : (
     <div className="cc-name" ref={containerRef} onClick={() => setShowEdit(true)}>{ showEdit ? editName : displayName }</div>
