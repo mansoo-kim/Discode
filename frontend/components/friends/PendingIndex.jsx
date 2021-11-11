@@ -2,17 +2,17 @@ import FriendIndexItem from "./FriendIndexItem";
 
 const PendingIndex = ({ currentUser, incomings, outgoings, updateFriendship, deleteFriendship }) => {
 
-  const handleUpdate = (friendId) => {
+  const handleUpdate = (friend) => {
     updateFriendship({
       user_id: currentUser.id,
-      friend_id: friendId
+      friend_id: friend.id
     });
   };
 
-  const handleDelete = (friendId) => {
+  const handleDelete = (friend) => {
     deleteFriendship({
       user_id: currentUser.id,
-      friend_id: friendId
+      friend_id: friend.id
     });
   };
 

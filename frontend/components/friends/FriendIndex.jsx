@@ -1,18 +1,15 @@
 import FriendIndexItem from "./FriendIndexItem"
 
-const FriendIndex = ({ currentUser, friends, conversations, deleteFriendship, createConversation, history }) => {
+const FriendIndex = ({ currentUser, friends, conversations, createConversation, history, openModal }) => {
 
-  const handleDelete = (friendId) => {
-    deleteFriendship({
-      user_id: currentUser.id,
-      friend_id: friendId
-    });
-  };
+  const handleRemove = (friend) => {
+    openModal({type: "removeFriend", currentUserId: currentUser.id, friend})
+  }
 
   const arrayEquals = (a, b) => a.length === b.length && a.every((val, idx) => val === b[idx])
 
-  const handleConversationStart = (friendId) => {
-    const groupIds = [currentUser.id, friendId].sort((a,b) => a-b);
+  const handleConversationStart = (friend) => {
+    const groupIds = [currentUser.id, friend.id].sort((a,b) => a-b);
     for (let conversation of conversations) {
       if (arrayEquals(conversation.members.sort((a,b) => a-b), groupIds)) {
         if (history.location.pathname !== `/channels/@me/${conversation.id}`) history.push(`/channels/@me/${conversation.id}`);
@@ -29,7 +26,7 @@ const FriendIndex = ({ currentUser, friends, conversations, deleteFriendship, cr
         <div className="all-friends">
           ALL FRIENDS - {friends.length}
         </div>
-        { friends.map(friend => <FriendIndexItem key={friend.id} friend={friend} action1={handleConversationStart} action2={handleDelete} />)}
+        { friends.map(friend => <FriendIndexItem key={friend.id} friend={friend} action1={handleConversationStart} action2={handleRemove} openModal={openModal} />)}
       </div>
     </div>
   )
@@ -37,9 +34,9 @@ const FriendIndex = ({ currentUser, friends, conversations, deleteFriendship, cr
 
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import { deleteFriendship } from "../../actions/friendship_actions";
 import { selectStatus } from '../../reducers/selectors';
-import { createConversation } from "../../actions/conversation_actions";
+import { createConversation } from '../../actions/conversation_actions';
+import { openModal } from '../../actions/modal_actions';
 
 const mSTP = (state) => ({
   currentUser: state.session,
@@ -48,8 +45,8 @@ const mSTP = (state) => ({
 });
 
 const mDTP = (dispatch) => ({
-  deleteFriendship: (ids) => dispatch(deleteFriendship(ids)),
-  createConversation: (conversation) => dispatch(createConversation(conversation))
+  createConversation: (conversation) => dispatch(createConversation(conversation)),
+  openModal: (modal) => dispatch(openModal(modal))
 });
 
 export default withRouter(connect(mSTP, mDTP)(FriendIndex));

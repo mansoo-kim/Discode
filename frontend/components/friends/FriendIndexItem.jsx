@@ -38,7 +38,7 @@ const FriendIndexItem = ({ friend, action1, action2, subtext }) => {
 
         <div className="friend-buttons">
           { friend.status !== 1 &&
-            <div className="green-button" onClick={() => action1(friend.id)}>
+            <div className="green-button" onClick={() => action1(friend)}>
               { icon1 }
               <div className="hover-label">
                 { label1 }
@@ -46,7 +46,7 @@ const FriendIndexItem = ({ friend, action1, action2, subtext }) => {
               <div className="hover-triangle"></div>
             </div>}
 
-          <div className="red-button" onClick={() => action2(friend.id)}>
+          <div className="red-button" onClick={() => action2(friend)}>
             { icon2 }
             <div className="hover-label">
               { label2 }

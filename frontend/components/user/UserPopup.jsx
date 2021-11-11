@@ -1,7 +1,7 @@
 import { useRef } from 'react';
 import { closeOnEscape, closeOnOutsideClick } from '../../utils/close_utils';
 
-const UserPopup = ({ user, top, setShowPopup, currentUser, conversations, createFriendship, updateFriendship, deleteFriendship, createConversation, history }) => {
+const UserPopup = ({ user, top, setShowPopup, currentUser, conversations, createFriendship, updateFriendship, createConversation, openModal, history }) => {
   if (user.id === currentUser.id) return null;
 
   const popupRef = useRef();
@@ -9,26 +9,26 @@ const UserPopup = ({ user, top, setShowPopup, currentUser, conversations, create
   closeOnOutsideClick(popupRef, setShowPopup);
   closeOnEscape(setShowPopup);
 
-  const handleCreate = (friendId) => {
+  const handleCreate = (friend) => {
     createFriendship({
       user_id: currentUser.id,
-      friend_id: friendId
+      friend_id: friend.id
     }).then(() => setShowPopup(false));
+    setShowPopup(false);
   };
 
-  const handleUpdate = (friendId) => {
+  const handleUpdate = (friend) => {
     updateFriendship({
       user_id: currentUser.id,
-      friend_id: friendId
+      friend_id: friend.id
     }).then(() => setShowPopup(false));
+    setShowPopup(false);
   };
 
-  const handleDelete = (friendId) => {
-    deleteFriendship({
-      user_id: currentUser.id,
-      friend_id: friendId
-    }).then(() => setShowPopup(false));
-  };
+  const handleRemove = (friend) => {
+    openModal({type: "removeFriend", currentUserId: currentUser.id, friend})
+    setShowPopup(false);
+  }
 
   const arrayEquals = (a, b) => a.length === b.length && a.every((val, idx) => val === b[idx])
 
@@ -48,7 +48,7 @@ const UserPopup = ({ user, top, setShowPopup, currentUser, conversations, create
   let label;
   switch (user.status) {
     case 3:
-      action = handleDelete;
+      action = handleRemove;
       label = "Remove Friend";
       break;
     case 2:
@@ -73,7 +73,7 @@ const UserPopup = ({ user, top, setShowPopup, currentUser, conversations, create
 
           </span>
         </div>
-        <div onClick={() => action(user.id)} className="user-option">
+        <div onClick={() => action(user)} className="user-option">
           { label }
         </div>
       </div>
@@ -83,8 +83,9 @@ const UserPopup = ({ user, top, setShowPopup, currentUser, conversations, create
 
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import { createFriendship, updateFriendship, deleteFriendship } from "../../actions/friendship_actions";
+import { createFriendship, updateFriendship } from "../../actions/friendship_actions";
 import { createConversation } from '../../actions/conversation_actions';
+import { openModal } from '../../actions/modal_actions';
 
 const mSTP = (state) => ({
   currentUser: state.session,
@@ -94,8 +95,8 @@ const mSTP = (state) => ({
 const mDTP = (dispatch) => ({
   createFriendship: (ids) => dispatch(createFriendship(ids)),
   updateFriendship: (ids) => dispatch(updateFriendship(ids)),
-  deleteFriendship: (ids) => dispatch(deleteFriendship(ids)),
-  createConversation: (conversation) => dispatch(createConversation(conversation))
+  createConversation: (conversation) => dispatch(createConversation(conversation)),
+  openModal: (modal) => dispatch(openModal(modal))
 });
 
 export default withRouter(connect(mSTP, mDTP)(UserPopup));

@@ -7,6 +7,7 @@ import DeleteChannelModal from './DeleteChannelModal';
 import DeleteServerModal from './DeleteServerModal';
 import LogOutModal from './LogOutModal';
 import LeaveServerModal from './LeaveServerModal';
+import RemoveFriendModal from './RemoveFriendModal';
 
 const ModalManager = ({ modal, closeModal, history }) => {
   let component;
@@ -35,6 +36,9 @@ const ModalManager = ({ modal, closeModal, history }) => {
       break
     case "leaveServer":
       component = <LeaveServerModal server={modal.server} currentUserId={modal.currentUserId} history={history} closeModal={() => closeModal(modal)} />
+      break;
+    case "removeFriend":
+      component = <RemoveFriendModal currentUserId={modal.currentUserId} friend={modal.friend} history={history} closeModal={() => closeModal(modal)} />
       break;
     default:
       component = <div className="modal"><h2>Nothing to see here</h2></div>;
