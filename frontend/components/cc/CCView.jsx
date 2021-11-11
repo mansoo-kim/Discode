@@ -12,10 +12,10 @@ const CCView = ({ cc, type, members, currentUser, requestCC }) => {
   }, [cc?.id])
 
   let displayName;
-  if (type === "Channel" || members.length > 2) {
+  if (type === "Channel" || cc.name) {
     displayName = cc.name;
   } else {
-    displayName = members.filter(member => member.id !== currentUser.id)[0].username
+    displayName = members.filter(member => member.id !== currentUser.id).map(member => member.username).join(", ")
   }
 
   return (

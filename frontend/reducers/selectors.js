@@ -6,8 +6,16 @@ export const selectMembers = (state, type, id) => {
   for (let memberId of memberIds) {
     members.push(state.entities.users[memberId]);
   }
-  return members.sort((a,b) => a.username > b.username ? 1 : -1)
+  return members.sort((a,b) => a.username > b.username ? 1 : -1);
 };
+
+export const selectMembersByConversation = (state) => {
+  const membersById = {}
+  for (let conv of Object.values(state.entities.conversations)) {
+    membersById[conv.id] = selectMembers(state, "conversations", conv.id)
+  }
+  return membersById;
+}
 
 export const selectChannels = (state, serverId) => {
   const channelIds = state.entities.servers[serverId]?.channels;

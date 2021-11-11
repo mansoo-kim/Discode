@@ -3,7 +3,7 @@ import ConversationIndexItem from "./ConversationIndexItem";
 import NewConversationPopup from './NewConversationPopup';
 import { HiOutlinePlus } from 'react-icons/hi';
 
-const ConversationIndex = ({ conversations, requestConversations }) => {
+const ConversationIndex = ({ conversations, membersById, currentUser, requestConversations }) => {
 
   useEffect(() => {
     requestConversations();
@@ -32,7 +32,7 @@ const ConversationIndex = ({ conversations, requestConversations }) => {
       </div>
 
       <div className="cc-index">
-        {conversations.map(conversation => <ConversationIndexItem key={conversation.id} conversation={conversation} />)}
+        {conversations.map(conversation => <ConversationIndexItem key={conversation.id} conversation={conversation} members={membersById[conversation.id]} currentUser={currentUser} />)}
       </div>
 
     </div>
@@ -41,9 +41,12 @@ const ConversationIndex = ({ conversations, requestConversations }) => {
 
 import { connect } from 'react-redux';
 import { requestConversations } from '../../actions/conversation_actions';
+import { selectMembersByConversation } from '../../reducers/selectors';
 
 const mSTP = (state) => ({
-  conversations: Object.values(state.entities.conversations)
+  conversations: Object.values(state.entities.conversations),
+  membersById: selectMembersByConversation(state),
+  currentUser: state.session
 });
 
 const mDTP = (dispatch) => ({
