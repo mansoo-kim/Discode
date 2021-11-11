@@ -11,11 +11,15 @@ const Friends = ({ requestFriendships }) => {
   }, []);
 
   return (
-    <div>
+    <div className="friends-container">
+      <nav className="friends-nav">
+        <div>
 
-      <nav>
-        <div onClick={() => setShowAll(true)}>All</div>
-        <div onClick={() => setShowAll(false)}>Pending</div>
+          Frends
+        </div>
+
+        <div className="friend-nav-button" onClick={() => setShowAll(true)}>All</div>
+        <div className="friend-nav-button" onClick={() => setShowAll(false)}>Pending</div>
       </nav>
 
       { showAll && <FriendIndex /> }
