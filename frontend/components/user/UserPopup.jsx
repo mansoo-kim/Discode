@@ -13,21 +13,21 @@ const UserPopup = ({ user, top, setShowPopup, currentUser, conversations, create
     createFriendship({
       user_id: currentUser.id,
       friend_id: friendId
-    });
+    }).then(() => setShowPopup(false));
   };
 
   const handleUpdate = (friendId) => {
     updateFriendship({
       user_id: currentUser.id,
       friend_id: friendId
-    });
+    }).then(() => setShowPopup(false));
   };
 
   const handleDelete = (friendId) => {
     deleteFriendship({
       user_id: currentUser.id,
       friend_id: friendId
-    });
+    }).then(() => setShowPopup(false));
   };
 
   const arrayEquals = (a, b) => a.length === b.length && a.every((val, idx) => val === b[idx])
@@ -56,7 +56,7 @@ const UserPopup = ({ user, top, setShowPopup, currentUser, conversations, create
       label = "Add Friend";
       break;
     case 1:
-      action = () => null;
+      action = () => setShowPopup(false);
       label = "Add Friend";
       break;
     default:
