@@ -68,7 +68,7 @@
 
 .friend-index-item-wrapper {
   margin: 0px 50px 0px 20px;
-  padding-left: 10px;
+  padding: 0px 10px;
   &:hover {
     background: $background-hover;
     border-radius: 8px;
@@ -95,7 +95,7 @@
     visibility: visible;
   }
 
-  &:hover .friend-buttons > div {
+  &:hover .button {
     background: $not-black;
   }
 }
@@ -124,13 +124,18 @@
   }
 }
 
+.friend-buttons > .button:active {
+  background: $background-active;
+}
+
 .friend-buttons {
   display: flex;
   align-items: center;
   justify-content: flex-end;
   width: 82px;
+  color: $off-grey;
 
-  > div {
+  .button {
     cursor: pointer;
     background: $diff-black;
     border-radius: 50%;
@@ -178,6 +183,10 @@
     border-style: solid;
     border-color: $not-black transparent transparent transparent;
     border-width: 10px 10px 0 10px;
+  }
+
+  .grey-button:hover {
+    color: $off-white;
   }
 
   .green-button:hover {
