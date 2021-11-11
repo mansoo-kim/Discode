@@ -4,7 +4,7 @@ import ConversationContainer from '../cc/ConversationContainer';
 import CurrentUser from '../user/CurrentUser';
 import Friends from '../friends/Friends';
 
-const Home = () => {
+const Home = ({ match }) => {
   return (
     <div className="main-view">
       <div className="server-nav-column">
@@ -13,12 +13,12 @@ const Home = () => {
             <div className="dummy-search">Find or start a conversation</div>
           </div>
 
-          <Link className="friends-link" to='/channels/@me'>
+          <Link className={`friends-link ${match.url === "/channels/@me" ? "active" : ""}`} to='/channels/@me'>
             <img src='https://raw.githubusercontent.com/mansookim/Discode/0d26be6a765cb13972bba354d10d5463fc80ae42/app/assets/images/wave_icon.svg' />
             Friends
           </Link>
 
-          <ConversationIndex />
+          <ConversationIndex activeConversationId={parseInt(match.params.conversationId)}/>
         </div>
 
         <CurrentUser />

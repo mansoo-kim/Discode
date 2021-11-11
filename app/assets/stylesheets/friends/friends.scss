@@ -226,15 +226,18 @@
   color: $off-grey;
   border-radius: 4px;
 
+  &:hover {
+    background: $background-hover;
+    color: $off-white;
+
+    img {
+      filter: brightness(1.6);
+    }
+  }
+
   &.active {
     color: $white;
     background: $background-active;
-  }
-
-  &:hover {
-    background: $background-hover;
-    color: $white;
-
     img {
       filter: brightness(1.8);
     }

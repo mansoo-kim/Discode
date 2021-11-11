@@ -57,13 +57,13 @@ const CCView = ({ cc, type, members, currentUser, requestCC, updateCC }) => {
     <div className="cc-view">
       <div className="cc-header">
         <div>
-          <div className="cc-hash">{ type === "Channel" ? <FaHashtag size={20} /> : <MdPeopleAlt size={20} /> }</div>
+          <div className="cc-hash">{ type === "Channel" ? <FaHashtag size={20} /> : <MdPeopleAlt size={22} /> }</div>
           { displayNameDiv }
         </div>
       </div>
 
       <div className="cc-main">
-        <ChatRoom cc={cc} type={type}/>
+        <ChatRoom cc={cc} type={type} displayName={displayName} />
 
         <MemberIndex members={members} />
       </div>

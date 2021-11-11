@@ -3,7 +3,7 @@ import ConversationIndexItem from "./ConversationIndexItem";
 import NewConversationPopup from './NewConversationPopup';
 import { HiOutlinePlus } from 'react-icons/hi';
 
-const ConversationIndex = ({ conversations, membersById, currentUser, requestConversations }) => {
+const ConversationIndex = ({ activeConversationId, conversations, membersById, currentUser, requestConversations }) => {
 
   useEffect(() => {
     requestConversations();
@@ -32,7 +32,7 @@ const ConversationIndex = ({ conversations, membersById, currentUser, requestCon
       </div>
 
       <div className="cc-index">
-        {conversations.map(conversation => <ConversationIndexItem key={conversation.id} conversation={conversation} members={membersById[conversation.id]} currentUser={currentUser} />)}
+        {conversations.map(conversation => <ConversationIndexItem key={conversation.id} activeConversationId={activeConversationId} conversation={conversation} members={membersById[conversation.id]} currentUser={currentUser} />)}
       </div>
 
     </div>

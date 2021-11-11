@@ -6,6 +6,10 @@
   color: $off-grey;
 }
 
+.conversation-index-item {
+  height: 44px;
+}
+
 .conversation-button {
   width: 224px;
   height: 42px;
@@ -18,6 +22,11 @@
 
   &:hover {
     background: $background-hover;
+    color: $off-white;
+  }
+
+  &.active {
+    background: $background-active;
     color: $white;
   }
 }

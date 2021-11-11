@@ -2,8 +2,7 @@ import UserPfp from '../user/UserPfp';
 import { Link } from 'react-router-dom';
 import { MdPeopleAlt } from 'react-icons/md';
 
-const ConversationIndexItem = ({ conversation, members, currentUser }) => {
-
+const ConversationIndexItem = ({ activeConversationId, conversation, members, currentUser }) => {
   const displayName = conversation.name || members.filter(member => member.id !== currentUser.id).map(member => member.username).join(", ");
 
   const displayIcon = members.length === 2 ? (
@@ -18,7 +17,7 @@ const ConversationIndexItem = ({ conversation, members, currentUser }) => {
 
   return (
     <div className={`conversation-index-item`}>
-      <Link className="conversation-button" to={`/channels/@me/${conversation.id}`}>
+      <Link className={`conversation-button ${activeConversationId === conversation.id ? 'active' : ''}`} to={`/channels/@me/${conversation.id}`}>
         { displayIcon }
 
         <div className="conversation-name">

@@ -2,7 +2,7 @@ import { useState, useEffect, useRef } from 'react';
 import MessageForm from './MessageForm';
 import MessageItem from './MessageItem';
 
-const ChatRoom = ({ type, cc, currentUserId, messages, receiveMessage, removeMessage }) => {
+const ChatRoom = ({ type, cc, displayName, currentUserId, messages, receiveMessage, removeMessage }) => {
   const [chat, setChat] = useState(null);
 
   useEffect(() => {
@@ -48,7 +48,7 @@ const ChatRoom = ({ type, cc, currentUserId, messages, receiveMessage, removeMes
           { messageList }
           <div ref={bottomRef}></div>
         </div>
-        <MessageForm currentUserId={currentUserId} type={type} cc={cc} chat={chat} />
+        <MessageForm currentUserId={currentUserId} type={type} cc={cc} chat={chat} displayName={displayName} />
       </div>
     </div>
   )
