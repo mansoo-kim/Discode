@@ -9,9 +9,14 @@ const Home = () => {
     <div className="main-view">
       <div className="server-nav-column">
         <div>
-          <div>
-            <Link to='/channels/@me'>Friends</Link>
+          <div className="dummy-search-container">
+            <div className="dummy-search">Find or start a conversation</div>
           </div>
+
+          <Link className="friends-link" to='/channels/@me'>
+            <img src='https://raw.githubusercontent.com/mansookim/Discode/0d26be6a765cb13972bba354d10d5463fc80ae42/app/assets/images/wave_icon.svg' />
+            Friends
+          </Link>
 
           <ConversationIndex />
         </div>

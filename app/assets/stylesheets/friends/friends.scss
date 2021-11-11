@@ -188,3 +188,48 @@
     color: $error-red;
   }
 }
+
+.dummy-search-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 48px;
+  cursor: default;
+  color: $off-white;
+
+  border-bottom: 1px solid $yet-another-black;
+  box-shadow: 0 1px 0 rgba(0,0,0,0.1);
+
+  background: $diff-black;
+  padding: 0px 10px;
+}
+
+.dummy-search {
+  height: 28px;
+  width: 220px;
+  border-radius: 4px;
+  font-size: 14px;
+  color: $kinda-grey;
+  background: $another-black;
+  padding: 0px 6px;
+  display: flex;
+  align-items: center;
+}
+
+.friends-link {
+  display: flex;
+  align-items: center;
+  width: 226px;
+  height: 44px;
+  padding: 0px 8px;
+  margin: 8px 8px 0px 8px;
+
+  img {
+    width: 24px;
+    height: 24px;
+    margin-right: 16px;
+    margin-left: 4px;
+  }
+
+  font-weight: 600;
+}
