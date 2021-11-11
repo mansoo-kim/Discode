@@ -35,7 +35,7 @@ const UserPopup = ({ user, top, setShowPopup, currentUser, conversations, create
   const handleConversationStart = () => {
     const groupIds = [currentUser.id, user.id].sort((a,b) => a-b);
     for (let conversation of conversations) {
-      if (arrayEquals(conversation.members, groupIds)) {
+      if (arrayEquals(conversation.members.sort((a,b) => a-b), groupIds)) {
         if (history.location.pathname !== `/channels/@me/${conversation.id}`) history.push(`/channels/@me/${conversation.id}`);
         return;
       }
