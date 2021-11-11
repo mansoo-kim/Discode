@@ -7,7 +7,8 @@ import { selectMembers } from '../../reducers/selectors';
 const mSTP = (state, ownProps) => ({
   cc: selectChannel(state, ownProps.match.params.serverId, ownProps.match.params.ccId),
   type: 'Channel',
-  members: selectMembers(state, "servers", ownProps.match.params.serverId)
+  members: selectMembers(state, "servers", ownProps.match.params.serverId),
+  currentUser: state.session
 });
 
 const mDTP = (dispatch) => ({

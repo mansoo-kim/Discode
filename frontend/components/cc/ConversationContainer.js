@@ -6,7 +6,8 @@ import { selectMembers } from '../../reducers/selectors';
 const mSTP = (state, ownProps) => ({
   cc: state.entities.conversations[ownProps.match.params.ccId],
   type: 'Conversation',
-  members: selectMembers(state, "conversations", ownProps.match.params.ccId)
+  members: selectMembers(state, "conversations", ownProps.match.params.ccId),
+  currentUser: state.session
 });
 
 const mDTP = (dispatch) => ({
