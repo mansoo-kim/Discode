@@ -6,6 +6,8 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
+require 'open-uri'
+
 # Users
 u1 = User.create!(username: "demo", email: "demo@gmail.com", dob: "1999-09-09", password: "password", tag: 4171)
 u2 = User.create!(username: "mansoo", email: "mansoo@gmail.com", dob: "1993-06-09", password: "minnie", tag: 4171)
@@ -18,6 +20,9 @@ u8 = User.create!(username: "soheep", email: "soh@gmail.com", dob: "1991-01-14",
 u9 = User.create!(username: "the beef", email: "beefy@gmail.com", dob: "1996-07-07", password: "immortal")
 u10 = User.create!(username: "arebiter", email: "arebiter@gmail.com", dob: "1996-09-14", password: "bellpedro")
 u11 = User.create!(username: "mothammer", email: "mothammer@gmail.com", dob: "1988-04-22", password: "kimmmm")
+
+file = open('https://discode-seeds.s3.us-east-2.amazonaws.com/Selas_Flower.png')
+u2.pfp.attach(io: file, filename: 'Selas_Flower.png')
 
 u1.friend_ids = [u2.id, u3.id, u4.id, u5.id, u6.id, u7.id]
 u2.friend_ids = [u1.id, u3.id, u4.id, u5.id, u6.id, u7.id, u8.id, u9.id, u10.id, u11.id]
@@ -115,3 +120,61 @@ mc34 = Membership.create!(user_id: u6.id, joinable_id: co3.id, joinable_type: co
 mc35 = Membership.create!(user_id: u7.id, joinable_id: co3.id, joinable_type: co3.class.name)
 mc36 = Membership.create!(user_id: u8.id, joinable_id: co3.id, joinable_type: co3.class.name)
 co3.update(name: "4s")
+
+# Eden
+
+u12 = User.create!(username: "bambi", email: "bambi@gmail.com", dob: "1999-06-06", password: "whitemage")
+u13 = User.create!(username: "trish", email: "tricia@gmail.com", dob: "1994-08-08", password: "summoner")
+u14 = User.create!(username: "khara", email: "rae@gmail.com", dob: "1995-03-16", password: "paladin")
+u15 = User.create!(username: "baatu", email: "baatu@gmail.com", dob: "1993-10-22", password: "samurai")
+u16 = User.create!(username: "cindy", email: "cindy@gmail.com", dob: "2000-01-09", password: "astrologian")
+u17 = User.create!(username: "nora", email: "nora@gmail.com", dob: "2000-01-28", password: "??????")
+u18 = User.create!(username: "ame", email: "ame@gmail.com", dob: "1998-03-06", password: "astrologian")
+u19 = User.create!(username: "vinnie", email: "vinnie@gmail.com", dob: "1992-02-29", password: "??????")
+u20 = User.create!(username: "carly", email: "carly@gmail.com", dob: "1997-10-04", password: "??????")
+u21 = User.create!(username: "ruru", email: "ruru@gmail.com", dob: "2000-08-04", password: "redmage")
+u22 = User.create!(username: "danny", email: "danny@gmail.com", dob: "1997-05-16", password: "??????")
+u23 = User.create!(username: "dee", email: "dee@gmail.com", dob: "1997-01-01", password: "whitemage")
+u24 = User.create!(username: "shut up will", email: "will@gmail.com", dob: "1993-06-06", password: "dragoon")
+u25 = User.create!(username: "baldstie", email: "baldstie@gmail.com", dob: "1999-11-13", password: "??????")
+u26 = User.create!(username: "jenny", email: "jenny@gmail.com", dob: "1996-07-30", password: "??????")
+u27 = User.create!(username: "lumi", email: "lumi@gmail.com", dob: "1999-05-14", password: "astrologian")
+
+file = open('https://discode-seeds.s3.us-east-2.amazonaws.com/khara.png')
+u14.pfp.attach(io: file, filename: 'khara.png')
+file = open('https://discode-seeds.s3.us-east-2.amazonaws.com/baatu.png')
+u15.pfp.attach(io: file, filename: 'baatu.png')
+file = open('https://discode-seeds.s3.us-east-2.amazonaws.com/cindy.jpeg')
+u16.pfp.attach(io: file, filename: 'cindy.jpeg')
+file = open('https://discode-seeds.s3.us-east-2.amazonaws.com/nora.jpg')
+u17.pfp.attach(io: file, filename: 'nora.jpg')
+
+file = open('https://discode-seeds.s3.us-east-2.amazonaws.com/ruru.jpg')
+u21.pfp.attach(io: file, filename: 'ruru.jpg')
+
+
+s4 = Server.create!(name: "Eden Rights", owner_id: u12.id)
+ms41 = Membership.create!(user_id: u1.id, joinable_id: s4.id, joinable_type: s4.class.name)
+ms42 = Membership.create!(user_id: u2.id, joinable_id: s4.id, joinable_type: s4.class.name)
+ms43 = Membership.create!(user_id: u12.id, joinable_id: s4.id, joinable_type: s4.class.name)
+ms44 = Membership.create!(user_id: u13.id, joinable_id: s4.id, joinable_type: s4.class.name)
+ms45 = Membership.create!(user_id: u14.id, joinable_id: s4.id, joinable_type: s4.class.name)
+ms46 = Membership.create!(user_id: u15.id, joinable_id: s4.id, joinable_type: s4.class.name)
+ms47 = Membership.create!(user_id: u16.id, joinable_id: s4.id, joinable_type: s4.class.name)
+ms48 = Membership.create!(user_id: u17.id, joinable_id: s4.id, joinable_type: s4.class.name)
+ms49 = Membership.create!(user_id: u18.id, joinable_id: s4.id, joinable_type: s4.class.name)
+ms50 = Membership.create!(user_id: u19.id, joinable_id: s4.id, joinable_type: s4.class.name)
+ms51 = Membership.create!(user_id: u20.id, joinable_id: s4.id, joinable_type: s4.class.name)
+ms52 = Membership.create!(user_id: u21.id, joinable_id: s4.id, joinable_type: s4.class.name)
+ms53 = Membership.create!(user_id: u22.id, joinable_id: s4.id, joinable_type: s4.class.name)
+ms54 = Membership.create!(user_id: u23.id, joinable_id: s4.id, joinable_type: s4.class.name)
+ms55 = Membership.create!(user_id: u24.id, joinable_id: s4.id, joinable_type: s4.class.name)
+ms56 = Membership.create!(user_id: u25.id, joinable_id: s4.id, joinable_type: s4.class.name)
+ms57 = Membership.create!(user_id: u26.id, joinable_id: s4.id, joinable_type: s4.class.name)
+ms58 = Membership.create!(user_id: u27.id, joinable_id: s4.id, joinable_type: s4.class.name)
+
+c41 = Channel.create!(name: "announcements", server_id: s4.id)
+c42 = Channel.create!(name: "general", server_id: s4.id)
+c43 = Channel.create!(name: "screenshots", server_id: s4.id)
+c44 = Channel.create!(name: "eden-events", server_id: s4.id)
+c45 = Channel.create!(name: "garden-of-words", server_id: s4.id)
