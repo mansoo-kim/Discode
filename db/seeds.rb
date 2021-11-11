@@ -46,38 +46,13 @@ u11.outgoing_ids = [u1.id]
 
 # Servers
 s1 = Server.create!(name: "True Study Buddies Come to FL", owner_id: u1.id)
-ms11 = Membership.create!(user_id: u1.id, joinable_id: s1.id, joinable_type: s1.class.name)
-ms12 = Membership.create!(user_id: u2.id, joinable_id: s1.id, joinable_type: s1.class.name)
-ms13 = Membership.create!(user_id: u3.id, joinable_id: s1.id, joinable_type: s1.class.name)
-ms14 = Membership.create!(user_id: u4.id, joinable_id: s1.id, joinable_type: s1.class.name)
-ms15 = Membership.create!(user_id: u5.id, joinable_id: s1.id, joinable_type: s1.class.name)
-ms16 = Membership.create!(user_id: u6.id, joinable_id: s1.id, joinable_type: s1.class.name)
-ms17 = Membership.create!(user_id: u7.id, joinable_id: s1.id, joinable_type: s1.class.name)
-ms18 = Membership.create!(user_id: u8.id, joinable_id: s1.id, joinable_type: s1.class.name)
-ms19 = Membership.create!(user_id: u9.id, joinable_id: s1.id, joinable_type: s1.class.name)
-ms110 = Membership.create!(user_id: u10.id, joinable_id: s1.id, joinable_type: s1.class.name)
-ms111 = Membership.create!(user_id: u11.id, joinable_id: s1.id, joinable_type: s1.class.name)
+s1.member_ids = [u1.id, u2.id, u3.id, u4.id, u5.id, u6.id, u7.id, u8.id, u9.id, u10.id, u11.id]
 
 s2 = Server.create!(name: "One Brain One Cohort", owner_id: u3.id)
-ms21 = Membership.create!(user_id: u1.id, joinable_id: s2.id, joinable_type: s2.class.name)
-ms22 = Membership.create!(user_id: u2.id, joinable_id: s2.id, joinable_type: s2.class.name)
-ms23 = Membership.create!(user_id: u3.id, joinable_id: s2.id, joinable_type: s2.class.name)
-ms24 = Membership.create!(user_id: u4.id, joinable_id: s2.id, joinable_type: s2.class.name)
-ms25 = Membership.create!(user_id: u5.id, joinable_id: s2.id, joinable_type: s2.class.name)
-ms26 = Membership.create!(user_id: u6.id, joinable_id: s2.id, joinable_type: s2.class.name)
-ms27 = Membership.create!(user_id: u7.id, joinable_id: s2.id, joinable_type: s2.class.name)
-ms28 = Membership.create!(user_id: u8.id, joinable_id: s2.id, joinable_type: s2.class.name)
-ms29 = Membership.create!(user_id: u9.id, joinable_id: s2.id, joinable_type: s2.class.name)
-ms210 = Membership.create!(user_id: u10.id, joinable_id: s2.id, joinable_type: s2.class.name)
-ms211 = Membership.create!(user_id: u11.id, joinable_id: s2.id, joinable_type: s2.class.name)
+s2.member_ids = [u1.id, u2.id, u3.id, u4.id, u5.id, u6.id, u7.id, u8.id, u9.id, u10.id, u11.id]
 
 s3 = Server.create!(name: "Lunch League Crew", owner_id: u5.id)
-ms31 = Membership.create!(user_id: u1.id, joinable_id: s3.id, joinable_type: s3.class.name)
-ms32 = Membership.create!(user_id: u2.id, joinable_id: s3.id, joinable_type: s3.class.name)
-ms33 = Membership.create!(user_id: u3.id, joinable_id: s3.id, joinable_type: s3.class.name)
-ms34 = Membership.create!(user_id: u6.id, joinable_id: s3.id, joinable_type: s3.class.name)
-ms35 = Membership.create!(user_id: u7.id, joinable_id: s3.id, joinable_type: s3.class.name)
-ms36 = Membership.create!(user_id: u9.id, joinable_id: s3.id, joinable_type: s3.class.name)
+s3.member_ids = [u1.id, u2.id, u3.id, u6.id, u7.id, u9.id]
 
 # Channels
 c11 = Channel.create!(name: "general", server_id: s1.id)
@@ -92,12 +67,7 @@ c31 = Channel.create!(name: "general", server_id: s3.id)
 
 # Conversations
 co1 = Conversation.create!()
-
-mc11 = Membership.create!(user_id: u1.id, joinable_id: co1.id, joinable_type: co1.class.name)
-mc12 = Membership.create!(user_id: u2.id, joinable_id: co1.id, joinable_type: co1.class.name)
-mc13 = Membership.create!(user_id: u3.id, joinable_id: co1.id, joinable_type: co1.class.name)
-mc14 = Membership.create!(user_id: u4.id, joinable_id: co1.id, joinable_type: co1.class.name)
-mc15 = Membership.create!(user_id: u5.id, joinable_id: co1.id, joinable_type: co1.class.name)
+co1.member_ids = [u1.id, u2.id, u3.id, u4.id, u5.id]
 co1.update(name: "AAAA")
 
 m1 = Message.create!(sender_id: u1.id, messageable_id: co1.id, messageable_type: co1.class.name, body: "hi")
@@ -106,19 +76,10 @@ m3 = Message.create!(sender_id: u3.id, messageable_id: co1.id, messageable_type:
 m4 = Message.create!(sender_id: u4.id, messageable_id: co1.id, messageable_type: co1.class.name, body: "bye")
 
 co2 = Conversation.create()
-mc21 = Membership.create!(user_id: u1.id, joinable_id: co2.id, joinable_type: co2.class.name)
-mc22 = Membership.create!(user_id: u2.id, joinable_id: co2.id, joinable_type: co2.class.name)
-mc23 = Membership.create!(user_id: u3.id, joinable_id: co2.id, joinable_type: co2.class.name)
-mc24 = Membership.create!(user_id: u6.id, joinable_id: co2.id, joinable_type: co2.class.name)
-mc25 = Membership.create!(user_id: u7.id, joinable_id: co2.id, joinable_type: co2.class.name)
+co2.member_ids = [u1.id, u2.id, u3.id, u6.id, u7.id]
 
 co3 = Conversation.create()
-mc31 = Membership.create!(user_id: u1.id, joinable_id: co3.id, joinable_type: co3.class.name)
-mc32 = Membership.create!(user_id: u3.id, joinable_id: co3.id, joinable_type: co3.class.name)
-mc33 = Membership.create!(user_id: u5.id, joinable_id: co3.id, joinable_type: co3.class.name)
-mc34 = Membership.create!(user_id: u6.id, joinable_id: co3.id, joinable_type: co3.class.name)
-mc35 = Membership.create!(user_id: u7.id, joinable_id: co3.id, joinable_type: co3.class.name)
-mc36 = Membership.create!(user_id: u8.id, joinable_id: co3.id, joinable_type: co3.class.name)
+co3.member_ids = [u1.id, u3.id, u5.id, u6.id, u7.id, u8.id]
 co3.update(name: "4s")
 
 # Eden
@@ -152,26 +113,8 @@ u17.pfp.attach(io: file, filename: 'nora.jpg')
 file = open('https://discode-seeds.s3.us-east-2.amazonaws.com/ruru.jpg')
 u21.pfp.attach(io: file, filename: 'ruru.jpg')
 
-
 s4 = Server.create!(name: "Eden Rights", owner_id: u12.id)
-ms41 = Membership.create!(user_id: u1.id, joinable_id: s4.id, joinable_type: s4.class.name)
-ms42 = Membership.create!(user_id: u2.id, joinable_id: s4.id, joinable_type: s4.class.name)
-ms43 = Membership.create!(user_id: u12.id, joinable_id: s4.id, joinable_type: s4.class.name)
-ms44 = Membership.create!(user_id: u13.id, joinable_id: s4.id, joinable_type: s4.class.name)
-ms45 = Membership.create!(user_id: u14.id, joinable_id: s4.id, joinable_type: s4.class.name)
-ms46 = Membership.create!(user_id: u15.id, joinable_id: s4.id, joinable_type: s4.class.name)
-ms47 = Membership.create!(user_id: u16.id, joinable_id: s4.id, joinable_type: s4.class.name)
-ms48 = Membership.create!(user_id: u17.id, joinable_id: s4.id, joinable_type: s4.class.name)
-ms49 = Membership.create!(user_id: u18.id, joinable_id: s4.id, joinable_type: s4.class.name)
-ms50 = Membership.create!(user_id: u19.id, joinable_id: s4.id, joinable_type: s4.class.name)
-ms51 = Membership.create!(user_id: u20.id, joinable_id: s4.id, joinable_type: s4.class.name)
-ms52 = Membership.create!(user_id: u21.id, joinable_id: s4.id, joinable_type: s4.class.name)
-ms53 = Membership.create!(user_id: u22.id, joinable_id: s4.id, joinable_type: s4.class.name)
-ms54 = Membership.create!(user_id: u23.id, joinable_id: s4.id, joinable_type: s4.class.name)
-ms55 = Membership.create!(user_id: u24.id, joinable_id: s4.id, joinable_type: s4.class.name)
-ms56 = Membership.create!(user_id: u25.id, joinable_id: s4.id, joinable_type: s4.class.name)
-ms57 = Membership.create!(user_id: u26.id, joinable_id: s4.id, joinable_type: s4.class.name)
-ms58 = Membership.create!(user_id: u27.id, joinable_id: s4.id, joinable_type: s4.class.name)
+s4.member_ids = [u1.id, u2.id, u12.id, u13.id, u14.id, u15.id, u16.id, u17.id, u18.id, u19.id, u20.id, u21.id, u22.id, u23.id, u24.id, u25.id, u26.id, u27.id]
 
 c41 = Channel.create!(name: "announcements", server_id: s4.id)
 c42 = Channel.create!(name: "general", server_id: s4.id)
