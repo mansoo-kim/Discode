@@ -3,6 +3,7 @@ import { RECEIVE_SERVER } from "../actions/server_actions";
 import { RECEIVE_CONVERSATION, RECEIVE_CONVERSATIONS } from "../actions/conversation_actions";
 import { RECEIVE_USER, RECEIVE_USERS } from "../actions/user_actions";
 import { RECEIVE_FRIENDSHIP, REMOVE_FRIENDSHIP } from "../actions/friendship_actions";
+import { LOGOUT_CURRENT_USER } from "../actions/session_actions";
 
 const receiveUsers = (state, members) => {
   if (!members) return state;
@@ -40,6 +41,8 @@ const UsersReducer = (state={}, action) => {
       user = newState[action.friendship.friendId];
       user.status = 0;
       return newState;
+    case LOGOUT_CURRENT_USER:
+      return {};
     default:
       return state;
   }

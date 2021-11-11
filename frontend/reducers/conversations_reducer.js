@@ -1,5 +1,6 @@
 import { RECEIVE_CONVERSATIONS, RECEIVE_CONVERSATION } from "../actions/conversation_actions";
 import { RECEIVE_MESSAGE, REMOVE_MESSAGE } from "../actions/message_actions";
+import { LOGOUT_CURRENT_USER } from "../actions/session_actions";
 
 const ConversationsReducer = (state = {}, action) => {
   Object.freeze(state);
@@ -23,6 +24,8 @@ const ConversationsReducer = (state = {}, action) => {
       const index = conversation.messages.indexOf(action.message.id);
       conversation.messages.splice(index, 1);
       return Object.assign({}, state, { [conversation.id]: conversation});
+    case LOGOUT_CURRENT_USER:
+      return {};
     default:
       return state;
   }
