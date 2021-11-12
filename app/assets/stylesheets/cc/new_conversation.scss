@@ -23,6 +23,7 @@
     line-height: 24px;
     font-family: 'ginto-normal', sans-serif;
     color: $white;
+    cursor: default;
   }
 
   p {
@@ -31,6 +32,7 @@
     font-size: 12px;
     font-weight: 400;
     font-family: 'whitney', sans-serif;
+    cursor: default;
 
     &.show-error {
       color: $error-red;
@@ -115,6 +117,7 @@
   margin: 0px 4px 0px 12px;
   padding: 7px 8px;
   border-radius: 4px;
+  cursor: pointer;
 
   > div:first-child {
     display: flex;
@@ -199,4 +202,5 @@
   background: $lighter-black;
   color: $off-white;
   flex-shrink: 0;
+  cursor: default;
 }
