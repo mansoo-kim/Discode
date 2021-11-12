@@ -3,7 +3,7 @@
   width: 100%;
   height: calc(100vh - 48px - 52px);
 
-  overflow-y: scroll;
+  overflow: hidden scroll;
 
   &::-webkit-scrollbar {
     background: rgba(0,0,0,0);

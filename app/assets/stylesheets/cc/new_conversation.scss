@@ -94,7 +94,7 @@
 
 .select-friend-index {
   height: 190px;
-  overflow-y: scroll;
+  overflow: hidden scroll;
 
   &::-webkit-scrollbar {
     background: rgba(0,0,0,0);

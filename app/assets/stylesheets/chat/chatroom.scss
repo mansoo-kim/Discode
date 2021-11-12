@@ -27,7 +27,7 @@
 
 .message-list {
   flex: 1;
-  overflow-y: auto;
+  overflow: hidden auto;
 
   &::-webkit-scrollbar {
     background: rgba(0,0,0,0.1);
