@@ -45,32 +45,38 @@ const NewConversationPopup = ({ top, conversations, setShowPopup, currentUser, f
   return (
     <div className="popup-container">
       <div className="new-conversation-popup" style={{top: `${top+25}px`}} ref={popupRef}>
-        <h3>Select Friends</h3>
 
-        { count <= 8 ? <p>You can add {9-count} more friends.</p> : <p>This group has a 10 member limit.</p>}
+        <div className="new-conversation-top">
+          <h3>Select Friends</h3>
 
-        <div className="search-bar-container">
-          { Object.values(selectedFriends).map(friend => <div className="selected-friend" key={friend.id}>{friend.username}</div>) }
+          { count <= 8 ? <p>You can add {9-count} more friends.</p> : <p>This group has a 10 member limit.</p>}
 
-          <div className="search-input-container">
-            <input className="search-input"
-              type="text"
-              value={searchText}
-              onChange={(e) => setSearchText(e.currentTarget.value)}
-              placeholder={"Type the username of a friend"}
-              />
+          <div className="search-bar-container">
+            { Object.values(selectedFriends).map(friend => <div className="selected-friend" key={friend.id}>{friend.username}</div>) }
+
+            <div className="search-input-container">
+              <input className="search-input"
+                type="text"
+                value={searchText}
+                onChange={(e) => setSearchText(e.currentTarget.value)}
+                placeholder={"Type the username of a friend"}
+                />
+            </div>
           </div>
+
         </div>
 
-        { friends.map(friend => {
-          if (friend.username.includes(searchText)) {
-            return (
-              <div key={friend.id} onClick={() => toggleFriend(friend)}>
-                {friend.username}
-              </div>
-            )
-          }
-        })}
+        <div className="new-conversation-bottom">
+          { friends.map(friend => {
+            if (friend.username.includes(searchText)) {
+              return (
+                <div key={friend.id} onClick={() => toggleFriend(friend)}>
+                  {friend.username}
+                </div>
+              )
+            }
+          })}
+        </div>
 
         <button onClick={handleCreate} disabled={count > 9}>Create Group DM</button>
       </div>
