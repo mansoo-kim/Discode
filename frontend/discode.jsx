@@ -6,9 +6,6 @@ document.addEventListener("DOMContentLoaded", () => {
   const root = document.getElementById('root');
 
   const preloadedState = window.currentUser ? {
-    entities: {
-      users: { [window.currentUser.id]: window.currentUser }
-    },
     session: window.currentUser
   } : {}
   delete window.currentUser;

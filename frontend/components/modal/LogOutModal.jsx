@@ -4,7 +4,8 @@ const LogOutModal = ({ closeModal, logout}) => {
 
   closeModalOnEscape(closeModal);
 
-  const handleLogout = () => {
+  const handleLogout = (e) => {
+    e.preventDefault();
     logout()
       .then(() => closeModal());
   }
