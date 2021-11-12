@@ -29,10 +29,35 @@
   display: flex;
   align-items: center;
   color: $kinda-grey;
-  margin: 0px 8px;
+  margin: 0px 4px 0px 8px;
 }
 
 .cc-name {
   font-family: 'ginto-normal', sans-serif;
   font-size: 16px;
+  line-height: 32px;
+  padding: 0px 6px;
+  border: 1px solid transparent;
+  border-radius: 3px;
+
+  &.editable:hover, &.editable:focus {
+    border-color: $not-black;
+    cursor: text;
+  }
+}
+
+.convo-name-input {
+  &:focus {
+    outline: none;
+  }
+  font-size: 16px;
+  line-height: 32px;
+  padding: 0px 6px;
+  border: 1px solid $not-black;
+  border-radius: 3px;
+  font-family: 'ginto-normal', sans-serif;
+
+  color: $white;
+  background: $diff-black;
+  width: fit-content;
 }

@@ -1,7 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import MemberIndex from '../member/MemberIndex';
 import ChatRoom from '../messages/ChatRoom';
-import { closeOnOutsideClick } from '../../utils/close_utils';
 import { FaHashtag } from 'react-icons/fa';
 import { MdPeopleAlt } from 'react-icons/md';
 
@@ -38,19 +37,16 @@ const CCView = ({ cc, type, members, currentUser, requestCC, updateCC }) => {
     }
   });
 
-  const containerRef = useRef();
-  closeOnOutsideClick(containerRef, setShowEdit)
-
   const editName = (
-    <form onSubmit={handleEdit} className="message-form edit">
-      <input type="text" ref={inputRef} value={newName} onChange={(e) => setNewName(e.currentTarget.value)} />
+    <form onSubmit={handleEdit} className="convo-name-form">
+      <input type="text" className="convo-name-input" ref={inputRef} value={newName} onChange={(e) => setNewName(e.currentTarget.value)} />
     </form>
   )
 
   const displayNameDiv = (type === "Channel" || members.length < 3) ? (
     <div className="cc-name">{ displayName }</div>
   ) : (
-    <div className="cc-name" ref={containerRef} onClick={() => setShowEdit(true)}>{ showEdit ? editName : displayName }</div>
+    <div className="cc-name editable">{ displayName }</div>
   )
 
   return (
@@ -58,7 +54,13 @@ const CCView = ({ cc, type, members, currentUser, requestCC, updateCC }) => {
       <div className="cc-header">
         <div>
           <div className="cc-hash">{ type === "Channel" ? <FaHashtag size={20} /> : <MdPeopleAlt size={22} /> }</div>
-          { displayNameDiv }
+
+          <div onClick={() => setShowEdit(true)} onBlur={() => {
+            setShowEdit(false);
+            setNewName(displayName);
+          }}>
+            { showEdit ? editName : displayNameDiv }
+          </div>
         </div>
       </div>
 
