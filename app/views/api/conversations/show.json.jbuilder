@@ -1,6 +1,6 @@
 json.conversation do
   json.partial! 'api/conversations/conversation', conversation: @conversation
-  json.messages @conversation.messages.map(&:id)
+  json.messages @conversation.messages.order(id: :asc).map(&:id)
 end
 
 json.members do

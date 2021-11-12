@@ -1,6 +1,6 @@
 json.channel do
   json.partial! 'api/channels/channel', channel: @channel
-  json.messages @channel.messages.map(&:id)
+  json.messages @channel.messages.order(id: :asc).map(&:id)
 end
 
 json.messages do

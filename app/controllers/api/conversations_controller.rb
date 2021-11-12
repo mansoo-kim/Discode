@@ -5,7 +5,7 @@ class Api::ConversationsController < ApplicationController
   end
 
   def show
-    @conversation = current_user.conversations.includes(:members).find_by(id: params[:id])
+    @conversation = current_user.conversations.includes(:members, :messages).find_by(id: params[:id])
     render 'api/conversations/show'
   end
 
