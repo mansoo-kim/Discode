@@ -55,7 +55,7 @@ const NewConversationPopup = ({ top, conversations, setShowPopup, currentUser, f
         <div className="new-convo-top">
           <h2>Select Friends</h2>
 
-          { count <= 8 ? <p>You can add {9-count} more friends.</p> : <p>This group has a 10 member limit.</p>}
+          { count <= 8 ? <p>You can add {9-count} more friends.</p> : <p className={`${count > 9 ? "show-error" : ""}`}>This group has a 10 member limit.</p>}
 
           <div className="search-bar-container">
 

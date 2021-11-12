@@ -1,6 +1,5 @@
 .cc-index-container {
   background: $diff-black;
-  flex-grow: 1;
   width: 100%;
   height: calc(100vh - 48px - 52px);
 
@@ -125,7 +124,7 @@
 }
 
 .cc-index-header{
-  flex-grow: 1;
+  flex: 1;
   display: flex;
   align-items: center;
 }

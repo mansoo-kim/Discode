@@ -31,6 +31,10 @@
     font-size: 12px;
     font-weight: 400;
     font-family: 'whitney', sans-serif;
+
+    &.show-error {
+      color: $error-red;
+    }
   }
 }
 
