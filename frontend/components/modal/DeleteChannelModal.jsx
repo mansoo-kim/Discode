@@ -4,12 +4,13 @@ const DeleteChannelModal = ({ channel, deleteChannel, closeModal, history }) => 
 
   closeModalOnEscape(closeModal);
 
-  const handleDelete = () => {
+  const handleDelete = (e) => {
+    e.preventDefault();
     deleteChannel(channel.id)
-    .then(() => {
-      if (history.location.pathname !== `/channels/${channel.serverId}`) history.push(`/channels/${channel.serverId}`)
-    })
-    .then(() => closeModal());
+      .then(() => {
+        if (history.location.pathname !== `/channels/${channel.serverId}`) history.push(`/channels/${channel.serverId}`)
+      })
+      .then(() => closeModal());
   }
 
   return (

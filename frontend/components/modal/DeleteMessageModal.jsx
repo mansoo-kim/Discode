@@ -6,7 +6,8 @@ const DeleteMessageModal = ({ message, sender, chat, closeModal }) => {
 
   closeModalOnEscape(closeModal);
 
-  const handleDelete = () => {
+  const handleDelete = (e) => {
+    e.preventDefault();
     chat.delete(
       message
     );

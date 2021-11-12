@@ -4,7 +4,8 @@ const RemoveFriendModal = ({ friend, currentUserId, closeModal, deleteFriendship
 
   closeModalOnEscape(closeModal);
 
-  const handleDelete = () => {
+  const handleDelete = (e) => {
+    e.preventDefault();
     deleteFriendship({
       user_id: currentUserId,
       friend_id: friend.id

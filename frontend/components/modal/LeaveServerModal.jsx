@@ -4,7 +4,8 @@ const LeaveServerModal = ({ server, currentUserId, closeModal, deleteMembership,
 
   closeModalOnEscape(closeModal);
 
-  const handleLeaving = () => {
+  const handleLeaving = (e) => {
+    e.preventDefault();
     deleteMembership({
       user_id: currentUserId,
       joinable_id: server.id,
