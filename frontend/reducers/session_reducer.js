@@ -3,7 +3,7 @@ import { RECEIVE_USER } from "../actions/user_actions";
 import { RECEIVE_SERVER } from "../actions/server_actions";
 import { REMOVE_SERVER } from "../actions/server_actions";
 import { REMOVE_MEMBERSHIP } from "../actions/membership_actions";
-import { RECEIVE_CONVERSATION } from "../actions/conversation_actions";
+import { RECEIVE_CONVERSATION, RECEIVE_CONVERSATIONS } from "../actions/conversation_actions";
 
 const _nullSession = {
   id: null,
@@ -51,6 +51,10 @@ const SessionReducer = (state = _nullSession, action) => {
         return newState
       }
       return state;
+    case RECEIVE_CONVERSATIONS:
+      newState = Object.assign({}, state);
+      newState.conversations = Object.keys(action.res.conversations).map(id => parseInt(id));
+      return newState;
     default:
       return state;
   }

@@ -9,7 +9,15 @@ const ConversationsReducer = (state = {}, action) => {
   switch (action.type) {
     case RECEIVE_CONVERSATIONS:
       if (!action.res.conversations) return state;
-      return action.res.conversations;
+      newState = Object.assign({}, state);
+      for (let [id, conversation] of Object.entries(action.res.conversations)) {
+        if (!newState[id]) {
+          newState[id] = conversation;
+        } else {
+          newState[id] = Object.assign({}, conversation, { messages: newState[id].messages})
+        }
+      }
+      return newState;
     case RECEIVE_CONVERSATION:
       return Object.assign({}, state, { [action.res.conversation.id]: action.res.conversation });
     case RECEIVE_MESSAGE:
