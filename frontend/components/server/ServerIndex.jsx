@@ -18,6 +18,11 @@ const ServerIndex = ({ servers, requestServers, openModal, match }) => {
             <ServerIcon name={"Home"} iconUrl={'https://raw.githubusercontent.com/mansookim/Discode/main/app/assets/images/icon_clyde_white_RGB.png'} />
           </div>
         </Link>
+
+        <div className="server-name-popup">
+          Home
+        </div>
+        <div className="server-hover-triangle"></div>
       </div>
 
       <div className="separator"></div>

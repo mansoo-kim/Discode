@@ -20,7 +20,7 @@
   color: $off-white;
   padding-top: 12px;
 
-  overflow-y: scroll;
+  overflow: visible, scroll;
 
   &::-webkit-scrollbar {
     display: none;
@@ -70,4 +70,41 @@
     }
 
   }
+}
+
+.server-index-item {
+  position: relative;
+  &:hover .server-name-popup, &:hover .server-hover-triangle {
+    display: block;
+  }
+}
+
+.server-name-popup {
+  z-index: 5;
+  position: absolute;
+  display: none;
+  left: 68px;
+  top: 8px;
+  background: $dark-black;
+  font-size: 16px;
+  font-weight: 600;
+  padding: 8px 12px;
+  border-radius: 4px;
+  width: fit-content;
+  color: $off-white;
+  box-shadow: 0 5px 10px rgba(0,0,0,0.2);
+  width: max-content;
+}
+
+.server-hover-triangle {
+  z-index: 5;
+  position: absolute;
+  display: none;
+  left: 62px;
+  top: 16px;
+  height: 0;
+  width: 0;
+  border-style: solid;
+  border-color: transparent $dark-black transparent transparent;
+  border-width: 8px 8px 8px 0px;
 }
