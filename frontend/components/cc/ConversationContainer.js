@@ -29,7 +29,7 @@ const ProtectedConversation = ({ isMember, path }) => {
     <Route
       path={path}
       render={props => (
-        isMember ? <ConnectedCCView {...props} /> : <Redirect to='/@me' />
+        isMember ? <ConnectedCCView {...props} /> : <Redirect to='/channels/@me' />
       )}
     />
   )

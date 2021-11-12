@@ -10,7 +10,7 @@ const LeaveServerModal = ({ server, currentUserId, closeModal, deleteMembership,
       joinable_id: server.id,
       joinable_type: "Server"
     })
-      .then(() => history.push('/@me'))
+      .then(() => history.push('/channels/@me'))
       .then(() => closeModal());
   }
 

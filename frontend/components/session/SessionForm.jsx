@@ -52,7 +52,7 @@ const SessionForm = ({ type, sessionErrors, processForm, resetSessionErrors, his
       username: data.username,
       dob: new Date(data.year, data.month, data.day)
     }
-    processForm(formUser).then(() => history.push('/@me'));
+    processForm(formUser).then(() => history.push('/channels/@me'));
   }
 
   const handleDemoLogin = () => {
