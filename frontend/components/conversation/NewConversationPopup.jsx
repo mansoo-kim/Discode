@@ -1,8 +1,10 @@
 import { useState, useRef } from 'react';
 import { closeOnEscape, closeOnOutsideClick } from '../../utils/close_utils';
+import SelectFriendItem from './SelectFriendItem';
 
 const NewConversationPopup = ({ top, conversations, setShowPopup, currentUser, friends, createConversation, history}) => {
 
+  const inputRef = useRef();
   const popupRef = useRef();
 
   closeOnOutsideClick(popupRef, setShowPopup);
@@ -44,18 +46,19 @@ const NewConversationPopup = ({ top, conversations, setShowPopup, currentUser, f
 
   return (
     <div className="popup-container">
-      <div className="new-conversation-popup" style={{top: `${top+25}px`}} ref={popupRef}>
+      <div className="new-convo-popup" style={{top: `${top+25}px`}} ref={popupRef}>
 
-        <div className="new-conversation-top">
-          <h3>Select Friends</h3>
+        <div className="new-convo-top">
+          <h2>Select Friends</h2>
 
           { count <= 8 ? <p>You can add {9-count} more friends.</p> : <p>This group has a 10 member limit.</p>}
 
           <div className="search-bar-container">
+
             { Object.values(selectedFriends).map(friend => <div className="selected-friend" key={friend.id}>{friend.username}</div>) }
 
             <div className="search-input-container">
-              <input className="search-input"
+              <input className="search-input" autoFocus ref={inputRef}
                 type="text"
                 value={searchText}
                 onChange={(e) => setSearchText(e.currentTarget.value)}
@@ -63,22 +66,18 @@ const NewConversationPopup = ({ top, conversations, setShowPopup, currentUser, f
                 />
             </div>
           </div>
-
         </div>
 
-        <div className="new-conversation-bottom">
+        <div className="select-friend-index">
           { friends.map(friend => {
             if (friend.username.includes(searchText)) {
-              return (
-                <div key={friend.id} onClick={() => toggleFriend(friend)}>
-                  {friend.username}
-                </div>
-              )
+              return <SelectFriendItem key={friend.id} friend={friend} inputRef={inputRef} toggleFriend={toggleFriend} selectedFriends={selectedFriends} />
             }
+            return null;
           })}
         </div>
 
-        <button onClick={handleCreate} disabled={count > 9}>Create Group DM</button>
+        <button className="create-convo-button" onClick={handleCreate} disabled={count > 9 || count === 0}><div>Create Group DM</div></button>
       </div>
     </div>
   )

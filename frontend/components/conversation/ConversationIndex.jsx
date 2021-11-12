@@ -36,13 +36,13 @@ const ConversationIndex = ({ match, conversations, membersById, currentUser, req
         <div className="new-cc-button new-conversation" onClick={togglePopup} >
           <HiOutlinePlus size={18} />
         </div>
-        { showPopup && <NewConversationPopup top={popupTop} conversations={conversations} setShowPopup={setShowPopup} /> }
       </div>
 
       <div className="cc-index">
         {conversations.map(conversation => <ConversationIndexItem key={conversation.id} activeConversationId={activeConversationId} conversation={conversation} members={membersById[conversation.id]} currentUser={currentUser} />)}
       </div>
 
+      { showPopup && <NewConversationPopup top={popupTop} conversations={conversations} setShowPopup={setShowPopup} /> }
     </div>
   )
 }

@@ -41,8 +41,6 @@ const ChatRoom = ({ type, cc, displayName, currentUserId, messages, receiveMessa
     return <MessageItem key={message.id} message={message} chat={chat} currentUserId={currentUserId} sameSender={message.senderId === messages[i-1]?.senderId} />
   });
 
-  console.log(messages);
-
   return (
     <div>
       <div className="chatroom-container">
