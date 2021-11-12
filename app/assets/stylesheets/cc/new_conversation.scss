@@ -139,6 +139,10 @@
     border: 1px solid $kinda-grey;
     border-radius: 3px;
     float: right;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: $kinda-grey;
 
     > div {
       visibility: hidden;
@@ -146,6 +150,11 @@
       &.visible {
         visibility: visible;
       }
+    }
+
+    &.selected {
+      border-color: $light-grey;
+      color: $light-grey;
     }
   }
 }

@@ -17,7 +17,7 @@ const SelectFriendItem = ({ friend, inputRef, toggleFriend, selectedFriends }) =
 
         <div className={`empty-checkbox ${selectedFriends[friend.id] ? "selected" : ""}`}>
           <div className={`${selectedFriends[friend.id] ? "visible" : ""}`}>
-            <FaCheck />
+            <FaCheck size={12} />
           </div>
         </div>
     </div>

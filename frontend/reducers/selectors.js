@@ -59,5 +59,5 @@ export const selectStatus = (state, status) => {
   for (let user of Object.values(state.entities.users)) {
     if (user.status === status) friends.push(user);
   }
-  return friends;
+  return friends.sort((a,b) => a.username > b.username ? 1 : -1);
 }
