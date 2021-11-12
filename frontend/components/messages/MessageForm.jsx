@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { BsPlusCircleFill } from 'react-icons/bs';
 
 const MessageForm = ({ currentUserId, type, cc, chat, displayName }) => {
@@ -21,6 +21,11 @@ const MessageForm = ({ currentUserId, type, cc, chat, displayName }) => {
     }
   }
 
+  const inputRef = useRef();
+  useEffect(() => {
+    inputRef.current?.focus();
+  }, [type, cc.id])
+
   return (
     <div className="message-input-container">
       <form className="message-form" onSubmit={handleSubmit}>
@@ -28,6 +33,8 @@ const MessageForm = ({ currentUserId, type, cc, chat, displayName }) => {
 
         <input
           type="text"
+          autoFocus
+          ref={inputRef}
           value={body}
           onChange={update}
           placeholder={`Message ${displayName}`}

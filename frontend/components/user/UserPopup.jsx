@@ -13,7 +13,7 @@ const UserPopup = ({ user, top, setShowPopup, currentUser, conversations, create
     createFriendship({
       user_id: currentUser.id,
       friend_id: friend.id
-    }).then(() => setShowPopup(false));
+    });
     setShowPopup(false);
   };
 
@@ -21,7 +21,7 @@ const UserPopup = ({ user, top, setShowPopup, currentUser, conversations, create
     updateFriendship({
       user_id: currentUser.id,
       friend_id: friend.id
-    }).then(() => setShowPopup(false));
+    });
     setShowPopup(false);
   };
 
@@ -37,11 +37,13 @@ const UserPopup = ({ user, top, setShowPopup, currentUser, conversations, create
     for (let conversation of conversations) {
       if (arrayEquals(conversation.members.sort((a,b) => a-b), groupIds)) {
         if (history.location.pathname !== `/channels/@me/${conversation.id}`) history.push(`/channels/@me/${conversation.id}`);
+        setShowPopup(false);
         return;
       }
     }
     createConversation({member_ids: groupIds})
-      .then(({ res })=> history.push(`/channels/@me/${res.conversation.id}`))
+      .then(({ res })=> history.push(`/channels/@me/${res.conversation.id}`));
+    setShowPopup(false);
   }
 
   let action;
