@@ -1,7 +1,7 @@
 import UserPfp from "../user/UserPfp";
 import { FaCheck } from 'react-icons/fa';
 
-const SelectFriendItem = ({ friend, inputRef, toggleFriend, selectedFriends }) => {
+const SelectFriendItem = ({ friend, inputRef, toggleFriend, isSelected }) => {
   return (
     <div className="select-friend-item" onClick={() => {
       toggleFriend(friend);
@@ -15,8 +15,8 @@ const SelectFriendItem = ({ friend, inputRef, toggleFriend, selectedFriends }) =
           </div>
         </div>
 
-        <div className={`empty-checkbox ${selectedFriends[friend.id] ? "selected" : ""}`}>
-          <div className={`${selectedFriends[friend.id] ? "visible" : ""}`}>
+        <div className={`empty-checkbox ${isSelected ? "selected" : ""}`}>
+          <div className={`${isSelected ? "visible" : ""}`}>
             <FaCheck size={12} />
           </div>
         </div>

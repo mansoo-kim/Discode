@@ -34,7 +34,7 @@ const ConversationIndex = ({ match, conversations, membersById, currentUser, req
           </span>
         </div>
         <div className="new-cc-button new-conversation" onClick={togglePopup} >
-          <HiOutlinePlus size={18} />
+          <HiOutlinePlus size={16} />
         </div>
       </div>
 

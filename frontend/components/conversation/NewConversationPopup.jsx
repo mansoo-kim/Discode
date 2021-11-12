@@ -10,18 +10,22 @@ const NewConversationPopup = ({ top, conversations, setShowPopup, currentUser, f
   closeOnOutsideClick(popupRef, setShowPopup);
   closeOnEscape(setShowPopup);
 
-  const [selectedFriends, setSelectedFriends] = useState({});
+  const [selectedFriends, setSelectedFriends] = useState([]);
   const [searchText, setSearchText] = useState("");
 
+  const isSelected = (friend) => selectedFriends.map(friend => friend.id).includes(friend.id);
+  const findIfSelected = (toAdd) => selectedFriends.findIndex(friend => friend.id === toAdd.id);
+
   const toggleFriend = (friend) => {
-    if (selectedFriends[friend.id]) {
+    const idx = findIfSelected(friend);
+    if (idx > -1) {
       setSelectedFriends(prevState => {
-        const newState = { ...prevState}
-        delete newState[friend.id];
+        const newState = [...prevState]
+        newState.splice(idx, 1);
         return newState;
       });
     } else {
-      setSelectedFriends(prevState => ({...prevState, [friend.id]: friend}));
+      setSelectedFriends(prevState => [...prevState, friend]);
       setSearchText("");
     }
   }
@@ -29,7 +33,7 @@ const NewConversationPopup = ({ top, conversations, setShowPopup, currentUser, f
   const arrayEquals = (a, b) => a.length === b.length && a.every((val, idx) => val === b[idx])
 
   const handleCreate = () => {
-    const groupIds = [currentUser.id, ...Object.keys(selectedFriends)].map(id => parseInt(id)).sort((a,b) => a-b);
+    const groupIds = [currentUser.id, ...selectedFriends.map(friend => parseInt(friend.id))].sort((a,b) => a-b);
     for (let conversation of conversations) {
       if (arrayEquals(conversation.members.sort((a,b) => a-b), groupIds)) {
         if (history.location.pathname !== `/channels/@me/${conversation.id}`) history.push(`/channels/@me/${conversation.id}`);
@@ -42,11 +46,11 @@ const NewConversationPopup = ({ top, conversations, setShowPopup, currentUser, f
       .then(() => setShowPopup(false));
   }
 
-  const count = Object.keys(selectedFriends).length;
+  const count = selectedFriends.length;
 
   return (
     <div className="popup-container">
-      <div className="new-convo-popup" style={{top: `${top+25}px`}} ref={popupRef}>
+      <div className="new-convo-popup" style={{top: `${top+22}px`}} ref={popupRef}>
 
         <div className="new-convo-top">
           <h2>Select Friends</h2>
@@ -55,23 +59,27 @@ const NewConversationPopup = ({ top, conversations, setShowPopup, currentUser, f
 
           <div className="search-bar-container">
 
-            { Object.values(selectedFriends).map(friend => <div className="selected-friend" key={friend.id}>{friend.username}</div>) }
+            { selectedFriends.map(friend => {
+                return (
+                  <div className="selected-friend" key={friend.id}>
+                    {friend.username}
+                  </div>
+                )
+            })}
 
-            <div className="search-input-container">
-              <input className="search-input" autoFocus ref={inputRef}
-                type="text"
-                value={searchText}
-                onChange={(e) => setSearchText(e.currentTarget.value)}
-                placeholder={"Type the username of a friend"}
-                />
-            </div>
+            <input className="search-input" autoFocus ref={inputRef}
+              type="text"
+              value={searchText}
+              onChange={(e) => setSearchText(e.currentTarget.value)}
+              placeholder={"Type the username of a friend"}
+              />
           </div>
         </div>
 
         <div className="select-friend-index">
           { friends.map(friend => {
             if (friend.username.includes(searchText)) {
-              return <SelectFriendItem key={friend.id} friend={friend} inputRef={inputRef} toggleFriend={toggleFriend} selectedFriends={selectedFriends} />
+              return <SelectFriendItem key={friend.id} friend={friend} inputRef={inputRef} toggleFriend={toggleFriend} isSelected={isSelected(friend)}  />
             }
             return null;
           })}
