@@ -4,7 +4,7 @@
   color: $channels-grey;
   background: $diff-black;
 
-  overflow: hidden scroll;
+  overflow: hidden auto;
 
   &::-webkit-scrollbar {
     background: rgba(0,0,0,0);
@@ -35,7 +35,7 @@
   cursor: pointer;
 
   padding: 0px 8px;
-  margin: 2px 0px 2px 8px;
+  margin: 2px 6px 2px 8px;
 
   border-radius: 4px;
 

@@ -20,7 +20,8 @@
   color: $off-white;
   padding-top: 12px;
 
-  overflow: visible, scroll;
+  overflow: visible auto;
+  scrollbar-width: none;
 
   &::-webkit-scrollbar {
     display: none;

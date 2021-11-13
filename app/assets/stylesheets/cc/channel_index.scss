@@ -3,7 +3,7 @@
   width: 100%;
   height: calc(100vh - 48px - 52px);
 
-  overflow: hidden scroll;
+  overflow: hidden auto;
 
   &::-webkit-scrollbar {
     background: rgba(0,0,0,0);
@@ -23,7 +23,7 @@
 
     .cc-index-item {
       line-height: 30px;
-      margin: 2px 0px 2px 8px;
+      margin: 2px 8px 2px 8px;
       padding: 0px 8px 0px 10px;
       display: flex;
       justify-content: space-between;
