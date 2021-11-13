@@ -33,13 +33,13 @@ const CCView = ({ cc, type, members, currentUser, requestCC, updateCC }) => {
   const inputRef = useRef();
   useEffect(() => {
     if (showEdit) {
-      inputRef.current.focus();
+      inputRef.current?.focus();
     }
   });
 
   const editName = (
     <form onSubmit={handleEdit} className="convo-name-form">
-      <input type="text" className="convo-name-input" ref={inputRef} value={newName} onChange={(e) => setNewName(e.currentTarget.value)} />
+      <input type="text" className="convo-name-input" spellCheck={false} ref={inputRef} value={newName} onChange={(e) => setNewName(e.currentTarget.value)} />
     </form>
   )
 
@@ -59,7 +59,7 @@ const CCView = ({ cc, type, members, currentUser, requestCC, updateCC }) => {
             setShowEdit(false);
             setNewName(displayName);
           }}>
-            { showEdit ? editName : displayNameDiv }
+            { ( type ==="Conversation" && members.length > 2 && showEdit ) ? editName : displayNameDiv }
           </div>
         </div>
       </div>

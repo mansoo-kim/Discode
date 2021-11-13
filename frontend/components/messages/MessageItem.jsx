@@ -35,7 +35,7 @@ const MessageItem = ({ message, chat, currentUserId, sameSender, sender, openMod
 
   const editInput = (
     <form onSubmit={handleEdit} className="message-form edit">
-      <input type="text" value={body} ref={editRef} onChange={(e) => setBody(e.currentTarget.value)} />
+      <input type="text" spellCheck={false} value={body} ref={editRef} onChange={(e) => setBody(e.currentTarget.value)} />
 
       <div>
         escape to <span onClick={() => setShowEdit(false)}>cancel</span> &#8226; enter to <span onClick={handleEdit}>save</span>

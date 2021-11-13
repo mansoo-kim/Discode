@@ -67,7 +67,7 @@ const NewConversationPopup = ({ top, conversations, setShowPopup, currentUser, f
                 )
             })}
 
-            <input className="search-input" autoFocus ref={inputRef}
+            <input className="search-input" autoFocus ref={inputRef} spellCheck={false}
               type="text"
               value={searchText}
               onChange={(e) => setSearchText(e.currentTarget.value)}

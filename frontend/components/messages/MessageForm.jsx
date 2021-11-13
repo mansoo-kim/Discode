@@ -33,7 +33,7 @@ const MessageForm = ({ currentUserId, type, cc, chat, displayName }) => {
 
         <input
           type="text"
-          autoFocus
+          autoFocus spellCheck={false}
           ref={inputRef}
           value={body}
           onChange={update}
