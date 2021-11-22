@@ -7,6 +7,15 @@
 
     <%= stylesheet_link_tag    'application', media: 'all' %>
     <%= javascript_include_tag 'application' %>
+
+    <meta property="og:title" content="Discode" />
+    <meta property='og:image' content="<%= image_url('project_pic.png') %>"/>
+    <meta property="og:description"
+      content="A single page web app clone of Discord with live chat, servers, channels, direct messages/group chats, custom server icons and profile avatars."
+    />
+    <meta property="og:url"
+      content="https://discode9.herokuapp.com/"
+    />
   </head>
 
   <body>
