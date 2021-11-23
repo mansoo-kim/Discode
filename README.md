@@ -82,7 +82,7 @@
 
 <img src='./app/assets/images/discode-servers.gif' />
 
-### Friends
+### Friends and Direct Messsages/Group Chats
 - Users can add/remove friends.
 - Users can use the Friends tab to start new direct messages or group chats, and accept/ignore pending requests.
 
