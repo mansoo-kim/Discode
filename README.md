@@ -1,24 +1,15 @@
-# README
+# Discode
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+[Discode](https://discode9.herokuapp.com/) is a Discord clone, an instant messaging platform. On Discode, users can create servers, add friends, and chat in various chatrooms such as channels, direct messages, and group chats.
 
-Things you may want to cover:
+## Technologies Used
 
-* Ruby version
+Discode was implemented using React, Redux, Ruby on Rails, and Amazon S3.
 
-* System dependencies
+## Key Features
 
-* Configuration
+# User Auth
+- Users must have an account to access Discode.
+- To minimize unecessary API requests, validations such as checking length and empty string is handled in React.
 
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+<img src='./app/assets/images/discode-user-auth.gif' />
