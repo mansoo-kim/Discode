@@ -4,12 +4,37 @@
 
 ## Technologies Used
 
-Discode was implemented using React, Redux, Ruby on Rails, and Amazon S3.
+Discode was implemented using React, Redux, Ruby on Rails (Action Cable WebSockets), PostgreSQL, and Amazon S3.
 
 ## Key Features
 
-# User Auth
+### User Authentication
 - Users must have an account to access Discode.
-- To minimize unecessary API requests, validations such as checking length and empty string is handled in React.
+- To minimize unecessary API requests, validations such as checking length and empty inputs are handled in React.
 
 <img src='./app/assets/images/discode-user-auth.gif' />
+
+- After logging in, users can edit their account information and choose/change/remove their profile avatar.
+
+<img src='./app/assets/images/discode-user.gif' />
+
+### Live Chat
+- Users can live chat in channels inside servers, in private direct messages, and group chats.
+
+<img src='./app/assets/images/discode-live-chat.gif' />
+
+### Servers and Channels
+- Users can create/edit/delete their own servers and channels.
+- Servers can have a custom server icon.
+
+<img src='./app/assets/images/discode-servers.gif' />
+
+### Friends
+- Users can add/remove friends.
+- Users can use the Friends tab to start new direct messages or group chats, and accept/ignore pending requests.
+
+<img src='./app/assets/images/discode-friends.gif' />
+
+## Upcoming Features
+- Notifications for friend requests and unread messages.
+- Timestamps for messages.
