@@ -15,7 +15,7 @@ const Splash = ({ loggedIn }) => {
           <ul>
             <li><a href="https://github.com/mansookim/Discode" target="_blank">Github</a></li>
             <li><a href="https://www.linkedin.com/in/mansoo-kim/" target="_blank">LinkedIn</a></li>
-            <li><a href="#">Portfolio</a></li>
+            <li><a href="https://mansoo.net/" target="_blank">Portfolio</a></li>
           </ul>
           <div className="app-link">
             <Link className="button" to='/login'>{loggedIn ? 'Open Discode' : 'Login'}</Link>
