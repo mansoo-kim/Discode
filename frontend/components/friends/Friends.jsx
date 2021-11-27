@@ -16,7 +16,7 @@ const Friends = ({ requestFriendships }) => {
         <div>
           <div className="friends-label">
             <div className="cc-hash">
-              <img src='https://raw.githubusercontent.com/mansookim/Discode/0d26be6a765cb13972bba354d10d5463fc80ae42/app/assets/images/wave_icon.svg' />
+              <img src='https://raw.githubusercontent.com/mansoo-kim/Discode/527b97ecaea49ff7f63d222a598be98c4a924d96/app/assets/images/wave_icon.svg' />
             </div>
             Friends
           </div>

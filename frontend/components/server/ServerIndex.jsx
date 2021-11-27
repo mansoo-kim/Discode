@@ -15,7 +15,7 @@ const ServerIndex = ({ servers, requestServers, openModal, match }) => {
       <div className="server-index-item">
         <Link to='/channels/@me'>
           <div className={`home-icon ${match.params.serverId === '@me' ? 'active-home' : ''}`}>
-            <ServerIcon name={"Home"} iconUrl={'https://raw.githubusercontent.com/mansookim/Discode/main/app/assets/images/icon_clyde_white_RGB.png'} />
+            <ServerIcon name={"Home"} iconUrl={'https://raw.githubusercontent.com/mansoo-kim/Discode/main/app/assets/images/icon_clyde_white_RGB.png'} />
           </div>
         </Link>
 

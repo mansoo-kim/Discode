@@ -8,12 +8,12 @@ const Splash = ({ loggedIn }) => {
       <header>
         <nav className="splash-nav">
           <div className="splash-logo">
-            <img src='https://raw.githubusercontent.com/mansookim/Discode/main/app/assets/images/icon_clyde_white_RGB.png' className="splash-logo-icon" />
+            <img src='https://raw.githubusercontent.com/mansoo-kim/Discode/main/app/assets/images/icon_clyde_white_RGB.png' className="splash-logo-icon" />
             <span>Discode</span>
           </div>
 
           <ul>
-            <li><a href="https://github.com/mansookim/Discode" target="_blank">Github</a></li>
+            <li><a href="https://github.com/mansoo-kim/Discode" target="_blank">Github</a></li>
             <li><a href="https://www.linkedin.com/in/mansoo-kim/" target="_blank">LinkedIn</a></li>
             <li><a href="https://mansoo.net/" target="_blank">Portfolio</a></li>
           </ul>

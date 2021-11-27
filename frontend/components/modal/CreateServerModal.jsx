@@ -40,7 +40,7 @@ const CreateServerModal = ({ currentUser, closeModal, createServer, history }) =
     }
   }
 
-  const preview = <img src={imgUrl ? imgUrl : 'https://raw.githubusercontent.com/mansookim/Discode/6a4da7e263eacb2f22da39214b7ae35999db03f1/app/assets/images/upload_icon.svg'} className="server-icon" />
+  const preview = <img src={imgUrl ? imgUrl : 'https://raw.githubusercontent.com/mansoo-kim/Discode/527b97ecaea49ff7f63d222a598be98c4a924d96/app/assets/images/upload_icon.svg'} className="server-icon" />
 
   return (
     <div className="modal white">

@@ -4,7 +4,7 @@ const ChangePic = ({ onFileChange, handleRemove, fileRef, imgSrc, imageable, typ
   const fontSize = abbreviation?.length < 4 ? 42 : 24;
   const img = <img src={imgSrc} />
 
-  const usingDefault = imgSrc === 'https://raw.githubusercontent.com/mansookim/Discode/main/app/assets/images/icon_clyde_white_RGB.png';
+  const usingDefault = imgSrc === 'https://raw.githubusercontent.com/mansoo-kim/Discode/main/app/assets/images/icon_clyde_white_RGB.png';
 
   return (
     <div className="icon-group">

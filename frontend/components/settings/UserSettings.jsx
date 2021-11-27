@@ -79,7 +79,7 @@ const UserSettings = ({ currentUser, toggleSettings, openModal, updateUser }) =>
     }
   }
 
-  const imgSrc = removePfp ? 'https://raw.githubusercontent.com/mansookim/Discode/main/app/assets/images/icon_clyde_white_RGB.png' : imgUrl || currentUser.pfpUrl || 'https://raw.githubusercontent.com/mansookim/Discode/main/app/assets/images/icon_clyde_white_RGB.png'
+  const imgSrc = removePfp ? 'https://raw.githubusercontent.com/mansoo-kim/Discode/main/app/assets/images/icon_clyde_white_RGB.png' : imgUrl || currentUser.pfpUrl || 'https://raw.githubusercontent.com/mansoo-kim/Discode/main/app/assets/images/icon_clyde_white_RGB.png'
 
   return (
     <div className="settings-container">
