@@ -56,7 +56,7 @@ const MessageItem = ({ message, chat, currentUserId, sameSender, sender, openMod
 
   const date = new Date(message.createdAt);
   const today = new Date();
-  const timestamp = date.toLocaleDateString() === today.toLocaleDateString() ? `Today at ${date.toLocaleTimeString()}` : date.toLocaleString();
+  const timestamp = date.toLocaleDateString() === today.toLocaleDateString() ? `Today at ${date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit'})}` : date.toLocaleString();
 
   const messageBody = sameSender ? (
     <>
