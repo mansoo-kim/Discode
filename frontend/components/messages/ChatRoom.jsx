@@ -38,7 +38,12 @@ const ChatRoom = ({ type, cc, displayName, currentUserId, messages, receiveMessa
   }, [messages])
 
   const messageList = messages.map((message,i) => {
-    return <MessageItem key={message.id} message={message} chat={chat} currentUserId={currentUserId} sameSender={message.senderId === messages[i-1]?.senderId} />
+    return (
+      <MessageItem key={message.id} message={message} chat={chat} currentUserId={currentUserId}
+        sameSender={message.senderId === messages[i-1]?.senderId}
+        sameDate={messages[i-1] ? new Date(message.createdAt).toLocaleDateString() === new Date(messages[i-1].createdAt).toLocaleDateString() : false }
+      />
+    )
   });
 
   return (

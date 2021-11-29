@@ -3,7 +3,7 @@ import { closeOnEscape } from '../../utils/close_utils';
 import { RiDeleteBin5Fill } from 'react-icons/ri';
 import { FaPen } from 'react-icons/fa';
 
-const MessageItem = ({ message, chat, currentUserId, sameSender, sender, openModal }) => {
+const MessageItem = ({ message, chat, currentUserId, sameSender, sameDate, sender, openModal }) => {
   const [showEdit, setShowEdit] = useState(false);
   const [body, setBody] = useState(message.body);
   const editRef = useRef(null);
@@ -65,7 +65,7 @@ const MessageItem = ({ message, chat, currentUserId, sameSender, sender, openMod
   yesterday.setDate(yesterday.getDate() - 1);
   const timestamp = date.toLocaleDateString() === today.toLocaleDateString() ? `Today at ${date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit'})}` : date.toLocaleDateString() === yesterday.toLocaleDateString() ? `Yesterday at ${date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit'})}` : date.toLocaleDateString();
 
-  const messageBody = sameSender ? (
+  const messageBody = (sameSender && sameDate) ? (
     <>
       <div></div>
       <div className="message-text">
@@ -89,7 +89,7 @@ const MessageItem = ({ message, chat, currentUserId, sameSender, sender, openMod
   )
 
   return (
-    <div className={`message-item ${sameSender ? '' : 'first-message'}`}>
+    <div className={`message-item ${(sameSender && sameDate) ? '' : 'first-message'}`}>
       <div className="message-body">
         { messageBody }
       </div>
