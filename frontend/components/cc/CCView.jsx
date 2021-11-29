@@ -39,7 +39,7 @@ const CCView = ({ cc, type, members, currentUser, requestCC, updateCC }) => {
 
   const editName = (
     <form onSubmit={handleEdit} className="convo-name-form">
-      <input type="text" className="convo-name-input" spellCheck={false} ref={inputRef} value={newName} onChange={(e) => setNewName(e.currentTarget.value)} />
+      <input type="text" className="convo-name-input" spellCheck={false} ref={inputRef} value={newName} onChange={(e) => setNewName(e.currentTarget.value)} size={displayName.length} />
     </form>
   )
 
@@ -54,7 +54,7 @@ const CCView = ({ cc, type, members, currentUser, requestCC, updateCC }) => {
       <div className="cc-header">
         <div className="cc-hash">{ type === "Channel" ? <FaHashtag size={20} /> : <MdPeopleAlt size={22} /> }</div>
 
-        <div
+        <div className="cc-name-container"
           onClick={() => {
             if ( type ==="Conversation" && members.length > 2 ) setShowEdit(true);
           }}
