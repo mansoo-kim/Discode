@@ -31,14 +31,19 @@ const MessageItem = ({ message, chat, currentUserId, sameSender, sender, openMod
     setShowEdit(false);
   };
 
-  closeOnEscape(setShowEdit);
+  const closeEdit = bool => {
+    setShowEdit(bool);
+    setBody(message.body);
+  }
+
+  closeOnEscape(closeEdit);
 
   const editInput = (
     <form onSubmit={handleEdit} className="message-form edit">
       <input type="text" spellCheck={false} value={body} ref={editRef} onChange={(e) => setBody(e.currentTarget.value)} />
 
       <div>
-        escape to <span onClick={() => setShowEdit(false)}>cancel</span> &#8226; enter to <span onClick={handleEdit}>save</span>
+        escape to <span onClick={() => closeEdit(false)}>cancel</span> &#8226; enter to <span onClick={handleEdit}>save</span>
       </div>
     </form>
   )
