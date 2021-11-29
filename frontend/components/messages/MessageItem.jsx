@@ -54,6 +54,10 @@ const MessageItem = ({ message, chat, currentUserId, sameSender, sender, openMod
     </div>
   ) : null;
 
+  const date = new Date(message.createdAt);
+  const today = new Date();
+  const timestamp = date.toLocaleDateString() === today.toLocaleDateString() ? `Today at ${date.toLocaleTimeString()}` : date.toLocaleString();
+
   const messageBody = sameSender ? (
     <>
       <div></div>
@@ -68,7 +72,7 @@ const MessageItem = ({ message, chat, currentUserId, sameSender, sender, openMod
       <div className="message-pfp"><UserPfp user={sender} /></div>
       <div className="message-text">
         <div className="sender-username">
-          { sender.username }
+          { sender.username } { timestamp }
         </div>
         <div>
           { showEdit ? editInput : message.body }
