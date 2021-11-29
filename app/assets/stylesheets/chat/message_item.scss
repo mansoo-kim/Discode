@@ -80,5 +80,15 @@
   .sender-username {
     color: $white;
     font-weight: 600;
+    display: flex;
   }
+}
+
+.timestamp {
+  align-self: flex-end;
+  color: $kinda-grey;
+  font-size: 0.75rem;
+  margin-left: 0.5rem;
+  font-weight: 500;
+  line-height: 1.25rem;
 }

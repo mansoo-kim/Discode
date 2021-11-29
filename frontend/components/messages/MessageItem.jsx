@@ -83,7 +83,7 @@ const MessageItem = ({ message, chat, currentUserId, sameSender, sameDate, sende
           <div className="message-pfp"><UserPfp user={sender} /></div>
           <div className="message-text">
             <div className="sender-username">
-              { sender.username } { timestamp }
+              { sender.username } <span className="timestamp">{ timestamp }</span>
             </div>
             <div>
               { showEdit ? editInput : message.body }
