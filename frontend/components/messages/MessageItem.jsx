@@ -59,39 +59,45 @@ const MessageItem = ({ message, chat, currentUserId, sameSender, sameDate, sende
     </div>
   ) : null;
 
-  const date = new Date(message.createdAt);
-  const today = new Date();
-  const yesterday = new Date();
-  yesterday.setDate(yesterday.getDate() - 1);
-  const timestamp = date.toLocaleDateString() === today.toLocaleDateString() ? `Today at ${date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit'})}` : date.toLocaleDateString() === yesterday.toLocaleDateString() ? `Yesterday at ${date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit'})}` : date.toLocaleDateString();
+  const messageBody = () => {
+    if (sameSender && sameDate) {
+      return (
+        <>
+          <div></div>
+          <div className="message-text">
+            <div>
+              { showEdit ? editInput : message.body }
+            </div>
+          </div>
+        </>
+      )
+    } else {
+      const date = new Date(message.createdAt);
+      const today = new Date();
+      const yesterday = new Date();
+      yesterday.setDate(yesterday.getDate() - 1);
+      const timestamp = date.toLocaleDateString() === today.toLocaleDateString() ? `Today at ${date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit'})}` : date.toLocaleDateString() === yesterday.toLocaleDateString() ? `Yesterday at ${date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit'})}` : date.toLocaleDateString();
 
-  const messageBody = (sameSender && sameDate) ? (
-    <>
-      <div></div>
-      <div className="message-text">
-        <div>
-          { showEdit ? editInput : message.body }
-        </div>
-      </div>
-    </>
-  ) : (
-    <>
-      <div className="message-pfp"><UserPfp user={sender} /></div>
-      <div className="message-text">
-        <div className="sender-username">
-          { sender.username } { timestamp }
-        </div>
-        <div>
-          { showEdit ? editInput : message.body }
-        </div>
-      </div>
-    </>
-  )
+      return (
+        <>
+          <div className="message-pfp"><UserPfp user={sender} /></div>
+          <div className="message-text">
+            <div className="sender-username">
+              { sender.username } { timestamp }
+            </div>
+            <div>
+              { showEdit ? editInput : message.body }
+            </div>
+          </div>
+        </>
+      )
+    }
+  }
 
   return (
     <div className={`message-item ${(sameSender && sameDate) ? '' : 'first-message'}`}>
       <div className="message-body">
-        { messageBody }
+        { messageBody() }
       </div>
       { !showEdit && buttons }
     </div>
