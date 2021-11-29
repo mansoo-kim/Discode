@@ -76,7 +76,8 @@ const MessageItem = ({ message, chat, currentUserId, sameSender, sameDate, sende
       const today = new Date();
       const yesterday = new Date();
       yesterday.setDate(yesterday.getDate() - 1);
-      const timestamp = date.toLocaleDateString() === today.toLocaleDateString() ? `Today at ${date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit'})}` : date.toLocaleDateString() === yesterday.toLocaleDateString() ? `Yesterday at ${date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit'})}` : date.toLocaleDateString();
+      const hour = date.getHours() % 12;
+      const timestamp = date.toLocaleDateString() === today.toLocaleDateString() ? `Today at ${hour === 0 ? 12: hour}:${date.getMinutes().toString().padStart(2, '0')} ${date.getHours() > 11 ? "PM" : "AM"}` : date.toLocaleDateString() === yesterday.toLocaleDateString() ? `Yesterday at ${hour === 0 ? 12: hour}:${date.getMinutes().toString().padStart(2, '0')} ${date.getHours() > 11 ? "PM" : "AM"}` : date.toLocaleDateString();
 
       return (
         <>
