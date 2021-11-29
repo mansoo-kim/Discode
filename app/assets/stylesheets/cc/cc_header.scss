@@ -1,6 +1,5 @@
 .cc-header {
   display: flex;
-  justify-content: space-between;
   align-items: center;
   height: 48px;
   cursor: default;
@@ -10,11 +9,6 @@
 
   border-bottom: 1px solid $yet-another-black;
   box-shadow: 0 1px 1px rgba(0,0,0,0.1);
-
-  > div {
-    display: flex;
-    align-items: center;
-  }
 
   .separator {
     width: 1px;
@@ -59,5 +53,5 @@
 
   color: $white;
   background: $diff-black;
-  width: fit-content;
+  width: 100%;
 }

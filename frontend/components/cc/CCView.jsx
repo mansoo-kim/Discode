@@ -52,15 +52,18 @@ const CCView = ({ cc, type, members, currentUser, requestCC, updateCC }) => {
   return (
     <div className="cc-view">
       <div className="cc-header">
-        <div>
-          <div className="cc-hash">{ type === "Channel" ? <FaHashtag size={20} /> : <MdPeopleAlt size={22} /> }</div>
+        <div className="cc-hash">{ type === "Channel" ? <FaHashtag size={20} /> : <MdPeopleAlt size={22} /> }</div>
 
-          <div onClick={() => setShowEdit(true)} onBlur={() => {
+        <div
+          onClick={() => {
+            if ( type ==="Conversation" && members.length > 2 ) setShowEdit(true);
+          }}
+          onBlur={() => {
             setShowEdit(false);
             setNewName(displayName);
-          }}>
-            { ( type ==="Conversation" && members.length > 2 && showEdit ) ? editName : displayNameDiv }
-          </div>
+          }}
+        >
+          { ( type ==="Conversation" && members.length > 2 && showEdit ) ? editName : displayNameDiv }
         </div>
       </div>
 
