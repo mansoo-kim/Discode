@@ -21,5 +21,6 @@ Rails.application.routes.draw do
     delete 'friendships', to: 'friendships#destroy'
 
     delete 'memberships', to: 'memberships#destroy'
+    post 'memberships', to: 'memberships#create'
   end
 end

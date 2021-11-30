@@ -5,3 +5,11 @@ export const deleteMembership = (membership) => (
     data: { membership }
   })
 );
+
+export const createMembership = (membership) => (
+  $.ajax({
+    url: `/api/memberships`,
+    method: 'POST',
+    data: { membership }
+  })
+);

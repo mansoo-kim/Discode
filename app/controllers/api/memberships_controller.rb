@@ -5,7 +5,17 @@ class Api::MembershipsController < ApplicationController
     if @membership.destroy
       render 'api/memberships/show'
     else
-      render json: @memberships.errors, status: 422
+      render json: @membership.errors, status: 422
+    end
+  end
+
+  def create
+    @membership = Membership.new(membership_params)
+
+    if @membership.save
+      render 'api/memberships/show'
+    else
+      render json: @membership.errors, status: 422
     end
   end
 
