@@ -333,6 +333,7 @@
 }
 
 .server-modal-item {
+  flex: 0 0 auto;
   cursor: pointer;
   font-weight: 600;
   border: 1px solid rgba(6,6,7,0.08);
@@ -362,5 +363,24 @@
   label {
     font-family: 'whitney', sans-serif;
     font-size: 16px;
+  }
+
+  .server-modal-item {
+    margin-right: 4px;
+  }
+
+  height: 220px;
+  overflow: hidden auto;
+
+  &::-webkit-scrollbar {
+    background: rgba(0,0,0,0);
+    width: 8px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: $light-grey;
+    border: 2px solid rgba(0,0,0,0);
+    border-radius: 10px;
+    background-clip: padding-box;
   }
 }
