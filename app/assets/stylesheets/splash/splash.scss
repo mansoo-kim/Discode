@@ -28,6 +28,7 @@
 
     span {
       margin: 0px 10px;
+      letter-spacing: 1px;
       font-family: 'ginto-nord-black', sans-serif;
     }
   }
@@ -57,7 +58,7 @@
       display: flex;
       align-items: center;
       font-size: 14px;
-      height: 24px;
+      line-height: 24px;
       padding: 7px 16px;
       background: $white;
       color: $not-black;
