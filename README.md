@@ -1,6 +1,6 @@
 # Discode
 
-[Discode](https://discode9.herokuapp.com/) is a Discord clone, an instant messaging platform. On Discode, users can create servers, add friends, and chat in various chatrooms such as channels, direct messages, and group chats.
+[Discode](https://discode9.herokuapp.com/) is a Discord clone, an instant messaging platform. On Discode, users can create and join servers, add friends, and chat in various chatrooms such as channels, direct messages, and group chats.
 
 ## Technologies Used
 - Frontend: React, Redux, SCSS
@@ -21,7 +21,7 @@
 <img src='./app/assets/images/discode-user.gif' /> -->
 
 ### Live Chat
-- Users can live chat in channels inside servers, in private direct messages, and group chats.
+- Users can live chat in channels inside servers, private direct messages, and group chats.
 
 <img src='./app/assets/images/discode-live-chat.gif' />
 
@@ -77,7 +77,7 @@
 ```
 
 ### Servers and Channels
-- Users can create/edit/delete their own servers and channels.
+- Users can create/edit/delete their own servers and channels, or join other servers.
 - Servers can have a custom server icon.
 
 <img src='./app/assets/images/discode-servers.gif' />
@@ -105,7 +105,3 @@
     }
   }
 ```
-
-## Upcoming Features
-- Notifications for friend requests and unread messages.
-- Timestamps for messages.
