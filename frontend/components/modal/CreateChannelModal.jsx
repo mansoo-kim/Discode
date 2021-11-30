@@ -27,7 +27,7 @@ const CreateChannelModal = ({ closeModal, createChannel, history }) => {
         <FaTimes size={20} />
       </div>
 
-      <form onSubmit={handleSubmit(onSubmit)} >
+      <form onSubmit={handleSubmit(onSubmit)}>
 
         <div className="modal-header">
           <h2>Create Text Channel</h2>

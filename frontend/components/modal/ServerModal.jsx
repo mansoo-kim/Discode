@@ -11,7 +11,7 @@ const ServerModal = ({ closeModal, openModal }) => {
         <FaTimes size={20} />
       </div>
 
-      <form onSubmit={(e) => e.preventDefault()} >
+      <form onSubmit={(e) => e.preventDefault()}>
 
         <div className="modal-header">
           <h2>Create or Join a Server</h2>
@@ -24,6 +24,12 @@ const ServerModal = ({ closeModal, openModal }) => {
             type: "createServer"
           })}>
             Create My Own
+          </div>
+
+          <div className="server-modal-item" onClick={() => openModal({
+            type: "joinServer"
+          })}>
+            Join a Server
           </div>
 
         </div>

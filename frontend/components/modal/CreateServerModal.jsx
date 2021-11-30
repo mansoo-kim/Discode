@@ -51,7 +51,7 @@ const CreateServerModal = ({ currentUser, closeModal, createServer, openModal, h
       <form onSubmit={handleSubmit(onSubmit)}>
 
         <div className="modal-header">
-          <h2>Customize your server</h2>
+          <h2>Customize Your Server</h2>
           <p>Give your new server a personality with a name and an icon. You can always change it later.</p>
         </div>
 

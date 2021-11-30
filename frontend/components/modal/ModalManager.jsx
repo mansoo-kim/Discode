@@ -9,11 +9,15 @@ import LogOutModal from './LogOutModal';
 import LeaveServerModal from './LeaveServerModal';
 import RemoveFriendModal from './RemoveFriendModal';
 import ServerModal from './ServerModal';
+import JoinServerModal from './JoinServerModal';
 
 const ModalManager = ({ modal, closeModal, history }) => {
   let component;
 
   switch (modal.type) {
+    case "joinServer":
+      component = <JoinServerModal history={history} closeModal={() => closeModal(modal)} />
+      break;
     case "server":
       component = <ServerModal closeModal={() => closeModal(modal)} />
       break;
