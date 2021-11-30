@@ -2,7 +2,7 @@ import { RECEIVE_CURRENT_USER, LOGOUT_CURRENT_USER } from "../actions/session_ac
 import { RECEIVE_USER } from "../actions/user_actions";
 import { RECEIVE_SERVER } from "../actions/server_actions";
 import { REMOVE_SERVER } from "../actions/server_actions";
-import { REMOVE_MEMBERSHIP } from "../actions/membership_actions";
+import { REMOVE_MEMBERSHIP, RECEIVE_MEMBERSHIP } from "../actions/membership_actions";
 import { RECEIVE_CONVERSATION, RECEIVE_CONVERSATIONS } from "../actions/conversation_actions";
 
 const _nullSession = {
@@ -43,6 +43,11 @@ const SessionReducer = (state = _nullSession, action) => {
       newState = Object.assign({}, state);
       index = newState.servers.indexOf(action.membership.id);
       newState.servers.splice(index, 1);
+      return newState;
+    case RECEIVE_MEMBERSHIP:
+      if (action.membership.joinableType !== "Server") return state;
+      newState = Object.assign({}, state);
+      newState.servers.push(action.membership.id);
       return newState;
     case RECEIVE_CONVERSATION:
       if (!state.conversations.includes(action.res.conversation.id)) {
