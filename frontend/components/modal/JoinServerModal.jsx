@@ -1,4 +1,5 @@
 import { closeModalOnEscape } from '../../utils/close_utils';
+import ServerIcon from '../server/ServerIcon';
 import { FaTimes } from 'react-icons/fa';
 import { useForm } from 'react-hook-form';
 
@@ -13,7 +14,6 @@ const JoinServerModal = ({ closeModal, servers, currentUserId, openModal, create
 
 
   const onSubmit = (data) => {
-    console.log(`joining server with id ${data.serverId}`)
     createMembership({
       joinable_id: data.serverId,
       joinable_type: "Server",
@@ -37,17 +37,17 @@ const JoinServerModal = ({ closeModal, servers, currentUserId, openModal, create
         </div>
 
         <div className="modal-content">
-
-          { servers.map(server => {
-            return (
-              <div key={server.id}>
-                <label>
+          <div className="server-join-options">
+            { servers.map(server => {
+              return (
+                <label key={server.id} className="server-modal-item">
+                  <ServerIcon name={server.name} iconUrl={server.iconUrl} />
                   { server.name }
                   <input type="radio" id="server" value={server.id} {...register("serverId")} />
                 </label>
-              </div>
-            )
-          })}
+              )
+            })}
+          </div>
 
         </div>
 

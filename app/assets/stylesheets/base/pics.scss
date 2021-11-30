@@ -69,12 +69,12 @@
   overflow: hidden;
   transition: border-radius 0.2s ease, background 0.2s ease;
   color: $off-white;
+}
 
-  &:hover {
-    border-radius: 35%;
-    background: $blurple;
-    color: $white;
-  }
+.server-index-item .server-icon-container:hover {
+  border-radius: 35%;
+  background: $blurple;
+  color: $white;
 }
 
 .server-icon {

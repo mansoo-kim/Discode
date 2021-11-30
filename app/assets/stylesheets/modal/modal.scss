@@ -334,7 +334,7 @@
 
 .server-modal-item {
   cursor: pointer;
-  font-weight: 700;
+  font-weight: 600;
   border: 1px solid rgba(6,6,7,0.08);
   border-radius: 8px;
   height: 64px;
@@ -343,12 +343,24 @@
   align-items: center;
   padding: 0px 24px;
   color: $black-text;
+  margin-bottom: 8px;
+  color: $black-text;
 
   &:hover {
     background: rgba(116,127,141,0.08);
   }
 }
 
-.server-modal-item:first-of-type {
-  margin-bottom: 8px;
+.server-modal-item:last-of-type {
+  margin-bottom: 0px;
+}
+
+.server-join-options {
+  display: flex;
+  flex-direction: column;
+
+  label {
+    font-family: 'whitney', sans-serif;
+    font-size: 16px;
+  }
 }
