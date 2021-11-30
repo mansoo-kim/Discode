@@ -2,7 +2,7 @@ import { closeModalOnEscape } from '../../utils/close_utils';
 import { FaTimes } from 'react-icons/fa';
 import { useForm } from 'react-hook-form';
 
-const JoinServerModal = ({ closeModal, servers, openModal, history }) => {
+const JoinServerModal = ({ closeModal, servers, currentUserId, openModal, createMembership, history }) => {
 
   closeModalOnEscape(closeModal);
 
@@ -14,9 +14,13 @@ const JoinServerModal = ({ closeModal, servers, openModal, history }) => {
 
   const onSubmit = (data) => {
     console.log(`joining server with id ${data.serverId}`)
-    // createChannel(channel)
-    //   .then(({ res })=> history.push(`/channels/${res.channel.serverId}/${res.channel.id}`))
-    //   .then(() => closeModal());
+    createMembership({
+      joinable_id: data.serverId,
+      joinable_type: "Server",
+      user_id: currentUserId
+    })
+      .then(({ res })=> history.push(`/channels/${res.membership.joinableId}`))
+      .then(() => closeModal());
   }
 
   return (
@@ -66,13 +70,16 @@ const JoinServerModal = ({ closeModal, servers, openModal, history }) => {
 import { connect } from 'react-redux';
 import { openModal } from '../../actions/modal_actions';
 import { selectJoinableServers } from '../../reducers/selectors';
+import { createMembership } from '../../actions/membership_actions';
 
 const mSTP = (state) => ({
-  servers: selectJoinableServers(state)
+  servers: selectJoinableServers(state),
+  currentUserId: state.session.id
 })
 
-const mDTP = (dispatch) => ({
-  openModal: (modal) => dispatch(openModal(modal))
-});
+const mDTP = {
+  openModal,
+  createMembership
+}
 
 export default connect(mSTP, mDTP)(JoinServerModal);

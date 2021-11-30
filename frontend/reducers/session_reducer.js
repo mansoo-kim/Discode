@@ -41,13 +41,13 @@ const SessionReducer = (state = _nullSession, action) => {
     case REMOVE_MEMBERSHIP:
       if (action.membership.joinableType !== "Server") return state;
       newState = Object.assign({}, state);
-      index = newState.servers.indexOf(action.membership.id);
+      index = newState.servers.indexOf(action.membership.joinableId);
       newState.servers.splice(index, 1);
       return newState;
     case RECEIVE_MEMBERSHIP:
       if (action.membership.joinableType !== "Server") return state;
       newState = Object.assign({}, state);
-      newState.servers.push(action.membership.id);
+      newState.servers.push(action.membership.joinableId);
       return newState;
     case RECEIVE_CONVERSATION:
       if (!state.conversations.includes(action.res.conversation.id)) {

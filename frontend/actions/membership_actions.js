@@ -19,3 +19,10 @@ export const deleteMembership = (membership) => (dispatch) => (
       (membership) => dispatch(removeMembership(membership))
     )
 );
+
+export const createMembership = (membership) => (dispatch) => (
+  MembershipApiUtil.createMembership(membership)
+    .then(
+      (membership) => dispatch(receiveMembership(membership))
+    )
+);
