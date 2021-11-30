@@ -46,9 +46,10 @@ const ServerIndex = ({ servers, requestServers, openModal, match }) => {
 import { connect } from 'react-redux';
 import { requestServers } from '../../actions/server_actions';
 import { openModal } from '../../actions/modal_actions';
+import { selectServers } from '../../reducers/selectors';
 
 const mSTP = (state) => ({
-  servers: Object.values(state.entities.servers)
+  servers: selectServers(state)
 });
 
 const mDTP = (dispatch) => ({

@@ -1,3 +1,11 @@
+export const selectServers = (state) => {
+  const serverIds = state.session.servers;
+  if (!serverIds) return [];
+  const servers = [];
+  for (let id of serverIds) servers.push(state.entities.servers[id]);
+  return servers;
+}
+
 export const selectMembers = (state, type, id) => {
   const memberIds = state.entities[type][id]?.members;
   if (!memberIds) return [];
