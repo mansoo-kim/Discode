@@ -1,7 +1,7 @@
 import { closeModalOnEscape } from '../../utils/close_utils';
 import { FaTimes } from 'react-icons/fa';
 
-const ServerModal = ({ closeModal }) => {
+const ServerModal = ({ closeModal, openModal }) => {
 
   closeModalOnEscape(closeModal);
 
@@ -15,16 +15,18 @@ const ServerModal = ({ closeModal }) => {
 
         <div className="modal-header">
           <h2>Create or Join a Server</h2>
-          <p>A server is where you and your friends hang out. Make yours or join one to start talking.</p>
+          <p>A server is where you and your friends hang out. Make yours or join one to start chatting.</p>
         </div>
 
-        {/* <div className="modal-content">
-          <FaHashtag size={14} />
+        <div className="modal-content">
 
-          <label>CHANNEL NAME </label>
-          <input type="text" spellCheck={false} autoFocus className="text-input channel-name" placeholder="new-channel" {...register("channelName", { required: true })} />
+          <div className="server-modal-item" onClick={() => openModal({
+            type: "createServer"
+          })}>
+            Create My Own
+          </div>
 
-        </div> */}
+        </div>
 
         <div className="buttons-container">
           <button type="button" className="cancel-button" onClick={closeModal}>Cancel</button>

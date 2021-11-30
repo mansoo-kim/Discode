@@ -3,7 +3,7 @@ import { useForm } from 'react-hook-form';
 import { closeModalOnEscape } from '../../utils/close_utils';
 import { FaTimes } from 'react-icons/fa';
 
-const CreateServerModal = ({ currentUser, closeModal, createServer, history }) => {
+const CreateServerModal = ({ currentUser, closeModal, createServer, openModal, history }) => {
 
   closeModalOnEscape(closeModal);
 
@@ -80,7 +80,11 @@ const CreateServerModal = ({ currentUser, closeModal, createServer, history }) =
         </div>
 
         <div className="buttons-container">
-          <button type="button" className="cancel-button" onClick={closeModal}>Cancel</button>
+          <button type="button" className="cancel-button" onClick={() => openModal({
+            type: "server"
+          })}>
+            Back
+          </button>
           <button className="submit-button blue-button" disabled={serverName === ""}>
             <div>Create</div>
           </button>
@@ -93,6 +97,7 @@ const CreateServerModal = ({ currentUser, closeModal, createServer, history }) =
 
 import { connect } from 'react-redux';
 import { createServer } from '../../actions/server_actions';
+import { openModal } from '../../actions/modal_actions';
 
 const mSTP = (state) => ({
   serverErrors: state.errors.server,
@@ -100,7 +105,8 @@ const mSTP = (state) => ({
 });
 
 const mDTP = (dispatch) => ({
-  createServer: (server) => dispatch(createServer(server))
+  createServer: (server) => dispatch(createServer(server)),
+  openModal: (modal) => dispatch(openModal(modal))
 });
 
 export default connect(mSTP, mDTP)(CreateServerModal);
