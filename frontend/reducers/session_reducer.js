@@ -58,7 +58,11 @@ const SessionReducer = (state = _nullSession, action) => {
       return state;
     case RECEIVE_CONVERSATIONS:
       newState = Object.assign({}, state);
-      newState.conversations = Object.keys(action.res.conversations).map(id => parseInt(id));
+      if (action.res.conversations) {
+        newState.conversations = Object.keys(action.res.conversations).map(id => parseInt(id));
+      } else {
+        newState.conversations = [];
+      }
       return newState;
     default:
       return state;
