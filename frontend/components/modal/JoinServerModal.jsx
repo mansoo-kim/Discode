@@ -1,7 +1,7 @@
 import { closeModalOnEscape } from '../../utils/close_utils';
 import { FaTimes } from 'react-icons/fa';
 
-const CreateChannelModal = ({ closeModal, openModal, history }) => {
+const JoinServerModal = ({ closeModal, servers, openModal, history }) => {
 
   closeModalOnEscape(closeModal);
 
@@ -18,13 +18,17 @@ const CreateChannelModal = ({ closeModal, openModal, history }) => {
           <p>Select an existing server to join.</p>
         </div>
 
-        {/* <div className="modal-content">
-          <FaHashtag size={14} />
+        <div className="modal-content">
 
-          <label>CHANNEL NAME </label>
-          <input type="text" spellCheck={false} autoFocus className="text-input channel-name" placeholder="new-channel" {...register("channelName", { required: true })} />
+          { servers.map(server => {
+            return (
+              <div key={server.id}>
+                { server.name }
+              </div>
+            )
+          })}
 
-        </div> */}
+        </div>
 
         <div className="buttons-container">
           <button type="button" className="cancel-button" onClick={() => openModal({
@@ -44,9 +48,14 @@ const CreateChannelModal = ({ closeModal, openModal, history }) => {
 
 import { connect } from 'react-redux';
 import { openModal } from '../../actions/modal_actions';
+import { selectJoinableServers } from '../../reducers/selectors';
+
+const mSTP = (state) => ({
+  servers: selectJoinableServers(state)
+})
 
 const mDTP = (dispatch) => ({
   openModal: (modal) => dispatch(openModal(modal))
 });
 
-export default connect(null, mDTP)(CreateChannelModal);
+export default connect(mSTP, mDTP)(JoinServerModal);

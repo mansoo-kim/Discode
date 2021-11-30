@@ -285,6 +285,7 @@
 
 .modal.white {
   background: $white;
+  color: $black-text;
 
   h2 {
     color: black;
@@ -334,7 +335,6 @@
 }
 
 .server-modal-item {
-  color: $black-text;
   cursor: pointer;
   font-weight: 600;
 }

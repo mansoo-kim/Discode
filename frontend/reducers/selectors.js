@@ -69,3 +69,13 @@ export const selectStatus = (state, status) => {
   }
   return friends.sort((a,b) => a.username > b.username ? 1 : -1);
 }
+
+export const selectJoinableServers = state => {
+  const serverIds = state.session.servers;
+  if (!serverIds) return [];
+  const servers = [];
+  for (let id in state.entities.servers) {
+    if (!serverIds.includes(parseInt(id))) servers.push(state.entities.servers[id]);
+  }
+  return servers;
+}
