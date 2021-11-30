@@ -7,11 +7,12 @@ const JoinServerModal = ({ closeModal, servers, currentUserId, openModal, create
 
   closeModalOnEscape(closeModal);
 
-  const { register, formState: { isDirty }, handleSubmit } = useForm({
+  const { register, formState: { isDirty }, handleSubmit, watch } = useForm({
     mode: 'onChange',
     shouldFocusError: false
   });
 
+  const selectedServerId = watch("serverId");
 
   const onSubmit = (data) => {
     createMembership({
@@ -40,9 +41,11 @@ const JoinServerModal = ({ closeModal, servers, currentUserId, openModal, create
           <div className="server-join-options">
             { servers.map(server => {
               return (
-                <label key={server.id} className="server-modal-item">
-                  <ServerIcon name={server.name} iconUrl={server.iconUrl} />
-                  { server.name }
+                <label key={server.id} className={`server-modal-item ${parseInt(selectedServerId) === server.id ? "selected" : ""}`}>
+                  <div className="server-info">
+                    <ServerIcon name={server.name} iconUrl={server.iconUrl} />
+                    { server.name }
+                  </div>
                   <input type="radio" id="server" value={server.id} {...register("serverId")} />
                 </label>
               )

@@ -350,6 +350,23 @@
   &:hover {
     background: rgba(116,127,141,0.08);
   }
+
+  .server-info {
+    display: flex;
+    align-items: center;
+
+    .server-icon-container {
+      margin-right: 12px;
+    }
+  }
+
+  &.selected {
+    background: rgba(116,127,141,0.16);
+  }
+
+  input {
+    visibility: hidden;
+  }
 }
 
 .server-modal-item:last-of-type {
