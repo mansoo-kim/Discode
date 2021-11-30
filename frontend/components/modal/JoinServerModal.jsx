@@ -19,7 +19,7 @@ const JoinServerModal = ({ closeModal, servers, currentUserId, openModal, create
       joinable_type: "Server",
       user_id: currentUserId
     })
-      .then(({ res })=> history.push(`/channels/${res.membership.joinableId}`))
+      .then(({ membership }) => history.push(`/channels/${membership.joinableId}`))
       .then(() => closeModal());
   }
 
