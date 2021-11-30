@@ -47,7 +47,7 @@ const Splash = ({ loggedIn }) => {
                 <MdOutlineFileDownload className="download-icon" size={25} />
                 Download for { window.navigator.platform.includes('Win') ? 'Windows' : 'Mac'}
               </div>
-              <Link className="splash-button open button" to='/login'>Open Discord in your browser</Link>
+              <Link className="splash-button open button" to='/login'>Open Discode in your browser</Link>
             </div>
 
           </div>
