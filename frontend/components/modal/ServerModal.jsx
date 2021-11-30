@@ -1,5 +1,6 @@
 import { closeModalOnEscape } from '../../utils/close_utils';
 import { FaTimes } from 'react-icons/fa';
+import { FiChevronRight } from 'react-icons/fi';
 
 const ServerModal = ({ closeModal, openModal }) => {
 
@@ -23,13 +24,15 @@ const ServerModal = ({ closeModal, openModal }) => {
           <div className="server-modal-item" onClick={() => openModal({
             type: "createServer"
           })}>
-            Create My Own
+            <span>Create My Own</span>
+            <FiChevronRight size={20} />
           </div>
 
           <div className="server-modal-item" onClick={() => openModal({
             type: "joinServer"
           })}>
-            Join a Server
+            <span>Join a Server</span>
+            <FiChevronRight size={20} />
           </div>
 
         </div>

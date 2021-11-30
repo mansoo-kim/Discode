@@ -195,13 +195,6 @@
   .channel-name {
     padding-left: 32px;
   }
-
-  svg {
-    top: 38px;
-    left: 26px;
-    color: $off-white;
-    position: absolute;
-  }
 }
 
 .to-delete-container {
@@ -287,6 +280,12 @@
   background: $white;
   color: $black-text;
 
+  .close-button {
+    &:hover {
+      color: $black-text;
+    }
+  }
+
   h2 {
     color: black;
   }
@@ -314,6 +313,7 @@
   .text-input {
     background: white;
     font-weight: 600;
+    color: $black-text;
   }
 
   p.fine-print {
@@ -334,5 +334,21 @@
 
 .server-modal-item {
   cursor: pointer;
-  font-weight: 600;
+  font-weight: 700;
+  border: 1px solid rgba(6,6,7,0.08);
+  border-radius: 8px;
+  height: 64px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0px 24px;
+  color: $black-text;
+
+  &:hover {
+    background: rgba(116,127,141,0.08);
+  }
+}
+
+.server-modal-item:first-of-type {
+  margin-bottom: 8px;
 }
