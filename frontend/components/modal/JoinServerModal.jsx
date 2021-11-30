@@ -1,9 +1,23 @@
 import { closeModalOnEscape } from '../../utils/close_utils';
 import { FaTimes } from 'react-icons/fa';
+import { useForm } from 'react-hook-form';
 
 const JoinServerModal = ({ closeModal, servers, openModal, history }) => {
 
   closeModalOnEscape(closeModal);
+
+  const { register, formState: { isDirty }, handleSubmit } = useForm({
+    mode: 'onChange',
+    shouldFocusError: false
+  });
+
+
+  const onSubmit = (data) => {
+    console.log(`joining server with id ${data.serverId}`)
+    // createChannel(channel)
+    //   .then(({ res })=> history.push(`/channels/${res.channel.serverId}/${res.channel.id}`))
+    //   .then(() => closeModal());
+  }
 
   return (
     <div className="modal white">
@@ -11,7 +25,7 @@ const JoinServerModal = ({ closeModal, servers, openModal, history }) => {
         <FaTimes size={20} />
       </div>
 
-      <form onSubmit={(e) => e.preventDefault()}>
+      <form onSubmit={handleSubmit(onSubmit)}>
 
         <div className="modal-header">
           <h2>Join a Server</h2>
@@ -23,7 +37,10 @@ const JoinServerModal = ({ closeModal, servers, openModal, history }) => {
           { servers.map(server => {
             return (
               <div key={server.id}>
-                { server.name }
+                <label>
+                  { server.name }
+                  <input type="radio" id="server" value={server.id} {...register("serverId")} />
+                </label>
               </div>
             )
           })}
@@ -36,7 +53,7 @@ const JoinServerModal = ({ closeModal, servers, openModal, history }) => {
           })}>
             Back
           </button>
-          <button className="submit-button blue-button">
+          <button className="submit-button blue-button" disabled={!isDirty}>
             <div>Join Server</div>
           </button>
         </div>
