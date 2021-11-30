@@ -54,7 +54,14 @@ const Splash = ({ loggedIn }) => {
         </main>
       </div>
 
+      <section className="splash-rows">
+        <div>
 
+        </div>
+
+
+
+      </section>
     </div>
   )
 }
