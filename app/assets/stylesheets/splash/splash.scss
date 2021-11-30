@@ -10,16 +10,21 @@
 }
 
 .splash-nav {
+  margin-left: auto;
+  margin-right: auto;
   position: relative;
   z-index: 1;
   display: flex;
   justify-content: space-evenly;
   height: 80px;
+  max-width: 1600px;
   align-items: center;
 
   .splash-logo {
+    flex: 1 1 0;
     display: flex;
     align-items: center;
+    justify-content: center;
     height: 80px;
 
     .splash-logo-icon {
@@ -35,8 +40,9 @@
   }
 
   ul {
+    flex: 1 1 0;
     display: flex;
-    justify-content: space-around;
+    justify-content: center;
 
     li {
 
@@ -54,10 +60,12 @@
   }
 
   .app-link {
+    flex: 1 1 0;
+    display: flex;
+    justify-content: center;
 
     a {
-      display: flex;
-      align-items: center;
+      display: block;
       font-size: 14px;
       line-height: 24px;
       padding: 7px 16px;
