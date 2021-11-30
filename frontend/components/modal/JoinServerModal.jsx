@@ -24,6 +24,32 @@ const JoinServerModal = ({ closeModal, servers, currentUserId, openModal, create
       .then(() => closeModal());
   }
 
+  const showJoinableServers = () => {
+    if (servers.length) {
+      return (
+        <>
+        { servers.map(server => {
+          return (
+            <label key={server.id} className={`server-modal-item ${parseInt(selectedServerId) === server.id ? "selected" : ""}`}>
+              <div className="server-info">
+                <ServerIcon name={server.name} iconUrl={server.iconUrl} />
+                { server.name }
+              </div>
+              <input type="radio" id="server" value={server.id} {...register("serverId")} />
+            </label>
+          )
+        })}
+        </>
+      )
+    } else {
+      return (
+        <div className="server-modal-item">
+          There are no servers for you to join right now. Ask your friends to make one!
+        </div>
+      )
+    }
+  }
+
   return (
     <div className="modal white">
       <div className="close-button" onClick={closeModal}>
@@ -39,19 +65,8 @@ const JoinServerModal = ({ closeModal, servers, currentUserId, openModal, create
 
         <div className="modal-content">
           <div className="server-join-options">
-            { servers.map(server => {
-              return (
-                <label key={server.id} className={`server-modal-item ${parseInt(selectedServerId) === server.id ? "selected" : ""}`}>
-                  <div className="server-info">
-                    <ServerIcon name={server.name} iconUrl={server.iconUrl} />
-                    { server.name }
-                  </div>
-                  <input type="radio" id="server" value={server.id} {...register("serverId")} />
-                </label>
-              )
-            })}
+            { showJoinableServers() }
           </div>
-
         </div>
 
         <div className="buttons-container">
