@@ -157,7 +157,7 @@
     top: 0;
     width: 2560px;
     height: 100%;
-    background-image: url("clouds.svg");
+    background-image: image-url("clouds.svg");
     background-size: auto;
     transform: translateX(-50%);
   }
@@ -167,7 +167,7 @@
     left: 50%;
     width: 689px;
     height: 352px;
-    background-image: url("left.svg");
+    background-image: image-url("left.svg");
     transform: translateX(-150%);
   }
   .right {
@@ -176,7 +176,7 @@
     right: 50%;
     width: 615px;
     height: 360px;
-    background-image: url("right.svg");
+    background-image: image-url("right.svg");
     transform: translateX(155%);
   }
 }
